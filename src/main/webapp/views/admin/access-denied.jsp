@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="vi">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-    <title>Admin - User Detail</title>
+    <title>Admin - User List</title>
     <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/views/admin/assets/img/icon/favicon.ico" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/assets/bootstrap/css/bootstrap.min.css?h=bb600b08233db870ce64e59b11416ef9" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/assets/fonts/fontawesome-all.min.css?h=13bea3cde590997c1094f9bba14d719a" />
@@ -81,9 +81,7 @@
                 <div class="input-group">
                   <input class="bg-light form-control border-0 small" type="text" placeholder="Search for ..." />
                   <div class="input-group-append">
-                    <button class="btn btn-primary py-0" type="button">
-                      <i class="fas fa-search"></i>
-                    </button>
+                    <button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button>
                   </div>
                 </div>
               </form>
@@ -97,9 +95,7 @@
                       <div class="input-group">
                         <input class="bg-light form-control border-0 small" type="text" placeholder="Search for ..." />
                         <div class="input-group-append">
-                          <button class="btn btn-primary py-0" type="button">
-                            <i class="fas fa-search"></i>
-                          </button>
+                          <button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button>
                         </div>
                       </div>
                     </form>
@@ -119,15 +115,15 @@
                       <a class="dropdown-item" href="#">
                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile
                       </a>
-                      <a class="dropdown-item" href="#">
-                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Settings
+                      <a class="dropdown-item" href="#"
+                        ><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Settings
                       </a>
                       <a class="dropdown-item" href="#">
                         <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Activity log
                       </a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="logout"
-                        ><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout
+                      <a class="dropdown-item" href="logout">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout
                       </a>
                     </div>
                   </div>
@@ -135,157 +131,14 @@
               </ul>
             </div>
           </nav>
-          <div class="container-fluid px-container">
-            <ol class="breadcrumb m mx-5">
-              <li class="breadcrumb-item text-uppercase font-weight-bold">
-                <a href="admin-users"><span>users</span></a>
-              </li>
-              <li class="breadcrumb-item active text-uppercase font-weight-bold">
-                <span>user detail</span>
-              </li>
-            </ol>
-            <div class="d-flex justify-content-end align-items-xl-center my-3 mx-5">
-              <div class="d-flex flex-row justify-content-end justify-content-xl-end"></div>
-            </div>
-            <div class="row d-flex justify-content-xl-center px-5">
-              <div class="col">
-                <div class="card shadow mb-3">
-                  <div class="card-header d-flex justify-content-between align-items-xl-center py-3">
-                    <p class="text-primary d-inline-block m-0 font-weight-bold">Info</p>
-                    <button class="btn btn-primary disabled" type="submit" disabled="">Save</button>
-                  </div>
-                  <div class="card-body">
-                    <form>
-                      <div class="form-row">
-                        <div class="col">
-                          <div class="form-group">
-                            <label for="first_name"><strong>First Name</strong></label>
-                            <input
-                              class="form-control"
-                              type="text"
-                              id="first_name"
-                              name="first_name"
-                              placeholder="First Name"
-                            />
-                          </div>
-                        </div>
-                        <div class="col">
-                          <div class="form-group">
-                            <label for="last_name"><strong>Last Name</strong></label>
-                            <input
-                              class="form-control"
-                              type="text"
-                              id="last_name"
-                              placeholder="Last Name"
-                              name="last_name"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <div class="col">
-                          <div class="form-group">
-                            <label for="username"><strong>Username</strong></label>
-                            <input
-                              class="form-control"
-                              type="text"
-                              id="username"
-                              placeholder="User Name"
-                              name="username"
-                            />
-                          </div>
-                        </div>
-                        <div class="col">
-                          <div class="form-group">
-                            <label for="email"><strong>Email Address</strong></label>
-                            <input
-                              class="form-control"
-                              type="email"
-                              id="email"
-                              placeholder="Email Address"
-                              name="email"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-                <div class="card shadow mb-3">
-                  <div class="card-header d-flex justify-content-between align-items-xl-center py-3">
-                    <p class="text-primary d-inline-block m-0 font-weight-bold">Contact</p>
-                    <button class="btn btn-primary disabled" type="submit" disabled="">Save</button>
-                  </div>
-                  <div class="card-body">
-                    <form>
-                      <div class="form-row">
-                        <div class="col">
-                          <div class="form-group">
-                            <label for="city"><strong>City</strong></label>
-                            <input class="form-control" type="text" id="city" placeholder="City" name="city" />
-                          </div>
-                        </div>
-                        <div class="col">
-                          <div class="form-group">
-                            <label for="country"><strong>Country</strong></label>
-                            <input
-                              class="form-control"
-                              type="text"
-                              id="country"
-                              placeholder="Viet Nam"
-                              name="country"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="address"><strong>Address</strong></label>
-                        <input class="form-control" type="text" id="address" placeholder="Address" name="address" />
-                      </div>
-                    </form>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-header">
-                    <p
-                      class="text-primary m-0 font-weight-bold pointer"
-                      data-target="#reset_password"
-                      aria-expanded="false"
-                      data-toggle="collapse"
-                      aria-controls="reset_password"
-                    >
-                      Reset password
-                    </p>
-                  </div>
-                  <div class="card-body collapse" id="reset_password">
-                    <form id="form-reset-pass">
-                      <div class="form-row">
-                        <div class="col">
-                          <div class="form-group">
-                            <label for=""><strong>New Password</strong></label>
-                            <input class="form-control" type="password" placeholder="New Password" />
-                          </div>
-                        </div>
-                        <div class="col">
-                          <div class="form-group">
-                            <label for=""><strong>Repeat Password</strong></label
-                            ><input class="form-control" type="password" placeholder="Repeat Password" />
-                          </div>
-                        </div>
-                      </div>
-                      <button class="btn btn-primary" type="submit">Save</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="container-fluid">
+            
+            <p>Mày khoải</p>
           </div>
         </div>
         <footer class="bg-white sticky-footer">
           <div class="container my-auto">
-            <div class="text-center my-auto copyright">
-              <span>Copyright © DuckStore 2023</span>
-            </div>
+            <div class="text-center my-auto copyright"><span>Copyright © DuckStore 2023</span></div>
           </div>
         </footer>
       </div>
