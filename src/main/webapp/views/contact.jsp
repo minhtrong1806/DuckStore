@@ -49,7 +49,7 @@
             <div class="left-top-bar">Free shipping for standard order over $100</div>
             <div class="right-top-bar flex-w h-full">
               <a href="login" class="flex-c-m trans-04 p-lr-25"> Login </a>
-              <a href="login" class="flex-c-m trans-04 p-lr-25"> Logout </a>
+              <a href="logout" class="flex-c-m trans-04 p-lr-25"> Logout </a>
             </div>
           </div>
         </div>
@@ -138,7 +138,7 @@
           <li>
             <div class="right-top-bar flex-w h-full">
               <a href="login" class="flex-c-m p-lr-10 trans-04"> Login </a>
-              <a href="login" class="flex-c-m p-lr-10 trans-04"> Logout </a>
+              <a href="logout" class="flex-c-m p-lr-10 trans-04"> Logout </a>
               <a href="my-account" class="flex-c-m p-lr-10 trans-04"> Account </a>
             </div>
           </li>

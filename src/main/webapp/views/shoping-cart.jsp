@@ -14,61 +14,61 @@
 <link
 		rel="icon"
 		type="image/x-icon"
-		href="images/icons/favicon.ico" />
+		href="${pageContext.request.contextPath}/views/images/icons/favicon.ico" />
 <!--===============================================================================================-->
 <link
 		rel="stylesheet"
 		type="text/css"
-		href="vendor/bootstrap/css/bootstrap.min.css">
+		href="${pageContext.request.contextPath}/views/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
 <link
 		rel="stylesheet"
 		type="text/css"
-		href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+		href="${pageContext.request.contextPath}/views/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
 <link
 		rel="stylesheet"
 		type="text/css"
-		href="fonts/iconic/css/material-design-iconic-font.min.css">
+		href="${pageContext.request.contextPath}/views/fonts/iconic/css/material-design-iconic-font.min.css">
 <!--===============================================================================================-->
 <link
 		rel="stylesheet"
 		type="text/css"
-		href="fonts/linearicons-v1.0.0/icon-font.min.css">
+		href="${pageContext.request.contextPath}/views/fonts/linearicons-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
 <link
 		rel="stylesheet"
 		type="text/css"
-		href="vendor/animate/animate.css">
+		href="${pageContext.request.contextPath}/views/vendor/animate/animate.css">
 <!--===============================================================================================-->
 <link
 		rel="stylesheet"
 		type="text/css"
-		href="vendor/css-hamburgers/hamburgers.min.css">
+		href="${pageContext.request.contextPath}/views/vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
 <link
 		rel="stylesheet"
 		type="text/css"
-		href="vendor/animsition/css/animsition.min.css">
+		href="${pageContext.request.contextPath}/views/vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
 <link
 		rel="stylesheet"
 		type="text/css"
-		href="vendor/select2/select2.min.css">
+		href="${pageContext.request.contextPath}/views/vendor/select2/select2.min.css">
 <!--===============================================================================================-->
 <link
 		rel="stylesheet"
 		type="text/css"
-		href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+		href="${pageContext.request.contextPath}/views/vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
 <link
 		rel="stylesheet"
 		type="text/css"
-		href="css/util.css">
+		href="${pageContext.request.contextPath}/views/css/util.css">
 <link
 		rel="stylesheet"
 		type="text/css"
-		href="css/main.css">
+		href="${pageContext.request.contextPath}/views/css/main.css">
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
@@ -85,7 +85,7 @@
 												<a
 														href="login"
 														class="flex-c-m trans-04 p-lr-25"> Login </a> <a
-														href="login"
+														href="logout"
 														class="flex-c-m trans-04 p-lr-25"> Logout </a>
 										</div>
 								</div>
@@ -96,7 +96,7 @@
 										<a
 												href="#"
 												class="logo"> <img
-												src="images/icons/logo-01.png"
+												src="${pageContext.request.contextPath}/views/images/icons/logo-01.png"
 												alt="IMG-LOGO" />
 										</a>
 										<!-- Menu desktop -->
@@ -140,7 +140,7 @@
 						<!-- Logo moblie -->
 						<div class="logo-mobile">
 								<a href="home"><img
-										src="images/icons/logo-01.png"
+										src="${pageContext.request.contextPath}/views/images/icons/logo-01.png"
 										alt="IMG-LOGO" /></a>
 						</div>
 						<!-- Icon header -->
@@ -181,7 +181,7 @@
 												<a
 														href="login"
 														class="flex-c-m p-lr-10 trans-04"> Login </a> <a
-														href="login"
+														href="logout"
 														class="flex-c-m p-lr-10 trans-04"> Logout </a> <a
 														href="my-account"
 														class="flex-c-m p-lr-10 trans-04"> Account </a>
@@ -202,7 +202,7 @@
 								<button
 										class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
 										<img
-												src="images/icons/icon-close2.png"
+												src="${pageContext.request.contextPath}/views/images/icons/icon-close2.png"
 												alt="CLOSE" />
 								</button>
 								<form class="wrap-search-header flex-w p-l-15">
@@ -233,7 +233,7 @@
 										<li class="header-cart-item flex-w flex-t m-b-12">
 												<div class="header-cart-item-img">
 														<img
-																src="images/item-cart-01.jpg"
+																src="${pageContext.request.contextPath}/views/images/item-cart-01.jpg"
 																alt="IMG">
 												</div>
 												<div class="header-cart-item-txt p-t-8">
@@ -247,7 +247,7 @@
 										<li class="header-cart-item flex-w flex-t m-b-12">
 												<div class="header-cart-item-img">
 														<img
-																src="images/item-cart-02.jpg"
+																src="${pageContext.request.contextPath}/views/images/item-cart-02.jpg"
 																alt="IMG">
 												</div>
 												<div class="header-cart-item-txt p-t-8">
@@ -261,7 +261,7 @@
 										<li class="header-cart-item flex-w flex-t m-b-12">
 												<div class="header-cart-item-img">
 														<img
-																src="images/item-cart-03.jpg"
+																src="${pageContext.request.contextPath}/views/images/item-cart-03.jpg"
 																alt="IMG">
 												</div>
 												<div class="header-cart-item-txt p-t-8">
@@ -319,7 +319,7 @@
 																		<td class="column-1">
 																				<div class="how-itemcart1">
 																						<img
-																								src="images/item-cart-04.jpg"
+																								src="${pageContext.request.contextPath}/views/images/item-cart-04.jpg"
 																								alt="IMG">
 																				</div>
 																		</td>
@@ -348,7 +348,7 @@
 																		<td class="column-1">
 																				<div class="how-itemcart1">
 																						<img
-																								src="images/item-cart-05.jpg"
+																								src="${pageContext.request.contextPath}/views/images/item-cart-05.jpg"
 																								alt="IMG">
 																				</div>
 																		</td>
@@ -476,14 +476,14 @@
 				</span>
 		</div>
 		<!--===============================================================================================-->
-		<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+		<script src="${pageContext.request.contextPath}/views/vendor/jquery/jquery-3.2.1.min.js"></script>
 		<!--===============================================================================================-->
-		<script src="vendor/animsition/js/animsition.min.js"></script>
+		<script src="${pageContext.request.contextPath}/views/vendor/animsition/js/animsition.min.js"></script>
 		<!--===============================================================================================-->
-		<script src="vendor/bootstrap/js/popper.js"></script>
-		<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+		<script src="${pageContext.request.contextPath}/views/vendor/bootstrap/js/popper.js"></script>
+		<script src="${pageContext.request.contextPath}/views/vendor/bootstrap/js/bootstrap.min.js"></script>
 		<!--===============================================================================================-->
-		<script src="vendor/select2/select2.min.js"></script>
+		<script src="${pageContext.request.contextPath}/views/vendor/select2/select2.min.js"></script>
 		<script>
 			$(".js-select2").each(function() {
 				$(this).select2({
@@ -493,9 +493,9 @@
 			})
 		</script>
 		<!--===============================================================================================-->
-		<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+		<script src="${pageContext.request.contextPath}/views/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 		<!--===============================================================================================-->
-		<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+		<script src="${pageContext.request.contextPath}/views/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 		<script>
 			$('.js-pscroll').each(function() {
 				$(this).css('position', 'relative');
@@ -512,6 +512,6 @@
 			});
 		</script>
 		<!--===============================================================================================-->
-		<script src="js/main.js"></script>
+		<script src="${pageContext.request.contextPath}/views/js/main.js"></script>
 </body>
 </html>
