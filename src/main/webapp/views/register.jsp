@@ -21,18 +21,7 @@
               <div class="card-body">
                 <h4 class="card-title">Register</h4>
                 <form method="POST" class="my-login-validation" novalidate="">
-                  <div class="form-group">
-                    <label for="name">Name</label>
-                    <input
-                      id="name"
-                      type="text"
-                      class="form-control"
-                      name="name"
-                      required
-                      autofocus
-                    />
-                    <div class="invalid-feedback">What's your name?</div>
-                  </div>
+                
                   <div class="form-group">
                     <label for="email">E-Mail Address</label>
                     <input id="email" type="email" class="form-control" name="email" required />
