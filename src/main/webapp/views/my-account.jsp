@@ -129,25 +129,14 @@
 														class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
 														<i class="zmdi zmdi-search"></i>
 												</div>
-												<div
-														class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
-														data-notify="2">
-														<i class="zmdi zmdi-shopping-cart"></i>
-												</div>
-												<%--
-              <a
-                href="#"
-                class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
-                data-notify="0"
-              >
-                <i class="zmdi zmdi-favorite-outline"></i>
-              </a>
-               --%>
 												<a
+														href="shopping-cart"
+														class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 ">
+														<i class="zmdi zmdi-shopping-cart"></i>
+												</a> <a
 														href="my-account"
 														class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11"
-														data-notify="0"> <i
-														class="zmdi zmdi-account-circle"></i>
+														data-notify="0"> <i class="zmdi zmdi-account-circle"></i>
 												</a>
 										</div>
 								</nav>
@@ -167,20 +156,11 @@
 										class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
 										<i class="zmdi zmdi-search"></i>
 								</div>
-								<div
-										class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
-										data-notify="2">
+								<a
+										href="shopping-cart"
+										class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 ">
 										<i class="zmdi zmdi-shopping-cart"></i>
-								</div>
-								<%--
-          <a
-            href="#"
-            class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti"
-            data-notify="0"
-          >
-            <i class="zmdi zmdi-favorite-outline"></i>
-          </a>
-           --%>
+								</a>
 						</div>
 						<!-- Button show menu -->
 						<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
@@ -238,78 +218,6 @@
 						</div>
 				</div>
 		</header>
-		<!-- Cart -->
-		<div class="wrap-header-cart js-panel-cart">
-				<div class="s-full js-hide-cart"></div>
-				<div class="header-cart flex-col-l p-l-65 p-r-25">
-						<div class="header-cart-title flex-w flex-sb-m p-b-8">
-								<span class="mtext-103 cl2"> Your Cart </span>
-								<div
-										class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
-										<i class="zmdi zmdi-close"></i>
-								</div>
-						</div>
-						<div class="header-cart-content flex-w js-pscroll">
-								<ul class="header-cart-wrapitem w-full">
-										<li class="header-cart-item flex-w flex-t m-b-12">
-												<div class="header-cart-item-img">
-														<img
-																src="${pageContext.request.contextPath}/views/images/item-cart-01.jpg"
-																alt="IMG" />
-												</div>
-												<div class="header-cart-item-txt p-t-8">
-														<a
-																href="#"
-																class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-																White Shirt Pleat </a> <span class="header-cart-item-info">
-																1 x $19.00 </span>
-												</div>
-										</li>
-										<li class="header-cart-item flex-w flex-t m-b-12">
-												<div class="header-cart-item-img">
-														<img
-																src="${pageContext.request.contextPath}/views/images/item-cart-02.jpg"
-																alt="IMG" />
-												</div>
-												<div class="header-cart-item-txt p-t-8">
-														<a
-																href="#"
-																class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-																Converse All Star </a> <span class="header-cart-item-info">
-																1 x $39.00 </span>
-												</div>
-										</li>
-										<li class="header-cart-item flex-w flex-t m-b-12">
-												<div class="header-cart-item-img">
-														<img
-																src="${pageContext.request.contextPath}/views/images/item-cart-03.jpg"
-																alt="IMG" />
-												</div>
-												<div class="header-cart-item-txt p-t-8">
-														<a
-																href="#"
-																class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-																Nixon Porter Leather </a> <span
-																class="header-cart-item-info"> 1 x $17.00 </span>
-												</div>
-										</li>
-								</ul>
-								<div class="w-full">
-										<div class="header-cart-total w-full p-tb-40">Total:
-												$75.00</div>
-										<div class="header-cart-buttons flex-w w-full">
-												<a
-														href="shoping-cart"
-														class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-														View Cart </a> <a
-														href="shoping-cart"
-														class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-														Check Out </a>
-										</div>
-								</div>
-						</div>
-				</div>
-		</div>
 		<!-- breadcrumb -->
 		<div class="container">
 				<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
@@ -356,26 +264,27 @@
 														id="info"
 														class="tab-pane fade active show">
 														<div class="card">
-																<div class="m-all-50">
+																<div class="m-all-40">
 																		<h5 class="text-left mtext-103 cl2">Your Info</h5>
 																</div>
 																<div
 																		class="card-body d-flex flex-row justify-content-xl-start border-top">
 																		<div class="col-xl-4 mtext-107">
 																				<p class="m-t-30">Name:</p>
-																				<p class="m-t-10">Email:</p>
-																				<p class="m-t-10">Phone number:</p>
-																				<p class="m-t-10">Defautl address:</p>
+																				<p class="m-t-20">Email:</p>
+																				<p class="m-t-20">Phone number:</p>
+																				<p class="m-t-20">Defautl address:</p>
 																		</div>
 																		<div
 																				class="col-xl-8 d-flex flex-column align-items-xl-start mtext-107">
 																				<p class="m-t-30">Minh Trong</p>
-																				<p class="m-t-10">minhtrong@gmail.com</p>
-																				<p class="m-t-10">0123456789</p>
-																				<p class="m-t-10">HCM</p>
+																				<p class="m-t-20">minhtrong@gmail.com</p>
+																				<p class="m-t-20">0123456789</p>
+																				<p class="m-t-20">HCM</p>
 																		</div>
 																</div>
-																<div class="d-xl-flex justify-content-xl-end px-4 mb-2">
+																<div
+																		class="d-xl-flex justify-content-xl-end stext-108 px-4 mb-2">
 																		<a
 																				href="#edit-info"
 																				data-toggle="list">Edit</a>
@@ -386,37 +295,36 @@
 														id="edit-info"
 														class="tab-pane fade">
 														<div class="card">
-																<div class="m-2">
+																<div class="m-all-40">
 																		<h5 class="text-left mtext-103 cl2">Edit Info</h5>
 																</div>
 																<div
-																		class="card-body d-flex flex-row justify-content-xl-start border-top">
+																		class="card-body d-flex flex-row justify-content-xl-start border-top mtext-107">
 																		<div class="col-xl-4">
-																				<p class="m-t-30">Name:</p>
-																				<p class="m-t-10">Email:</p>
-																				<p class="m-t-10">Phone number:</p>
-																				<p class="m-t-10">Defautl address:</p>
+																				<p class="m-t-35">Name:</p>
+																				<p class="m-t-30">Email:</p>
+																				<p class="m-t-30">Phone number:</p>
+																				<p class="m-t-30">Defautl address:</p>
 																		</div>
 																		<div class="col-xl-8 align-items-xl-start">
-																		
 																				<form>
 																						<input
-																								class="form-control form-control-sm m-t-30"
+																								class="form-control form-control m-t-30"
 																								type="text"
 																								name="name"
 																								value="Minh Trong"><input
-																								class="form-control form-control-sm m-t-20"
+																								class="form-control form-control m-t-20"
 																								type="text"
 																								name="email"
 																								inputmode="email"
 																								value="minhtrong@gmail.com"><input
-																								class="form-control form-control-sm m-t-20"
+																								class="form-control form-control m-t-20"
 																								type="text"
 																								inputmode="tel"
 																								name="phoneNumber"
 																								value="0123456"><select
 																								class="form-control m-t-20">
-																								<optgroup label="This is a group">
+																								<optgroup label="Adresss">
 																										<option
 																												value="12"
 																												selected="">HCM</option>
@@ -439,8 +347,9 @@
 														id="address-book"
 														class="tab-pane fade">
 														<div class="card">
-																<div class="d-flex justify-content-between m-2">
-																		<h5 class="d-inline">Address Book</h5>
+																<div
+																		class="d-flex justify-content-between mtext-103 cl2 m-all-40">
+																		<h5 class="d-inline ">Address Book</h5>
 																		<a
 																				class="btn btn-link"
 																				role="button"
@@ -501,10 +410,11 @@
 														id="add-address"
 														class="tab-pane fade">
 														<div class="card">
-																<div class="d-flex justify-content-between m-2">
-																		<h5 class="d-inline">Add Address&nbsp;</h5>
+																<div
+																		class="d-flex justify-content-between mtext-103 cl2 m-all-40">
+																		<h5 class="d-inline">Add Address</h5>
 																</div>
-																<div class="card-body border-top">
+																<div class="card-body border-top mtext-107">
 																		<form>
 																				<div>
 																						<label>Address</label><input
@@ -522,8 +432,8 @@
 																				</div>
 																				<div class="d-xl-flex justify-content-xl-end mt-3">
 																						<button
-																								class="btn btn-link btn-sm"
-																								type="submit">ADD</button>
+																								class="btn btn-primary btn-sm"
+																								type="submit">Save</button>
 																				</div>
 																		</form>
 																</div>
@@ -533,27 +443,29 @@
 														id="change-pass"
 														class="tab-pane fade">
 														<div class="card">
-																<div class="m-2">
+																<div class="mtext-103 cl2 m-all-40">
 																		<h5>Change password</h5>
 																</div>
 																<div class="card-body border-top">
 																		<form class="d-flex flex-column">
-																				<div class="d-flex align-items-xl-center mb-3">
-																						<label class="w-25">Old password:</label><input
+																				<div class="d-flex align-items-xl-center m-b-30">
+																						<label class="w-25 mtext-107">Old
+																								password:</label><input
 																								class="form-control"
 																								type="password"
 																								placeholder="Old Password"
 																								name="oldPassword">
 																				</div>
-																				<div class="d-flex align-items-xl-center mb-3">
-																						<label class="w-25">New password:</label><input
+																				<div class="d-flex align-items-xl-center m-b-30">
+																						<label class="w-25 mtext-107">New
+																								password:</label><input
 																								class="form-control"
 																								type="password"
 																								placeholder="New Password"
 																								name="newPassword">
 																				</div>
-																				<div class="d-flex align-items-xl-center mb-3">
-																						<label class="w-25">Repeat:</label><input
+																				<div class="d-flex align-items-xl-center m-b-30">
+																						<label class="w-25 mtext-107">Repeat:</label><input
 																								class="form-control"
 																								type="password"
 																								placeholder="Repeat Password"
@@ -570,7 +482,7 @@
 														id="history"
 														class="tab-pane fade">
 														<div class="card">
-																<div class="m-2">
+																<div class="m-all-40 mtext-103 cl2">
 																		<h5>History</h5>
 																</div>
 																<div class="card-body border-top">

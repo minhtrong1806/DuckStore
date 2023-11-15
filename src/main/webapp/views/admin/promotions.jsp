@@ -9,7 +9,7 @@
 <meta
 		name="viewport"
 		content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-<title>Admin - Dashboard</title>
+<title>Admin - User List</title>
 <link
 		rel="icon"
 		type="image/x-icon"
@@ -53,7 +53,7 @@
 										<li
 												class="nav-item"
 												style="margin-top: 35%"><a
-												class="nav-link active"
+												class="nav-link"
 												href="admin-dashboard"> <i
 														class="fa fa-dashboard"
 														style="font-size: 1.3rem"></i> <span
@@ -99,7 +99,7 @@
 														class="nav-item-content">Users</span>
 										</a></li>
 										<li class="nav-item"><a
-												class="nav-link"
+												class="nav-link active"
 												href="promotions"><i
 														class="fa fa-gift"
 														style="font-size: 1.3rem"></i><span
@@ -121,82 +121,56 @@
 								<%-- navbar --%>
 								<%@include file="navbar.jsp"%>
 								<%-- end navbar --%>
+								<%--content--%>
 								<div class="container-fluid px-container">
-										<!-- BREADCRUMB -->
 										<ol class="breadcrumb">
 												<li
-														class="breadcrumb-item active text-uppercase font-weight-bold">
-														<span>dashboard</span>
-												</li>
+														class="breadcrumb-item active text-uppercase font-weight-bold"><span>promotion</span></li>
 										</ol>
-										<div class="row">
-												<div class="col">
-														<div
-																class="d-flex flex-row justify-content-center flex-wrap justify-content-xl-center">
-																<div class="card dashboarh-card">
-																		<div class="card-body pb-0">
-																				<h2
-																						class="font-weight-bold text-center text-primary d-flex d-xl-flex flex-grow-1 justify-content-center align-items-xl-center">
-																						50&nbsp; <i class="far fa-user custom-icon"></i>
-																				</h2>
-																				<p
-																						class="text-nowrap text-uppercase font-weight-bold text-center text-dark">customers</p>
-																		</div>
-																</div>
-																<div class="card dashboarh-card">
-																		<div class="card-body pb-0">
-																				<h2
-																						class="font-weight-bold text-center text-danger d-flex d-xl-flex flex-grow-1 justify-content-center align-items-xl-center">
-																						50&nbsp; <i class="far fa-user custom-icon"></i>
-																				</h2>
-																				<p
-																						class="text-nowrap text-uppercase font-weight-bold text-center text-dark">total
-																						sale</p>
-																		</div>
-																</div>
-																<div class="card dashboarh-card">
-																		<div class="card-body pb-0">
-																				<h2
-																						class="font-weight-bold text-center text-info d-flex d-xl-flex flex-grow-1 justify-content-center align-items-xl-center">
-																						50&nbsp; <i class="far fa-user custom-icon"></i>
-																				</h2>
-																				<p
-																						class="text-nowrap text-uppercase font-weight-bold text-center text-dark">revenue</p>
-																		</div>
-																</div>
-														</div>
-												</div>
+										<div
+												class="d-flex justify-content-end align-items-xl-center my-3 mx-5">
+												<div
+														class="d-flex flex-row justify-content-end justify-content-xl-end"></div>
 										</div>
 										<div class="row">
-												<div class="col-md-12">
-														<div class="card chart-card">
-																<div class="card-header chart-card-header">
-																		<div
-																				class="d-flex justify-content-start align-content-start align-items-xl-center header-char-today">
-																				<span>TODAY</span> <i class="fa fa-usd icon-dola"></i>
-																				<span>100</span>
-																		</div>
-																		<div
-																				class="d-flex justify-content-start align-content-start align-items-xl-center header-char-yesterday">
-																				<span>YESTERDAY</span> <i
-																						class="fa fa-usd icon-dola"></i> <span>100</span>
-																		</div>
+												<div class="col">
+														<div class="card">
+																<div class="d-flex justify-content-between mx-3 mt-3">
+																		<h3 class="text-uppercase d-inline">List
+																				Promotions</h3>
+																		<a
+																				class="btn btn-primary"
+																				role="button"
+																				href="add-promotion">ADD</a>
 																</div>
-																<div
-																		class="card-body"
-																		style="border-left-color: rgba(201, 204, 227, 0.7); margin-top: 10px">
-																		<div
-																				class="chart-area"
-																				style="border-radius: 10px; border-bottom-width: 5px; font-weight: bold">
-																				<canvas
-																						data-bss-chart='{"type":"line","data":{"labels":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug"],"datasets":[{"label":"Earnings","fill":true,"data":["0","10000","5000","15000","10000","20000","15000","25000"],"backgroundColor":"rgba(78, 115, 223, 0.05)","borderColor":"rgba(78, 115, 223, 1)"}]},"options":{"maintainAspectRatio":false,"legend":{"display":false,"labels":{"fontStyle":"normal","fontColor":"#666","fontSize":20,"fontFamily":"Nunito, sans-serif"},"position":"top","reverse":false},"title":{"fontStyle":"normal","fontColor":"#ffffff"},"scales":{"xAxes":[{"gridLines":{"color":"#eaecf4","zeroLineColor":"#eaecf4","drawBorder":true,"drawTicks":false,"borderDash":["0"],"zeroLineBorderDash":["0"],"drawOnChartArea":true},"ticks":{"fontColor":"#ffffff","fontFamily":"Nunito, sans-serif","fontSize":"14","lineHeight":"-0.8","fontStyle":"bold","beginAtZero":false,"padding":12}}],"yAxes":[{"gridLines":{"color":"#eaecf4","zeroLineColor":"#eaecf4","drawBorder":true,"drawTicks":false,"borderDash":["0"],"zeroLineBorderDash":["0"],"drawOnChartArea":false},"ticks":{"fontColor":"#ffffff","fontFamily":"Nunito, sans-serif","fontSize":"14","lineHeight":"-0.8","fontStyle":"bold","beginAtZero":false,"padding":12}}]}}}'>
-                      </canvas>
+																<div class="card-body">
+																		<div class="table-responsive">
+																				<table class="table">
+																						<thead>
+																								<tr>
+																										<th class="text-uppercase">code&nbsp;</th>
+																										<th class="text-uppercase">Percent</th>
+																										<th class="text-uppercase">Start date</th>
+																										<th class="text-uppercase">end date</th>
+																								</tr>
+																						</thead>
+																						<tbody>
+																								<tr>
+																										<td>GIAMGIA</td>
+																										<td>10</td>
+																										<td>11/11/2022</td>
+																										<td>11/11/2023</td>
+																								</tr>
+																								<tr></tr>
+																						</tbody>
+																				</table>
 																		</div>
 																</div>
 														</div>
 												</div>
 										</div>
 								</div>
+								<%--end-content--%>
 						</div>
 						<footer class="bg-white sticky-footer">
 								<div class="container my-auto">
@@ -214,8 +188,6 @@
 				src="${pageContext.request.contextPath}/views/admin/assets/js/jquery.min.js"></script>
 		<script
 				src="${pageContext.request.contextPath}/views/admin/assets/bootstrap/js/bootstrap.min.js"></script>
-		<script
-				src="${pageContext.request.contextPath}/views/admin/assets/js/chart.min.js"></script>
 		<script
 				src="${pageContext.request.contextPath}/views/admin/assets/js/bs-init.js"></script>
 		<script
