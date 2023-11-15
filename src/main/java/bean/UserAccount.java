@@ -30,9 +30,11 @@ public class UserAccount {
 		if (this.role == 0) {
 				this.roles.add("MANAGER");
 				this.roles.add("STAFF");
+				this.roles.add("CUSTOMER");
 		}
 		if (this.role == 1) {
 			this.roles.add("STAFF");
+			this.roles.add("CUSTOMER");
 		}
 		if (this.role == 2) {
 			this.roles.add("CUSTOMER");
