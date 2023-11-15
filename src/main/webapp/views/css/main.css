@@ -22,6 +22,7 @@
 [TYPOGRAPHY]
 
 Body            : 16px/1.6 '', Arial, sans-serif;
+
 Title           : 18px/1.6 '', Arial, sans-serif;
 Paragrap        : 18px/1.6 '', Arial, sans-serif;
 Input, textarea : 14px/1.6 '', Arial, sans-serif;
@@ -1954,6 +1955,10 @@ input.num-product::-webkit-inner-spin-button {
   width: 172px;
   padding-right: 50px;
   text-align: right;
+  font-size: 16px;
+}
+.table-shopping-cart .column-6 {
+  width: 50px;
   font-size: 16px;
 }
 

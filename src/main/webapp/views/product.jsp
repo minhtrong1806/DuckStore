@@ -301,13 +301,7 @@
                 <div class="mtext-102 cl2 p-b-15">Sort By</div>
                 <ul>
                   <li class="p-b-6">
-                    <a href="#" class="filter-link stext-106 trans-04"> Default </a>
-                  </li>
-                  <li class="p-b-6">
                     <a href="#" class="filter-link stext-106 trans-04"> Popularity </a>
-                  </li>
-                  <li class="p-b-6">
-                    <a href="#" class="filter-link stext-106 trans-04"> Average rating </a>
                   </li>
                   <li class="p-b-6">
                     <a href="#" class="filter-link stext-106 trans-04 filter-link-active">
@@ -387,38 +381,25 @@
                 </ul>
               </div>
               <div class="filter-col4 p-b-27">
-                <div class="mtext-102 cl2 p-b-15">Tags</div>
+                <div class="mtext-102 cl2 p-b-15">Size</div>
                 <div class="flex-w p-t-4 m-r--5">
-                  <a
-                    href="#"
-                    class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5"
-                  >
-                    Fashion
-                  </a>
-                  <a
-                    href="#"
-                    class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5"
-                  >
-                    Lifestyle
-                  </a>
-                  <a
-                    href="#"
-                    class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5"
-                  >
-                    Denim
-                  </a>
-                  <a
-                    href="#"
-                    class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5"
-                  >
-                    Streetstyle
-                  </a>
-                  <a
-                    href="#"
-                    class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5"
-                  >
-                    Crafts
-                  </a>
+                  <ul>
+	                  <li class="p-b-6">
+	                    <a href="#" class="filter-link stext-106 trans-04 filter-link-active"> All </a>
+	                  </li>
+	                  <li class="p-b-6">
+	                    <a href="#" class="filter-link stext-106 trans-04"> Size S </a>
+	                  </li>
+	                  <li class="p-b-6">
+	                    <a href="#" class="filter-link stext-106 trans-04"> Size M </a>
+	                  </li>
+	                  <li class="p-b-6">
+	                    <a href="#" class="filter-link stext-106 trans-04"> Size L </a>
+	                  </li>
+	                  <li class="p-b-6">
+	                    <a href="#" class="filter-link stext-106 trans-04"> Size XL </a>
+	                  </li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -447,20 +428,7 @@
                   </a>
                   <span class="stext-105 cl3"> $16.64 </span>
                 </div>
-                <div class="block2-txt-child2 flex-r p-t-3">
-                  <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                    <img
-                      class="icon-heart1 dis-block trans-04"
-                      src="${pageContext.request.contextPath}/views/images/icons/icon-heart-01.png"
-                      alt="ICON"
-                    />
-                    <img
-                      class="icon-heart2 dis-block trans-04 ab-t-l"
-                      src="${pageContext.request.contextPath}/views/images/icons/icon-heart-02.png"
-                      alt="ICON"
-                    />
-                  </a>
-                </div>
+                
               </div>
             </div>
           </div>
@@ -594,40 +562,7 @@
                       </button>
                     </div>
                   </div>
-                </div>
-                <!--  -->
-                <div class="flex-w flex-m p-l-100 p-t-40 respon7">
-                  <div class="flex-m bor9 p-r-10 m-r-11">
-                    <a
-                      href="#"
-                      class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100"
-                      data-tooltip="Add to Wishlist"
-                    >
-                      <i class="zmdi zmdi-favorite"></i>
-                    </a>
-                  </div>
-                  <a
-                    href="#"
-                    class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
-                    data-tooltip="Facebook"
-                  >
-                    <i class="fa fa-facebook"></i>
-                  </a>
-                  <a
-                    href="#"
-                    class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
-                    data-tooltip="Twitter"
-                  >
-                    <i class="fa fa-twitter"></i>
-                  </a>
-                  <a
-                    href="#"
-                    class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
-                    data-tooltip="Google Plus"
-                  >
-                    <i class="fa fa-google-plus"></i>
-                  </a>
-                </div>
+                </div>              
               </div>
             </div>
           </div>

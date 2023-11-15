@@ -2,10 +2,10 @@ package DAO;
 
 import java.util.HashMap;
 
+
 import java.util.Map;
 
 import bean.UserAccount;
-import config.SecurityConfig;
 
 
 public class userAccountDAO {
@@ -18,13 +18,13 @@ public class userAccountDAO {
 	private static void initUsers() {
 
 		// User này có 1 vai trò là EMPLOYEE.
-		UserAccount staff = new UserAccount("staff@gmail.com", "123","0123",1);
+		UserAccount staff = new UserAccount("staff@gmail.com", "123","Duy","0123",1);
 
 		// User này có 2 vai trò EMPLOYEE và MANAGER.
-		UserAccount mng = new UserAccount("manager@gmail.com", "123", "0123",0);
+		UserAccount mng = new UserAccount("manager@gmail.com", "123","Minh Trong", "0123",0);
 		
 		// User này có vai trò CUSTOMER.
-				UserAccount ctm = new UserAccount("customer@gmail.com", "123", "0123", 2);
+				UserAccount ctm = new UserAccount("customer@gmail.com", "123","Hoai Trong", "0123", 2);
 
 		mapUsers.put(staff.getEmail_address(), staff);
 		mapUsers.put(mng.getEmail_address(), mng);

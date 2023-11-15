@@ -126,7 +126,7 @@
 														data-notify="0"> <i class="zmdi zmdi-favorite-outline"></i>
 												</a>
 												 --%>
-												 <a
+												<a
 														href="my-account"
 														class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11"
 														data-notify="0"> <i class="zmdi zmdi-account-circle"></i>
@@ -314,6 +314,7 @@
 																		<th class="column-3">Price</th>
 																		<th class="column-4">Quantity</th>
 																		<th class="column-5">Total</th>
+																		<th class="column-6"></th>
 																</tr>
 																<tr class="table_row">
 																		<td class="column-1">
@@ -343,35 +344,11 @@
 																				</div>
 																		</td>
 																		<td class="column-5">$ 36.00</td>
-																</tr>
-																<tr class="table_row">
-																		<td class="column-1">
-																				<div class="how-itemcart1">
-																						<img
-																								src="${pageContext.request.contextPath}/views/images/item-cart-05.jpg"
-																								alt="IMG">
-																				</div>
+																		<td class="column-6">
+																				<button class="flex-c-m trans-04 hov-cl1">
+																						<i class="zmdi zmdi-close"></i>
+																				</button>
 																		</td>
-																		<td class="column-2">Lightweight Jacket</td>
-																		<td class="column-3">$ 16.00</td>
-																		<td class="column-4">
-																				<div class="wrap-num-product flex-w m-l-auto m-r-0">
-																						<div
-																								class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-																								<i class="fs-16 zmdi zmdi-minus"></i>
-																						</div>
-																						<input
-																								class="mtext-104 cl3 txt-center num-product"
-																								type="number"
-																								name="num-product2"
-																								value="1">
-																						<div
-																								class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-																								<i class="fs-16 zmdi zmdi-plus"></i>
-																						</div>
-																				</div>
-																		</td>
-																		<td class="column-5">$ 16.00</td>
 																</tr>
 														</table>
 												</div>
@@ -383,13 +360,13 @@
 																		type="text"
 																		name="coupon"
 																		placeholder="Coupon Code">
-																<div
-																		class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">
-																		Apply coupon</div>
+																<button
+																		class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">Apply
+																		coupon</button>
 														</div>
-														<div
-																class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
-																Update Cart</div>
+														<button
+																class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15  pointer m-tb-10">Update
+																Cart</button>
 												</div>
 										</div>
 								</div>
@@ -416,17 +393,7 @@
 																<div class="p-t-15">
 																		<span class="stext-112 cl8"> Calculate Shipping
 																		</span>
-																		<div
-																				class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-																				<select
-																						class="js-select2"
-																						name="time">
-																						<option>Select a country...</option>
-																						<option>USA</option>
-																						<option>UK</option>
-																				</select>
-																				<div class="dropDownSelect2"></div>
-																		</div>
+																		
 																		<div class="bor8 bg0 m-b-12">
 																				<input
 																						class="stext-111 cl8 plh3 size-111 p-lr-15"
@@ -442,9 +409,9 @@
 																						placeholder="Postcode / Zip">
 																		</div>
 																		<div class="flex-w">
-																				<div
-																						class="flex-c-m stext-101 cl2 size-115 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer">
-																						Update Totals</div>
+																						<button class="flex-c-m stext-101 cl2 size-115 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer">
+																						Update Totals
+																						</button>
 																		</div>
 																</div>
 														</div>
@@ -476,14 +443,19 @@
 				</span>
 		</div>
 		<!--===============================================================================================-->
-		<script src="${pageContext.request.contextPath}/views/vendor/jquery/jquery-3.2.1.min.js"></script>
+		<script
+				src="${pageContext.request.contextPath}/views/vendor/jquery/jquery-3.2.1.min.js"></script>
 		<!--===============================================================================================-->
-		<script src="${pageContext.request.contextPath}/views/vendor/animsition/js/animsition.min.js"></script>
+		<script
+				src="${pageContext.request.contextPath}/views/vendor/animsition/js/animsition.min.js"></script>
 		<!--===============================================================================================-->
-		<script src="${pageContext.request.contextPath}/views/vendor/bootstrap/js/popper.js"></script>
-		<script src="${pageContext.request.contextPath}/views/vendor/bootstrap/js/bootstrap.min.js"></script>
+		<script
+				src="${pageContext.request.contextPath}/views/vendor/bootstrap/js/popper.js"></script>
+		<script
+				src="${pageContext.request.contextPath}/views/vendor/bootstrap/js/bootstrap.min.js"></script>
 		<!--===============================================================================================-->
-		<script src="${pageContext.request.contextPath}/views/vendor/select2/select2.min.js"></script>
+		<script
+				src="${pageContext.request.contextPath}/views/vendor/select2/select2.min.js"></script>
 		<script>
 			$(".js-select2").each(function() {
 				$(this).select2({
@@ -493,9 +465,11 @@
 			})
 		</script>
 		<!--===============================================================================================-->
-		<script src="${pageContext.request.contextPath}/views/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+		<script
+				src="${pageContext.request.contextPath}/views/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 		<!--===============================================================================================-->
-		<script src="${pageContext.request.contextPath}/views/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+		<script
+				src="${pageContext.request.contextPath}/views/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 		<script>
 			$('.js-pscroll').each(function() {
 				$(this).css('position', 'relative');

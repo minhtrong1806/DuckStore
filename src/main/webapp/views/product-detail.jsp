@@ -441,31 +441,6 @@
 																</div>
 														</div>
 												</div>
-												<!--  -->
-												<div class="flex-w flex-m p-l-100 p-t-40 respon7">
-														<div class="flex-m bor9 p-r-10 m-r-11">
-																<a
-																		href="#"
-																		class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100"
-																		data-tooltip="Add to Wishlist"> <i
-																		class="zmdi zmdi-favorite"></i>
-																</a>
-														</div>
-														<a
-																href="#"
-																class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
-																data-tooltip="Facebook"> <i class="fa fa-facebook"></i>
-														</a> <a
-																href="#"
-																class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
-																data-tooltip="Twitter"> <i class="fa fa-twitter"></i>
-														</a> <a
-																href="#"
-																class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
-																data-tooltip="Google Plus"> <i
-																class="fa fa-google-plus"></i>
-														</a>
-												</div>
 										</div>
 								</div>
 						</div>
@@ -481,11 +456,6 @@
 														data-toggle="tab"
 														href="#description"
 														role="tab">Description</a></li>
-												<li class="nav-item p-b-10"><a
-														class="nav-link"
-														data-toggle="tab"
-														href="#information"
-														role="tab">Additional information</a></li>
 												<li class="nav-item p-b-10"><a
 														class="nav-link"
 														data-toggle="tab"
@@ -514,37 +484,6 @@
 																		porta lacus, vel efficitur tellus augue in ipsum. Cras
 																		in arcu sed metus rutrum iaculis. Nulla non tempor
 																		erat. Duis in egestas nunc.</p>
-														</div>
-												</div>
-												<!-- - -->
-												<div
-														class="tab-pane fade"
-														id="information"
-														role="tabpanel">
-														<div class="row">
-																<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
-																		<ul class="p-lr-28 p-lr-15-sm">
-																				<li class="flex-w flex-t p-b-7"><span
-																						class="stext-102 cl3 size-205"> Weight </span> <span
-																						class="stext-102 cl6 size-206"> 0.79 kg </span></li>
-																				<li class="flex-w flex-t p-b-7"><span
-																						class="stext-102 cl3 size-205"> Dimensions
-																				</span> <span class="stext-102 cl6 size-206"> 110 x
-																								33 x 100 cm </span></li>
-																				<li class="flex-w flex-t p-b-7"><span
-																						class="stext-102 cl3 size-205"> Materials </span>
-																						<span class="stext-102 cl6 size-206"> 60%
-																								cotton </span></li>
-																				<li class="flex-w flex-t p-b-7"><span
-																						class="stext-102 cl3 size-205"> Color </span> <span
-																						class="stext-102 cl6 size-206"> Black,
-																								Blue, Grey, Green, Red, White </span></li>
-																				<li class="flex-w flex-t p-b-7"><span
-																						class="stext-102 cl3 size-205"> Size </span> <span
-																						class="stext-102 cl6 size-206"> XL, L, M, S
-																				</span></li>
-																		</ul>
-																</div>
 														</div>
 												</div>
 												<!-- - -->
@@ -680,26 +619,13 @@
 																				Esprit Ruffle Shirt </a> <span class="stext-105 cl3">
 																				$16.64 </span>
 																</div>
-																<div class="block2-txt-child2 flex-r p-t-3">
-																		<a
-																				href="#"
-																				class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-																				<img
-																				class="icon-heart1 dis-block trans-04"
-																				src="${pageContext.request.contextPath}/views/images/icons/icon-heart-01.png"
-																				alt="ICON"> <img
-																				class="icon-heart2 dis-block trans-04 ab-t-l"
-																				src="${pageContext.request.contextPath}/views/images/icons/icon-heart-02.png"
-																				alt="ICON">
-																		</a>
-																</div>
 														</div>
 												</div>
 										</div>
 								</div>
 						</div>
 				</div>
-				</div>
+				
 		</section>
 		<!-- Footer -->
 		<%@ include file="footer.jsp"%>
@@ -838,31 +764,7 @@
 																		</div>
 																</div>
 														</div>
-														<!--  -->
-														<div class="flex-w flex-m p-l-100 p-t-40 respon7">
-																<div class="flex-m bor9 p-r-10 m-r-11">
-																		<a
-																				href="#"
-																				class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100"
-																				data-tooltip="Add to Wishlist"> <i
-																				class="zmdi zmdi-favorite"></i>
-																		</a>
-																</div>
-																<a
-																		href="#"
-																		class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
-																		data-tooltip="Facebook"> <i class="fa fa-facebook"></i>
-																</a> <a
-																		href="#"
-																		class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
-																		data-tooltip="Twitter"> <i class="fa fa-twitter"></i>
-																</a> <a
-																		href="#"
-																		class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
-																		data-tooltip="Google Plus"> <i
-																		class="fa fa-google-plus"></i>
-																</a>
-														</div>
+														
 												</div>
 										</div>
 								</div>

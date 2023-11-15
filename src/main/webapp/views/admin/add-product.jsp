@@ -181,8 +181,7 @@
                           type="text"
                           name="nameProduct"
                           placeholder="Name"
-                          autofocus=""
-                          required=""
+
                         />
                       </div>
                       <div class="form-group d-flex align-items-xl-center">
@@ -238,8 +237,7 @@
                             class="form-control d-xl-flex"
                             type="text"
                             placeholder="Value"
-                            autofocus=""
-                            required=""
+                          
                           />
                         </div>
                       </div>
