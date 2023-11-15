@@ -1,8 +1,7 @@
 package bean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -33,8 +32,7 @@ public class UserAccount implements Serializable{
 	@Column(name = "password")
 	private String password;
 	@Column(name = "role")
-	private Integer role; //mã role lấy từ database
-	private List<String> roles; //list các role theo mã role
+	private Integer role; 
 	
 	
 	@OneToMany(mappedBy = "userAccount",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -49,19 +47,6 @@ public class UserAccount implements Serializable{
 		this.password = password;
 		this.role = role;
 		
-		this.roles = new ArrayList<String>();
-		if (this.role == 0) {
-				this.roles.add("MANAGER");
-				this.roles.add("STAFF");
-				this.roles.add("CUSTOMER");
-		}
-		if (this.role == 1) {
-			this.roles.add("STAFF");
-			this.roles.add("CUSTOMER");
-		}
-		if (this.role == 2) {
-			this.roles.add("CUSTOMER");
-		}
 	}
 	
 
@@ -97,10 +82,7 @@ public class UserAccount implements Serializable{
 	public Integer getRole() {
 		return role;
 	}
-
-	public List<String> getRoles() {
-		return roles;
-	}
+	
 	public Set<Address> getAddresses() {
 		return addresses;
 	}
@@ -115,10 +97,6 @@ public class UserAccount implements Serializable{
 
 	public void setRole(Integer role) {
 		this.role = role;
-	}
-
-	public void setRoles(List<String> roles) {
-		this.roles = roles;
 	}
 
 	public UserAccount() {

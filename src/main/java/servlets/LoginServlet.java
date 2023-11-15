@@ -35,9 +35,11 @@ public class LoginServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		String emailAddress = request.getParameter("emailAddress");
 		String password = request.getParameter("password");
-		UserAccount userAccount = userAccountDAO.findUser(emailAddress, password);
+		userAccountDAO userAccountDAO = new userAccountDAO();
+		
+		boolean check = userAccountDAO.checkLogin(emailAddress, password);
 
-		if (userAccount == null) {
+		if (check == false) {
 			String errorMessage = "Invalid email or Password";
 			System.out.println(errorMessage);
 
@@ -49,7 +51,8 @@ public class LoginServlet extends HttpServlet{
 			dispatcher.forward(request, response);
 			return;
 		}
-
+		
+		UserAccount userAccount = userAccountDAO.findUser(emailAddress);
 		AppUtils.storeLoginedUser(request.getSession(), userAccount);
 
 		// 

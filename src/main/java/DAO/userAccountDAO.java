@@ -46,7 +46,7 @@ public class userAccountDAO {
             Root<UserAccount> root = query.from(UserAccount.class);
 
             Predicate conditionPredicate = builder.and(
-                    builder.equal(root.get("emailAddress"), email),
+                    builder.equal(root.get("email_address"), email),
                     builder.equal(root.get("password"), password));
 
             query.select(builder.count(root)).where(conditionPredicate);
@@ -55,7 +55,7 @@ public class userAccountDAO {
             Long count = countQuery.uniqueResult();
             session.close();
             if(count > 0) {
-            	return true;
+                return true;
             }
             return false;
         }
@@ -127,7 +127,7 @@ public class userAccountDAO {
 	
 	// edit User
 	public void editUser(String oldEmail, String newEmail, String newPhoneNumber, String newPassword) {
-		try(Session session = factory.openSession()){
+        try(Session session = factory.openSession()){
             try {
                 session.getTransaction().begin();
 
@@ -136,7 +136,7 @@ public class userAccountDAO {
                 Root<UserAccount> root = query.from(UserAccount.class);
 
                 // Tìm kiếm UserAccount dựa trên oldEmail
-                Predicate conditionPredicate = builder.equal(root.get("emailAddress"), oldEmail);
+                Predicate conditionPredicate = builder.equal(root.get("email_address"), oldEmail);
                 query.where(conditionPredicate);
 
                 UserAccount userAccount = session.createQuery(query).uniqueResult();
@@ -160,29 +160,12 @@ public class userAccountDAO {
                 session.getTransaction().commit();
             } catch (Exception e) {
                 if (session.getTransaction() != null) {
-                	session.getTransaction().rollback();
+                    session.getTransaction().rollback();
                 }
                 e.printStackTrace();
             }
             session.close();
-		}
+        }
 	}
-	
-	/*
-	 * private static void initUsers() {
-	 * 
-	 * // User này có 1 vai trò là EMPLOYEE. UserAccount staff = new
-	 * UserAccount("staff@gmail.com", "123","0123",1);
-	 * 
-	 * // User này có 2 vai trò EMPLOYEE và MANAGER. UserAccount mng = new
-	 * UserAccount("manager@gmail.com", "123", "0123",0);
-	 * 
-	 * // User này có vai trò CUSTOMER. UserAccount ctm = new
-	 * UserAccount("customer@gmail.com", "123", "0123", 2);
-	 * 
-	 * mapUsers.put(staff.getEmail_address(), staff);
-	 * mapUsers.put(mng.getEmail_address(), mng);
-	 * mapUsers.put(ctm.getEmail_address(), ctm); }
-	 */
-
 }
+
