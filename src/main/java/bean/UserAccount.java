@@ -8,6 +8,7 @@ import java.util.List;
 public class UserAccount {
 	
 	private Integer id;
+	private String name;
 	private String email_address;
 	private String phone_number;
 	private String password;
@@ -18,10 +19,11 @@ public class UserAccount {
 		
 	}
 
-	public UserAccount(String email_address, String password, String phone_number, Integer role) {
+	public UserAccount(String email_address, String password, String name ,String phone_number, Integer role) {
 		this.email_address = email_address;
 		this.phone_number = phone_number;
 		this.password = password;
+		this.name = name;
 		this.role = role;
 		
 		this.roles = new ArrayList<String>();
@@ -40,6 +42,15 @@ public class UserAccount {
 
 	public Integer getId() {
 		return id;
+	}
+	
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getEmail_address() {
