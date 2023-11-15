@@ -25,6 +25,7 @@ public class UserAccount implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+
 	@Column(name = "email_address")
 	private String email_address;
 	@Column(name = "phone_number")
@@ -37,8 +38,6 @@ public class UserAccount implements Serializable{
 	
 	@OneToMany(mappedBy = "userAccount",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Address> addresses;
-
-
 	
 	public UserAccount(String email_address, String password, String phone_number, Integer role) {
 
@@ -54,7 +53,6 @@ public class UserAccount implements Serializable{
 		return id;
 	}
 	
-
 	public String getEmail_address() {
 		return email_address;
 	}
