@@ -9,6 +9,9 @@ import bean.UserAccount;
 
 
 public class userAccountDAO {
+	
+	
+	
 	private static final Map<String, UserAccount> mapUsers = new HashMap<String, UserAccount>();
 	
 	static {
@@ -24,7 +27,7 @@ public class userAccountDAO {
 		UserAccount mng = new UserAccount("manager@gmail.com", "123","Minh Trong", "0123",0);
 		
 		// User này có vai trò CUSTOMER.
-				UserAccount ctm = new UserAccount("customer@gmail.com", "123","Hoai Trong", "0123", 2);
+		UserAccount ctm = new UserAccount("customer@gmail.com", "123","Hoai Trong", "0123", 2);
 
 		mapUsers.put(staff.getEmail_address(), staff);
 		mapUsers.put(mng.getEmail_address(), mng);

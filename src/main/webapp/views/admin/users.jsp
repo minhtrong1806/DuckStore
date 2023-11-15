@@ -7,15 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
     <title>Admin - User List</title>
     <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/views/admin/assets/img/icon/favicon.ico" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/assets/bootstrap/css/bootstrap.min.css?h=bb600b08233db870ce64e59b11416ef9" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/assets/fonts/fontawesome-all.min.css?h=13bea3cde590997c1094f9bba14d719a" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/assets/fonts/font-awesome.min.css?h=13bea3cde590997c1094f9bba14d719a" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/assets/fonts/fontawesome5-overrides.min.css?h=13bea3cde590997c1094f9bba14d719a" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/assets/css/admin.css?h=542a0b5a250a67ab9a0ed1dbb563dd9c" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/assets/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/assets/fonts/fontawesome-all.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/assets/fonts/font-awesome.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/assets/fonts/fontawesome5-overrides.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/assets/css/admin.css" />
   </head>
-
   <body id="page-top">
     <div id="wrapper">
+    <%--Side Navbar--%>
       <nav
         class="navbar navbar-dark bg-primary align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0"
       >
@@ -48,6 +48,7 @@
                   <a class="dropdown-item text-white-50 menu-item" href="admin-add-product">Add Product</a>
                   <a class="dropdown-item text-white-50 menu-item" href="admin-category">Category list</a>
                 </div>
+                
               </div>
             </li>
             <li class="nav-item">
@@ -62,75 +63,24 @@
                 <span class="nav-item-content">Users</span>
               </a>
             </li>
-            <li class="nav-item"></li>
-            <li class="nav-item"></li>
+           	<li class="nav-item">
+              <a class="nav-link" href="promotions"
+                ><i class="fa fa-gift" style="font-size: 1.3rem"></i
+                ><span class="nav-item-content">Promotions</span></a
+              >
+            </li>
           </ul>
           <div class="text-center d-none d-md-inline">
             <button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>
           </div>
         </div>
       </nav>
+      <%--End Side Navbar--%>
       <div class="d-flex flex-column" id="content-wrapper">
         <div id="content">
-          <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
-            <div class="container-fluid">
-              <button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop" type="button">
-                <i class="fas fa-bars"></i>
-              </button>
-              <form class="form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                <div class="input-group">
-                  <input class="bg-light form-control border-0 small" type="text" placeholder="Search for ..." />
-                  <div class="input-group-append">
-                    <button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button>
-                  </div>
-                </div>
-              </form>
-              <ul class="navbar-nav flex-nowrap ml-auto">
-                <li class="nav-item dropdown d-sm-none no-arrow">
-                  <a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#">
-                    <i class="fas fa-search"></i>
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-right p-3 animated--grow-in" aria-labelledby="searchDropdown">
-                    <form class="form-inline mr-auto navbar-search w-100">
-                      <div class="input-group">
-                        <input class="bg-light form-control border-0 small" type="text" placeholder="Search for ..." />
-                        <div class="input-group-append">
-                          <button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </li>
-                <li class="nav-item dropdown no-arrow mx-1"></li>
-                <li class="nav-item dropdown no-arrow">
-                  <div class="nav-item dropdown no-arrow">
-                    <a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#">
-                      <span class="d-none d-lg-inline mr-2 text-gray-600 small">Minh Trong</span>
-                      <img
-                        class="border rounded-circle img-profile"
-                        src="${pageContext.request.contextPath}/views/admin/assets/img/avatars/anh.jpg?h=d233e08feddcdd2a8275c132af92e075"
-                      />
-                    </a>
-                    <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in">
-                      <a class="dropdown-item" href="#">
-                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile
-                      </a>
-                      <a class="dropdown-item" href="#"
-                        ><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Settings
-                      </a>
-                      <a class="dropdown-item" href="#">
-                        <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Activity log
-                      </a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="logout">
-                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout
-                      </a>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </nav>
+        <%-- navbar --%>
+          <%@include file="navbar.jsp" %>
+        <%-- end navbar --%>
           <div class="container-fluid">
             <ol class="breadcrumb">
               <li class="breadcrumb-item active text-uppercase font-weight-bold"><span>user list</span></li>
@@ -233,10 +183,10 @@
       </div>
       <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
-    <script src="${pageContext.request.contextPath}/views/admin/assets/js/jquery.min.js?h=89312d34339dcd686309fe284b3f226f"></script>
-    <script src="${pageContext.request.contextPath}/views/admin/assets/bootstrap/js/bootstrap.min.js?h=2504f2315ca47ea4d62e67e20a5551d7"></script>
-    <script src="${pageContext.request.contextPath}/views/admin/assets/js/bs-init.js?h=24944136186a01ba6322da1c4ad1dfbe"></script>
+    <script src="${pageContext.request.contextPath}/views/admin/assets/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/views/admin/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/views/admin/assets/js/bs-init.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js" type="module"></script>
-    <script src="${pageContext.request.contextPath}/views/admin/assets/js/theme.js?h=6d33b44a6dcb451ae1ea7efc7b5c5e30"></script>
+    <script src="${pageContext.request.contextPath}/views/admin/assets/js/theme.js"></script>
   </body>
 </html>
