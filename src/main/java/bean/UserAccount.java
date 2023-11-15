@@ -1,23 +1,46 @@
 package bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-
 import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 
-public class UserAccount {
-	
+@Entity
+@Table(name = "site_user")
+public class UserAccount implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(name = "email_address")
 	private String email_address;
+	@Column(name = "phone_number")
 	private String phone_number;
+	@Column(name = "password")
 	private String password;
+	@Column(name = "role")
 	private Integer role; //mã role lấy từ database
 	private List<String> roles; //list các role theo mã role
 	
-	public UserAccount() {
-		
-	}
+	
+	@OneToMany(mappedBy = "userAccount",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Set<Address> addresses;
 
+	
 	public UserAccount(String email_address, String password, String phone_number, Integer role) {
 		this.email_address = email_address;
 		this.phone_number = phone_number;
@@ -73,5 +96,27 @@ public class UserAccount {
 	public List<String> getRoles() {
 		return roles;
 	}
-	
+	public Set<Address> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(Set<Address> addresses) {
+		this.addresses = addresses;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public void setRole(Integer role) {
+		this.role = role;
+	}
+
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
+
+	public UserAccount() {
+		
+	}
 }
