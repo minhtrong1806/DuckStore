@@ -33,8 +33,6 @@ public class SecurityConfig {
 		urlPatterns1.add("/admin-category");
 		urlPatterns1.add("/admin-order-detail");
 		urlPatterns1.add("/admin-orders");
-		urlPatterns1.add("/promotions");
-		urlPatterns1.add("/add-promotion");
 	
 		mapConfig.put(ROLE_STAFF, urlPatterns1);
 
@@ -51,7 +49,6 @@ public class SecurityConfig {
 				List<String> urlPatterns3 = new ArrayList<String>();
 
 				urlPatterns3.add("/my-account");
-				urlPatterns3.add("/shopping-cart");
 				urlPatterns3.add("/forgot");
 
 				mapConfig.put(ROLE_CUSTOMER, urlPatterns3);

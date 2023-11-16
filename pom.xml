@@ -27,7 +27,6 @@
 		    <artifactId>hibernate-core</artifactId>
 		    <version>5.6.15.Final</version>
 		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
 		<dependency>
 		    <groupId>com.microsoft.sqlserver</groupId>
