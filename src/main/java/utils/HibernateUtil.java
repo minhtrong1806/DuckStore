@@ -9,7 +9,6 @@ import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
 import bean.Address;
-import bean.ProductCategory;
 import bean.UserAccount;
 
 
@@ -30,7 +29,7 @@ public class HibernateUtil {
 		conf.setProperties(pros);
 		conf.addAnnotatedClass(Address.class);
 		conf.addAnnotatedClass(UserAccount.class);
-		conf.addAnnotatedClass(ProductCategory.class);
+		
 		
 		ServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(conf.getProperties()).build();
 		

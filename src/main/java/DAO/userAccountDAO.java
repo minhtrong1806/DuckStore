@@ -1,7 +1,6 @@
 package DAO;
 
 import java.util.List;
-
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -22,6 +21,7 @@ public class userAccountDAO {
 	/*
 	 * static { initUsers(); }
 	 */
+
 	
 	// Liệt kê danh sách các user
 	public List<UserAccount> listUserAccounts(){
@@ -45,11 +45,13 @@ public class userAccountDAO {
             CriteriaQuery<Long> query = builder.createQuery(Long.class);
             Root<UserAccount> root = query.from(UserAccount.class);
 
+
             Predicate conditionPredicate = builder.and(
                     builder.equal(root.get("email_address"), email),
                     builder.equal(root.get("password"), password));
 
             query.select(builder.count(root)).where(conditionPredicate);
+
 
             Query<Long> countQuery = session.createQuery(query);
             Long count = countQuery.uniqueResult();
@@ -126,9 +128,8 @@ public class userAccountDAO {
 	}
 	
 	// edit User
-	public void editUser(String oldEmail, String newEmail, String newPhoneNumber, String newPassword, String newName) {
-		try(Session session = factory.openSession()){
-
+	public void editUser(String oldEmail, String newEmail, String newPhoneNumber, String newPassword) {
+        try(Session session = factory.openSession()){
             try {
                 session.getTransaction().begin();
 
@@ -152,10 +153,8 @@ public class userAccountDAO {
                     }
                     if (newPassword != null) {
                         userAccount.setPassword(newPassword);
-                    }                    	
-                    if(newName != null) {
-                    	userAccount.setName(newName);
                     }
+
                     // Cập nhật UserAccount trong cơ sở dữ liệu
                     session.update(userAccount);
                 }

@@ -36,19 +36,6 @@ public class Address implements Serializable{
 	@JoinColumn(name = "user_id")
 	private UserAccount userAccount;
 	
-	
-	public Address() {}
-	
-	
-	public Address(String unitNumber, String addressLine, String city, String district, UserAccount userAccount) {
-		super();
-		this.unitNumber = unitNumber;
-		this.addressLine = addressLine;
-		this.city = city;
-		this.district = district;
-		this.userAccount = userAccount;
-	}
-	
 	public UserAccount getUserAccount() {
 		return userAccount;
 	}
