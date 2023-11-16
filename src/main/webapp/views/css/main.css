@@ -22,7 +22,6 @@
 [TYPOGRAPHY]
 
 Body            : 16px/1.6 '', Arial, sans-serif;
-
 Title           : 18px/1.6 '', Arial, sans-serif;
 Paragrap        : 18px/1.6 '', Arial, sans-serif;
 Input, textarea : 14px/1.6 '', Arial, sans-serif;
@@ -1957,10 +1956,6 @@ input.num-product::-webkit-inner-spin-button {
   text-align: right;
   font-size: 16px;
 }
-.table-shopping-cart .column-6 {
-  width: 50px;
-  font-size: 16px;
-}
 
 .table-shopping-cart .table_row {
   height: 185px;
@@ -2149,8 +2144,6 @@ input.num-product::-webkit-inner-spin-button {
 .cl10 {color: #1d1d1d;}
 .cl11 {color: #f9ba48;}
 .cl12 {color: #ccc;}
-.cl13 {color: #ff0000;}
-
 
 /*//////////////////////////////////////////////////////////////////
 [ S-Text 0 - 15 ]*/

@@ -20,7 +20,7 @@
             <div class="card fat">
               <div class="card-body">
                 <h4 class="card-title">Register</h4>
-                <form method="POST" class="my-login-validation">
+                <form method="POST" class="my-login-validation" novalidate="">
                   <div class="form-group">
                     <label for="name">Name</label>
                     <input

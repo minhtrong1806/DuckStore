@@ -26,9 +26,7 @@ public class UserAccount implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
 	@Column(name = "email_address")
-
 	private String email_address;
 	@Column(name = "phone_number")
 	private String phone_number;
@@ -41,24 +39,21 @@ public class UserAccount implements Serializable{
 	
 	@OneToMany(mappedBy = "userAccount",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Address> addresses;
+
 	
 	public UserAccount(String email_address, String password, String phone_number, Integer role) {
-
 		this.email_address = email_address;
 		this.phone_number = phone_number;
 		this.password = password;
-		this.name = name;
 		this.role = role;
 		
 		this.roles = new ArrayList<String>();
 		if (this.role == 0) {
 				this.roles.add("MANAGER");
 				this.roles.add("STAFF");
-				this.roles.add("CUSTOMER");
 		}
 		if (this.role == 1) {
 			this.roles.add("STAFF");
-			this.roles.add("CUSTOMER");
 		}
 		if (this.role == 2) {
 			this.roles.add("CUSTOMER");
@@ -69,8 +64,6 @@ public class UserAccount implements Serializable{
 	public Integer getId() {
 		return id;
 	}
-	
-
 
 	public String getEmail_address() {
 		return email_address;

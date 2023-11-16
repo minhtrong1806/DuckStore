@@ -9,16 +9,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet({"/shopping-cart"})
-public class ShoppingCartServlet extends HttpServlet{
+@WebServlet({"/shoping-cart"})
+public class ShopingCartServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
     
-    public ShoppingCartServlet() {
+    public ShopingCartServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/shopping-cart.jsp");
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/shoping-cart.jsp");
 		
 		dispatcher.forward(request, response);
 	}
