@@ -101,15 +101,7 @@
 											type="search" placeholder="Search" />
 									</div>
 									<div
-										class="d-flex d-xl-flex justify-content-xl-center align-items-xl-center dataTables_length my-2"
-										id="dataTable_length">
-										<select
-											class="d-xl-flex form-control form-control-sm custom-select custom-select-sm">
-											<option value="10" selected="">10</option>
-											<option value="25">25</option>
-											<option value="50">50</option>
-											<option value="100">100</option>
-										</select>
+										class="d-flex d-xl-flex justify-content-xl-center align-items-xl-center dataTables_length my-2">
 									</div>
 									<a class="btn btn-info btn-sm w-25" role="button"
 										href="admin-add-user">ADD</a>
@@ -120,21 +112,20 @@
 								<table class="table my-0" id="dataTable">
 									<thead>
 										<tr>
-											<th class="text-uppercase">full name</th>
+											<th class="text-uppercase">name</th>
 											<th class="text-uppercase">email</th>
-											<th class="text-uppercase">roll</th>
+											<th class="text-uppercase">Phone Number</th>
+											<th class="text-uppercase">role</th>
 											<th
 												class="text-uppercase text-center d-xl-flex justify-content-xl-center">actions</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
-											<td><img class="rounded-circle mr-2" width="30"
-												height="30"
-												src="${pageContext.request.contextPath}/views/admin/assets/img/avatars/avatar1.jpeg?h=0ecc82101fb9a10ca459432faa8c0656" />Airi
-												Satou</td>
-											<td>Accountant</td>
-											<td></td>
+											<td>Airi Satou</td>
+											<td>manager@gmail.com</td>
+											<td>0123456789</td>
+											<td>manager</td>
 											<td>
 												<div
 													class="border rounded-0 border-white d-flex justify-content-around btn-group">
@@ -145,44 +136,21 @@
 													<div class="dropdown-menu dropdown-menu-right"
 														style="background: var(--white); position: static">
 														<a class="btn dropdown-item" role="button"
-															href="admin-user-detail">Detail</a>
-														<button class="btn dropdown-item" type="button">Delete</button>
+															href="admin-user-detail">Detail</a> <a
+															class="btn dropdown-item" role="button"
+															href="admin-delete-user">Delete</a>
 													</div>
 												</div>
 											</td>
 										</tr>
 									</tbody>
-									<tfoot>
-										<tr>
-											<td class="text-uppercase">category</td>
-											<td class="text-uppercase">total products</td>
-											<td class="text-uppercase">total earning</td>
-											<td
-												class="text-uppercase text-center d-xl-flex justify-content-xl-center">actions</td>
-										</tr>
-									</tfoot>
 								</table>
 							</div>
 							<div class="row">
 								<div
 									class="col-md-6 col-xl-12 d-xl-flex justify-content-xl-center">
-									
-									<%--Pagination--%>
-									<nav
-										class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-										<ul class="pagination">
-											<li class="page-item disabled"><a class="page-link"
-												aria-label="Previous" href="#"><span aria-hidden="true">«</span></a>
-											</li>
-											<li class="page-item active"><a class="page-link"
-												href="#">1</a></li>
-											<li class="page-item"><a class="page-link" href="#">2</a></li>
-											<li class="page-item"><a class="page-link" href="#">3</a></li>
-											<li class="page-item"><a class="page-link"
-												aria-label="Next" href="#"><span aria-hidden="true">»</span></a>
-											</li>
-										</ul>
-									</nav>
+
+
 								</div>
 							</div>
 						</div>
