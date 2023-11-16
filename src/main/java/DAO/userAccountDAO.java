@@ -128,6 +128,7 @@ public class userAccountDAO {
 	// edit User
 	public void editUser(String oldEmail, String newEmail, String newPhoneNumber, String newPassword, String newName) {
 		try(Session session = factory.openSession()){
+
             try {
                 session.getTransaction().begin();
 
