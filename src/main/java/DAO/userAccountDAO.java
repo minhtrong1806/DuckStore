@@ -22,6 +22,9 @@ public class userAccountDAO {
 	/*
 	 * static { initUsers(); }
 	 */
+	public userAccountDAO() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	// Liệt kê danh sách các user
 	public List<UserAccount> listUserAccounts(){

@@ -9,8 +9,12 @@ import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
 import bean.Address;
+import bean.Product;
 import bean.ProductCategory;
+import bean.ProductItem;
+import bean.Promotion;
 import bean.UserAccount;
+import bean.Variation;
 
 
 public class HibernateUtil {
@@ -31,6 +35,10 @@ public class HibernateUtil {
 		conf.addAnnotatedClass(Address.class);
 		conf.addAnnotatedClass(UserAccount.class);
 		conf.addAnnotatedClass(ProductCategory.class);
+        conf.addAnnotatedClass(Promotion.class);
+        conf.addAnnotatedClass(Variation.class);
+        conf.addAnnotatedClass(Product.class);
+        conf.addAnnotatedClass(ProductItem.class);
 		
 		ServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(conf.getProperties()).build();
 		

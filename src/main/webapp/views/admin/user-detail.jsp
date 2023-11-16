@@ -16,6 +16,7 @@
 
   <body id="page-top">
     <div id="wrapper">
+    <%--side navbar --%>
       <nav
         class="navbar navbar-dark bg-primary align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0"
       >
@@ -62,8 +63,9 @@
                 <span class="nav-item-content">Users</span>
               </a>
             </li>
-            <li class="nav-item"></li>
-            <li class="nav-item"></li>
+            <li class="nav-item"><a class="nav-link" href="promotions"><i
+							class="fa fa-gift" style="font-size: 1.3rem"></i><span
+							class="nav-item-content">Promotions</span></a></li>
           </ul>
           <div class="text-center d-none d-md-inline">
             <button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>
@@ -149,102 +151,88 @@
             </div>
             <div class="row d-flex justify-content-xl-center px-5">
               <div class="col">
-                <div class="card shadow mb-3">
-                  <div class="card-header d-flex justify-content-between align-items-xl-center py-3">
-                    <p class="text-primary d-inline-block m-0 font-weight-bold">Info</p>
-                    <button class="btn btn-primary disabled" type="submit" disabled="">Save</button>
-                  </div>
-                  <div class="card-body">
-                    <form>
-                      <div class="form-row">
-                        <div class="col">
-                          <div class="form-group">
-                            <label for="first_name"><strong>First Name</strong></label>
-                            <input
-                              class="form-control"
-                              type="text"
-                              id="first_name"
-                              name="first_name"
-                              placeholder="First Name"
-                            />
-                          </div>
-                        </div>
-                        <div class="col">
-                          <div class="form-group">
-                            <label for="last_name"><strong>Last Name</strong></label>
-                            <input
-                              class="form-control"
-                              type="text"
-                              id="last_name"
-                              placeholder="Last Name"
-                              name="last_name"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <div class="col">
-                          <div class="form-group">
-                            <label for="username"><strong>Username</strong></label>
-                            <input
-                              class="form-control"
-                              type="text"
-                              id="username"
-                              placeholder="User Name"
-                              name="username"
-                            />
-                          </div>
-                        </div>
-                        <div class="col">
-                          <div class="form-group">
-                            <label for="email"><strong>Email Address</strong></label>
-                            <input
-                              class="form-control"
-                              type="email"
-                              id="email"
-                              placeholder="Email Address"
-                              name="email"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-                <div class="card shadow mb-3">
-                  <div class="card-header d-flex justify-content-between align-items-xl-center py-3">
-                    <p class="text-primary d-inline-block m-0 font-weight-bold">Contact</p>
-                    <button class="btn btn-primary disabled" type="submit" disabled="">Save</button>
-                  </div>
-                  <div class="card-body">
-                    <form>
-                      <div class="form-row">
-                        <div class="col">
-                          <div class="form-group">
-                            <label for="city"><strong>City</strong></label>
-                            <input class="form-control" type="text" id="city" placeholder="City" name="city" />
-                          </div>
-                        </div>
-                        <div class="col">
-                          <div class="form-group">
-                            <label for="country"><strong>Country</strong></label>
-                            <input
-                              class="form-control"
-                              type="text"
-                              id="country"
-                              placeholder="Viet Nam"
-                              name="country"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="address"><strong>Address</strong></label>
-                        <input class="form-control" type="text" id="address" placeholder="Address" name="address" />
-                      </div>
-                    </form>
-                  </div>
-                </div>
+                
+                <%--info--%>
+								<div class="card shadow mb-3">
+									<div class="card-header py-3">
+										<p class="text-primary m-0 font-weight-bold">Info</p>
+									</div>
+									<div class="card-body">
+										<div class="form-row">
+											<div class="col">
+												<div class="form-group">
+													<label for="username"><strong>Username</strong></label>
+													<input class="form-control" type="text" id="username" placeholder="User Name" name="username">
+												</div>
+											</div>
+											<div class="col">
+												<div class="form-group">
+													<label for="email"><strong>Email Address</strong></label>
+													<input class="form-control" type="email" id="email" placeholder="Email Address" name="email">
+												</div>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="col">
+												<div class="form-group">
+													<label for="first_name"><strong>Phone Number</strong></label>
+													<input class="form-control" type="text" id="first_name" name="first_name" placeholder="Phone Number" minlength="10">
+												</div>
+											</div>
+											<div class="col">
+												<div class="form-group">
+													<label for="last_name"><strong>Role</strong></label>
+													<select class="form-control">
+														<optgroup label="Role">
+															<option value="2" selected="">Customer</option>
+															<option value="1">Staff</option>
+															<option value="0">Manager</option>
+														</optgroup>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="col">
+												<div class="form-group">
+													<label for="pass"><strong>Password</strong><br></label>
+													<input class="form-control" type="password" placeholder="Password">
+												</div>
+											</div>
+											<div class="col">
+												<div class="form-group">
+													<label for="pass repeat"><strong>Repeat Password</strong><br></label>
+															<input class="form-control" type="password" placeholder="Repeat Password">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<%--address content--%>
+								<div class="card shadow">
+									<div class="card-header py-3">
+										<p class="text-primary m-0 font-weight-bold">Address</p>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label for="address"><strong>City</strong></label>
+											<input class="form-control" type="text" id="address" placeholder="City" name="City">
+										</div>
+										<div class="form-group">
+											<label for="address"><strong>District</strong></label>
+											<input class="form-control" type="text" id="address-3" placeholder="District" name="District">
+										</div>
+										<div class="form-group">
+											<label for="address"><strong>Address Line</strong></label>
+											<input class="form-control" type="text" id="address-2" placeholder="Address Line" name="addressLine">
+										</div>
+										<div class="form-group">
+											<label for="address"><strong>Unit Number</strong></label>
+											<input class="form-control" type="text" id="address-1" placeholder="Unit Number" name="unitNumber">
+										</div>
+									</div>
+								</div>
+							<%--  --%>
                 <div class="card">
                   <div class="card-header">
                     <p

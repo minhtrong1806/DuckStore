@@ -46,13 +46,6 @@ public class ProductCategory implements Serializable{
     private Set<Promotion> promotions = new HashSet<>();;
     
     
-    
-    
-    
-    
-    
-    
-    
     public ProductCategory() {}
     
     
