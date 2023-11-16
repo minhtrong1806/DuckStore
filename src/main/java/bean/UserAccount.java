@@ -1,10 +1,10 @@
 package bean;
 
 import java.io.Serializable;
-
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,8 +24,9 @@ public class UserAccount implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-
+	private Integer user_id;
+	@Column(name = "name")
+	private String name;
 	@Column(name = "email_address")
 	private String email_address;
 	@Column(name = "phone_number")
@@ -36,23 +37,39 @@ public class UserAccount implements Serializable{
 	private Integer role; 
 	
 	
-	@OneToMany(mappedBy = "userAccount",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Set<Address> addresses;
+	@OneToMany(mappedBy = "userAccount", fetch = FetchType.LAZY)
+	private Set<Address> addresses = new HashSet<>();;
 	
-	public UserAccount(String email_address, String password, String phone_number, Integer role) {
-
+	
+	public UserAccount(String name, String email_address, String phone_number, String password, Integer role,
+			List<String> roles, Set<Address> addresses) {
+		super();
+		this.name = name;
 		this.email_address = email_address;
 		this.phone_number = phone_number;
 		this.password = password;
 		this.role = role;
-		
+		this.addresses = addresses;
 	}
 	
+	public String getName() {
+		return name;
+	}
 
-	public Integer getId() {
-		return id;
+
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	
+
+	public Integer getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(Integer user_id) {
+		this.user_id = user_id;
+	}
+
 	public String getEmail_address() {
 		return email_address;
 	}
@@ -89,10 +106,6 @@ public class UserAccount implements Serializable{
 		this.addresses = addresses;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
 	public void setRole(Integer role) {
 		this.role = role;
 	}
@@ -100,4 +113,9 @@ public class UserAccount implements Serializable{
 	public UserAccount() {
 		
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
 }
