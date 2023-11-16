@@ -55,7 +55,7 @@ public class userAccountDAO {
             Long count = countQuery.uniqueResult();
             session.close();
             if(count > 0) {
-            	return true;
+                return true;
             }
             return false;
         }
@@ -162,11 +162,12 @@ public class userAccountDAO {
                 session.getTransaction().commit();
             } catch (Exception e) {
                 if (session.getTransaction() != null) {
-                	session.getTransaction().rollback();
+                    session.getTransaction().rollback();
                 }
                 e.printStackTrace();
             }
             session.close();
-		}
+        }
 	}
 }
+

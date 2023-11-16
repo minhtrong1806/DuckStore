@@ -14,6 +14,7 @@ import utils.AppUtils;
 import utils.SecurityUtils;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import bean.UserAccount;
@@ -52,7 +53,23 @@ public class SecurityFilter implements Filter {
 			String emailAddress = loginedUser.getEmail_address();
 
 			// Các vai trò (Role).
-			List<String> roles = loginedUser.getRoles();
+			int role = loginedUser.getRole();
+			
+			List<String> roles = new ArrayList<String>();
+			if (role == 0) {
+				roles.add("MANAGER");
+				roles.add("STAFF");
+				roles.add("CUSTOMER");
+				}
+				if (role == 1) {
+					roles.add("STAFF");
+					roles.add("CUSTOMER");
+				}
+				if (role == 2) {
+					roles.add("CUSTOMER");
+				}
+			
+			
 
 			// Gói request cũ bởi một Request mới với các thông tin userName và Roles.
 			wrapRequest = new UserRoleRequestWrapper(emailAddress, roles, request);
