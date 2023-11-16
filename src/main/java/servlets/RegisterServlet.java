@@ -55,15 +55,14 @@ public class RegisterServlet extends HttpServlet{
 			request.setAttribute("name", name);
 			request.setAttribute("email_address", email_address);
 			request.setAttribute("phone_number", phone_number);
-			request.setAttribute("password", password);
 			request.setAttribute("errorString", errorString);
-			
 			
 			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/register.jsp");
             dispatcher.forward(request, response);
 		}
 		else {
 			newUser = new UserAccount();
+			newUser.setName(name);
 			newUser.setEmail_address(email_address);
 			newUser.setPassword(password);
 			newUser.setPhone_number(phone_number);

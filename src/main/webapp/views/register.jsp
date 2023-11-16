@@ -51,7 +51,7 @@
 								
 								<div class="form-group">
 									<label for="password">Password</label> 
-									<input id="password" type="password" class="form-control" name="password" value="${password}" required data-eye/>
+									<input id="password" type="password" class="form-control" name="password" required data-eye/>
 									<div class="invalid-feedback">Password is required</div>
 								</div>
 								

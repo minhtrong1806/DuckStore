@@ -14,10 +14,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "site_user")
-public class UserAccount implements Serializable{
+public class UserAccount implements Serializable {
 	/**
 	 * 
 	 */
@@ -34,15 +33,12 @@ public class UserAccount implements Serializable{
 	@Column(name = "password")
 	private String password;
 	@Column(name = "role")
-	private Integer role; 
-	
-	
+	private Integer role;
+
 	@OneToMany(mappedBy = "userAccount", fetch = FetchType.LAZY)
 	private Set<Address> addresses = new HashSet<>();;
-	
-	
-	public UserAccount(String name, String email_address, String phone_number, String password, Integer role,
-			List<String> roles, Set<Address> addresses) {
+
+	public UserAccount(String name, String email_address, String phone_number, String password, Integer role, Set<Address> addresses) {
 		super();
 		this.name = name;
 		this.email_address = email_address;
@@ -51,12 +47,10 @@ public class UserAccount implements Serializable{
 		this.role = role;
 		this.addresses = addresses;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
-
-
 
 	public void setName(String name) {
 		this.name = name;
@@ -93,11 +87,11 @@ public class UserAccount implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	public Integer getRole() {
 		return role;
 	}
-	
+
 	public Set<Address> getAddresses() {
 		return addresses;
 	}
@@ -111,11 +105,11 @@ public class UserAccount implements Serializable{
 	}
 
 	public UserAccount() {
-		
+
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+
 }
