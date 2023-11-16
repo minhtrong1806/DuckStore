@@ -22,7 +22,7 @@ public class Address implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int address_id;
 	@Column(name = "unit_number")
 	private String unitNumber;
 	@Column(name = "address_line")
@@ -33,8 +33,21 @@ public class Address implements Serializable{
 	private String district;
 	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "user_id")
 	private UserAccount userAccount;
+	
+	
+	public Address() {}
+	
+	
+	public Address(String unitNumber, String addressLine, String city, String district, UserAccount userAccount) {
+		super();
+		this.unitNumber = unitNumber;
+		this.addressLine = addressLine;
+		this.city = city;
+		this.district = district;
+		this.userAccount = userAccount;
+	}
 	
 	public UserAccount getUserAccount() {
 		return userAccount;
@@ -42,11 +55,13 @@ public class Address implements Serializable{
 	public void setUserAccount(UserAccount userAccount) {
 		this.userAccount = userAccount;
 	}
-	public int getId() {
-		return id;
+
+	
+	public int getAddress_id() {
+		return address_id;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setAddress_id(int address_id) {
+		this.address_id = address_id;
 	}
 	public String getUnitNumber() {
 		return unitNumber;
