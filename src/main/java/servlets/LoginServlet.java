@@ -45,7 +45,9 @@ public class LoginServlet extends HttpServlet{
 
 			request.setAttribute("errorMessage", errorMessage);
 
-			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/login.jsp");
+			RequestDispatcher dispatcher //
+					= this.getServletContext().getRequestDispatcher("/views/login.jsp");
+
 			dispatcher.forward(request, response);
 			return;
 		}
