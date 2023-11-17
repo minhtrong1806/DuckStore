@@ -1,17 +1,15 @@
 package servlets;
 
+import java.io.IOException;
+
+import DAO.userAccountDAO;
+import bean.UserAccount;
 import jakarta.servlet.RequestDispatcher;
-
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-
-import DAO.userAccountDAO;
-import bean.UserAccount;
 
 @WebServlet({"/register"})
 public class RegisterServlet extends HttpServlet{
@@ -63,7 +61,7 @@ public class RegisterServlet extends HttpServlet{
 		else {
 			newUser = new UserAccount();
 			newUser.setName(name);
-			newUser.setEmail_address(email_address);
+			newUser.setEmailAddress(email_address);
 			newUser.setPassword(password);
 			newUser.setPhone_number(phone_number);
 			newUser.setRole(2);

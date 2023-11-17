@@ -1,39 +1,48 @@
 package bean;
 
 import java.io.Serializable;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "variation")
-public class Variation implements Serializable{
-	
-	
+public class Variation implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	
+	@Column(name = "id")
+	private int variationID;
+
 	@Column(name = "name")
 	private String naemString;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "category_id", referencedColumnName = "id")
-	private ProductCategory variationCategory;
 
-	public int getId() {
-		return id;
+	@OneToMany(mappedBy = "variation")
+	private Set<VariationOption> variationOptions;
+
+	public Variation(String naemString, Set<VariationOption> variationOptions) {
+		super();
+		this.naemString = naemString;
+		this.variationOptions = variationOptions;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public int getVariationID() {
+		return variationID;
+	}
+
+	public void setVariationID(int variationID) {
+		this.variationID = variationID;
 	}
 
 	public String getNaemString() {
@@ -44,21 +53,17 @@ public class Variation implements Serializable{
 		this.naemString = naemString;
 	}
 
-	public ProductCategory getVariationCategory() {
-		return variationCategory;
+	public Set<VariationOption> getVariationOptions() {
+		return variationOptions;
 	}
 
-	public void setVariationCategory(ProductCategory variationCategory) {
-		this.variationCategory = variationCategory;
+	public void setVariationOptions(Set<VariationOption> variationOptions) {
+		this.variationOptions = variationOptions;
 	}
 
-	public Variation(String naemString, ProductCategory variationCategory) {
-		super();
-		this.naemString = naemString;
-		this.variationCategory = variationCategory;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
-	public Variation() {
-		// TODO Auto-generated constructor stub
-	}
+	
 }

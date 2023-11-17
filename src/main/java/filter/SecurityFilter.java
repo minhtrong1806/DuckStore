@@ -1,5 +1,10 @@
 package filter;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import bean.UserAccount;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
@@ -10,15 +15,9 @@ import jakarta.servlet.ServletResponse;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import request.UserRoleRequestWrapper;
 import utils.AppUtils;
 import utils.SecurityUtils;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import bean.UserAccount;
-import request.UserRoleRequestWrapper;
 
 @WebFilter("/*")
 public class SecurityFilter implements Filter {
@@ -50,7 +49,7 @@ public class SecurityFilter implements Filter {
 
 		if (loginedUser != null) {
 			// email address
-			String emailAddress = loginedUser.getEmail_address();
+			String emailAddress = loginedUser.getEmailAddress();
 
 			// Các vai trò (Role).
 			int role = loginedUser.getRole();

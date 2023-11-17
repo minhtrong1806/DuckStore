@@ -2,12 +2,10 @@ package bean;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,31 +21,47 @@ public class UserAccount implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer user_id;
+	@Column(name = "id")
+	private int userID;
+	
 	@Column(name = "name")
 	private String name;
+	
 	@Column(name = "email_address")
-	private String email_address;
+	private String emailAddress;
+	
 	@Column(name = "phone_number")
-	private String phone_number;
+	private String phoneNumber;
+	
 	@Column(name = "password")
 	private String password;
+	
 	@Column(name = "role")
 	private Integer role;
 
-	@OneToMany(mappedBy = "userAccount", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "userAccount")
 	private Set<Address> addresses = new HashSet<>();;
 
-	public UserAccount(String name, String email_address, String phone_number, String password, Integer role, Set<Address> addresses) {
+	@OneToMany(mappedBy = "userAccount")
+	private Set<ShoppingCart> shoppingCarts;
+
+	
+	public UserAccount(String name, String emailAddress, String phoneNumber, String password, Integer role,
+			Set<Address> addresses, Set<ShoppingCart> shoppingCarts) {
 		super();
 		this.name = name;
-		this.email_address = email_address;
-		this.phone_number = phone_number;
+		this.emailAddress = emailAddress;
+		this.phoneNumber = phoneNumber;
 		this.password = password;
 		this.role = role;
-		this.addresses = addresses;
+		if(addresses != null) {
+			this.addresses = addresses;
+		}
+		if(shoppingCarts != null) {
+			this.shoppingCarts = shoppingCarts;
+		}
 	}
-
+	
 	public String getName() {
 		return name;
 	}
@@ -57,27 +71,27 @@ public class UserAccount implements Serializable {
 	}
 
 	public Integer getUser_id() {
-		return user_id;
+		return userID;
 	}
 
-	public void setUser_id(Integer user_id) {
-		this.user_id = user_id;
+	public void setUser_id(int userID) {
+		this.userID = userID;
 	}
 
-	public String getEmail_address() {
-		return email_address;
+	public String getEmailAddress() {
+		return emailAddress;
 	}
 
-	public void setEmail_address(String email_address) {
-		this.email_address = email_address;
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
 	}
 
 	public String getPhone_number() {
-		return phone_number;
+		return phoneNumber;
 	}
 
-	public void setPhone_number(String phone_number) {
-		this.phone_number = phone_number;
+	public void setPhone_number(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 	public String getPassword() {
