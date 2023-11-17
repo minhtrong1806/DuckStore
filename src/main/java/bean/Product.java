@@ -26,6 +26,7 @@ public class Product implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int productID;
 
 	@Column(name = "name")
@@ -44,6 +45,20 @@ public class Product implements Serializable {
 	@JoinColumn(name = "category_id")
 	private ProductCategory productCategory;
 
+	public Product(String name, String description, String product_image, Set<ProductItem> productItems,
+			ProductCategory productCategory) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.product_image = product_image;
+		this.productItems = productItems;
+		this.productCategory = productCategory;
+	}
+
+	public Product() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public int getProductID() {
 		return productID;
 	}
@@ -96,23 +111,6 @@ public class Product implements Serializable {
 		return serialVersionUID;
 	}
 
-	public Product(String name, String description, String product_image, Set<ProductItem> productItems,
-			ProductCategory productCategory) {
-		super();
-		this.name = name;
-		this.description = description;
-		this.product_image = product_image;
-		if(productItems != null) {
-			this.productItems = productItems;
-		}
-		if(productCategory != null) {
-			this.productCategory = productCategory;
-		}
-		
-	}
-
-	public Product() {
-		// TODO Auto-generated constructor stub
-	}
+	
 	
 }

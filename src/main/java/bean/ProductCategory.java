@@ -9,10 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,53 +21,31 @@ public class ProductCategory implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int productCategoryID;
-
-	@Column(name = "parent_category_id")
-	private int parentCategoryID;
 
 	@Column(name = "category_name")
 	private String categoryName;
-	
-	@OneToOne(targetEntity = ProductCategory.class)
-	@JoinColumn(name = "parent_category_id", referencedColumnName = "productCategoryID", insertable = false, updatable = false)
-	private ProductCategory parentCategory;
-
-
-	@ManyToMany(mappedBy = "productCategories")
-	private Set<Promotion> promotions = new HashSet<Promotion>();
 
 	@OneToMany(mappedBy = "productCategory")
 	private Set<Product> products = new HashSet<Product>();
 
-	@OneToMany(mappedBy = "productCategory")
-	private Set<Variation> variations = new HashSet<Variation>();
-	
-	
-	public ProductCategory() {
-	}
-
-	public ProductCategory(String categoryName, ProductCategory parentCategory, Set<Promotion> promotions) {
+	public ProductCategory(String categoryName, Set<Product> products) {
 		super();
 		this.categoryName = categoryName;
-		this.parentCategory = parentCategory;
-		this.promotions = promotions;
+		this.products = products;
 	}
 
+	public ProductCategory() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public int getProductCategoryID() {
 		return productCategoryID;
 	}
 
 	public void setProductCategoryID(int productCategoryID) {
 		this.productCategoryID = productCategoryID;
-	}
-
-	public int getParentCategoryID() {
-		return parentCategoryID;
-	}
-
-	public void setParentCategoryID(int parentCategoryID) {
-		this.parentCategoryID = parentCategoryID;
 	}
 
 	public String getCategoryName() {
@@ -81,24 +56,17 @@ public class ProductCategory implements Serializable {
 		this.categoryName = categoryName;
 	}
 
-	public ProductCategory getParentCategory() {
-		return parentCategory;
+	public Set<Product> getProducts() {
+		return products;
 	}
 
-	public void setParentCategory(ProductCategory parentCategory) {
-		this.parentCategory = parentCategory;
+	public void setProducts(Set<Product> products) {
+		this.products = products;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
-	public Set<Promotion> getPromotions() {
-		return promotions;
-	}
-
-	public void setPromotions(Set<Promotion> promotions) {
-		this.promotions = promotions;
-	}
-
+	
+	
 }

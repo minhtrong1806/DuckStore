@@ -1,15 +1,14 @@
 package bean;
 
 import java.io.Serializable;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,14 +22,20 @@ public class Variation implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int variationID;
 
 	@Column(name = "name")
 	private String naemString;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "category_id")
-	private ProductCategory productCategory;
+	@OneToMany(mappedBy = "variation")
+	private Set<VariationOption> variationOptions;
+
+	public Variation(String naemString, Set<VariationOption> variationOptions) {
+		super();
+		this.naemString = naemString;
+		this.variationOptions = variationOptions;
+	}
 
 	public int getVariationID() {
 		return variationID;
@@ -48,25 +53,17 @@ public class Variation implements Serializable {
 		this.naemString = naemString;
 	}
 
-	public ProductCategory getProductCategory() {
-		return productCategory;
+	public Set<VariationOption> getVariationOptions() {
+		return variationOptions;
 	}
 
-	public void setProductCategory(ProductCategory productCategory) {
-		this.productCategory = productCategory;
+	public void setVariationOptions(Set<VariationOption> variationOptions) {
+		this.variationOptions = variationOptions;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
-	public Variation(String naemString, ProductCategory productCategory) {
-		super();
-		this.naemString = naemString;
-		this.productCategory = productCategory;
-	}
-
-	public Variation() {
-		// TODO Auto-generated constructor stub
-	}
+	
+	
 }

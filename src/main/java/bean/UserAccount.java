@@ -42,18 +42,26 @@ public class UserAccount implements Serializable {
 	@OneToMany(mappedBy = "userAccount")
 	private Set<Address> addresses = new HashSet<>();;
 
-	public UserAccount(String name, String emailAddress, String phoneNumber, String password, Integer role, Set<Address> addresses) {
+	@OneToMany(mappedBy = "userAccount")
+	private Set<ShoppingCart> shoppingCarts;
+
+	
+	public UserAccount(String name, String emailAddress, String phoneNumber, String password, Integer role,
+			Set<Address> addresses, Set<ShoppingCart> shoppingCarts) {
 		super();
 		this.name = name;
 		this.emailAddress = emailAddress;
 		this.phoneNumber = phoneNumber;
 		this.password = password;
 		this.role = role;
-        if (addresses != null) {
-            this.addresses = addresses;
-        }
+		if(addresses != null) {
+			this.addresses = addresses;
+		}
+		if(shoppingCarts != null) {
+			this.shoppingCarts = shoppingCarts;
+		}
 	}
-
+	
 	public String getName() {
 		return name;
 	}

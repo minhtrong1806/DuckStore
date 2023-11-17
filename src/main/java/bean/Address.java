@@ -1,6 +1,8 @@
 package bean;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -39,32 +42,33 @@ public class Address implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id")
 	private UserAccount userAccount;
-
-	public Address() {
-	}
-
-	public Address(String unitNumber, String addressLine, String city, String district, UserAccount userAccount) {
+	
+	@OneToMany(mappedBy = "address")
+	private Set<ShopOrder> shopOrders = new HashSet<ShopOrder>();
+	
+	
+	public Address(String unitNumber, String addressLine, String city, String district, UserAccount userAccount,
+			Set<ShopOrder> shopOrders) {
 		super();
 		this.unitNumber = unitNumber;
 		this.addressLine = addressLine;
 		this.city = city;
 		this.district = district;
 		this.userAccount = userAccount;
+		if(shopOrders != null) {
+			this.shopOrders = shopOrders;
+		}
+		
+	}
+	
+	public Address() {
 	}
 
-	public UserAccount getUserAccount() {
-		return userAccount;
-	}
-
-	public void setUserAccount(UserAccount userAccount) {
-		this.userAccount = userAccount;
-	}
-
-	public int getAddress_id() {
+	public int getAddressID() {
 		return addressID;
 	}
 
-	public void setAddress_id(int addressID) {
+	public void setAddressID(int addressID) {
 		this.addressID = addressID;
 	}
 
@@ -98,6 +102,22 @@ public class Address implements Serializable {
 
 	public void setDistrict(String district) {
 		this.district = district;
+	}
+
+	public UserAccount getUserAccount() {
+		return userAccount;
+	}
+
+	public void setUserAccount(UserAccount userAccount) {
+		this.userAccount = userAccount;
+	}
+
+	public Set<ShopOrder> getShopOrders() {
+		return shopOrders;
+	}
+
+	public void setShopOrders(Set<ShopOrder> shopOrders) {
+		this.shopOrders = shopOrders;
 	}
 
 	public static long getSerialversionuid() {

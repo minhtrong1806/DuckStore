@@ -10,9 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,6 +23,7 @@ public class Promotion implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int promotionID;
 
 	@Column(name = "name")
@@ -41,11 +40,27 @@ public class Promotion implements Serializable {
 
 	@Column(name = "end_date")
 	private Date end_date;
+	
+	@OneToMany(mappedBy = "shopOrder")
+	private Set<ShopOrder> shopOrders = new HashSet<ShopOrder>();
 
-	@ManyToMany
-	@JoinTable(name = "promotion_category", joinColumns = @JoinColumn(name = "promotion_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
-	private Set<ProductCategory> productCategories = new HashSet<ProductCategory>();
-
+	public Promotion(String name, String description, int discount_rate, Date start_date, Date end_date,
+			Set<ShopOrder> shopOrders) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.discount_rate = discount_rate;
+		this.start_date = start_date;
+		this.end_date = end_date;
+		if(shopOrders != null) {
+			this.shopOrders = shopOrders;
+		}
+	}
+	
+	public Promotion() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public int getPromotionID() {
 		return promotionID;
 	}
@@ -94,32 +109,18 @@ public class Promotion implements Serializable {
 		this.end_date = end_date;
 	}
 
-	public Set<ProductCategory> getProductCategories() {
-		return productCategories;
+	public Set<ShopOrder> getShopOrders() {
+		return shopOrders;
 	}
 
-	public void setProductCategories(Set<ProductCategory> productCategories) {
-		this.productCategories = productCategories;
+	public void setShopOrders(Set<ShopOrder> shopOrders) {
+		this.shopOrders = shopOrders;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
-	public Promotion(String name, String description, int discount_rate, Date start_date, Date end_date,
-			Set<ProductCategory> productCategories) {
-		super();
-		this.name = name;
-		this.description = description;
-		this.discount_rate = discount_rate;
-		this.start_date = start_date;
-		this.end_date = end_date;
-		if(productCategories != null) {
-			this.productCategories = productCategories;
-		}
-	}
 	
-	public Promotion() {
-		// TODO Auto-generated constructor stub
-	}
+	
+
 }
