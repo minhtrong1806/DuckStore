@@ -12,6 +12,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
 import bean.UserAccount;
+import utils.HibernateUtil;
 
 
 public class userAccountDAO {

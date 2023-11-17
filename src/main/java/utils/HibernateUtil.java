@@ -16,6 +16,7 @@ import bean.Promotion;
 import bean.UserAccount;
 import bean.Variation;
 
+
 public class HibernateUtil {
 	private final static SessionFactory FACTORY;
 
@@ -38,6 +39,7 @@ public class HibernateUtil {
 		conf.addAnnotatedClass(Variation.class);
 		conf.addAnnotatedClass(Product.class);
 		conf.addAnnotatedClass(ProductItem.class);
+
 		
 		ServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(conf.getProperties()).build();
 

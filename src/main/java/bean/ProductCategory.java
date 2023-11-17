@@ -32,7 +32,6 @@ public class ProductCategory implements Serializable {
 	@Column(name = "category_name")
 	private String categoryName;
 	
-
 	@OneToOne(targetEntity = ProductCategory.class)
 	@JoinColumn(name = "parent_category_id", referencedColumnName = "productCategoryID", insertable = false, updatable = false)
 	private ProductCategory parentCategory;
