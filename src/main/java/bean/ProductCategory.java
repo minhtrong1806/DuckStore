@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "product_category")
-public class ProductCategory implements Serializable{
+public class ProductCategory implements Serializable {
 	/**
 	 * 
 	 */
@@ -25,37 +25,32 @@ public class ProductCategory implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int productCategoryID;
-	
+
 	@Column(name = "parent_category_id")
 	private int parentCategoryID;
-	
+
 	@Column(name = "category_name")
 	private String categoryName;
 	
-    @OneToOne(targetEntity = ProductCategory.class)
-    @JoinColumn(name = "parent_category_id", referencedColumnName = "id")
-    private ProductCategory parentCategory;
 
-    @OneToMany(mappedBy = "productCategory")
-    private Set<Product> products = new HashSet<>();
-    
-    @OneToMany(mappedBy = "variationCategory")
-    private Set<Variation> variations = new HashSet<Variation>();
-    
-    @ManyToMany(mappedBy = "productCategories")
-    private Set<Promotion> promotions = new HashSet<>();;
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    public ProductCategory() {}
-    
-    
+	@OneToOne(targetEntity = ProductCategory.class)
+	@JoinColumn(name = "parent_category_id", referencedColumnName = "productCategoryID", insertable = false, updatable = false)
+	private ProductCategory parentCategory;
+
+
+	@ManyToMany(mappedBy = "productCategories")
+	private Set<Promotion> promotions = new HashSet<Promotion>();
+
+	@OneToMany(mappedBy = "productCategory")
+	private Set<Product> products = new HashSet<Product>();
+
+	@OneToMany(mappedBy = "productCategory")
+	private Set<Variation> variations = new HashSet<Variation>();
+	
+	
+	public ProductCategory() {
+	}
+
 	public ProductCategory(String categoryName, ProductCategory parentCategory, Set<Promotion> promotions) {
 		super();
 		this.categoryName = categoryName;
@@ -106,6 +101,5 @@ public class ProductCategory implements Serializable{
 	public void setPromotions(Set<Promotion> promotions) {
 		this.promotions = promotions;
 	}
-	
-	
+
 }

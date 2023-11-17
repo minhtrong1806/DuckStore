@@ -14,26 +14,30 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "variation")
-public class Variation implements Serializable{
-	
-	
+public class Variation implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	
+	private int variationID;
+
 	@Column(name = "name")
 	private String naemString;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "category_id", referencedColumnName = "id")
-	private ProductCategory variationCategory;
 
-	public int getId() {
-		return id;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "category_id")
+	private ProductCategory productCategory;
+
+	public int getVariationID() {
+		return variationID;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setVariationID(int variationID) {
+		this.variationID = variationID;
 	}
 
 	public String getNaemString() {
@@ -44,20 +48,24 @@ public class Variation implements Serializable{
 		this.naemString = naemString;
 	}
 
-	public ProductCategory getVariationCategory() {
-		return variationCategory;
+	public ProductCategory getProductCategory() {
+		return productCategory;
 	}
 
-	public void setVariationCategory(ProductCategory variationCategory) {
-		this.variationCategory = variationCategory;
+	public void setProductCategory(ProductCategory productCategory) {
+		this.productCategory = productCategory;
 	}
 
-	public Variation(String naemString, ProductCategory variationCategory) {
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public Variation(String naemString, ProductCategory productCategory) {
 		super();
 		this.naemString = naemString;
-		this.variationCategory = variationCategory;
+		this.productCategory = productCategory;
 	}
-	
+
 	public Variation() {
 		// TODO Auto-generated constructor stub
 	}

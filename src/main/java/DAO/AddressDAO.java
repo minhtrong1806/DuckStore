@@ -18,71 +18,68 @@ import utils.HibernateUtil;
 
 public class AddressDAO {
 	private static final SessionFactory factory = HibernateUtil.getSessionFactory();
-	
-	public List<Address> listAddressByUser(String email){
-		try(Session session = factory.openSession()){
+
+	public List<Address> listAddressByUser(String email) {
+		try (Session session = factory.openSession()) {
 			CriteriaBuilder builder = session.getCriteriaBuilder();
 			CriteriaQuery<Address> query = builder.createQuery(Address.class);
 			Root<UserAccount> useRoot = query.from(UserAccount.class);
-			
+
 			Join<Address, UserAccount> addressJoin = useRoot.join("addresses");
-			
+
 			query.multiselect(addressJoin).where(builder.equal(useRoot.get("email_address"), email));
-			
+
 			Query<Address> addressQuery = session.createQuery(query);
-			
+
 			return addressQuery.getResultList();
 		}
 	}
-	
+
 	public void addAddressForUser(Address newAddress, String email) {
-		try(Session session = factory.openSession()){
+		try (Session session = factory.openSession()) {
 			try {
 				session.getTransaction().begin();
-				
+
 				CriteriaBuilder builder = session.getCriteriaBuilder();
-                CriteriaQuery<UserAccount> query = builder.createQuery(UserAccount.class);
-                Root<UserAccount> userRoot = query.from(UserAccount.class);
-                
-                Predicate conditionPredicate = builder.equal(userRoot.get("email_address"), email);
-                query.where(conditionPredicate);
-                
-                UserAccount userAccount = session.createQuery(query).uniqueResult();
-                
-                if(userAccount != null) {
-                	userAccount.getAddresses().add(newAddress);
-                	
-                	
-                	newAddress.setUserAccount(userAccount);
-                	session.save(newAddress);
-                	
-                	session.update(userAccount);
-                }
-                
+				CriteriaQuery<UserAccount> query = builder.createQuery(UserAccount.class);
+				Root<UserAccount> userRoot = query.from(UserAccount.class);
+
+				Predicate conditionPredicate = builder.equal(userRoot.get("email_address"), email);
+				query.where(conditionPredicate);
+
+				UserAccount userAccount = session.createQuery(query).uniqueResult();
+
+				if (userAccount != null) {
+					userAccount.getAddresses().add(newAddress);
+
+					newAddress.setUserAccount(userAccount);
+					session.save(newAddress);
+
+					session.update(userAccount);
+				}
+
 				session.getTransaction().commit();
-				
+
 			} catch (Exception e) {
-                if (session.getTransaction() != null) {
-                	session.getTransaction().rollback();
-                }
-                e.printStackTrace();
+				if (session.getTransaction() != null) {
+					session.getTransaction().rollback();
+				}
+				e.printStackTrace();
 			}
 		}
 	}
-	
-	public void editAddress(String email, String newUnitNumber, String newAddressLine, String newCity, String newDistrict) {
-		try(Session session = factory.openSession()){
+
+	public void editAddress(String email, String newUnitNumber, String newAddressLine, String newCity,
+			String newDistrict) {
+		try (Session session = factory.openSession()) {
 			try {
 				session.getTransaction().begin();
-				
+
 				CriteriaBuilder builder = session.getCriteriaBuilder();
-                CriteriaQuery<Address> query = builder.createQuery(Address.class);
-                Root<UserAccount> addressRoot = query.from(UserAccount.class);
-                
-                
-                
-                
-			}catch (Exception e) {
+				CriteriaQuery<Address> query = builder.createQuery(Address.class);
+				Root<UserAccount> addressRoot = query.from(UserAccount.class);
+
+			} catch (Exception e) {
 				// TODO: handle exception
 			}
 		}

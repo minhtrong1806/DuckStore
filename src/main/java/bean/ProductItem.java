@@ -14,8 +14,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "product_item")
-public class ProductItem implements Serializable{
-	
+public class ProductItem implements Serializable {
+
 	/**
 	 * 
 	 */
@@ -24,21 +24,21 @@ public class ProductItem implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int productItemID;
-	
+
 	@Column(name = "sku")
 	private String sku;
-	
+
 	@Column(name = "qty_in_stock")
 	private int qty_in_stock;
-	
+
 	@Column(name = "product_image")
 	private String product_image;
-	
+
 	@Column(name = "price")
 	private int price;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "product_id", referencedColumnName = "id")
+	@JoinColumn(name = "product_id")
 	private Product product;
 
 	public int getProductItemID() {
@@ -105,5 +105,4 @@ public class ProductItem implements Serializable{
 	public ProductItem() {
 		// TODO Auto-generated constructor stub
 	}
-	
 }

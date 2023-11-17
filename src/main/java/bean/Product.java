@@ -17,8 +17,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "product")
-public class Product implements Serializable{
-	
+public class Product implements Serializable {
+
 	/**
 	 * 
 	 */
@@ -27,34 +27,22 @@ public class Product implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int productID;
-	
+
 	@Column(name = "name")
 	private String name;
-	
+
 	@Column(name = "description")
 	private String description;
-	
+
 	@Column(name = "product_image")
 	private String product_image;
-	
+
 	@OneToMany(mappedBy = "product")
 	private Set<ProductItem> productItems = new HashSet<ProductItem>();
-	
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "category_id")
 	private ProductCategory productCategory;
-
-	public Product(String name, String description, String product_image, ProductCategory productCategory) {
-		super();
-		this.name = name;
-		this.description = description;
-		this.product_image = product_image;
-		this.productCategory = productCategory;
-	}
-	
-	public Product() {
-		// TODO Auto-generated constructor stub
-	}
 
 	public int getProductID() {
 		return productID;
@@ -88,6 +76,14 @@ public class Product implements Serializable{
 		this.product_image = product_image;
 	}
 
+	public Set<ProductItem> getProductItems() {
+		return productItems;
+	}
+
+	public void setProductItems(Set<ProductItem> productItems) {
+		this.productItems = productItems;
+	}
+
 	public ProductCategory getProductCategory() {
 		return productCategory;
 	}
@@ -98,6 +94,25 @@ public class Product implements Serializable{
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public Product(String name, String description, String product_image, Set<ProductItem> productItems,
+			ProductCategory productCategory) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.product_image = product_image;
+		if(productItems != null) {
+			this.productItems = productItems;
+		}
+		if(productCategory != null) {
+			this.productCategory = productCategory;
+		}
+		
+	}
+
+	public Product() {
+		// TODO Auto-generated constructor stub
 	}
 	
 }
