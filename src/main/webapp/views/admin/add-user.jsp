@@ -10,15 +10,15 @@
 <link rel="icon" type="image/x-icon"
 	href="${pageContext.request.contextPath}/views/admin/assets/img/icon/favicon.ico" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/views/admin/assets/bootstrap/css/bootstrap.min.css?h=bb600b08233db870ce64e59b11416ef9" />
+	href="${pageContext.request.contextPath}/views/admin/assets/bootstrap/css/bootstrap.min.css" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/views/admin/assets/fonts/fontawesome-all.min.css?h=13bea3cde590997c1094f9bba14d719a" />
+	href="${pageContext.request.contextPath}/views/admin/assets/fonts/fontawesome-all.min.css" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/views/admin/assets/fonts/font-awesome.min.css?h=13bea3cde590997c1094f9bba14d719a" />
+	href="${pageContext.request.contextPath}/views/admin/assets/fonts/font-awesome.min.css" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/views/admin/assets/fonts/fontawesome5-overrides.min.css?h=13bea3cde590997c1094f9bba14d719a" />
+	href="${pageContext.request.contextPath}/views/admin/assets/fonts/fontawesome5-overrides.min.css" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/views/admin/assets/css/admin.css?h=542a0b5a250a67ab9a0ed1dbb563dd9c" />
+	href="${pageContext.request.contextPath}/views/admin/assets/css/admin.css" />
 </head>
 
 <body id="page-top">
@@ -224,15 +224,15 @@
 			class="fas fa-angle-up"></i></a>
 	</div>
 	<script
-		src="${pageContext.request.contextPath}/views/admin/assets/js/jquery.min.js?h=89312d34339dcd686309fe284b3f226f"></script>
+		src="${pageContext.request.contextPath}/views/admin/assets/js/jquery.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/views/admin/assets/bootstrap/js/bootstrap.min.js?h=2504f2315ca47ea4d62e67e20a5551d7"></script>
+		src="${pageContext.request.contextPath}/views/admin/assets/bootstrap/js/bootstrap.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/views/admin/assets/js/bs-init.js?h=24944136186a01ba6322da1c4ad1dfbe"></script>
+		src="${pageContext.request.contextPath}/views/admin/assets/js/bs-init.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"
 		type="module"></script>
 	<script
-		src="${pageContext.request.contextPath}/views/admin/assets/js/theme.js?h=6d33b44a6dcb451ae1ea7efc7b5c5e30"></script>
+		src="${pageContext.request.contextPath}/views/admin/assets/js/theme.js"></script>
 </body>
 </html>

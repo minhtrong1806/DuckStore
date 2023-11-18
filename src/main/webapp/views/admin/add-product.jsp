@@ -164,6 +164,57 @@
 								</div>
 								<div class="card mb-3">
 									<div class="card-body">
+										<h5 class="font-weight-bold text-dark mb-4">
+											<span style="color: rgb(84, 79, 90)">Image For Product Item</span>
+										</h5>
+										<div class="d-flex d-sm-flex justify-content-start">
+											<div>
+												<img class="m-2" />
+											</div>
+											<div
+												class="bg-secondary d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center upload-img m-2 pointer">
+												<i class="fa fa-plus icon-add-image pointer"></i> <input
+													class="custom-file-input" type="file" />
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-5">
+								<div class="card mb-3">
+									<div class="card-body">
+										<h5 class="font-weight-bold text-dark mb-4">Pricing</h5>
+										<div class="form-group">
+											<input class="form-control" type="number" name="price"
+												placeholder="Best Price" min="0" />
+										</div>
+									</div>
+								</div>
+								<div class="card mb-3">
+									<div class="card-body">
+										<h5 class="font-weight-bold text-dark mb-4">
+											<span style="color: rgb(84, 79, 90)">Category</span> <br />
+										</h5>
+										<div class="d-flex mb-3">
+											<select class="form-control">
+												<optgroup label="Category">
+													<option value="1" selected="">Woman</option>
+													<option value="2">Man</option>
+												</optgroup>
+											</select>
+											<button class="btn btn-secondary ml-3" type="button"
+												data-target="#add-category" data-toggle="collapse"
+												aria-expanded="false" aria-controls="add-category">
+												<i class="fa fa-plus"></i>
+											</button>
+										</div>
+										<div id="add-category" class="collapse">
+											<input class="form-control" type="text" />
+										</div>
+									</div>
+								</div>
+								<div class="card mb-3">
+									<div class="card-body">
 										<h5 class="font-weight-bold text-dark mb-4">Variants</h5>
 										<div class="d-flex justify-content-between">
 											<div class="form-group w-25 ">
@@ -190,58 +241,6 @@
 													</optgroup>
 												</select>
 											</div>
-										</div>
-										
-										
-										
-									</div>
-								</div>
-							</div>
-							<div class="col-xl-5">
-								<div class="card mb-3">
-									<div class="card-body">
-										<h5 class="font-weight-bold text-dark mb-4">Pricing</h5>
-										<div class="form-group">
-											<input class="form-control" type="number" name="price"
-												placeholder="Best Price" min="0" />
-										</div>
-										<div class="form-group">
-											<input class="form-control" type="number"
-												name="discountedPrice" placeholder="Discounted Price"
-												min="0" />
-										</div>
-										<div class="form-group">
-											<div class="form-check">
-												<input class="form-check-input" type="checkbox"
-													id="taxCheck" /> <label class="form-check-label"
-													for="taxCheck"> <span
-													style="color: rgb(137, 134, 141)">Charge tax on this
-														product</span> <br />
-												</label>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="card">
-									<div class="card-body">
-										<h5 class="font-weight-bold text-dark mb-4">
-											<span style="color: rgb(84, 79, 90)">Category</span> <br />
-										</h5>
-										<div class="d-flex mb-3">
-											<select class="form-control">
-												<optgroup label="Category">
-													<option value="1" selected="">Woman</option>
-													<option value="2">Man</option>
-												</optgroup>
-											</select>
-											<button class="btn btn-secondary ml-3" type="button"
-												data-target="#add-category" data-toggle="collapse"
-												aria-expanded="false" aria-controls="add-category">
-												<i class="fa fa-plus"></i>
-											</button>
-										</div>
-										<div id="add-category" class="collapse">
-											<input class="form-control" type="text" />
 										</div>
 									</div>
 								</div>
