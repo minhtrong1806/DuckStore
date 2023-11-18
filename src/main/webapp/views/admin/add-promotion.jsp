@@ -136,49 +136,31 @@
 														class="d-flex flex-row justify-content-end justify-content-xl-end"></div>
 										</div>
 										<div class="row d-flex justify-content-xl-center px-5">
-												<div class="col">
-														<div class="card">
+												<div class="col d-flex justify-content-center">
+														<div class="card w-50">
 																<div class="card-body">
 																		<h4 class="card-title">New Promotion</h4>
 																		<form>
 																				<div class="border-top">
-																						<label class="mt-3">Promotional Code</label><input
-																								class="form-control"
-																								type="text"
-																								placeholder="Promotional Code"
-																								name="promotionalCode">
+																						<label class="mt-3">Promotional Code</label>
+																						<input class="form-control" type="text" placeholder="Promotional Code" name="promotionalCode">
 																				</div>
 																				<div class="border-top">
-																						<label class="mt-3">Description</label>
-																						<textarea
-																								class="form-control"
-																								name="promotionDescription"></textarea>
-																				</div>
-																				<div class="border-top">
-																						<small class="form-text text-muted">Percent
-																								unit (%)</small><input
-																								class="form-control"
-																								type="number"
-																								min="0"
-																								max="100"
-																								step="1">
+																						<small class="form-text text-muted">Percent unit (%)</small>
+																								<input class="form-control" type="number" min="0" max="100" step="1">
 																				</div>
 																				<div
 																						class="d-flex justify-content-between flex-wrap border-top">
 																						<div class="col-xl-6 pl-0">
-																								<label class="mt-3">Start Date</label><input
-																										class="form-control"
-																										type="date">
+																								<label class="mt-3">Start Date</label>
+																								<input class="form-control" type="date">
 																						</div>
 																						<div class="col-xl-6 pr-0">
-																								<label class="mt-3">End Date</label><input
-																										class="form-control"
-																										type="date">
+																								<label class="mt-3">End Date</label>
+																								<input class="form-control" type="date">
 																						</div>
 																				</div>
-																				<button
-																						class="btn btn-primary my-3"
-																						type="submit">Save</button>
+																				<button class="btn btn-primary my-3" type="submit">Save</button>
 																		</form>
 																</div>
 														</div>
