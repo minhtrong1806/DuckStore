@@ -136,10 +136,6 @@
 												placeholder="Name" />
 										</div>
 										<div class="form-group d-flex align-items-xl-center">
-											<input class="form-control" type="number" name="sku"
-												placeholder="SKU" min="0" />
-										</div>
-										<div class="form-group d-flex align-items-xl-center">
 											<textarea class="form-control"
 												placeholder="Product Descripition "></textarea>
 										</div>
@@ -152,7 +148,7 @@
 								<div class="card mb-3">
 									<div class="card-body">
 										<h5 class="font-weight-bold text-dark mb-4">
-											<span style="color: rgb(84, 79, 90)">Image</span>
+											<span style="color: rgb(84, 79, 90)">Image For Product</span>
 										</h5>
 										<div class="d-flex d-sm-flex justify-content-start">
 											<div>
@@ -170,24 +166,34 @@
 									<div class="card-body">
 										<h5 class="font-weight-bold text-dark mb-4">Variants</h5>
 										<div class="d-flex justify-content-between">
-											<div class="form-group d-xl-flex w-50 pr-5">
+											<div class="form-group w-25 ">
+												<label for="last_name"><strong>Color</strong></label>
+											</div>
+											<div class="form-group d-xl-flex w-75">
 												<select class="form-control d-xl-flex">
-													<optgroup label="Options">
-														<option value="1" selected="">Size</option>
-														<option value="2">Color</option>
+													<optgroup label="Color">
+														<option value="1" selected="">Red</option>
+														<option value="2">Green</option>
 													</optgroup>
 												</select>
 											</div>
-											<div class="form-group d-xl-flex w-50">
-												<input class="form-control d-xl-flex" type="text"
-													placeholder="Value" />
+										</div>
+										<div class="d-flex justify-content-between">
+											<div class="form-group w-25 ">
+												<label for="last_name"><strong>Size</strong></label>
+											</div>
+											<div class="form-group d-xl-flex w-75">
+												<select class="form-control d-xl-flex">
+													<optgroup label="Color">
+														<option value="1" selected="">Red</option>
+														<option value="2">Green</option>
+													</optgroup>
+												</select>
 											</div>
 										</div>
-										<div class="d-flex justify-content-between"></div>
-										<button
-											class="btn btn-primary text-uppercase font-weight-bold w-auto"
-											type="button" data-target="option">add another
-											option</button>
+										
+										
+										
 									</div>
 								</div>
 							</div>
