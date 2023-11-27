@@ -41,18 +41,18 @@ public class Product implements Serializable {
 	@OneToMany(mappedBy = "product")
 	private Set<ProductItem> productItems = new HashSet<ProductItem>();
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "category_id")
 	private ProductCategory productCategory;
 
-	public Product(String name, String description, String product_image, Set<ProductItem> productItems,
-			ProductCategory productCategory) {
+	public Product(String name, String description, String product_image, Set<ProductItem> productItems) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.product_image = product_image;
-		this.productItems = productItems;
-		this.productCategory = productCategory;
+		if(productItems != null) {
+			this.productItems = productItems;
+		}
 	}
 
 	public Product() {

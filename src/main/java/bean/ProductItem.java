@@ -42,7 +42,7 @@ public class ProductItem implements Serializable {
 	@Column(name = "price")
 	private int price;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "product_id")
 	private Product product;
 	
@@ -55,10 +55,9 @@ public class ProductItem implements Serializable {
 	@OneToMany(mappedBy = "productItem")
 	private Set<OrderLine> orderLines = new HashSet<OrderLine>();
 
-	public ProductItem(String sku, int qty_in_stock, String product_image, int price, Product product,
+	public ProductItem(int qty_in_stock, String product_image, int price, Product product,
 			Set<VariationOption> variationOptions, Set<ShoppingCartItem> shoppingCartItems, Set<OrderLine> orderLines) {
 		super();
-		this.sku = sku;
 		this.qty_in_stock = qty_in_stock;
 		this.product_image = product_image;
 		this.price = price;

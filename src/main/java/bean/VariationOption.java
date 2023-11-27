@@ -32,8 +32,7 @@ public class VariationOption implements Serializable {
 	@Column(name = "value")
 	private String value;
 	
-	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "variation_id")
 	private Variation variation;
 	
@@ -45,8 +44,12 @@ public class VariationOption implements Serializable {
 	public VariationOption(String value, Variation variation, Set<ProductItem> productItems) {
 		super();
 		this.value = value;
-		this.variation = variation;
-		this.productItems = productItems;
+		if(variation != null) {
+			this.variation = variation;
+		}
+		if(productItems != null) {
+			this.productItems = productItems;
+		}
 	}
 	public VariationOption() {
 		// TODO Auto-generated constructor stub
