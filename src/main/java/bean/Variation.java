@@ -1,6 +1,7 @@
 package bean;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -26,17 +27,19 @@ public class Variation implements Serializable {
 	private int variationID;
 
 	@Column(name = "name")
-	private String naemString;
+	private String name;
 
 	@OneToMany(mappedBy = "variation")
-	private Set<VariationOption> variationOptions;
+	private Set<VariationOption> variationOptions = new HashSet<VariationOption>();
 
-	public Variation(String naemString, Set<VariationOption> variationOptions) {
+	public Variation(String name, Set<VariationOption> variationOptions) {
 		super();
-		this.naemString = naemString;
+		this.name = name;
 		this.variationOptions = variationOptions;
 	}
-
+	public Variation() {
+		// TODO Auto-generated constructor stub
+	}
 	public int getVariationID() {
 		return variationID;
 	}
@@ -45,12 +48,12 @@ public class Variation implements Serializable {
 		this.variationID = variationID;
 	}
 
-	public String getNaemString() {
-		return naemString;
+	public String getName() {
+		return name;
 	}
 
-	public void setNaemString(String naemString) {
-		this.naemString = naemString;
+	public void setNameString(String name) {
+		this.name = name;
 	}
 
 	public Set<VariationOption> getVariationOptions() {
@@ -64,6 +67,4 @@ public class Variation implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
 }

@@ -33,7 +33,9 @@ public class ProductCategory implements Serializable {
 	public ProductCategory(String categoryName, Set<Product> products) {
 		super();
 		this.categoryName = categoryName;
-		this.products = products;
+		if(products != null) {
+			this.products = products;
+		}
 	}
 
 	public ProductCategory() {
