@@ -79,56 +79,47 @@
 					<%-- navbar --%>
 					<%@include file="navbar.jsp"%>
 					<%-- end navbar --%>
-          <div class="container-fluid">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item text-uppercase font-weight-bold">
-                <a href="admin-products">
-                  <span>product</span>
-                </a>
-              </li>
-              <li class="breadcrumb-item active text-uppercase font-weight-bold">
-                <span>Category List</span>
-              </li>
-            </ol>
-            <div class="card shadow">
-              <div class="card-body" style="padding-top: 0px">
-                <div class="row m-3 d-xl-flex justify-content-xl-end ">
-                  <div class="my-2">
-                    <a href="admin-category/showAdd" class="btn btn-info btn-sm">ADD</a>
-                  </div>
-                </div>
-                <div class="table-responsive table mt-2" id="dataTable-1" role="grid" aria-describedby="dataTable_info">
-                  <table class="table my-0" id="dataTable">
-                    <thead>
-                      <tr>
-                      	<th class="text-uppercase"></th>
-                        <th class="text-uppercase">category</th>
-                        <th class="text-uppercase">total products</th>
-                        <th class="text-uppercase">total earning</th>
-                        <th class="text-uppercase text-center d-xl-flex justify-content-xl-center">actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${categoryList}" var="category" varStatus="i">
-                      <tr>
-                      	<td>${i.index + 1 }</td>
-                        <td>${category.getCategoryName() }</td>
-                        <td>10</td>
-                        <td>10</td>
-                        <td>
-                          <div class="border rounded-0 border-white d-flex justify-content-center text-center">
-                            <a href="admin-category/showEdit?CategoryName=${category.getCategoryName() }" >Edit</a>
-                          </div>
-                        </td>
-                      </tr>
-                     </c:forEach>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+
+				<div class="container-fluid px-container">
+					<ol class="breadcrumb m mx-5">
+						<li class="breadcrumb-item text-uppercase font-weight-bold">
+							<a href="admin-products"><span>product</span></a></li>
+						<li class="breadcrumb-item text-uppercase font-weight-bold">
+							<a href="admin-category"><span>category list</span></a></li>
+						<li class="breadcrumb-item active text-uppercase font-weight-bold">
+							<span>add</span></li>
+					</ol>
+					<%--Form add category --%>
+					<form id="form-add-user" action="add" method="POST">
+						<div class="d-flex justify-content-between flex-wrap align-items-xl-center my-3 mx-5">
+							<div class="mt-4">
+								<h4 class="font-weight-bolder text-dark" style="color: var(--gray-dark);">Add New Category</h4>
+							</div>
+							<div class="d-flex flex-row justify-content-end justify-content-xl-end w-50">
+								<a class="btn btn-danger text-uppercase font-weight-bold mr-3 my-2" 
+									role="button"
+									style="border-style: solid; border-color: var(--gray);"
+									href="admin-category">discard
+								</a>
+								<button class="btn btn-success text-uppercase font-weight-bold my-2" type="submit">add</button>
+							</div>
+						</div>
+						<div class="form-row d-flex justify-content-xl-center px-5">
+							<div class="col">
+								<div class="card shadow">
+									<div class="card-body">
+										<div class="form-group">
+											<label for="address"><strong>Category name</strong></label>
+											<input class="form-control" type="text" placeholder="Category Name" name="NewCategoryName">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<%-- --%> 
+			</div>
         <footer class="bg-white sticky-footer">
           <div class="container my-auto">
             <div class="text-center my-auto copyright">
