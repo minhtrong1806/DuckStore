@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page import="bean.UserAccount"%>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -107,11 +110,14 @@
 										href="admin-add-user">ADD</a>
 								</div>
 							</div>
+							
+							<%-- List user --%>
 							<div class="table-responsive table mt-2" id="dataTable-1"
 								role="grid" aria-describedby="dataTable_info">
 								<table class="table my-0" id="dataTable">
 									<thead>
 										<tr>
+											<th class="text-uppercase"></th>
 											<th class="text-uppercase">name</th>
 											<th class="text-uppercase">email</th>
 											<th class="text-uppercase">Phone Number</th>
@@ -121,38 +127,29 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>Airi Satou</td>
-											<td>manager@gmail.com</td>
-											<td>0123456789</td>
-											<td>manager</td>
-											<td>
-												<div
-													class="border rounded-0 border-white d-flex justify-content-around btn-group">
-													<button class="btn" type="button" aria-expanded="false"
-														data-toggle="dropdown">
-														<i class="fa fa-ellipsis-v icon-size"></i>
-													</button>
-													<div class="dropdown-menu dropdown-menu-right"
-														style="background: var(--white); position: static">
-														<a class="btn dropdown-item" role="button"
-															href="admin-user-detail">Detail</a> <a
-															class="btn dropdown-item" role="button"
-															href="admin-delete-user">Delete</a>
+										<c:forEach items="${UserList}" var="user" varStatus="i">
+											<tr>
+												<td>${i.index + 1}</td>
+												<td>${user.getName() }</td>
+												<td>${user.getEmailAddress() }</td>
+												<td>${user.getPhone_number() }</td>
+												<td>${user.getRole() }</td>
+												<td>
+													<div
+														class="border rounded-0 border-white d-flex justify-content-around btn-group">
+														<button class="btn" type="button" aria-expanded="false" data-toggle="dropdown"><i class="fa fa-ellipsis-v icon-size"></i></button>
+														<div class="dropdown-menu dropdown-menu-right" style="background: var(--white); position: static">
+															<a class="btn dropdown-item" role="button" href="admin-user-detail">Detail</a> 
+															<a class="btn dropdown-item" role="button" href="admin-delete-user">Delete</a>
+														</div>
 													</div>
-												</div>
-											</td>
-										</tr>
+												</td>
+											</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>
-							<div class="row">
-								<div
-									class="col-md-6 col-xl-12 d-xl-flex justify-content-xl-center">
-
-
-								</div>
-							</div>
+							
 						</div>
 					</div>
 				</div>

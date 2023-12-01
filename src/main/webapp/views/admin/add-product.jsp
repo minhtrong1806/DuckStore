@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -100,7 +100,7 @@
 					</ol>
 					
 					<%--form add product --%>
-					<form id="form-add-product">
+					<form id="form-add-product" enctype="multipart/form-data" action="${pageContext.request.contextPath}/admin-add-product/add" method="POST">
 						<div
 							class="d-flex justify-content-between flex-wrap align-items-xl-center my-3 mx-5">
 							<div class="mt-4">
@@ -118,7 +118,7 @@
 									class="btn btn-danger text-uppercase font-weight-bold mr-3 my-2"
 									role="button"
 									style="border-style: solid; border-color: var(--gray)"
-									href="products">discard </a>
+									href="admin-products">discard </a>
 								<button
 									class="btn btn-success text-uppercase font-weight-bold my-2"
 									type="submit">save&nbsp;</button>
@@ -127,22 +127,22 @@
 						<div class="form-row d-flex justify-content-xl-center px-5">
 							<div class="col">
 								<div class="card mb-3">
-									<%--  --%>
+								
 									<div class="card-body">
-										<h5 class="font-weight-bold text-dark mb-4">Product
-											information</h5>
+										<h5 class="font-weight-bold text-dark mb-4">Product information</h5>
+									
 										<div class="form-group d-flex align-items-center">
-											<input class="form-control" type="text" name="nameProduct"
-												placeholder="Name" />
+<%-- name --%>				<input class="form-control" type="text" name="name" placeholder="Name" />
 										</div>
+										
 										<div class="form-group d-flex align-items-xl-center">
-											<textarea class="form-control"
-												placeholder="Product Descripition "></textarea>
+<%--description--%>	<textarea class="form-control" placeholder="Product Descripition" name="description"></textarea>
 										</div>
+										
 										<div class="form-group d-flex align-items-xl-center">
-											<input class="form-control" type="number" id="qtyStock"
-												name="sku" placeholder="Quantity" min="0" />
+<%-- quanlity --%>		<input class="form-control" type="number" id="qtyStock" name="qty_in_stock" placeholder="Quantity" min="0" />
 										</div>
+										
 									</div>
 								</div>
 								<div class="card mb-3">
@@ -150,14 +150,11 @@
 										<h5 class="font-weight-bold text-dark mb-4">
 											<span style="color: rgb(84, 79, 90)">Image For Product</span>
 										</h5>
-										<div class="d-flex d-sm-flex justify-content-start">
-											<div>
-												<img class="m-2" />
-											</div>
-											<div
-												class="bg-secondary d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center upload-img m-2 pointer">
-												<i class="fa fa-plus icon-add-image pointer"></i> <input
-													class="custom-file-input" type="file" />
+										<div class="d-flex d-sm-flex justify-content-start align-items-center">
+											<div id="selectedBanner"></div>
+											<div class="bg-secondary d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center upload-img m-2 pointer">
+												<i class="fa fa-plus icon-add-image pointer"></i> 
+<%--productImage--%>		<input id="productImage" class="custom-file-input w-100 h-100" type="file" name="productImage"/>
 											</div>
 										</div>
 									</div>
@@ -167,14 +164,11 @@
 										<h5 class="font-weight-bold text-dark mb-4">
 											<span style="color: rgb(84, 79, 90)">Image For Product Item</span>
 										</h5>
-										<div class="d-flex d-sm-flex justify-content-start">
-											<div>
-												<img class="m-2" />
-											</div>
-											<div
-												class="bg-secondary d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center upload-img m-2 pointer">
-												<i class="fa fa-plus icon-add-image pointer"></i> <input
-													class="custom-file-input" type="file" />
+										<div class="d-flex d-sm-flex justify-content-start align-items-center">
+											<div id="selectedBanner2"></div>
+											<div class="bg-secondary d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center upload-img m-2 pointer">
+												<i class="fa fa-plus icon-add-image pointer"></i> 
+<%--productItemImage--%><input id="productItemImage" class="custom-file-input w-100 h-100" type="file" name="productItemImage"/>
 											</div>
 										</div>
 									</div>
@@ -185,8 +179,7 @@
 									<div class="card-body">
 										<h5 class="font-weight-bold text-dark mb-4">Pricing</h5>
 										<div class="form-group">
-											<input class="form-control" type="number" name="price"
-												placeholder="Best Price" min="0" />
+<%-- price --%>				<input class="form-control" type="number" name="price" placeholder="Best Price" min="0" />
 										</div>
 									</div>
 								</div>
@@ -196,35 +189,29 @@
 											<span style="color: rgb(84, 79, 90)">Category</span> <br />
 										</h5>
 										<div class="d-flex mb-3">
-											<select class="form-control">
+<%-- Category --%>		<select class="form-control" name="productCategory">
 												<optgroup label="Category">
-													<option value="1" selected="">Woman</option>
-													<option value="2">Man</option>
+													<c:forEach items="${categoryList}" var="category">
+														<option value="${category.getCategoryName()}">${category.getCategoryName()}</option>
+													</c:forEach>
 												</optgroup>
 											</select>
-											<button class="btn btn-secondary ml-3" type="button"
-												data-target="#add-category" data-toggle="collapse"
-												aria-expanded="false" aria-controls="add-category">
-												<i class="fa fa-plus"></i>
-											</button>
-										</div>
-										<div id="add-category" class="collapse">
-											<input class="form-control" type="text" />
-										</div>
 									</div>
 								</div>
 								<div class="card mb-3">
 									<div class="card-body">
-										<h5 class="font-weight-bold text-dark mb-4">Variants</h5>
+<%-- variant --%>	<h5 class="font-weight-bold text-dark mb-4">Variants</h5>
 										<div class="d-flex justify-content-between">
 											<div class="form-group w-25 ">
 												<label for="last_name"><strong>Color</strong></label>
 											</div>
 											<div class="form-group d-xl-flex w-75">
-												<select class="form-control d-xl-flex">
+												<select class="form-control d-xl-flex" name="color">
 													<optgroup label="Color">
-														<option value="1" selected="">Red</option>
-														<option value="2">Green</option>
+														<option value="Red" selected="">Red</option>
+														<option value="Green">Green</option>
+														<option value="White">White</option>
+														<option value="Black">Black</option>
 													</optgroup>
 												</select>
 											</div>
@@ -234,10 +221,12 @@
 												<label for="last_name"><strong>Size</strong></label>
 											</div>
 											<div class="form-group d-xl-flex w-75">
-												<select class="form-control d-xl-flex">
-													<optgroup label="Color">
-														<option value="1" selected="">Red</option>
-														<option value="2">Green</option>
+												<select class="form-control d-xl-flex" name="size">
+													<optgroup label="Size">
+														<option value="S" selected="">S</option>
+														<option value="M">M</option>
+														<option value="L">L</option>
+														<option value="XL">XL</option>
 													</optgroup>
 												</select>
 											</div>
@@ -258,16 +247,54 @@
 			</footer>
 		</div>
 	</div>
-	<script
-		src="${pageContext.request.contextPath}/views/admin/assets/js/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/views/admin/assets/bootstrap/js/bootstrap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/views/admin/assets/js/bs-init.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"
-		type="module"></script>
-	<script
-		src="${pageContext.request.contextPath}/views/admin/assets/js/theme.js"></script>
+	<script src="${pageContext.request.contextPath}/views/admin/assets/js/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/views/admin/assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/views/admin/assets/js/bs-init.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js" type="module"></script>
+	<script src="${pageContext.request.contextPath}/views/admin/assets/js/theme.js"></script>
+	<script>
+	$(document).ready(function () {
+		  var selDiv = $("#selectedBanner");
+		  var storedFiles = [];
+		  $("#productImage").on("change", function (e) {
+		    handleFileSelect(e, selDiv, storedFiles);
+		  });
+
+		  var selDiv2 = $("#selectedBanner2");
+		  var storedFiles2 = [];
+		  $("#productItemImage").on("change", function (e) {
+		    handleFileSelect(e, selDiv2, storedFiles2);
+		  });
+		});
+	
+		function handleFileSelect(e, selDiv, storedFiles) {
+		  var files = e.target.files;
+		  var filesArr = Array.prototype.slice.call(files);
+		  filesArr.forEach(function (f) {
+		    if (!f.type.match("image.*")) {
+		      return;
+		    }
+		    storedFiles.push(f);
+
+		    var reader = new FileReader();
+		    reader.onload = function (e) {
+		      var html =
+		        '<img src="' +
+		        e.target.result +
+		        "\" data-file='" +
+		        f.name +
+		        "' class='avatar rounded lg' alt='Category Image' height='auto' width='200px'>";
+		      selDiv.html(html);
+		    };
+		    reader.readAsDataURL(f);
+		  });
+		}
+		  		    
+  </script>
+    
+
+
+
+
 </body>
 </html>
