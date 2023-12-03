@@ -40,7 +40,19 @@ public class ProductCategoryDAO {
 			}
 		}
 	}
-	
+	public ProductCategory getProductCategorybyID(int productCategoryID) {
+		try(Session session = factory.openSession()){
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<ProductCategory> query = builder.createQuery(ProductCategory.class);
+			Root<ProductCategory> root = query.from(ProductCategory.class);
+			
+			//query.select(root);
+			query.where(builder.equal(root.get("productCategoryID"), productCategoryID));
+			
+			ProductCategory productCategory = session.createQuery(query).uniqueResult();
+			return productCategory;
+		}
+	}
 	public boolean isProductCategoryExists(Session session, String nameProductCategory) {
 		CriteriaBuilder builder = session.getCriteriaBuilder();
 		CriteriaQuery<Long> query = builder.createQuery(Long.class);
@@ -53,13 +65,15 @@ public class ProductCategoryDAO {
 		return count != null && count > 0;
 	}
 	
-	public void addProductCategogy(ProductCategory productCategory) {
+	public boolean addProductCategogy(ProductCategory productCategory) {
 		try (Session session = factory.openSession()){
 			try {
 				session.getTransaction().begin();
 				
 				session.save(productCategory);
 				session.getTransaction().commit();
+				session.close();
+				return true;
 				
 			} catch (Exception e) {
 				if (session.getTransaction() != null) {
@@ -67,7 +81,7 @@ public class ProductCategoryDAO {
 				}
 				e.printStackTrace();
 			}
-			session.close();
+			return false;
 		}
 	}
 	
