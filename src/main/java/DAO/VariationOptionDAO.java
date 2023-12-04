@@ -26,6 +26,21 @@ public class VariationOptionDAO {
 		return variationOption;
 		
 	}
+	
+//	public VariationOption getVariationOption(String value) {
+//		try (Session session = factory.openSession()) {
+//			CriteriaBuilder builder = session.getCriteriaBuilder();
+//			CriteriaQuery<VariationOption> query = builder.createQuery(VariationOption.class);
+//			Root<VariationOption> root = query.from(VariationOption.class);
+//
+//			query.select(root);
+//			query.where(builder.equal(builder.lower(root.get("value")), value.toLowerCase()));
+//
+//			VariationOption variationOption = session.createQuery(query).uniqueResult();
+//			Hibernate.initialize(variationOption.getProductItems());
+//			return variationOption;
+//		}
+//	}
 
 	public boolean addVariationOption(String input, String type) {
 		try (Session session = factory.openSession()) {
