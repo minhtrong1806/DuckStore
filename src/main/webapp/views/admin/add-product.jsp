@@ -8,18 +8,12 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
 <title>Admin - Add Product</title>
-<link rel="icon" type="image/x-icon"
-	href="${pageContext.request.contextPath}/views/admin/assets/img/icon/favicon.ico" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/views/admin/assets/bootstrap/css/bootstrap.min.css" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/views/admin/assets/fonts/fontawesome-all.min.css" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/views/admin/assets/fonts/font-awesome.min.css" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/views/admin/assets/fonts/fontawesome5-overrides.min.css" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/views/admin/assets/css/admin.css" />
+<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/views/admin/assets/img/icon/favicon.ico" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/assets/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/assets/fonts/fontawesome-all.min.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/assets/fonts/font-awesome.min.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/assets/fonts/fontawesome5-overrides.min.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/assets/css/admin.css" />
 </head>
 <body id="page-top">
 	<div id="wrapper">
@@ -40,7 +34,7 @@
 				<hr class="sidebar-divider my-0" />
 				<ul class="navbar-nav text-light" id="accordionSidebar">
 					<li class="nav-item" style="margin-top: 35%"><a
-						class="nav-link " href="admin-dashboard"> <i
+						class="nav-link " href="${pageContext.request.contextPath}/admin-dashboard"> <i
 							class="fa fa-dashboard" style="font-size: 1.3rem"></i> <span
 							class="nav-item-content">Dashboard</span>
 					</a></li>
@@ -53,23 +47,23 @@
 							<div class="dropdown-menu">
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item text-white-50 menu-item"
-									href="admin-products">Products list</a> <a
+									href="${pageContext.request.contextPath}/admin-products">Products list</a> <a
 									class="dropdown-item text-white-50 menu-item"
-									href="admin-add-product">Add Product</a> <a
+									href="${pageContext.request.contextPath}/admin-add-product">Add Product</a> <a
 									class="dropdown-item text-white-50 menu-item"
-									href="admin-category">Category list</a>
+									href="${pageContext.request.contextPath}/admin-category">Category list</a>
 							</div>
 						</div>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="admin-orders">
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/admin-orders">
 							<i class="fa fa-first-order" style="font-size: 1.3rem"></i> <span
 							class="nav-item-content">Orders</span>
 					</a></li>
-					<li class="nav-item"><a class="nav-link" href="admin-users">
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/admin-users">
 							<i class="fa fa-user" style="font-size: 1.3rem"></i> <span
 							class="nav-item-content">Users</span>
 					</a></li>
-					<li class="nav-item"><a class="nav-link" href="promotions"><i
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/admin-promotions"><i
 							class="fa fa-gift" style="font-size: 1.3rem"></i><span
 							class="nav-item-content">Promotions</span></a></li>
 				</ul>
@@ -91,7 +85,7 @@
 				<div class="container-fluid px-container">
 					<ol class="breadcrumb m mx-5">
 						<li class="breadcrumb-item text-uppercase font-weight-bold">
-							<a href="admin-products"> <span>product</span>
+							<a href="${pageContext.request.contextPath}/admin-products"> <span>product</span>
 						</a>
 						</li>
 						<li class="breadcrumb-item active text-uppercase font-weight-bold">
@@ -111,127 +105,61 @@
 										style="color: rgb(137, 134, 141); background-color: rgb(244, 245, 250)">Orders
 										placed across your store</span><br />
 								</p>
+								<c:if test="${errorString != null }">
+									<p style="color: var(--red)" >${errorString}</p>
+								</c:if>
 							</div>
-							<div
-								class="d-flex flex-row justify-content-end justify-content-xl-end w-50">
-								<a
-									class="btn btn-danger text-uppercase font-weight-bold mr-3 my-2"
+					
+							<div class="d-flex flex-row justify-content-end justify-content-xl-end w-50">
+								<a class="btn btn-danger text-uppercase font-weight-bold mr-3 my-2" 
 									role="button"
-									style="border-style: solid; border-color: var(--gray)"
-									href="admin-products">discard </a>
-								<button
-									class="btn btn-success text-uppercase font-weight-bold my-2"
-									type="submit">save&nbsp;</button>
+									style="border-style: solid; border-color: var(--gray);"
+									href="${pageContext.request.contextPath}/admin-products">discard</a>
+								<button class="btn btn-success text-uppercase font-weight-bold my-2" type="submit">add</button>
 							</div>
+							
 						</div>
-						<div class="form-row d-flex justify-content-xl-center px-5">
+						<div class="form-row px-5">
 							<div class="col">
 								<div class="card mb-3">
 								
 									<div class="card-body">
 										<h5 class="font-weight-bold text-dark mb-4">Product information</h5>
-									
-										<div class="form-group d-flex align-items-center">
-<%-- name --%>				<input class="form-control" type="text" name="name" placeholder="Name" />
-										</div>
-										
-										<div class="form-group d-flex align-items-xl-center">
-<%--description--%>	<textarea class="form-control" placeholder="Product Descripition" name="description"></textarea>
-										</div>
-										
-										<div class="form-group d-flex align-items-xl-center">
-<%-- quanlity --%>		<input class="form-control" type="number" id="qtyStock" name="qty_in_stock" placeholder="Quantity" min="0" />
-										</div>
-										
-									</div>
-								</div>
-								<div class="card mb-3">
-									<div class="card-body">
-										<h5 class="font-weight-bold text-dark mb-4">
-											<span style="color: rgb(84, 79, 90)">Image For Product</span>
-										</h5>
-										<div class="d-flex d-sm-flex justify-content-start align-items-center">
-											<div id="selectedBanner"></div>
-											<div class="bg-secondary d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center upload-img m-2 pointer">
-												<i class="fa fa-plus icon-add-image pointer"></i> 
-<%--productImage--%>		<input id="productImage" class="custom-file-input w-100 h-100" type="file" name="productImage"/>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="card mb-3">
-									<div class="card-body">
-										<h5 class="font-weight-bold text-dark mb-4">
-											<span style="color: rgb(84, 79, 90)">Image For Product Item</span>
-										</h5>
-										<div class="d-flex d-sm-flex justify-content-start align-items-center">
-											<div id="selectedBanner2"></div>
-											<div class="bg-secondary d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center upload-img m-2 pointer">
-												<i class="fa fa-plus icon-add-image pointer"></i> 
-<%--productItemImage--%><input id="productItemImage" class="custom-file-input w-100 h-100" type="file" name="productItemImage"/>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-xl-5">
-								<div class="card mb-3">
-									<div class="card-body">
-										<h5 class="font-weight-bold text-dark mb-4">Pricing</h5>
 										<div class="form-group">
-<%-- price --%>				<input class="form-control" type="number" name="price" placeholder="Best Price" min="0" />
+											<label class="mt-3"><strong>Name</strong></label>
+<%-- name --%>				<input class="form-control" type="text" name="name" placeholder="Name" value="<c:if test="${name != null}">${name}</c:if>" />
 										</div>
-									</div>
-								</div>
-								<div class="card mb-3">
-									<div class="card-body">
-										<h5 class="font-weight-bold text-dark mb-4">
-											<span style="color: rgb(84, 79, 90)">Category</span> <br />
-										</h5>
-										<div class="d-flex mb-3">
-<%-- Category --%>		<select class="form-control" name="productCategory">
+										
+										<div class="form-group">
+											<label class="mt-3"><strong>Description</strong></label>
+<%--description--%>		<input class="form-control" type="text" placeholder="Product Descripition" name="description"  value="<c:if test="${description != null}">${description}</c:if>">
+										</div>
+										
+										<div class="form-group">
+											<label class="mt-3"><strong>Category</strong></label>
+<%-- Category --%>		<select class="form-control" name="categoryName">
 												<optgroup label="Category">
 													<c:forEach items="${categoryList}" var="category">
 														<option value="${category.getCategoryName()}">${category.getCategoryName()}</option>
 													</c:forEach>
 												</optgroup>
 											</select>
+										</div>
 									</div>
 								</div>
 								<div class="card mb-3">
-									<div class="card-body">
-<%-- variant --%>	<h5 class="font-weight-bold text-dark mb-4">Variants</h5>
-										<div class="d-flex justify-content-between">
-											<div class="form-group w-25 ">
-												<label for="last_name"><strong>Color</strong></label>
-											</div>
-											<div class="form-group d-xl-flex w-75">
-												<select class="form-control d-xl-flex" name="color">
-													<optgroup label="Color">
-														<option value="Red" selected="">Red</option>
-														<option value="Green">Green</option>
-														<option value="White">White</option>
-														<option value="Black">Black</option>
-													</optgroup>
-												</select>
+										<div class="card-body">
+											<h5 class="font-weight-bold text-dark mb-4">
+												<span style="color: rgb(84, 79, 90)">Image For Product</span>
+											</h5>
+											<div class="d-flex d-sm-flex justify-content-start align-items-center">
+												<div id="selectedBanner"></div>
+												<div class="bg-secondary d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center upload-img m-2 pointer">
+													<i class="fa fa-plus icon-add-image pointer"></i> 
+<%--productImage--%>			<input id="productImage" class="custom-file-input w-100 h-100" type="file" name="productImage"/>
+												</div>
 											</div>
 										</div>
-										<div class="d-flex justify-content-between">
-											<div class="form-group w-25 ">
-												<label for="last_name"><strong>Size</strong></label>
-											</div>
-											<div class="form-group d-xl-flex w-75">
-												<select class="form-control d-xl-flex" name="size">
-													<optgroup label="Size">
-														<option value="S" selected="">S</option>
-														<option value="M">M</option>
-														<option value="L">L</option>
-														<option value="XL">XL</option>
-													</optgroup>
-												</select>
-											</div>
-										</div>
-									</div>
 								</div>
 							</div>
 						</div>
@@ -247,6 +175,7 @@
 			</footer>
 		</div>
 	</div>
+
 	<script src="${pageContext.request.contextPath}/views/admin/assets/js/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/views/admin/assets/bootstrap/js/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/views/admin/assets/js/bs-init.js"></script>
@@ -258,12 +187,6 @@
 		  var storedFiles = [];
 		  $("#productImage").on("change", function (e) {
 		    handleFileSelect(e, selDiv, storedFiles);
-		  });
-
-		  var selDiv2 = $("#selectedBanner2");
-		  var storedFiles2 = [];
-		  $("#productItemImage").on("change", function (e) {
-		    handleFileSelect(e, selDiv2, storedFiles2);
 		  });
 		});
 	

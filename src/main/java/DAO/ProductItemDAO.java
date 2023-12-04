@@ -19,13 +19,6 @@ import utils.HibernateUtil;
 public class ProductItemDAO {
 	private final static SessionFactory factory = HibernateUtil.getSessionFactory();
 	
-	public void addListProductItem(ProductItem newProductItem, Product newProduct, Set<String> setSize, Set<String> setColor, String newProductCategoryName) {
-		for(String itemColorString : setColor) {
-			for(String itemSizeString : setSize) {
-				addProductItem(newProductItem, newProduct, itemSizeString, itemColorString, newProductCategoryName);
-			}
-		}
-	}
 	
 	public void addProductItem(ProductItem newProductItem, Product newProduct, String size, String color, String newProductCategoryName) {
 		try(Session session = factory.openSession()){
