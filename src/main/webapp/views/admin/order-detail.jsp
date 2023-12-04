@@ -32,7 +32,7 @@
           <hr class="sidebar-divider my-0" />
           <ul class="navbar-nav text-light" id="accordionSidebar">
             <li class="nav-item" style="margin-top: 35%">
-              <a class="nav-link" href="admin-dashboard">
+              <a class="nav-link" href="${pageContext.request.contextPath}/admin-dashboard">
                 <i class="fa fa-dashboard" style="font-size: 1.3rem"></i>
                 <span class="nav-item-content">Dashboard</span>
               </a>
@@ -45,25 +45,25 @@
                 </a>
                 <div class="dropdown-menu">
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item text-white-50 menu-item" href="admin-products">Products list</a>
-                  <a class="dropdown-item text-white-50 menu-item" href="admin-add-product">Add Product</a>
-                  <a class="dropdown-item text-white-50 menu-item" href="admin-category">Category list</a>
+                  <a class="dropdown-item text-white-50 menu-item" href="${pageContext.request.contextPath}/admin-products">Products list</a>
+                  <a class="dropdown-item text-white-50 menu-item" href="${pageContext.request.contextPath}/admin-add-product">Add Product</a>
+                  <a class="dropdown-item text-white-50 menu-item" href="${pageContext.request.contextPath}/admin-category">Category list</a>
                 </div>
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="admin-orders">
+              <a class="nav-link active" href="${pageContext.request.contextPath}/admin-orders">
                 <i class="fa fa-first-order" style="font-size: 1.3rem"></i>
                 <span class="nav-item-content">Orders</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="admin-users">
+              <a class="nav-link" href="${pageContext.request.contextPath}/admin-users">
                 <i class="fa fa-user" style="font-size: 1.3rem"></i>
                 <span class="nav-item-content">Users</span>
               </a>
             </li>
-            <li class="nav-item"><a class="nav-link" href="promotions"><i
+            <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/admin-promotions"><i
 							class="fa fa-gift" style="font-size: 1.3rem"></i><span
 							class="nav-item-content">Promotions</span></a></li>
           </ul>
@@ -81,7 +81,7 @@
           <div class="container-fluid">
             <ol class="breadcrumb m mx-5">
               <li class="breadcrumb-item text-uppercase font-weight-bold">
-                <a href="admin-orders"><span>orders</span></a>
+                <a href="${pageContext.request.contextPath}/admin-orders"><span>orders</span></a>
               </li>
               <li class="breadcrumb-item active text-uppercase font-weight-bold">
                 <span>order detail</span>

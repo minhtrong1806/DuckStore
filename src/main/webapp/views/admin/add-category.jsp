@@ -79,58 +79,47 @@
 					<%-- navbar --%>
 					<%@include file="navbar.jsp"%>
 					<%-- end navbar --%>
-          <div class="container-fluid">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item text-uppercase font-weight-bold">
-                <a href="${pageContext.request.contextPath}/admin-products">
-                  <span>product</span>
-                </a>
-              </li>
-              <li class="breadcrumb-item active text-uppercase font-weight-bold">
-                <span>Category List</span>
-              </li>
-            </ol>
-            <div class="card shadow">
-              <div class="card-body" style="padding-top: 0px">
-                <div class="row m-3 d-xl-flex justify-content-xl-end ">
-                  <div class="my-2">
-                    <a href="${pageContext.request.contextPath}/admin-category/showAdd" class="btn btn-info btn-sm">ADD</a>
-                  </div>
-                </div>
-                <div class="table-responsive table mt-2" id="dataTable-1" role="grid" aria-describedby="dataTable_info">
-                  <table class="table my-0" id="dataTable">
-                    <thead>
-                      <tr>
-                      	<th class="text-uppercase"></th>
-                        <th class="text-uppercase">category</th>
-                        <th class="text-uppercase">total products</th>
-                        <th class="text-uppercase">total earning</th>
-                        <th class="text-uppercase text-center d-xl-flex justify-content-xl-center">actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${categoryList}" var="category" varStatus="i">
-                      <tr>
-                      	<td>${i.index + 1 }</td>
-                        <td>${category.getCategoryName() }</td>
-                        <td>10</td>
-                        <td>10</td>
-                        <td>
-                          <div class="border rounded-0 border-white d-flex justify-content-center text-center">  
-                            <a class="btn" href="${pageContext.request.contextPath}/admin-category/showEdit?CategoryName=${category.getCategoryName() }">
-                            	<i class="fa fa-edit icon-size"></i>
-                          	</a>
-                          </div>
-                        </td>
-                      </tr>
-                     </c:forEach>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+
+				<div class="container-fluid px-container">
+					<ol class="breadcrumb m mx-5">
+						<li class="breadcrumb-item text-uppercase font-weight-bold">
+							<a href="${pageContext.request.contextPath}/admin-products"><span>product</span></a></li>
+						<li class="breadcrumb-item text-uppercase font-weight-bold">
+							<a href="${pageContext.request.contextPath}/admin-category"><span>category list</span></a></li>
+						<li class="breadcrumb-item active text-uppercase font-weight-bold">
+							<span>add</span></li>
+					</ol>
+					<%--Form add category --%>
+					<form id="form-add-user" action="add" method="POST">
+						<div class="d-flex justify-content-between flex-wrap align-items-xl-center my-3 mx-5">
+							<div class="mt-4">
+								<h4 class="font-weight-bolder text-dark" style="color: var(--gray-dark);">Add New Category</h4>
+							</div>
+							<div class="d-flex flex-row justify-content-end justify-content-xl-end w-50">
+								<a class="btn btn-danger text-uppercase font-weight-bold mr-3 my-2" 
+									role="button"
+									style="border-style: solid; border-color: var(--gray);"
+									href="${pageContext.request.contextPath}/admin-category">discard
+								</a>
+								<button class="btn btn-success text-uppercase font-weight-bold my-2" type="submit">add</button>
+							</div>
+						</div>
+						<div class="form-row d-flex justify-content-xl-center px-5">
+							<div class="col">
+								<div class="card shadow">
+									<div class="card-body">
+										<div class="form-group">
+											<label for="address"><strong>Category name</strong></label>
+											<input class="form-control" type="text" placeholder="Category Name" name="NewCategoryName">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<%-- --%> 
+			</div>
         <footer class="bg-white sticky-footer">
           <div class="container my-auto">
             <div class="text-center my-auto copyright">
@@ -141,39 +130,13 @@
       </div>
       <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
-    
-    <!-- thẻ div ẩn để chứa thông báo -->
-		<div id="successMessage" style="display: none;">
-		    <% 
-		    // Lấy thông báo từ session attribute
-		    String successMessage = (String) session.getAttribute("successMessage");
-		    // Kiểm tra nếu có thông báo thành công
-		    if (successMessage != null && !successMessage.trim().isEmpty()) {
-		        out.println(successMessage);
-		        // Xóa thông báo thành công khỏi session attribute sau khi đã lấy thông tin
-		        session.removeAttribute("successMessage");
-		    }
-		    %>
-		</div>
-		
-		<!-- Đoạn mã JavaScript để hiển thị thông báo khi trang tải xong -->
-		<script type="text/javascript">
-		    // Đợi cho trang tải xong
-		    window.onload = function() {
-		        var successMessageDiv = document.getElementById('successMessage');
-		        var successMessage = successMessageDiv.textContent.trim();
-		        if (successMessage !== '') {
-		            alert(successMessage);
-		        }
-		    }
-		</script>
-   
-		<script src="${pageContext.request.contextPath}/views/admin/assets/js/jquery.min.js"></script>
+
+
+
+	<script src="${pageContext.request.contextPath}/views/admin/assets/js/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/views/admin/assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/views/admin/assets/js/bs-init.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js" type="module"></script>
-    <script src="${pageContext.request.contextPath}/views/admin/assets/js/theme.js"></script>   
-    
-
+    <script src="${pageContext.request.contextPath}/views/admin/assets/js/theme.js"></script>    
   </body>
 </html>

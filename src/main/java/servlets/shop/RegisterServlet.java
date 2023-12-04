@@ -1,4 +1,4 @@
-package servlets;
+package servlets.shop;
 
 import java.io.IOException;
 

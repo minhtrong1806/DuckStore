@@ -1,4 +1,4 @@
-package servlets;
+package servlets.shop;
 
 import jakarta.servlet.RequestDispatcher;
 
@@ -9,16 +9,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet({"/shop"})
-public class ShopServlet extends HttpServlet{
+@WebServlet({"/about"})
+public class AboutServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
     
-    public ShopServlet() {
+    public AboutServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/product.jsp");
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/about.jsp");
 		
 		dispatcher.forward(request, response);
 	}
