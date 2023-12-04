@@ -32,7 +32,7 @@
           <hr class="sidebar-divider my-0" />
           <ul class="navbar-nav text-light" id="accordionSidebar">
             <li class="nav-item" style="margin-top: 35%">
-              <a class="nav-link " href="admin-dashboard">
+              <a class="nav-link " href="${pageContext.request.contextPath}/admin-dashboard">
                 <i class="fa fa-dashboard" style="font-size: 1.3rem"></i>
                 <span class="nav-item-content">Dashboard</span>
               </a>
@@ -45,25 +45,25 @@
                 </a>
                 <div class="dropdown-menu">
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item text-white-50 menu-item" href="admin-products">Products list</a>
-                  <a class="dropdown-item text-white-50 menu-item" href="admin-add-product">Add Product</a>
-                  <a class="dropdown-item text-white-50 menu-item" href="admin-category">Category list</a>
+                  <a class="dropdown-item text-white-50 menu-item" href="${pageContext.request.contextPath}/admin-products">Products list</a>
+                  <a class="dropdown-item text-white-50 menu-item" href="${pageContext.request.contextPath}/admin-add-product">Add Product</a>
+                  <a class="dropdown-item text-white-50 menu-item" href="${pageContext.request.contextPath}/admin-category">Category list</a>
                 </div>
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="admin-orders">
+              <a class="nav-link active" href="${pageContext.request.contextPath}/admin-orders">
                 <i class="fa fa-first-order" style="font-size: 1.3rem"></i>
                 <span class="nav-item-content">Orders</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="admin-users">
+              <a class="nav-link" href="${pageContext.request.contextPath}/admin-users">
                 <i class="fa fa-user" style="font-size: 1.3rem"></i>
                 <span class="nav-item-content">Users</span>
               </a>
             </li>
-            <li class="nav-item"><a class="nav-link" href="promotions"><i
+            <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/admin-promotions"><i
 							class="fa fa-gift" style="font-size: 1.3rem"></i><span
 							class="nav-item-content">Promotions</span></a></li>
           </ul>
@@ -131,17 +131,7 @@
                     </div>
                   </div>
                   <div class="col-md-6 col-xl-4 text-nowrap">
-                    <div
-                      class="d-flex d-xl-flex justify-content-xl-center align-items-xl-center dataTables_length my-2"
-                      id="dataTable_length"
-                      aria-controls="dataTable"
-                    >
-                      <select class="d-xl-flex form-control form-control-sm custom-select custom-select-sm w-50">
-                        <option value="10" selected="">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                      </select>
+                    <div class="d-flex d-xl-flex justify-content-xl-center align-items-xl-center dataTables_length my-2" id="dataTable_length" aria-controls="dataTable" >
                     </div>
                   </div>
                   <div class="col-xl-4 d-xl-flex justify-content-xl-end my-2"></div>
@@ -178,7 +168,7 @@
                               class="dropdown-menu dropdown-menu-right"
                               style="background: var(--white); position: static"
                             >
-                              <a class="btn dropdown-item" role="button" href="admin-order-detail">Detail</a
+                              <a class="btn dropdown-item" role="button" href="${pageContext.request.contextPath}/admin-order-detail">Detail</a
                               ><button class="btn dropdown-item" type="button">Delete</button>
                             </div>
                           </div>

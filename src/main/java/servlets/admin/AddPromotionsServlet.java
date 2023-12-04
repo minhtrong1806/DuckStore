@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet({"/add-promotion"})
+@WebServlet({"/admin-add-promotion"})
 public class AddPromotionsServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
     

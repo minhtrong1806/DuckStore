@@ -54,7 +54,7 @@
 												class="nav-item"
 												style="margin-top: 35%"><a
 												class="nav-link"
-												href="admin-dashboard"> <i
+												href="${pageContext.request.contextPath}/admin-dashboard"> <i
 														class="fa fa-dashboard"
 														style="font-size: 1.3rem"></i> <span
 														class="nav-item-content">Dashboard</span>
@@ -76,31 +76,31 @@
 																<div class="dropdown-divider"></div>
 																<a
 																		class="dropdown-item text-white-50 menu-item"
-																		href="admin-products">Products list</a> <a
+																		href="${pageContext.request.contextPath}/admin-products">Products list</a> <a
 																		class="dropdown-item text-white-50 menu-item"
-																		href="admin-add-product">Add Product</a> <a
+																		href="${pageContext.request.contextPath}/admin-add-product">Add Product</a> <a
 																		class="dropdown-item text-white-50 menu-item"
-																		href="admin-category">Category list</a>
+																		href="${pageContext.request.contextPath}/admin-category">Category list</a>
 														</div>
 												</div>
 										</li>
 										<li class="nav-item"><a
 												class="nav-link"
-												href="admin-orders"> <i
+												href="${pageContext.request.contextPath}/admin-orders"> <i
 														class="fa fa-first-order"
 														style="font-size: 1.3rem"></i> <span
 														class="nav-item-content">Orders</span>
 										</a></li>
 										<li class="nav-item"><a
 												class="nav-link"
-												href="admin-users"> <i
+												href="${pageContext.request.contextPath}/admin-users"> <i
 														class="fa fa-user"
 														style="font-size: 1.3rem"></i> <span
 														class="nav-item-content">Users</span>
 										</a></li>
 										<li class="nav-item"><a
 												class="nav-link active"
-												href="promotions"><i
+												href="${pageContext.request.contextPath}/admin-promotions"><i
 														class="fa fa-gift"
 														style="font-size: 1.3rem"></i><span
 														class="nav-item-content">Promotions</span></a></li>
@@ -141,7 +141,7 @@
 																		<a
 																				class="btn btn-primary"
 																				role="button"
-																				href="add-promotion">ADD</a>
+																				href="${pageContext.request.contextPath}/admin-add-promotion">ADD</a>
 																</div>
 																<div class="card-body">
 																		<div class="table-responsive">
