@@ -94,11 +94,12 @@
               <div class="card-header py-3 mb-3">
                 <div class="row">
                   <div class="col-xl-2 d-xl-flex align-items-xl-center">
-                    <h5 class="d-inline-block text-primary text-uppercase">Filter</h5>
+                    <h5 class="d-inline-block font-weight-bold text-primary text-uppercase">Filter</h5>
                   </div>
                   <div class="col-md-6 col-xl-5 text-nowrap d-xl-flex align-items-xl-center">
 <%--filter category--%><select class="custom-select d-flex w-auto my-2" name="productCategory">
                       <optgroup label="category">
+                      			<option value="all">All</option>
                         <c:forEach items="${categoryList}" var="category">
 														<option value="${category.getCategoryName()}">${category.getCategoryName()}</option>
 												</c:forEach>

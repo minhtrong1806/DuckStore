@@ -2,6 +2,7 @@ package servlets.admin;
 
 import jakarta.servlet.RequestDispatcher;
 
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -10,15 +11,12 @@ import utils.Constant;
 import utils.UploadUtils;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import DAO.ProductCategoryDAO;
 import DAO.ProductDAO;
-import DAO.ProductItemDAO;
 import bean.Product;
 import bean.ProductCategory;
-import bean.ProductItem;
 
 @WebServlet(urlPatterns = { "/admin-add-product", "/admin-add-product/add", "/admin-add-product/form" })
 
@@ -72,7 +70,6 @@ public class AddProductServlet extends HttpServlet {
 		boolean hasError = false;
 
 		Product product = new Product();
-		ProductCategory category = new ProductCategory();
 		ProductDAO productDAO = new ProductDAO();
 		ProductCategoryDAO productCategoryDAO = new ProductCategoryDAO();
 
@@ -101,28 +98,38 @@ public class AddProductServlet extends HttpServlet {
 
 		} else {
 			
-			category.setCategoryName(categoryName);
 			
 			product.setName(name);
 			product.setDescription(description);
 
 			try {
 				if (request.getPart("productImage").getSize() != 0) {
-					String fileName = "pd" + System.currentTimeMillis();
-					String productLink = UploadUtils.processUpload("productImage", request, Constant.DIR + "\\product\\", fileName);
+					String folderStore = Constant.DIR + "\\product\\";
+					String fileName = "Product" + System.currentTimeMillis();
+					String productLink = UploadUtils.processUpload("productImage", request, folderStore , fileName);
 					product.setProduct_image(productLink);
+					System.out.println(folderStore);
 				}
 			} catch (Exception e) {
-				errorString += "\n" + e.getMessage();
+				
+				System.out.println(e.getMessage());
 			}
 			
-			productDAO.addProduct(product, category);
-			int id = product.getProductID();
+			Boolean addSuccess = productDAO.addProduct(product, categoryName);
+			if(addSuccess) {
+				int id = product.getProductID();
+				// Lưu thông báo vào session attribute
+				HttpSession session = request.getSession();
+				session.setAttribute("successMessage", "The product has been added successfully! \n Let's add variations to product");
+				response.sendRedirect(request.getContextPath() + "/admin-add-variant?productId=" + id);
+			}
+			else {
+				HttpSession session = request.getSession();
+				session.setAttribute("message", "Product name already exists! \\nPlease use another name!");
+				response.sendRedirect(request.getContextPath() + "/admin-add-product");
+			}
 			
-			// Lưu thông báo vào session attribute
-			HttpSession session = request.getSession();
-			session.setAttribute("successMessage", "The product has been added successfully!\nLet's add variations to product");
-			response.sendRedirect(request.getContextPath() + "/admin-add-variant?productId=" + id);
+			
 			
 		}
 	}
