@@ -175,6 +175,32 @@
 			</footer>
 		</div>
 	</div>
+	
+	    <!--thẻ div ẩn để chứa thông báo -->
+		<div id="message" style="display: none;">
+		    <% 
+		    // Lấy thông báo từ session attribute
+		    String message = (String) session.getAttribute("message");
+		    // Kiểm tra nếu có thông báo thành công
+		    if (message != null && !message.trim().isEmpty()) {
+		        out.println(message);
+		        // Xóa thông báo thành công khỏi session attribute sau khi đã lấy thông tin
+		        session.removeAttribute("message");
+		    }
+		    %>
+		</div>
+		
+		<!-- Đoạn mã JavaScript để hiển thị thông báo khi trang tải xong -->
+		<script type="text/javascript">
+		    // Đợi cho trang tải xong
+		    window.onload = function() {
+		        var messageDiv = document.getElementById('message');
+		        var message = messageDiv.textContent.trim();
+		        if (message !== '') {
+		            alert(message);
+		        }
+		    }
+		</script>    
 
 	<script src="${pageContext.request.contextPath}/views/admin/assets/js/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/views/admin/assets/bootstrap/js/bootstrap.min.js"></script>
