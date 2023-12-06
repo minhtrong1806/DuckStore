@@ -17,14 +17,20 @@ public class UsersServlet extends HttpServlet{
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/admin/users.jsp");
-		
-		dispatcher.forward(request, response);
-	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
+	}
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		listUser(request, response);
+	}
+	
+	protected void listUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		
+		
+		
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/admin/users.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }

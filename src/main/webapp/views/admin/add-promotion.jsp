@@ -54,7 +54,7 @@
 												class="nav-item"
 												style="margin-top: 35%"><a
 												class="nav-link"
-												href="admin-dashboard"> <i
+												href="${pageContext.request.contextPath}/admin-dashboard"> <i
 														class="fa fa-dashboard"
 														style="font-size: 1.3rem"></i> <span
 														class="nav-item-content">Dashboard</span>
@@ -76,31 +76,31 @@
 																<div class="dropdown-divider"></div>
 																<a
 																		class="dropdown-item text-white-50 menu-item"
-																		href="admin-products">Products list</a> <a
+																		href="${pageContext.request.contextPath}/admin-products">Products list</a> <a
 																		class="dropdown-item text-white-50 menu-item"
-																		href="admin-add-product">Add Product</a> <a
+																		href="${pageContext.request.contextPath}/admin-add-product">Add Product</a> <a
 																		class="dropdown-item text-white-50 menu-item"
-																		href="admin-category">Category list</a>
+																		href="${pageContext.request.contextPath}/admin-category">Category list</a>
 														</div>
 												</div>
 										</li>
 										<li class="nav-item"><a
 												class="nav-link"
-												href="admin-orders"> <i
+												href="${pageContext.request.contextPath}/admin-orders"> <i
 														class="fa fa-first-order"
 														style="font-size: 1.3rem"></i> <span
 														class="nav-item-content">Orders</span>
 										</a></li>
 										<li class="nav-item"><a
 												class="nav-link"
-												href="admin-users"> <i
+												href="${pageContext.request.contextPath}/admin-users"> <i
 														class="fa fa-user"
 														style="font-size: 1.3rem"></i> <span
 														class="nav-item-content">Users</span>
 										</a></li>
 										<li class="nav-item"><a
 												class="nav-link active"
-												href="promotions"><i
+												href="${pageContext.request.contextPath}/admin-promotions"><i
 														class="fa fa-gift"
 														style="font-size: 1.3rem"></i><span
 														class="nav-item-content">Promotions</span></a></li>
@@ -125,7 +125,7 @@
 								<div class="container-fluid px-container">
 										<ol class="breadcrumb m mx-5">
 												<li class="breadcrumb-item text-uppercase font-weight-bold"><a
-														href="promotions 	"><span>promotion</span></a></li>
+														href="${pageContext.request.contextPath}/admin-promotions 	"><span>promotion</span></a></li>
 												<li
 														class="breadcrumb-item active text-uppercase font-weight-bold"><span>add
 																promotion&nbsp;</span></li>
@@ -142,21 +142,21 @@
 																		<h4 class="card-title">New Promotion</h4>
 																		<form>
 																				<div class="border-top">
-																						<label class="mt-3">Promotional Code</label>
+																						<label class="mt-3"><strong>Promotional Code</strong></label>
 																						<input class="form-control" type="text" placeholder="Promotional Code" name="promotionalCode">
 																				</div>
 																				<div class="border-top">
-																						<small class="form-text text-muted">Percent unit (%)</small>
-																								<input class="form-control" type="number" min="0" max="100" step="1">
+																						<label class="mt-3"><strong>Percent unit (%)</strong></label>
+																						<input class="form-control" type="number" min="0" max="100" step="1">
 																				</div>
 																				<div
 																						class="d-flex justify-content-between flex-wrap border-top">
 																						<div class="col-xl-6 pl-0">
-																								<label class="mt-3">Start Date</label>
+																								<label class="mt-3"><strong>Start Date</strong></label>
 																								<input class="form-control" type="date">
 																						</div>
 																						<div class="col-xl-6 pr-0">
-																								<label class="mt-3">End Date</label>
+																								<label class="mt-3"><strong>End Date</strong></label>
 																								<input class="form-control" type="date">
 																						</div>
 																				</div>
