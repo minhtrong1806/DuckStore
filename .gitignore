@@ -1,3 +1,6 @@
 /build/
 /target/
 
+src/main/java/utils/Constant.java
+src/main/java/utils/HibernateUtil.java
+.idea

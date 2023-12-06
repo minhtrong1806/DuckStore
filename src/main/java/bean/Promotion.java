@@ -41,7 +41,7 @@ public class Promotion implements Serializable {
 	@Column(name = "end_date")
 	private Date end_date;
 	
-	@OneToMany(mappedBy = "shopOrder")
+	@OneToMany(mappedBy = "promotion")
 	private Set<ShopOrder> shopOrders = new HashSet<ShopOrder>();
 
 	public Promotion(String name, String description, int discount_rate, Date start_date, Date end_date,
