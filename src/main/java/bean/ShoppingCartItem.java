@@ -29,11 +29,11 @@ public class ShoppingCartItem implements Serializable{
 	@Column(name = "qty")
 	private int qty;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "cart_id")
 	private ShoppingCart shoppingCart;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "product_item_id")
 	private ProductItem productItem;
 

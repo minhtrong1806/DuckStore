@@ -39,7 +39,7 @@ public class Address implements Serializable {
 	@Column(name = "district")
 	private String district;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "user_id")
 	private UserAccount userAccount;
 	

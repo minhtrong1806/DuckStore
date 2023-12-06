@@ -33,6 +33,14 @@
 		    <artifactId>mssql-jdbc</artifactId>
 		    <version>12.4.1.jre11</version>
 		</dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-search-orm -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-search-orm</artifactId>
+            <version>5.11.9.Final</version>
+        </dependency>
+
 		<!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
 		<dependency>
 		    <groupId>jakarta.servlet</groupId>
