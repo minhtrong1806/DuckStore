@@ -31,16 +31,10 @@ public class ProductDetailServlet extends HttpServlet{
 		
 		try {
 			switch (action) {
-			case "/admin-category/add":
-				break;
-			case "/admin-category/edit":
-				break;
-			case "/admin-category/showEdit":
-				break;
-			case "/admin-category/showAdd":
+			case "/admin-product-detail/add":
 				break;
 			default:
-				
+				productDetai(request, response);
 				break;
 				
 			}	
@@ -51,6 +45,10 @@ public class ProductDetailServlet extends HttpServlet{
 	
 	protected void productDetai(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/admin/product-detail.jsp");
+		dispatcher.forward(request, response);
 	}
 
 

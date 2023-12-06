@@ -158,49 +158,19 @@
 								
 									<div class="card-body">
 										<h5 class="font-weight-bold text-dark mb-4">Product information</h5>
-									
-										<div class="form-group d-flex align-items-center">
-<%-- name --%>				<input class="form-control" type="text" name="name" placeholder="Name" />
-										</div>
-										
-										<div class="form-group d-flex align-items-xl-center">
-<%--description--%>	<textarea class="form-control" placeholder="Product Descripition" name="description"></textarea>
-										</div>
-										
-									</div>
-								</div>
-								<div class="card mb-3">
-									<div class="card-body">
-										<h5 class="font-weight-bold text-dark mb-4">
-											<span style="color: rgb(84, 79, 90)">Image For Product</span>
-										</h5>
-										<div class="d-flex d-sm-flex justify-content-start align-items-center">
-											<div id="selectedBanner"></div>
-											<div class="bg-secondary d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center upload-img m-2 pointer">
-												<i class="fa fa-plus icon-add-image pointer"></i> 
-<%--productImage--%>		<input id="productImage" class="custom-file-input w-100 h-100" type="file" name="productImage"/>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-							</div>
-							<div class="col-xl-5">
-								<div class="card mb-3">
-									<div class="card-body">
-										<h5 class="font-weight-bold text-dark mb-4">Pricing</h5>
 										<div class="form-group">
-<%-- price --%>				<input class="form-control" type="number" name="price" placeholder="Best Price" min="0" />
+											<label class="mt-3"><strong>Name</strong></label>
+<%-- name --%>				<input class="form-control" type="text" name="name" placeholder="Name" value="<c:if test="${name != null}">${name}</c:if>" />
 										</div>
-									</div>
-								</div>
-								<div class="card mb-3">
-									<div class="card-body">
-										<h5 class="font-weight-bold text-dark mb-4">
-											<span style="color: rgb(84, 79, 90)">Category</span> <br />
-										</h5>
-										<div class="d-flex mb-3">
-<%-- Category --%>		<select class="form-control" name="productCategory">
+										
+										<div class="form-group">
+											<label class="mt-3"><strong>Description</strong></label>
+<%--description--%>		<input class="form-control" type="text" placeholder="Product Descripition" name="description"  value="<c:if test="${description != null}">${description}</c:if>">
+										</div>
+										
+										<div class="form-group">
+											<label class="mt-3"><strong>Category</strong></label>
+<%-- Category --%>		<select class="form-control" name="categoryName">
 												<optgroup label="Category">
 													<c:forEach items="${categoryList}" var="category">
 														<option value="${category.getCategoryName()}">${category.getCategoryName()}</option>
@@ -210,6 +180,22 @@
 										</div>
 									</div>
 								</div>
+								<div class="card mb-3">
+										<div class="card-body">
+											<h5 class="font-weight-bold text-dark mb-4">
+												<span style="color: rgb(84, 79, 90)">Image For Product</span>
+											</h5>
+											<div class="d-flex d-sm-flex justify-content-start align-items-center">
+												<div id="selectedBanner"></div>
+												<div class="bg-secondary d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center upload-img m-2 pointer">
+													<i class="fa fa-plus icon-add-image pointer"></i> 
+<%--productImage--%>			<input id="productImage" class="custom-file-input w-100 h-100" type="file" name="productImage"/>
+												</div>
+											</div>
+										</div>
+								</div>
+								
+								
 							</div>
 						</div>
 					</form>
