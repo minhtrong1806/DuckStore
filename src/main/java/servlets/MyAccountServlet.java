@@ -1,6 +1,7 @@
-package servlets.admin;
+package servlets;
 
 import jakarta.servlet.RequestDispatcher;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -8,31 +9,21 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import DAO.ProductDAO;
-import bean.Product;
-
-@WebServlet({"/admin-add-variant"})
-public class AddVariant extends HttpServlet {
+@WebServlet({"/my-account"})
+public class MyAccountServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
-    private int productId = -1;   
     
-    public AddVariant() {
+    public MyAccountServlet() {
         super();
     }
-    
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/my-account.jsp");
 		
-		productId = Integer.parseInt(request.getParameter("productId"));
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/admin/add-variant.jsp");
 		dispatcher.forward(request, response);
 	}
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		ProductDAO productDAO = new ProductDAO();
-//		Product product =  productDAO.
+		doGet(request, response);
 	}
-
-
-
 }

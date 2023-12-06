@@ -1,4 +1,4 @@
-package servlets.shop;
+package servlets;
 
 import jakarta.servlet.RequestDispatcher;
 
@@ -9,16 +9,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet({"/shop"})
-public class ShopServlet extends HttpServlet{
+@WebServlet({"/shoping-cart"})
+public class ShopingCartServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
     
-    public ShopServlet() {
+    public ShopingCartServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/product.jsp");
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/shoping-cart.jsp");
 		
 		dispatcher.forward(request, response);
 	}
@@ -26,5 +26,4 @@ public class ShopServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-
 }

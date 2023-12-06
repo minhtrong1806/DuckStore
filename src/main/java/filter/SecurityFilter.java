@@ -59,14 +59,14 @@ public class SecurityFilter implements Filter {
 				roles.add("MANAGER");
 				roles.add("STAFF");
 				roles.add("CUSTOMER");
-			}
-			if (role == 1) {
-				roles.add("STAFF");
-				roles.add("CUSTOMER");
-			}
-			if (role == 2) {
-				roles.add("CUSTOMER");
-			}
+				}
+				if (role == 1) {
+					roles.add("STAFF");
+					roles.add("CUSTOMER");
+				}
+				if (role == 2) {
+					roles.add("CUSTOMER");
+				}
 			
 			
 

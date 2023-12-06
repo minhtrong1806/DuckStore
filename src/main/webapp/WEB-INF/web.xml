@@ -4,24 +4,4 @@
   <welcome-file-list>
     <welcome-file>home</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <description></description>
-    <display-name>Variant</display-name>
-    <servlet-name>Variant</servlet-name>
-    <servlet-class>servlets.admin.Variant</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Variant</servlet-name>
-    <url-pattern>/Variant</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>tét</display-name>
-    <servlet-name>tét</servlet-name>
-    <servlet-class>servlets.admin.tét</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>tét</servlet-name>
-    <url-pattern>/tét</url-pattern>
-  </servlet-mapping>
 </web-app>

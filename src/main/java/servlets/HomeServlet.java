@@ -1,4 +1,4 @@
-package servlets.shop;
+package servlets;
 
 import jakarta.servlet.RequestDispatcher;
 
@@ -9,16 +9,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet({"/forgot"})
-public class ForgotServlet extends HttpServlet{
+@WebServlet({"/home"})
+public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-    public ForgotServlet() {
+       
+    public HomeServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/forgot.jsp");
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/index.jsp");
 		
 		dispatcher.forward(request, response);
 	}
@@ -26,4 +26,5 @@ public class ForgotServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
+
 }

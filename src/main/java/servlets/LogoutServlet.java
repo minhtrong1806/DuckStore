@@ -1,6 +1,5 @@
-package servlets.shop;
+package servlets;
 
-import jakarta.servlet.RequestDispatcher;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -9,18 +8,19 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet({"/my-account"})
-public class MyAccountServlet extends HttpServlet{
+@WebServlet({"/logout"})
+public class LogoutServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
     
-    public MyAccountServlet() {
+    public LogoutServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/my-account.jsp");
-		
-		dispatcher.forward(request, response);
+		request.getSession().invalidate();
+
+		// Redrect to Home Page.
+		response.sendRedirect(request.getContextPath() + "/home");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
