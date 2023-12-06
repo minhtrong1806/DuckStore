@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="vi">
   <head>
@@ -94,7 +95,7 @@
             </ol>
             <div class="card mx-5 mb-3">
               <div class="card-body">
-                <h5 class="font-weight-bold text-dark mb-4">Quantity of each variants</h5>
+                <h5 class="font-weight-bold text-dark mb-4">Information of each variant</h5>
                 <div class="table-responsive">
                   <table class="table">
                     <thead>
@@ -211,6 +212,32 @@
         </footer>
       </div>
     </div>
+    
+    <!--thẻ div ẩn để chứa thông báo -->
+		<div id="successMessage" style="display: none;">
+		    <% 
+		    // Lấy thông báo từ session attribute
+		    String successMessage = (String) session.getAttribute("successMessage");
+		    // Kiểm tra nếu có thông báo thành công
+		    if (successMessage != null && !successMessage.trim().isEmpty()) {
+		        out.println(successMessage);
+		        // Xóa thông báo thành công khỏi session attribute sau khi đã lấy thông tin
+		        session.removeAttribute("successMessage");
+		    }
+		    %>
+		</div>
+		
+		<!-- Đoạn mã JavaScript để hiển thị thông báo khi trang tải xong -->
+		<script type="text/javascript">
+		    // Đợi cho trang tải xong
+		    window.onload = function() {
+		        var successMessageDiv = document.getElementById('successMessage');
+		        var successMessage = successMessageDiv.textContent.trim();
+		        if (successMessage !== '') {
+		            alert(successMessage);
+		        }
+		    }
+		</script>    
   
     <script src="${pageContext.request.contextPath}/views/admin/assets/js/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/views/admin/assets/bootstrap/js/bootstrap.min.js"></script>

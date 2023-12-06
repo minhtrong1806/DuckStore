@@ -85,6 +85,18 @@ public class ProductDAO {
 		}
 	}
 	
+	public List<Product> getProductList(){
+        try(Session session = factory.openSession()){
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Product> query = builder.createQuery(Product.class);
+            Root<Product> root = query.from(Product.class);
+
+            query.select(root);
+            List<Product> products =  session.createQuery(query).getResultList();
+            return products;
+        }
+    }
+	
 	public boolean addProduct(Product newProduct, String productCategoryPick) {
 	    try (Session session = factory.openSession()) {
 	        try {
