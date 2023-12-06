@@ -1,6 +1,5 @@
 package bean;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,7 +23,6 @@ public class ProductItem implements Serializable {
 	/**
 	 * 
 	 */
-	@Serial
 	private static final long serialVersionUID = 1L;
 
 	@Id

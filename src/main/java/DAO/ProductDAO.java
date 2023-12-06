@@ -1,6 +1,5 @@
 package DAO;
 
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -9,36 +8,16 @@ import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import org.apache.lucene.search.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import bean.Product;
 import bean.ProductCategory;
 import bean.ProductItem;
-import org.hibernate.search.FullTextQuery;
-import org.hibernate.search.FullTextSession;
-import org.hibernate.search.Search;
-import org.hibernate.search.SearchFactory;
-import org.hibernate.search.query.dsl.QueryBuilder;
 import utils.HibernateUtil;
-
 public class ProductDAO {
 	private final static SessionFactory factory = HibernateUtil.getSessionFactory();
 
-    public List<Product> searchProduct(String name) throws Exception{
-        try(Session session = factory.openSession()) {
-            FullTextSession fullTextSession = Search.getFullTextSession(session);
-            fullTextSession.createIndexer().startAndWait();
-            SearchFactory searchFactory = fullTextSession.getSearchFactory();
-
-            QueryBuilder mythQB = searchFactory.buildQueryBuilder().forEntity(Product.class).get();
-            Query luceneQuery = mythQB.phrase().onField("name").sentence(name).createQuery();
-            FullTextQuery fullTextQuery = fullTextSession.createFullTextQuery(luceneQuery, Product.class);
-
-            return fullTextQuery.getResultList();
-        }
-    }
 	public Set<ProductItem> getProductItemsByProduct(int productID){
 		try(Session session = factory.openSession()){
 			CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -50,8 +29,9 @@ public class ProductDAO {
 			root.fetch("productItems", JoinType.LEFT);
 			
 			Product products = session.createQuery(query).uniqueResult();
-
-            return products.getProductItems();
+			Set<ProductItem> productItems = products.getProductItems();
+			
+			return productItems;
 		}
 	}
 	
@@ -63,13 +43,15 @@ public class ProductDAO {
 			
 			query.select(root);
 			query.where(builder.equal(builder.lower(root.get("name")), productName.toLowerCase()));
-            return session.createQuery(query).uniqueResult();
+			Product product = session.createQuery(query).uniqueResult();
+			return product;
 		}
 	}
 	
 	public Product getProductbyID(int productID) {
 		try(Session session = factory.openSession()){
-            return session.get(Product.class, productID);
+			Product product = session.get(Product.class, productID);			
+			return product;
 		}
 	}
 	
@@ -115,4 +97,5 @@ public class ProductDAO {
 	    Long count = session.createQuery(query).uniqueResult();
 	    return count != null && count > 0;
 	}
+
 }

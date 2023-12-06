@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -41,13 +40,14 @@ public class UserAccount implements Serializable {
 	private Integer role;
 
 	@OneToMany(mappedBy = "userAccount")
-	private Set<Address> addresses = new HashSet<Address>();;
+	private Set<Address> addresses = new HashSet<>();;
 
-	@OneToOne(mappedBy = "userAccount")
-	private ShoppingCart shoppingCart;
+	@OneToMany(mappedBy = "userAccount")
+	private Set<ShoppingCart> shoppingCarts;
 
+	
 	public UserAccount(String name, String emailAddress, String phoneNumber, String password, Integer role,
-			Set<Address> addresses, ShoppingCart shoppingCarts) {
+			Set<Address> addresses, Set<ShoppingCart> shoppingCarts) {
 		super();
 		this.name = name;
 		this.emailAddress = emailAddress;
@@ -58,7 +58,7 @@ public class UserAccount implements Serializable {
 			this.addresses = addresses;
 		}
 		if(shoppingCarts != null) {
-			this.shoppingCart = shoppingCarts;
+			this.shoppingCarts = shoppingCarts;
 		}
 	}
 	
@@ -116,14 +116,6 @@ public class UserAccount implements Serializable {
 
 	public void setRole(Integer role) {
 		this.role = role;
-	}
-	
-	public ShoppingCart getShoppingCart() {
-		return shoppingCart;
-	}
-
-	public void setShoppingCarts(ShoppingCart shoppingCart) {
-		this.shoppingCart = shoppingCart;
 	}
 
 	public UserAccount() {

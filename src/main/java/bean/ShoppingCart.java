@@ -1,7 +1,6 @@
 package bean;
 
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -11,8 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -29,12 +28,12 @@ public class ShoppingCart implements Serializable{
 	@Column(name = "id")
 	private int shoppingCartID;
 	
-	@OneToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id")
 	private UserAccount userAccount;
 	
 	@OneToMany(mappedBy = "shoppingCart")
-	private Set<ShoppingCartItem> shoppingCartItems = new HashSet<ShoppingCartItem>();
+	private Set<ShoppingCartItem> shoppingCartItems;
 
 	public ShoppingCart(UserAccount userAccount, Set<ShoppingCartItem> shoppingCartItems) {
 		super();

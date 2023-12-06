@@ -1,8 +1,5 @@
 package bean;
 
-import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Indexed;
-
 import java.io.Serializable;
 import java.util.Set;
 
@@ -19,7 +16,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Indexed
 @Table(name = "variation_option")
 public class VariationOption implements Serializable {
 
@@ -34,7 +30,6 @@ public class VariationOption implements Serializable {
 	private int VariationOptionID;
 
 	@Column(name = "value")
-	@Field
 	private String value;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)

@@ -1,16 +1,21 @@
 package bean;
 
-import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Indexed;
-
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
-@Indexed
 @Table(name = "product")
 public class Product implements Serializable {
 
@@ -23,7 +28,6 @@ public class Product implements Serializable {
 	private int productID;
 
 	@Column(name = "name")
-	@Field
 	private String name;
 
 	@Column(name = "description")
