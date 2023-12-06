@@ -100,9 +100,9 @@ public class AddProductServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 
 		} else {
-			
+
 			category.setCategoryName(categoryName);
-			
+
 			product.setName(name);
 			product.setDescription(description);
 
@@ -115,15 +115,15 @@ public class AddProductServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorString += "\n" + e.getMessage();
 			}
-			
+
 			productDAO.addProduct(product, category);
 			int id = product.getProductID();
-			
+
 			// Lưu thông báo vào session attribute
 			HttpSession session = request.getSession();
 			session.setAttribute("successMessage", "The product has been added successfully!\nLet's add variations to product");
 			response.sendRedirect(request.getContextPath() + "/admin-add-variant?productId=" + id);
-			
+
 		}
 	}
 
