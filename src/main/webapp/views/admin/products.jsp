@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+
 <!DOCTYPE html>
 <html lang="vi">
   <head>
@@ -107,7 +109,7 @@
                     </select>
                   </div>
                   <div class="col-md-6 col-xl-5 text-nowrap d-xl-flex align-items-xl-center">
-<%--filter stockstatus--%><select class="custom-select d-flex w-auto my-2" name="stockStatus">
+<%--filter stock_status--%><select class="custom-select d-flex w-auto my-2" name="stockStatus">
                       <optgroup label="stock">
                         <option value="1" selected="">in stock</option>
                         <option value="0">out of stock</option>
@@ -140,7 +142,8 @@
                     <thead>
                       <tr>
                         <th class="text-uppercase">id</th>
-                        <th class="text-uppercase">product</th>
+                        <th class="text-uppercase">image</th>
+                        <th class="text-uppercase">Name</th>
                         <th class="text-uppercase">category</th>
                         <th class="text-uppercase">qty</th>
                         <th class="text-uppercase">price</th>
@@ -148,30 +151,27 @@
                       </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${listItem}" var="Item" varStatus="i">
+                    <c:forEach items="${listProducts}" var="product" varStatus="i">
                     	<tr>
                         <td>${i.index + 1 }</td>
                         <td>
-                          <img class="rounded-circle mr-2" width="30" height="30" 
-                          src="E:/product/${Item.getProduct().getProduct_image() }"/>
-												
-												<%--src="${pageContext.request.contextPath}/views/admin/assets/img/avatars/avatar1.jpeg?h=0ecc82101fb9a10ca459432faa8c0656" --%>
+                        <c:choose>
+											    <c:when test="${product.getProduct_image() != null}">
+											        <img class="mr-2" width="auto" height="80" src="${pageContext.request.contextPath}/views/images/product/${product.getProduct_image()}"/> 
+											    </c:when>
+											    <c:otherwise>
+											        <img class="mr-2" width="auto" height="80" src="${pageContext.request.contextPath}/views/images/default_image.jpg"/>
+											    </c:otherwise>
+												</c:choose>
+
                         </td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>2008/11/28</td>
+                        <td>${product.getName()}</td>
+                        <td>${product.getProductCategory().getCategoryName()}</td>
+                        <td>${quantity.get(product.getProductID())}</td>
+												<td>${priceRange.get(product.getProductID())}</td>
                         <td class="d-xl-flex justify-content-xl-center">
-                          <div class="border rounded-0 border-white d-flex justify-content-around btn-group">
-                            <button class="btn" type="button" aria-expanded="false" data-toggle="dropdown">
-                              <i class="fa fa-ellipsis-v icon-size"></i>
-                            </button>
-                            <div
-                              class="dropdown-menu dropdown-menu-right"
-                              style="background: var(--white); position: static"
-                            >
-                              <a class="btn dropdown-item" role="button" href="admin-product-detail">Detail</a
-                              ><button class="btn dropdown-item" type="button">Delete</button>
-                            </div>
+                          <div class="border rounded-0 border-white d-flex justify-content-around btn-group">                           
+                              <a class="btn dropdown-item" role="button" href="admin-product-detail?productId=${product.getProductID()}">Detail</a>
                           </div>
                         </td>
                       </tr>

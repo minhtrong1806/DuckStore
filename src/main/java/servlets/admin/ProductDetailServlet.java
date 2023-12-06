@@ -12,19 +12,47 @@ import java.io.IOException;
 @WebServlet({"/admin-product-detail"})
 public class ProductDetailServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
+    public int productId = -1;
     
+    public static void name() {
+		
+	}
+	
     public ProductDetailServlet() {
         super();
     }
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/admin/product-detail.jsp");
-		
-		dispatcher.forward(request, response);
-	}
-
+    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String action = request.getServletPath();
+		
+		try {
+			switch (action) {
+			case "/admin-category/add":
+				break;
+			case "/admin-category/edit":
+				break;
+			case "/admin-category/showEdit":
+				break;
+			case "/admin-category/showAdd":
+				break;
+			default:
+				
+				break;
+				
+			}	
+		} catch (Exception  e) {
+			throw new ServletException(e);
+		}
+	}
+	
+	protected void productDetai(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
+
 
 }
