@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="vi">
   <head>
@@ -94,22 +95,34 @@
             </ol>
             <div class="card mx-5 mb-3">
               <div class="card-body">
-                <h5 class="font-weight-bold text-dark mb-4">Quantity of each variants</h5>
+              	<div class="d-flex justify-content-between">
+              			<h5 class="font-weight-bold text-dark mb-4">Information of each variant</h5>
+              			<a class="btn btn-info text-center mb-4" href="admin-add-variant?productId=${productId}">ADD</a>
+              	</div>
+                
                 <div class="table-responsive">
                   <table class="table">
                     <thead>
                       <tr>
+                      	<th>Id</th>
                         <th>Size</th>
                         <th>Color</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
                         <th>Quantity</th>
                         <th class="d-xl-flex justify-content-xl-center">Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td>Cell 1</td>
-                        <td>Cell 2</td>
-                        <td>Cell 2</td>
+                      	<th>1</th>
+                        <td>XL</td>
+                        <td>Blue</td>
+                        <td>22$</td>
+                        <td>10</td>
+                        <th>
+                        		<img class="mr-2" width="auto" height="80" src="${pageContext.request.contextPath}/views/images/default_image.jpg"/>
+												</th>
                         <td class="d-xl-flex justify-content-xl-center">
                           <a class="btn" data-target="#change-quantity" data-toggle="modal">
                             <i class="fa fa-edit icon-size"></i>
@@ -211,6 +224,32 @@
         </footer>
       </div>
     </div>
+    
+    <!--thẻ div ẩn để chứa thông báo -->
+		<div id="successMessage" style="display: none;">
+		    <% 
+		    // Lấy thông báo từ session attribute
+		    String successMessage = (String) session.getAttribute("successMessage");
+		    // Kiểm tra nếu có thông báo thành công
+		    if (successMessage != null && !successMessage.trim().isEmpty()) {
+		        out.println(successMessage);
+		        // Xóa thông báo thành công khỏi session attribute sau khi đã lấy thông tin
+		        session.removeAttribute("successMessage");
+		    }
+		    %>
+		</div>
+		
+		<!-- Đoạn mã JavaScript để hiển thị thông báo khi trang tải xong -->
+		<script type="text/javascript">
+		    // Đợi cho trang tải xong
+		    window.onload = function() {
+		        var successMessageDiv = document.getElementById('successMessage');
+		        var successMessage = successMessageDiv.textContent.trim();
+		        if (successMessage !== '') {
+		            alert(successMessage);
+		        }
+		    }
+		</script>    
   
     <script src="${pageContext.request.contextPath}/views/admin/assets/js/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/views/admin/assets/bootstrap/js/bootstrap.min.js"></script>
