@@ -11,17 +11,46 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
+import bean.ShoppingCart;
 import bean.UserAccount;
 import utils.HibernateUtil;
 
 
-public class userAccountDAO {
+public class UserAccountDAO {
 //	private static final Map<String, UserAccount> mapUsers = new HashMap<String, UserAccount>();
 	private static final SessionFactory factory = HibernateUtil.getSessionFactory();
 	/*
 	 * static { initUsers(); }
 	 */
 
+	public ShoppingCart getShoppingCart(int userID) {
+		try(Session session = factory.openSession()){
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<UserAccount> query = builder.createQuery(UserAccount.class);
+			Root<UserAccount> root = query.from(UserAccount.class);
+			
+			query.select(root);
+			query.where(builder.equal(root.get("userID"), userID));
+			
+			UserAccount userAccount = session.createQuery(query).uniqueResult();
+			return userAccount.getShoppingCart();
+		}
+	}
+	
+	public UserAccount getUserAccount(int userID) {
+		try(Session session = factory.openSession()){
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<UserAccount> query = builder.createQuery(UserAccount.class);
+			Root<UserAccount> root = query.from(UserAccount.class);
+			
+			query.select(root);
+			query.where(builder.equal(root.get("userID"), userID));
+			
+			UserAccount userAccount = session.createQuery(query).uniqueResult();
+			return userAccount;
+		}
+	}
+	
 	// Liệt kê danh sách các user
 	public List<UserAccount> listUserAccounts() {
 		try (Session session = factory.openSession()) {
@@ -71,9 +100,18 @@ public class userAccountDAO {
 			query.where(conditionPredicate);
 
 			Query<UserAccount> getUserQuery = session.createQuery(query);
-			UserAccount userAccounts = getUserQuery.getSingleResult();
-			session.close();
-			return userAccounts;
+			List<UserAccount> userAccountsList = getUserQuery.getResultList();
+			// Kiểm tra xem danh sách có phần tử hay không
+			if (!userAccountsList.isEmpty()) {
+			    // Nếu có ít nhất một phần tử, lấy phần tử đầu tiên
+			    UserAccount userAccount = userAccountsList.get(0);
+			    session.close();
+			    return userAccount;
+			} else {
+			    // Nếu danh sách trống, trả về null
+			    session.close();
+			    return null;
+			}
 		}
 	}
 
@@ -168,4 +206,6 @@ public class userAccountDAO {
 			session.close();
 		}
 	}
+
+	
 }

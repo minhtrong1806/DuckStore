@@ -13,7 +13,7 @@ import utils.AppUtils;
 
 import java.io.IOException;
 
-import DAO.userAccountDAO;
+import DAO.UserAccountDAO;
 import bean.UserAccount;
 
 @WebServlet({"/login"})
@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		String emailAddress = request.getParameter("emailAddress");
 		String password = request.getParameter("password");
-		userAccountDAO userAccountDAO = new userAccountDAO();
+		UserAccountDAO userAccountDAO = new UserAccountDAO();
 		
 		boolean check = userAccountDAO.checkLogin(emailAddress, password);
 

@@ -77,7 +77,7 @@ public class AddVariantServlet extends HttpServlet {
 		int price = 0;
 		
 		try {	
-			qty_in_stock = Integer.parseInt(priceString);
+			qty_in_stock = Integer.parseInt(qty_in_stockString);
 			price = Integer.parseInt(priceString);
 		} catch (Exception e) {
 			errorString += "\nPlease enter a integer for \"quantity\" and a real number for \"price\"  !";
