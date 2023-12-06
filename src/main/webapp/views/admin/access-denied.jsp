@@ -78,7 +78,7 @@
 				<%-- end navbar --%>
           <div class="container-fluid">
             
-            <p>Access denied</p>
+            <p>Mày khoải</p>
           </div>
         </div>
         <footer class="bg-white sticky-footer">

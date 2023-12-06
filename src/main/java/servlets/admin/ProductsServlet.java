@@ -11,9 +11,7 @@ import java.io.IOException;
 import java.util.List;
 
 import DAO.ProductCategoryDAO;
-import DAO.ProductDAO;
 import DAO.ProductItemDAO;
-import bean.Product;
 import bean.ProductCategory;
 import bean.ProductItem;
 
@@ -47,12 +45,11 @@ public class ProductsServlet extends HttpServlet{
 	}
 	
 	private void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		ProductCategoryDAO productCategoryDAO = new ProductCategoryDAO();
-		ProductDAO productDAO = new ProductDAO();
+		ProductItemDAO productItemDAO = new ProductItemDAO();
 		
 		List<ProductCategory> categorieList = productCategoryDAO.listProductCategories();
-//		List<Product> listProducts = productDAO.get;
+		List<ProductItem> listItem = null;
 
 		request.setAttribute("categoryList", categorieList);
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/admin/products.jsp");

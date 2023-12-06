@@ -24,24 +24,4 @@
     <servlet-name>tét</servlet-name>
     <url-pattern>/tét</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>AddVariant</display-name>
-    <servlet-name>AddVariant</servlet-name>
-    <servlet-class>servlets.admin.AddVariant</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AddVariant</servlet-name>
-    <url-pattern>/AddVariant</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>AddVariantsServlet</display-name>
-    <servlet-name>AddVariantsServlet</servlet-name>
-    <servlet-class>servlets.admin.AddVariantServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AddVariantsServlet</servlet-name>
-    <url-pattern>/AddVariantsServlet</url-pattern>
-  </servlet-mapping>
 </web-app>
