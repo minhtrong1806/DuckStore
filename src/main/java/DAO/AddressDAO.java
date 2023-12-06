@@ -2,7 +2,6 @@ package DAO;
 
 import java.util.List;
 
-
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
@@ -28,7 +27,7 @@ public class AddressDAO {
 
 			Join<Address, UserAccount> addressJoin = useRoot.join("addresses");
 
-			query.multiselect(addressJoin).where(builder.equal(useRoot.get("email_address"), email));
+			query.multiselect(addressJoin).where(builder.equal(useRoot.get("emailAddress"), email));
 
 			Query<Address> addressQuery = session.createQuery(query);
 
@@ -45,7 +44,7 @@ public class AddressDAO {
 				CriteriaQuery<UserAccount> query = builder.createQuery(UserAccount.class);
 				Root<UserAccount> userRoot = query.from(UserAccount.class);
 
-				Predicate conditionPredicate = builder.equal(userRoot.get("email_address"), email);
+				Predicate conditionPredicate = builder.equal(userRoot.get("emailAddress"), email);
 				query.where(conditionPredicate);
 
 				UserAccount userAccount = session.createQuery(query).uniqueResult();

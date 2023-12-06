@@ -2,7 +2,7 @@ package servlets.shop;
 
 import java.io.IOException;
 
-import DAO.userAccountDAO;
+import DAO.UserAccountDAO;
 import bean.UserAccount;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -66,7 +66,7 @@ public class RegisterServlet extends HttpServlet{
 			newUser.setPhone_number(phone_number);
 			newUser.setRole(2);
 			
-			userAccountDAO userAccountDAO = new userAccountDAO();
+			UserAccountDAO userAccountDAO = new UserAccountDAO();
 			userAccountDAO.addUser(newUser);
 			System.out.println("Đăng kí thành công");
 			

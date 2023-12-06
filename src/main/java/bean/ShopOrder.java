@@ -35,31 +35,31 @@ public class ShopOrder implements Serializable{
 	@Column(name = "order_total")
 	private int orderTotal;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "shipping_method")
 	private ShippingMethod shippingMethod;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "order_status")
 	private OrderStatus orderStatus;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "user_id")
 	private UserAccount userAccount;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "shipping_address")
 	private Address address;
 
 	@OneToMany(mappedBy = "shopOrder")
 	private Set<OrderLine> orderLines;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "promotion_id")
-	private ShopOrder shopOrder;
+	private Promotion promotion;
 
 	public ShopOrder(Date orderDate, int orderTotal, ShippingMethod shippingMethod, OrderStatus orderStatus,
-			UserAccount userAccount, Address address, Set<OrderLine> orderLines, ShopOrder shopOrder) {
+			UserAccount userAccount, Address address, Set<OrderLine> orderLines, Promotion promotion) {
 		super();
 		this.orderDate = orderDate;
 		this.orderTotal = orderTotal;
@@ -68,7 +68,7 @@ public class ShopOrder implements Serializable{
 		this.userAccount = userAccount;
 		this.address = address;
 		this.orderLines = orderLines;
-		this.shopOrder = shopOrder;
+		this.promotion = promotion;
 	}
 	public ShopOrder() {
 		// TODO Auto-generated constructor stub
@@ -137,12 +137,12 @@ public class ShopOrder implements Serializable{
 		this.orderLines = orderLines;
 	}
 
-	public ShopOrder getShopOrder() {
-		return shopOrder;
+	public Promotion getShopOrder() {
+		return promotion;
 	}
 
-	public void setShopOrder(ShopOrder shopOrder) {
-		this.shopOrder = shopOrder;
+	public void setShopOrder(Promotion promotion) {
+		this.promotion = promotion;
 	}
 
 	public static long getSerialversionuid() {
