@@ -95,34 +95,22 @@
             </ol>
             <div class="card mx-5 mb-3">
               <div class="card-body">
-              	<div class="d-flex justify-content-between">
-              			<h5 class="font-weight-bold text-dark mb-4">Information of each variant</h5>
-              			<a class="btn btn-info text-center mb-4" href="admin-add-variant?productId=${productId}">ADD</a>
-              	</div>
-                
+                <h5 class="font-weight-bold text-dark mb-4">Information of each variant</h5>
                 <div class="table-responsive">
                   <table class="table">
                     <thead>
                       <tr>
-                      	<th>Id</th>
                         <th>Size</th>
                         <th>Color</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
                         <th>Quantity</th>
                         <th class="d-xl-flex justify-content-xl-center">Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                      	<th>1</th>
-                        <td>XL</td>
-                        <td>Blue</td>
-                        <td>22$</td>
-                        <td>10</td>
-                        <th>
-                        		<img class="mr-2" width="auto" height="80" src="${pageContext.request.contextPath}/views/images/default_image.jpg"/>
-												</th>
+                        <td>Cell 1</td>
+                        <td>Cell 2</td>
+                        <td>Cell 2</td>
                         <td class="d-xl-flex justify-content-xl-center">
                           <a class="btn" data-target="#change-quantity" data-toggle="modal">
                             <i class="fa fa-edit icon-size"></i>

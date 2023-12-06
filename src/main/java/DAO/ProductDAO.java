@@ -1,7 +1,6 @@
 package DAO;
 
 import java.util.List;
-
 import java.util.Set;
 
 import javax.persistence.criteria.CriteriaBuilder;

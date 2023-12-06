@@ -13,13 +13,9 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import DAO.ProductCategoryDAO;
-import bean.Product;
 import bean.ProductCategory;
 
 @WebServlet(urlPatterns = 
@@ -73,31 +69,16 @@ public class CategoryServlet extends HttpServlet {
 
 	protected void listCategory(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		
+
 		ProductCategoryDAO productCategoryDAO = new ProductCategoryDAO();
-		List<ProductCategory> categorieList = productCategoryDAO.listProductCategories();
-		HashMap<Integer, Integer> qtyProductOfCategory = new HashMap<Integer, Integer>();
-		
-		qtyProductOfCategory = getQty(categorieList, productCategoryDAO);
-		
+		List<ProductCategory> categorieList = null;
+		categorieList = productCategoryDAO.listProductCategories();
 		request.setAttribute("categoryList", categorieList);
-		request.setAttribute("qty", qtyProductOfCategory);
 			
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/admin/category.jsp");
 		dispatcher.forward(request, response);
 		
 		
-	}
-	
-	private HashMap<Integer, Integer> getQty(List<ProductCategory> categorieList, ProductCategoryDAO productCategoryDAO) {
-		HashMap<Integer, Integer> qtyProductOfCategory = new HashMap<Integer, Integer>();
-		for (ProductCategory category:categorieList) {
-			Set<Product> productList = productCategoryDAO.getProductByCategory(category.getCategoryName());
-			int qty = productList.size();
-			qtyProductOfCategory.put(category.getProductCategoryID(), qty);	
-		}
-		return qtyProductOfCategory;
 	}
 	
 	protected void showFormEdit(HttpServletRequest request, HttpServletResponse response)
