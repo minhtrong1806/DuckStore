@@ -1,7 +1,6 @@
 package DAO;
 
 import java.util.List;
-
 import java.util.Set;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -27,19 +26,18 @@ import utils.HibernateUtil;
 public class ProductDAO {
 	private final static SessionFactory factory = HibernateUtil.getSessionFactory();
 
-    public List<Product> searchProduct(String name) throws Exception{
-        try(Session session = factory.openSession()) {
-            FullTextSession fullTextSession = Search.getFullTextSession(session);
-            fullTextSession.createIndexer().startAndWait();
-            SearchFactory searchFactory = fullTextSession.getSearchFactory();
-
-            QueryBuilder mythQB = searchFactory.buildQueryBuilder().forEntity(Product.class).get();
-            Query luceneQuery = mythQB.phrase().onField("name").sentence(name).createQuery();
-            FullTextQuery fullTextQuery = fullTextSession.createFullTextQuery(luceneQuery, Product.class);
-			session.close();
-            return fullTextQuery.getResultList();
-        }
-    }
+//    public List<Product> searchProduct(String name) throws Exception{
+//        try(Session session = factory.openSession()) {
+//            FullTextSession fullTextSession = Search.getFullTextSession(session);
+//            fullTextSession.createIndexer().startAndWait();
+//            SearchFactory searchFactory = fullTextSession.getSearchFactory();
+//
+//            QueryBuilder mythQB = searchFactory.buildQueryBuilder().forEntity(Product.class).get();
+//            Query luceneQuery = mythQB.phrase().onField("name").sentence(name).createQuery();
+//            FullTextQuery fullTextQuery = fullTextSession.createFullTextQuery(luceneQuery, Product.class);
+//            return fullTextQuery.getResultList();
+//        }
+//    }
 
 	public List<Product> getProductList(){
 		try(Session session = factory.openSession()){

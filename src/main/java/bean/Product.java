@@ -1,7 +1,6 @@
 package bean;
 
 import org.hibernate.search.annotations.Field;
-
 import org.hibernate.search.annotations.Indexed;
 
 import java.io.Serializable;
@@ -107,7 +106,4 @@ public class Product implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
-	
-	
 }
