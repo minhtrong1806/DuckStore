@@ -100,10 +100,6 @@ public class AddVariantServlet extends HttpServlet {
 				
 				System.out.println(folderStore);
 			}
-			else {
-				errorString += "\nPlease select photo !";
-				hasError = true;
-			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

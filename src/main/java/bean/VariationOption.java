@@ -19,7 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Indexed
+//@Indexed
 @Table(name = "variation_option")
 public class VariationOption implements Serializable {
 
@@ -34,7 +34,7 @@ public class VariationOption implements Serializable {
 	private int VariationOptionID;
 
 	@Column(name = "value")
-	@Field
+//	@Field
 	private String value;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
