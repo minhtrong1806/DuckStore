@@ -86,7 +86,7 @@
 												<li class="breadcrumb-item active text-uppercase font-weight-bold"><span>add variant&nbsp;</span></li>
 										</ol>
 										
-										<form>
+										<form enctype="multipart/form-data">
 										<div class="row d-flex justify-content-center px-5">
 												<div class="col d-flex justify-content-center">
 														<div class="card w-50">
@@ -94,33 +94,26 @@
 																		<h4 class="font-weight-bold text-dark">A Variant</h4>
 																		<div>
 																			<label class="mt-3"><strong>Color</strong></label>
-																			<select class="form-control d-xl-flex" name="color">
-																				<optgroup label="Color">
-																						<option value="Red" selected="">Red</option>
-																						<option value="Green">Green</option>
-																						<option value="White">White</option>
-																						<option value="Black">Black</option>
-																				</optgroup>
-																			</select>
+<%-- color --%>												<input disabled="" value="<c:if test="${color != null}">${color}</c:if>" class="form-control" type="text" name="color" />
 																		</div>
 																		<div>
 																			<label class="mt-3"><strong>Size</strong></label>
-																			<select class="form-control d-xl-flex" name="size">
-																				<optgroup label="Size">
-																					<option value="S" selected="">S</option>
-																					<option value="M">M</option>
-																					<option value="L">L</option>
-																					<option value="XL">XL</option>
-																				</optgroup>
-																			</select>
+<%-- size --%>												<input disabled="" value="<c:if test="${size != null}">${size}</c:if>" class="form-control" type="text" name="size" />
+																		</div>
+																		<div>
+																			<label class="mt-3"><strong>SKU</strong></label>
+<%-- sku --%>													<input disabled="" value="<c:if test="${itemCurent.getSku() != null}">${itemCurent.getSku()}</c:if>" class="form-control" type="text" name="sku" />
 																		</div>
 																		<div>
 																			<label class="mt-3"><strong>Quantity</strong></label>
-<%-- qty_in_stock --%>								<input value="<c:if test="${qty_in_stock != null}">${qty_in_stock}</c:if>" class="form-control" type="number" id="qtyStock" name="qty_in_stock" placeholder="Quantity" min="0"/>
+																			<c:if test="${product.getName() != null}">
+								           							<input type="number" name="oldQty_in_stock" value="<c:out value='${itemCurent.getQty_in_stock()}' />" />
+								          						</c:if> 
+<%-- qty_in_stock --%>								<input value="<c:if test="${itemCurent.getQty_in_stock() != null}">${itemCurent.getQty_in_stock()}</c:if>" class="form-control" type="number" id="qtyStock" name="qty_in_stock" placeholder="Quantity" min="0" step="1"/>
 																		</div>
 																		<div>
 																			<label class="mt-3"><strong>Price</strong></label>
-<%-- price --%>												<input class="form-control" type="number" name="price" placeholder="Price" min="0"  value="${price}"/>
+<%-- price --%>												<input value="<c:if test="${itemCurent.getPrice() != null}">${itemCurent.getPrice()}</c:if>" class="form-control" type="number" name="price" placeholder="Price" min="0" step="1"/>
 																		</div>
 																</div>
 														<div class="card mb-3">
@@ -130,7 +123,11 @@
 																		Product Item</span>
 																</h5>
 																<div class="d-flex d-sm-flex justify-content-start align-items-center">
-																	<div id="selectedBanner"></div>
+																	<div id="selectedBanner">
+																			<c:if test="${itemCurent.getProduct_image() != null}">
+																				<img class="mr-2 avatar rounded" width="200px" height="auto" src="${pageContext.request.contextPath}/views/images/productItem/${itemCurent.getProduct_image()}"/> 
+																			</c:if>
+																	</div>
 																	<div class="bg-secondary d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center upload-img m-2 pointer">
 																		<i class="fa fa-plus icon-add-image pointer"></i>
 <%--productItemImage--%>						<input id="productItemImage" class="custom-file-input w-100 h-100" type="file" name="productItemImage" />

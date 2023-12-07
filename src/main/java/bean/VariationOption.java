@@ -96,3 +96,4 @@ public class VariationOption implements Serializable {
 	
 	
 }
+

@@ -2,6 +2,7 @@ package utils;
 
 import java.util.Properties;
 
+
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -34,10 +35,11 @@ public class HibernateUtil {
 		pros.put(Environment.DIALECT, "org.hibernate.dialect.SQLServerDialect");
 		pros.put(Environment.DRIVER, "com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		pros.put(Environment.URL,
-				"jdbc:sqlserver://26.46.117.205:2703;databaseName=testDuckstore;encrypt=true;trustServerCertificate=true;characterEncoding=UTF-8;useUnicode=true");
+				"jdbc:sqlserver://192.168.153.1:1433;databaseName=DuckStore;encrypt=true;trustServerCertificate=true;characterEncoding=UTF-8;useUnicode=true");
 		pros.put(Environment.USER, "sa");
 		pros.put(Environment.PASS, "123456");
-		pros.put("hibernate.search.default.indexBase", "indexes");
+		
+		pros.put("hibernate.search.default.indexBase", "D:\\HOC\\2023_2024\\HK1\\lap_trinh_web\\DoAn-Workspace\\DuckStore\\indexes");
 
 		conf.setProperties(pros);
 		conf.addAnnotatedClass(Address.class);
