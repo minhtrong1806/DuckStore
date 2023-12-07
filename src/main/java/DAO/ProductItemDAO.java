@@ -60,7 +60,6 @@ public class ProductItemDAO {
                     session.save(newProductItem);
                     session.saveOrUpdate(variationOptionColor);
                     session.saveOrUpdate(variationOptionSize);
-                    session.close();
                     System.out.println("New ProductItem ID: " + newProductItem.getProductItemID());
                 }
 				session.getTransaction().commit();
@@ -109,6 +108,23 @@ public class ProductItemDAO {
                 }
             }
             return null;
+        }
+    }
+    
+    public List<ProductItem> getListProductItemByProductID(int productID) {
+        try(Session session = factory.openSession()){
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<ProductItem> query = builder.createQuery(ProductItem.class);
+            Root<ProductItem> root = query.from(ProductItem.class);
+
+            query.select(root);
+            Predicate condition = builder.equal(root.get("product").get("productID"), productID);
+            query.where(condition);
+            root.fetch("variationOptions", JoinType.LEFT).fetch("variation", JoinType.LEFT);
+            query.distinct(true);
+
+            List<ProductItem> productItemSet = session.createQuery(query).getResultList();
+            return productItemSet;
         }
     }
 }

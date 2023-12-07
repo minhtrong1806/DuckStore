@@ -86,7 +86,7 @@
 												<li class="breadcrumb-item active text-uppercase font-weight-bold"><span>add variant&nbsp;</span></li>
 										</ol>
 										
-										<form>
+										<form enctype="multipart/form-data">
 										<div class="row d-flex justify-content-center px-5">
 												<div class="col d-flex justify-content-center">
 														<div class="card w-50">
@@ -94,33 +94,23 @@
 																		<h4 class="font-weight-bold text-dark">A Variant</h4>
 																		<div>
 																			<label class="mt-3"><strong>Color</strong></label>
-																			<select class="form-control d-xl-flex" name="color">
-																				<optgroup label="Color">
-																						<option value="Red" selected="">Red</option>
-																						<option value="Green">Green</option>
-																						<option value="White">White</option>
-																						<option value="Black">Black</option>
-																				</optgroup>
-																			</select>
+<%-- color --%>												<input disabled="" value="<c:if test="${color != null}">${color}</c:if>" class="form-control" type="text" name="color" />
 																		</div>
 																		<div>
 																			<label class="mt-3"><strong>Size</strong></label>
-																			<select class="form-control d-xl-flex" name="size">
-																				<optgroup label="Size">
-																					<option value="S" selected="">S</option>
-																					<option value="M">M</option>
-																					<option value="L">L</option>
-																					<option value="XL">XL</option>
-																				</optgroup>
-																			</select>
+<%-- size --%>												<input disabled="" value="<c:if test="${size != null}">${size}</c:if>" class="form-control" type="text" name="size" />
+																		</div>
+																		<div>
+																			<label class="mt-3"><strong>SKU</strong></label>
+<%-- sku --%>													<input disabled="" value="<c:if test="${SKU != null}">${SKU}</c:if>" class="form-control" type="text" name="sku" />
 																		</div>
 																		<div>
 																			<label class="mt-3"><strong>Quantity</strong></label>
-<%-- qty_in_stock --%>								<input value="<c:if test="${qty_in_stock != null}">${qty_in_stock}</c:if>" class="form-control" type="number" id="qtyStock" name="qty_in_stock" placeholder="Quantity" min="0"/>
+<%-- qty_in_stock --%>								<input value="<c:if test="${qty_in_stock != null}">${qty_in_stock}</c:if>" class="form-control" type="number" id="qtyStock" name="qty_in_stock" placeholder="Quantity" min="0" step="1"/>
 																		</div>
 																		<div>
 																			<label class="mt-3"><strong>Price</strong></label>
-<%-- price --%>												<input class="form-control" type="number" name="price" placeholder="Price" min="0"  value="${price}"/>
+<%-- price --%>												<input value="<c:if test="${price != null}">${price}</c:if>" class="form-control" type="number" name="price" placeholder="Price" min="0" step="1"/>
 																		</div>
 																</div>
 														<div class="card mb-3">

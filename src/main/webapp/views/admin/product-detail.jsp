@@ -97,44 +97,55 @@
               <div class="card-body">
               	<div class="d-flex justify-content-between">
               			<h5 class="font-weight-bold text-dark mb-4">Information of each variant</h5>
-              			<a class="btn btn-info text-center mb-4" href="admin-add-variant?productId=${productId}">ADD</a>
+              			<a class="btn btn-info text-center mb-4" href="admin-add-variant?productId=${product.getProductID()}">ADD</a>
               	</div>
                 
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                      	<th>Id</th>
-                        <th>Size</th>
-                        <th>Color</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Quantity</th>
-                        <th class="d-xl-flex justify-content-xl-center">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                      	<th>1</th>
-                        <td>XL</td>
-                        <td>Blue</td>
-                        <td>22$</td>
-                        <td>10</td>
-                        <th>
-                        		<img class="mr-2" width="auto" height="80" src="${pageContext.request.contextPath}/views/images/default_image.jpg"/>
-												</th>
-                        <td class="d-xl-flex justify-content-xl-center">
-                          <a class="btn" data-target="#change-quantity" data-toggle="modal">
-                            <i class="fa fa-edit icon-size"></i>
-                          </a>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+                <c:if test="${listItems != null }">
+	                <div class="table-responsive">
+	                  <table class="table">
+	                    <thead>
+	                      <tr>
+	                      	<th class="text-uppercase">Id</th>
+	                        <th class="text-uppercase">Size</th>
+	                        <th class="text-uppercase">Color</th>
+	                        <th class="text-uppercase">SKU</th>
+	                        <th class="text-uppercase">Price</th>
+	                        <th class="text-uppercase">Quantity</th>
+	                        <th class="text-uppercase">Image</th>
+	                        <th class="text-uppercase d-xl-flex justify-content-xl-center">Action</th>
+	                      </tr>
+	                    </thead>
+	                    <tbody>
+	                    	<c:forEach items="${listItems}" var="item" varStatus="i">
+			                     <tr>
+						                   <th>${i.index + 1 }</th>
+						                   <td>${variationList.get(item.getProductItemID()).get("size") }</td>
+						                   <td>${variationList.get(item.getProductItemID()).get("color") }</td>
+						                   <td>${item.getSku() }</td>
+						                   <td>${item.getPrice() }</td>
+						                   <td>${item.getQty_in_stock() }</td>
+						                   <th>
+						                      <c:choose>
+																			<c:when test="${item.getProduct_image() != null}">
+																				   <img class="mr-2" width="auto" height="80" src="${pageContext.request.contextPath}/views/images/productItem/${item.getProduct_image()}"/> 
+																			</c:when>
+																			<c:otherwise>
+																				   <img class="mr-2" width="auto" height="80" src="${pageContext.request.contextPath}/views/images/default_image.jpg"/>
+																			</c:otherwise>
+																	</c:choose>
+																</th>
+						                    <td class="d-xl-flex justify-content-xl-center">
+						                       <a href="${pageContext.request.contextPath}/admin-product-detail/variant-detail?itemId=${item.getProductItemID()}" class="btn"><i class="fa fa-edit icon-size"></i></a>
+						                    </td>
+				                    </tr>
+			                    </c:forEach>
+	                    </tbody>
+	                  </table>
+	                </div>
+                </c:if>
               </div>
             </div>
-            <%--form add product --%>
+            <%--form edit product --%>
 					<form id="form-add-product" enctype="multipart/form-data" action="${pageContext.request.contextPath}/admin-add-product/add" method="POST">
 						<div class="d-flex justify-content-between flex-wrap align-items-xl-center my-3 mx-5">
 							<div class="mt-4">
@@ -160,23 +171,38 @@
 										<h5 class="font-weight-bold text-dark mb-4">Product information</h5>
 										<div class="form-group">
 											<label class="mt-3"><strong>Name</strong></label>
-<%-- name --%>				<input class="form-control" type="text" name="name" placeholder="Name" value="<c:if test="${name != null}">${name}</c:if>" />
+											<c:if test="${product.getName() != null}">
+           							<input type="hidden" name="oldName" value="<c:out value='${product.getName()}' />" />
+          						</c:if> 
+<%-- name --%>				<input class="form-control" type="text" name="name" placeholder="Name" 
+														value="<c:if test="${product.getName() != null}">${product.getName()}</c:if>" />
 										</div>
 										
 										<div class="form-group">
 											<label class="mt-3"><strong>Description</strong></label>
-<%--description--%>		<input class="form-control" type="text" placeholder="Product Descripition" name="description"  value="<c:if test="${description != null}">${description}</c:if>">
+											<c:if test="${product.getDescription() != null}">
+           							<input type="hidden" name="oldDescription" value="<c:out value='${product.getDescription()}' />" />
+          						</c:if> 
+<%--description--%>		<input class="form-control" type="text" placeholder="Product Descripition" name="description"  
+														value="<c:if test="${product.getDescription() != null}">${product.getDescription()}</c:if>">
 										</div>
 										
 										<div class="form-group">
 											<label class="mt-3"><strong>Category</strong></label>
-<%-- Category --%>		<select class="form-control" name="categoryName">
-												<optgroup label="Category">
-													<c:forEach items="${categoryList}" var="category">
-														<option value="${category.getCategoryName()}">${category.getCategoryName()}</option>
-													</c:forEach>
-												</optgroup>
-											</select>
+											<div class="d-flex justify-content-between mb-3">
+													<input disabled="" class="form-control" type="text" placeholder="Category" name="oldCategory"  
+																value="<c:if test="${product.getProductCategory() != null}">${product.getProductCategory().getCategoryName()}</c:if>">
+													<button class="btn btn-secondary ml-3" type="button" data-target="#change-category" data-toggle="collapse" aria-expanded="false" aria-controls="change-category">Change</button>
+											</div>
+											<div id="change-category" class="collapse">
+<%-- Category --%>				<select class="form-control" name="category">
+														<optgroup label="Category">
+															<c:forEach items="${categoryList}" var="category">
+																<option value="${category.getCategoryName()}">${category.getCategoryName()}</option>
+															</c:forEach>
+														</optgroup>
+													</select>
+											</div>
 										</div>
 									</div>
 								</div>
