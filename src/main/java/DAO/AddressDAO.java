@@ -19,7 +19,7 @@ import utils.HibernateUtil;
 public class AddressDAO {
 	private static final SessionFactory factory = HibernateUtil.getSessionFactory();
 
-	public List<Address> listAddressByUser(String email) {
+	public List<Address> listAddressByUser(int userID) {
 		try (Session session = factory.openSession()) {
 			CriteriaBuilder builder = session.getCriteriaBuilder();
 			CriteriaQuery<Address> query = builder.createQuery(Address.class);
@@ -27,15 +27,14 @@ public class AddressDAO {
 
 			Join<Address, UserAccount> addressJoin = useRoot.join("addresses");
 
-			query.multiselect(addressJoin).where(builder.equal(useRoot.get("emailAddress"), email));
-
+			query.multiselect(addressJoin).where(builder.equal(useRoot.get("userID"), userID));
 			Query<Address> addressQuery = session.createQuery(query);
 
 			return addressQuery.getResultList();
 		}
 	}
 
-	public void addAddressForUser(Address newAddress, String email) {
+	public void addAddressForUser(Address newAddress, int userID) {
 		try (Session session = factory.openSession()) {
 			try {
 				session.getTransaction().begin();
@@ -44,7 +43,7 @@ public class AddressDAO {
 				CriteriaQuery<UserAccount> query = builder.createQuery(UserAccount.class);
 				Root<UserAccount> userRoot = query.from(UserAccount.class);
 
-				Predicate conditionPredicate = builder.equal(userRoot.get("emailAddress"), email);
+				Predicate conditionPredicate = builder.equal(userRoot.get("userID"), userID);
 				query.where(conditionPredicate);
 
 				UserAccount userAccount = session.createQuery(query).uniqueResult();
@@ -65,22 +64,6 @@ public class AddressDAO {
 					session.getTransaction().rollback();
 				}
 				e.printStackTrace();
-			}
-		}
-	}
-
-	public void editAddress(String email, String newUnitNumber, String newAddressLine, String newCity,
-			String newDistrict) {
-		try (Session session = factory.openSession()) {
-			try {
-				session.getTransaction().begin();
-
-				CriteriaBuilder builder = session.getCriteriaBuilder();
-				CriteriaQuery<Address> query = builder.createQuery(Address.class);
-				Root<UserAccount> addressRoot = query.from(UserAccount.class);
-
-			} catch (Exception e) {
-				// TODO: handle exception
 			}
 		}
 	}

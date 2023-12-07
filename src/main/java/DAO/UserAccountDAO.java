@@ -17,7 +17,7 @@ import utils.HibernateUtil;
 
 
 public class UserAccountDAO {
-//	private static final Map<String, UserAccount> mapUsers = new HashMap<String, UserAccount>();
+	//	private static final Map<String, UserAccount> mapUsers = new HashMap<String, UserAccount>();
 	private static final SessionFactory factory = HibernateUtil.getSessionFactory();
 	/*
 	 * static { initUsers(); }
@@ -28,29 +28,29 @@ public class UserAccountDAO {
 			CriteriaBuilder builder = session.getCriteriaBuilder();
 			CriteriaQuery<UserAccount> query = builder.createQuery(UserAccount.class);
 			Root<UserAccount> root = query.from(UserAccount.class);
-			
+
 			query.select(root);
 			query.where(builder.equal(root.get("userID"), userID));
-			
+
 			UserAccount userAccount = session.createQuery(query).uniqueResult();
 			return userAccount.getShoppingCart();
 		}
 	}
-	
+
 	public UserAccount getUserAccount(int userID) {
 		try(Session session = factory.openSession()){
 			CriteriaBuilder builder = session.getCriteriaBuilder();
 			CriteriaQuery<UserAccount> query = builder.createQuery(UserAccount.class);
 			Root<UserAccount> root = query.from(UserAccount.class);
-			
+
 			query.select(root);
 			query.where(builder.equal(root.get("userID"), userID));
-			
+
 			UserAccount userAccount = session.createQuery(query).uniqueResult();
 			return userAccount;
 		}
 	}
-	
+
 	// Liệt kê danh sách các user
 	public List<UserAccount> listUserAccounts() {
 		try (Session session = factory.openSession()) {
@@ -103,14 +103,14 @@ public class UserAccountDAO {
 			List<UserAccount> userAccountsList = getUserQuery.getResultList();
 			// Kiểm tra xem danh sách có phần tử hay không
 			if (!userAccountsList.isEmpty()) {
-			    // Nếu có ít nhất một phần tử, lấy phần tử đầu tiên
-			    UserAccount userAccount = userAccountsList.get(0);
-			    session.close();
-			    return userAccount;
+				// Nếu có ít nhất một phần tử, lấy phần tử đầu tiên
+				UserAccount userAccount = userAccountsList.get(0);
+				session.close();
+				return userAccount;
 			} else {
-			    // Nếu danh sách trống, trả về null
-			    session.close();
-			    return null;
+				// Nếu danh sách trống, trả về null
+				session.close();
+				return null;
 			}
 		}
 	}
@@ -135,7 +135,7 @@ public class UserAccountDAO {
 	}
 
 	// Xoá 1 user ra khỏi hệ thông
-	public void deleteUser(String email) {
+	public void deleteUser(int userID) {
 		try (Session session = factory.openSession()) {
 			try {
 				session.getTransaction().begin();
@@ -143,7 +143,7 @@ public class UserAccountDAO {
 				CriteriaQuery<UserAccount> query = builder.createQuery(UserAccount.class);
 				Root<UserAccount> root = query.from(UserAccount.class);
 
-				Predicate condition = builder.equal(root.get("emailAddress"), email);
+				Predicate condition = builder.equal(root.get("userID"), userID);
 				query.where(condition);
 
 				Query<UserAccount> result = session.createQuery(query);
@@ -207,5 +207,5 @@ public class UserAccountDAO {
 		}
 	}
 
-	
+
 }
