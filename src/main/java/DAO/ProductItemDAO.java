@@ -1,6 +1,7 @@
 package DAO;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import java.util.Set;
 
@@ -14,26 +15,32 @@ import bean.ProductItem;
 import bean.VariationOption;
 import utils.HibernateUtil;
 
-
-
 public class ProductItemDAO {
-	private final static SessionFactory factory = HibernateUtil.getSessionFactory();
-	
-	public ProductItem getProductItem(int productItemID) {
-		try(Session session = factory.openSession()){
+    private final static SessionFactory factory = HibernateUtil.getSessionFactory();
+
+    public ProductItem getProductItem(int productItemID) {
+        try(Session session = factory.openSession()){
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<ProductItem> query = builder.createQuery(ProductItem.class);
+            Root<ProductItem> root = query.from(ProductItem.class);
+
+            Predicate condition = builder.equal(root.get("productItemID"), productItemID);
+            query.where(condition);
+            root.fetch("variationOptions", JoinType.LEFT);
+
             return session.get(ProductItem.class, productItemID);
-		}
-	}
-	
-	public boolean addProductItem(ProductItem newProductItem, int ProductID, String size, String color) {
-		try(Session session = factory.openSession()){
-			try {
-				session.getTransaction().begin();
-				
-				VariationOptionDAO variationOptionDAO = new VariationOptionDAO();
-				ProductDAO productDAO = new ProductDAO();
-				
-				Product product = productDAO.getProduct(productDAO.getProductbyID(ProductID).getName());
+        }
+    }
+
+    public boolean addProductItem(ProductItem newProductItem, int ProductID, String size, String color) {
+        try(Session session = factory.openSession()){
+            try {
+                session.getTransaction().begin();
+
+                VariationOptionDAO variationOptionDAO = new VariationOptionDAO();
+                ProductDAO productDAO = new ProductDAO();
+
+                Product product = productDAO.getProduct(productDAO.getProductbyID(ProductID).getName());
                 ProductItem oldProductItem = getProductItemsByConditions(ProductID, size, color);
                 if(oldProductItem != null){
                     int oldQuantity = oldProductItem.getQty_in_stock();
@@ -60,23 +67,22 @@ public class ProductItemDAO {
                     session.save(newProductItem);
                     session.saveOrUpdate(variationOptionColor);
                     session.saveOrUpdate(variationOptionSize);
-                    session.close();
                     System.out.println("New ProductItem ID: " + newProductItem.getProductItemID());
                 }
-				session.getTransaction().commit();
-				session.close();
-				return true;
+                session.getTransaction().commit();
+                session.close();
+                return true;
 
-			} catch (Exception e) {
-	            if (session.getTransaction() != null) {
-	                session.getTransaction().rollback();
-	            }
-	            e.printStackTrace();
-			}
+            } catch (Exception e) {
+                if (session.getTransaction() != null) {
+                    session.getTransaction().rollback();
+                }
+                e.printStackTrace();
+            }
 
-		}
+        }
         return false;
-	}
+    }
 
     public ProductItem getProductItemsByConditions(int productID, String size, String color) throws Exception{
         try(Session session = factory.openSession()) {
@@ -109,6 +115,23 @@ public class ProductItemDAO {
                 }
             }
             return null;
+        }
+    }
+
+    public List<ProductItem> getListProductItemByProductID(int productID) {
+        try(Session session = factory.openSession()){
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<ProductItem> query = builder.createQuery(ProductItem.class);
+            Root<ProductItem> root = query.from(ProductItem.class);
+
+            query.select(root);
+            Predicate condition = builder.equal(root.get("product").get("productID"), productID);
+            query.where(condition);
+            root.fetch("variationOptions", JoinType.LEFT).fetch("variation", JoinType.LEFT);
+            query.distinct(true);
+
+            List<ProductItem> productItemSet = session.createQuery(query).getResultList();
+            return productItemSet;
         }
     }
 }

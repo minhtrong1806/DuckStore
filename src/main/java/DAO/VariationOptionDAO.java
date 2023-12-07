@@ -1,15 +1,17 @@
 package DAO;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 
+import bean.ProductItem;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import bean.Variation;
 import bean.VariationOption;
 import utils.HibernateUtil;
+
+import java.util.List;
+import java.util.Set;
 
 public class VariationOptionDAO {
 	private final static SessionFactory factory = HibernateUtil.getSessionFactory();
@@ -24,23 +26,7 @@ public class VariationOptionDAO {
 
 		VariationOption variationOption = session.createQuery(query).uniqueResult();
 		return variationOption;
-		
 	}
-	
-//	public VariationOption getVariationOption(String value) {
-//		try (Session session = factory.openSession()) {
-//			CriteriaBuilder builder = session.getCriteriaBuilder();
-//			CriteriaQuery<VariationOption> query = builder.createQuery(VariationOption.class);
-//			Root<VariationOption> root = query.from(VariationOption.class);
-//
-//			query.select(root);
-//			query.where(builder.equal(builder.lower(root.get("value")), value.toLowerCase()));
-//
-//			VariationOption variationOption = session.createQuery(query).uniqueResult();
-//			Hibernate.initialize(variationOption.getProductItems());
-//			return variationOption;
-//		}
-//	}
 
 	public boolean addVariationOption(String input, String type) {
 		try (Session session = factory.openSession()) {
@@ -84,4 +70,23 @@ public class VariationOptionDAO {
 		Long count = session.createQuery(query).uniqueResult();
 		return count != null && count > 0;
 	}
+
+	public Set<VariationOption> getVariationOptionByProductID(int productItemID){
+		try(Session session = factory.openSession()){
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<ProductItem> query = builder.createQuery(ProductItem.class);
+			Root<ProductItem> root = query.from(ProductItem.class);
+
+			query.select(root);
+			Predicate condition = builder.equal(root.get("productItemID"), productItemID);
+			query.where(condition);
+			root.fetch("variationOptions", JoinType.LEFT).fetch("variation", JoinType.LEFT);
+			query.distinct(true);
+
+			ProductItem productItem = session.createQuery(query).uniqueResult();
+			Set<VariationOption> variationOptions = productItem.getVariationOptions();
+			return variationOptions;
+		}
+	}
+
 }

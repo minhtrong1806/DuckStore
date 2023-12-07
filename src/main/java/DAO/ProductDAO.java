@@ -35,7 +35,6 @@ public class ProductDAO {
             QueryBuilder mythQB = searchFactory.buildQueryBuilder().forEntity(Product.class).get();
             Query luceneQuery = mythQB.phrase().onField("name").sentence(name).createQuery();
             FullTextQuery fullTextQuery = fullTextSession.createFullTextQuery(luceneQuery, Product.class);
-			session.close();
             return fullTextQuery.getResultList();
         }
     }
