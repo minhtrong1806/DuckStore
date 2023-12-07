@@ -86,7 +86,7 @@
             <div class="row">
               <div class="col">
                 <div class="d-flex flex-row justify-content-center flex-wrap justify-content-xl-center">
-                  <div class="card dashboarh-card">
+                  <div class="card dashboard-card">
                     <div class="card-body pb-0">
                       <h2
                         class="font-weight-bold text-center text-primary d-flex d-xl-flex flex-grow-1 justify-content-center align-items-xl-center"
@@ -97,7 +97,7 @@
                       <p class="text-nowrap text-uppercase font-weight-bold text-center text-dark">customers</p>
                     </div>
                   </div>
-                  <div class="card dashboarh-card">
+                  <div class="card dashboard-card">
                     <div class="card-body pb-0">
                       <h2
                         class="font-weight-bold text-center text-danger d-flex d-xl-flex flex-grow-1 justify-content-center align-items-xl-center"
@@ -108,7 +108,7 @@
                       <p class="text-nowrap text-uppercase font-weight-bold text-center text-dark">total sale</p>
                     </div>
                   </div>
-                  <div class="card dashboarh-card">
+                  <div class="card dashboard-card">
                     <div class="card-body pb-0">
                       <h2
                         class="font-weight-bold text-center text-info d-flex d-xl-flex flex-grow-1 justify-content-center align-items-xl-center"
