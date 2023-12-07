@@ -127,7 +127,7 @@
 						                   <th>
 						                      <c:choose>
 																			<c:when test="${item.getProduct_image() != null}">
-																				   <img class="mr-2" width="auto" height="80" src="${pageContext.request.contextPath}/views/images/productItem/${item.getProduct_image()}"/> 
+																				   <img class="mr-2 avatar rounded" width="auto" height="80" src="${pageContext.request.contextPath}/views/images/productItem/${item.getProduct_image()}"/> 
 																			</c:when>
 																			<c:otherwise>
 																				   <img class="mr-2" width="auto" height="80" src="${pageContext.request.contextPath}/views/images/default_image.jpg"/>
@@ -212,7 +212,11 @@
 												<span style="color: rgb(84, 79, 90)">Image For Product</span>
 											</h5>
 											<div class="d-flex d-sm-flex justify-content-start align-items-center">
-												<div id="selectedBanner"></div>
+												<div id="selectedBanner">
+														<c:if test="${product.getProduct_image() != null}">
+															<img class="mr-2 avatar rounded" width="200px" height="auto" src="${pageContext.request.contextPath}/views/images/product/${product.getProduct_image()}"/>
+														</c:if>
+												</div>
 												<div class="bg-secondary d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center upload-img m-2 pointer">
 													<i class="fa fa-plus icon-add-image pointer"></i> 
 <%--productImage--%>			<input id="productImage" class="custom-file-input w-100 h-100" type="file" name="productImage"/>

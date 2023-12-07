@@ -102,15 +102,18 @@
 																		</div>
 																		<div>
 																			<label class="mt-3"><strong>SKU</strong></label>
-<%-- sku --%>													<input disabled="" value="<c:if test="${SKU != null}">${SKU}</c:if>" class="form-control" type="text" name="sku" />
+<%-- sku --%>													<input disabled="" value="<c:if test="${itemCurent.getSku() != null}">${itemCurent.getSku()}</c:if>" class="form-control" type="text" name="sku" />
 																		</div>
 																		<div>
 																			<label class="mt-3"><strong>Quantity</strong></label>
-<%-- qty_in_stock --%>								<input value="<c:if test="${qty_in_stock != null}">${qty_in_stock}</c:if>" class="form-control" type="number" id="qtyStock" name="qty_in_stock" placeholder="Quantity" min="0" step="1"/>
+																			<c:if test="${product.getName() != null}">
+								           							<input type="number" name="oldQty_in_stock" value="<c:out value='${itemCurent.getQty_in_stock()}' />" />
+								          						</c:if> 
+<%-- qty_in_stock --%>								<input value="<c:if test="${itemCurent.getQty_in_stock() != null}">${itemCurent.getQty_in_stock()}</c:if>" class="form-control" type="number" id="qtyStock" name="qty_in_stock" placeholder="Quantity" min="0" step="1"/>
 																		</div>
 																		<div>
 																			<label class="mt-3"><strong>Price</strong></label>
-<%-- price --%>												<input value="<c:if test="${price != null}">${price}</c:if>" class="form-control" type="number" name="price" placeholder="Price" min="0" step="1"/>
+<%-- price --%>												<input value="<c:if test="${itemCurent.getPrice() != null}">${itemCurent.getPrice()}</c:if>" class="form-control" type="number" name="price" placeholder="Price" min="0" step="1"/>
 																		</div>
 																</div>
 														<div class="card mb-3">
@@ -120,7 +123,11 @@
 																		Product Item</span>
 																</h5>
 																<div class="d-flex d-sm-flex justify-content-start align-items-center">
-																	<div id="selectedBanner"></div>
+																	<div id="selectedBanner">
+																			<c:if test="${itemCurent.getProduct_image() != null}">
+																				<img class="mr-2 avatar rounded" width="200px" height="auto" src="${pageContext.request.contextPath}/views/images/productItem/${itemCurent.getProduct_image()}"/> 
+																			</c:if>
+																	</div>
 																	<div class="bg-secondary d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center upload-img m-2 pointer">
 																		<i class="fa fa-plus icon-add-image pointer"></i>
 <%--productItemImage--%>						<input id="productItemImage" class="custom-file-input w-100 h-100" type="file" name="productItemImage" />

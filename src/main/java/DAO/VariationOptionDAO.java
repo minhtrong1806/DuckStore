@@ -71,7 +71,7 @@ public class VariationOptionDAO {
 		return count != null && count > 0;
 	}
 
-	public Set<VariationOption> getVariationOptionByProductID(int productItemID){
+	public Set<VariationOption> getVariationOptionByProductItemID(int productItemID){
 		try(Session session = factory.openSession()){
 			CriteriaBuilder builder = session.getCriteriaBuilder();
 			CriteriaQuery<ProductItem> query = builder.createQuery(ProductItem.class);

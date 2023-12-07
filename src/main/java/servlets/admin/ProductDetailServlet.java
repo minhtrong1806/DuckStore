@@ -22,6 +22,7 @@ import org.apache.tomcat.jakartaee.commons.lang3.Validate;
 import DAO.ProductCategoryDAO;
 import DAO.ProductDAO;
 import DAO.ProductItemDAO;
+import DAO.VariationOptionDAO;
 import bean.Product;
 import bean.ProductCategory;
 import bean.ProductItem;
@@ -75,6 +76,7 @@ public class ProductDetailServlet extends HttpServlet{
 	protected void showVariant(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		ProductItemDAO itemDAO = new ProductItemDAO();
+		VariationOptionDAO variationOptionDAO = new VariationOptionDAO();
 		String itemIdString = request.getParameter("itemId");
 		
 		int itemId = -1;
@@ -94,18 +96,20 @@ public class ProductDetailServlet extends HttpServlet{
 			ProductItem itemCurent = itemDAO.getProductItem(itemId);
 			String size = null;
 			String color = null;
-//			for(VariationOption variationOption:itemDao.getVariationOptionsById(itemId)) {
-//				if (variationOption.getVariation().getName() == "size") {
-//					size = variationOption.getValue();					
-//				}
-//				else {
-//					color = variationOption.getValue();
-//				}
-//			}
+			
+			for(VariationOption variationOption:variationOptionDAO.getVariationOptionByProductItemID(itemId)) {
+				if (variationOption.getVariation().getName().equals("size")) {
+					size = variationOption.getValue();
+				}
+				else {
+					color = variationOption.getValue();
+				}
+			}
 			
 			
 			request.setAttribute("size",size);
 			request.setAttribute("color",color);
+			request.setAttribute("itemCurent",itemCurent);
 			
 			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/admin/edit-variant.jsp");
 			dispatcher.forward(request, response);
