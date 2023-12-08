@@ -23,7 +23,7 @@ import javax.persistence.Table;
 public class VariationOption implements Serializable {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -34,14 +34,12 @@ public class VariationOption implements Serializable {
 
 	@Column(name = "value")
 	private String value;
-	
+
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "variation_id")
 	private Variation variation;
-	
-	@ManyToMany
-	@JoinTable(name = "product_configuration", 
-			joinColumns = @JoinColumn(name = "variation_option_id"), inverseJoinColumns = @JoinColumn(name = "product_item_id"))
+
+	@ManyToMany(mappedBy = "variationOptions")
 	private Set<ProductItem> productItems;
 
 	public VariationOption(String value, Variation variation, Set<ProductItem> productItems) {
@@ -93,7 +91,6 @@ public class VariationOption implements Serializable {
 		return serialVersionUID;
 	}
 
-	
-	
-}
 
+
+}

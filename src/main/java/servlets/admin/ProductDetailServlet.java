@@ -15,9 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
-import org.apache.tomcat.jakartaee.commons.lang3.Validate;
 
 import DAO.ProductCategoryDAO;
 import DAO.ProductDAO;
@@ -158,7 +156,4 @@ public class ProductDetailServlet extends HttpServlet{
 		return variationList;
 		
 	}
-
-
-
 }

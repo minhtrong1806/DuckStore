@@ -19,16 +19,16 @@ import utils.HibernateUtil;
 
 public class ProductCategoryDAO {
 	private final static SessionFactory factory = HibernateUtil.getSessionFactory();
-	
+
 	public ProductCategory getProductCategory(String productCategoryName) {
 		try (Session session = factory.openSession()){
 			CriteriaBuilder builder = session.getCriteriaBuilder();
 			CriteriaQuery<ProductCategory> query = builder.createQuery(ProductCategory.class);
 			Root<ProductCategory> root = query.from(ProductCategory.class);
-			
+
 			Predicate conditionPredicate = builder.equal(root.get("categoryName"), productCategoryName);
 			query.where(conditionPredicate);
-			
+
 			Query<ProductCategory> productCategoryQuery = session.createQuery(query);
 			ProductCategory productCategoryPickCategory = productCategoryQuery.uniqueResult();
 			session.close();
@@ -45,10 +45,11 @@ public class ProductCategoryDAO {
 			CriteriaBuilder builder = session.getCriteriaBuilder();
 			CriteriaQuery<ProductCategory> query = builder.createQuery(ProductCategory.class);
 			Root<ProductCategory> root = query.from(ProductCategory.class);
-			
+
 			//query.select(root);
 			query.where(builder.equal(root.get("productCategoryID"), productCategoryID));
-			
+			root.fetch("products", JoinType.LEFT);
+
 			ProductCategory productCategory = session.createQuery(query).uniqueResult();
 			return productCategory;
 		}
@@ -57,24 +58,24 @@ public class ProductCategoryDAO {
 		CriteriaBuilder builder = session.getCriteriaBuilder();
 		CriteriaQuery<Long> query = builder.createQuery(Long.class);
 		Root<ProductCategory> root = query.from(ProductCategory.class);
-		
+
 		query.select(builder.count(root));
 		query.where(builder.equal(builder.lower(root.get("categoryName")), nameProductCategory.toLowerCase()));
-		
+
 		Long count = session.createQuery(query).uniqueResult();
 		return count != null && count > 0;
 	}
-	
+
 	public boolean addProductCategogy(ProductCategory productCategory) {
 		try (Session session = factory.openSession()){
 			try {
 				session.getTransaction().begin();
-				
+
 				session.save(productCategory);
 				session.getTransaction().commit();
 				session.close();
 				return true;
-				
+
 			} catch (Exception e) {
 				if (session.getTransaction() != null) {
 					session.getTransaction().rollback();
@@ -84,13 +85,13 @@ public class ProductCategoryDAO {
 			return false;
 		}
 	}
-	
+
 	public List<ProductCategory> listProductCategories(){
 		try(Session session = factory.openSession()){
 			CriteriaBuilder builder = session.getCriteriaBuilder();
 			CriteriaQuery<ProductCategory> query = builder.createQuery(ProductCategory.class);
 			Root<ProductCategory> root = query.from(ProductCategory.class);
-			
+
 			query.select(root);
 			Query<ProductCategory> getProductCategory = session.createQuery(query);
 			List<ProductCategory> resultList = getProductCategory.getResultList();
@@ -98,21 +99,21 @@ public class ProductCategoryDAO {
 			return resultList;
 		}
 	}
-	
+
 	public void editProductCategory(String productCategoryName, String newProductCategoryName) {
 		try(Session session = factory.openSession()){
 			try {
 				session.getTransaction().begin();
-				
+
 				CriteriaBuilder builder = session.getCriteriaBuilder();
 				CriteriaQuery<ProductCategory> query = builder.createQuery(ProductCategory.class);
 				Root<ProductCategory> root = query.from(ProductCategory.class);
-				
+
 				Predicate conditionPredicate = builder.equal(root.get("categoryName"), productCategoryName);
 				query.where(conditionPredicate);
-				
+
 				ProductCategory productCategory = session.createQuery(query).uniqueResult();
-				
+
 				if(productCategory != null) {
 					if(newProductCategoryName != null) {
 						productCategory.setCategoryName(newProductCategoryName);
@@ -120,7 +121,7 @@ public class ProductCategoryDAO {
 					session.update(productCategory);
 				}
 				session.getTransaction().commit();
-				
+
 			} catch (Exception e) {
 				if (session.getTransaction() != null) {
 					session.getTransaction().rollback();
@@ -130,17 +131,17 @@ public class ProductCategoryDAO {
 			session.close();
 		}
 	}
-	
+
 	public Set<Product> getProductByCategory(String productCategoryName) {
 		try(Session session = factory.openSession()){
 			CriteriaBuilder builder = session.getCriteriaBuilder();
 			CriteriaQuery<ProductCategory> query = builder.createQuery(ProductCategory.class);
 			Root<ProductCategory> root = query.from(ProductCategory.class);
-			
+
 			Predicate conditionPredicate = builder.equal(root.get("categoryName"), productCategoryName);
 			query.where(conditionPredicate);
 			root.fetch("products", JoinType.LEFT);
-			
+
 			ProductCategory productCategory = session.createQuery(query).uniqueResult();
 			session.close();
 			if(productCategory != null) {
@@ -149,5 +150,24 @@ public class ProductCategoryDAO {
 			}
 			return null;
 		}
-	}	
+	}
+
+	public boolean deteleCategory(int productCategoryID){
+		try(Session session = factory.openSession()){
+			session.getTransaction().begin();
+			ProductCategory productCategory = getProductCategorybyID(productCategoryID);
+			if(productCategory.getProducts().size() == 0){
+				session.delete(productCategory);
+				System.out.println("Successfully deleted product category");
+				session.getTransaction().commit();
+				session.close();
+				return true;
+			}
+			else {
+				System.out.println("This product category does exist product");
+				session.close();
+				return false;
+			}
+		}
+	}
 }
