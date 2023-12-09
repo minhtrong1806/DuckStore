@@ -1,6 +1,7 @@
 package bean;
 
 import org.hibernate.search.annotations.Field;
+
 import org.hibernate.search.annotations.Indexed;
 
 import java.io.Serializable;

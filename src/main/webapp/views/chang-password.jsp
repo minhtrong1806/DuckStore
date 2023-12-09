@@ -11,10 +11,16 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/views/vendor/bootstrap/css/bootstrap.min.css" />
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/views/fonts/font-awesome-4.7.0/css/font-awesome.min.css"
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="${pageContext.request.contextPath}/views/fonts/font-awesome-4.7.0/css/font-awesome.min.css"
     />
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/views/fonts/iconic/css/material-design-iconic-font.min.css"
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="${pageContext.request.contextPath}/views/fonts/iconic/css/material-design-iconic-font.min.css"
     />
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/views/fonts/linearicons-v1.0.0/icon-font.min.css" />
@@ -188,20 +194,29 @@
 																Trong</h4>
 														<div class="border-top">
 																<div class="list-group">
-																		<a class="font-weight-bold list-group-item list-group-item-action border-0 mt-5 active"
-																				href="#" data-toggle="list">Info</a>
-																		<a class="font-weight-bold list-group-item list-group-item-action border-0"
-																				href="#" data-toggle="list">Address Book</a>
-																		<a  class="font-weight-bold list-group-item list-group-item-action border-0"
-																				href="#" data-toggle="list">Change password</a>
-																		<a  class="font-weight-bold list-group-item list-group-item-action border-0 mb-5"
-																				href="#" data-toggle="list">History</a>
+																		<a
+																				class="font-weight-bold list-group-item list-group-item-action border-0 mt-5 active"
+																				href="#info"
+																				data-toggle="list">Info</a><a
+																				class="font-weight-bold list-group-item list-group-item-action border-0"
+																				href="#address-book"
+																				data-toggle="list">Address Book</a><a
+																				class="font-weight-bold list-group-item list-group-item-action border-0"
+																				href="#change-pass"
+																				data-toggle="list">Change password</a><a
+																				class="font-weight-bold list-group-item list-group-item-action border-0 mb-5"
+																				href="#history"
+																				data-toggle="list">History</a>
 																</div>
 														</div>
 												</div>
 										</div>
 								</div>
 								<div class="col">
+										<div class="tab-content">
+												<div
+														id="info"
+														class="tab-pane fade active show">
 														<div class="card">
 																<div class="m-all-40">
 																		<h5 class="text-left mtext-103 cl2">Your Info</h5>
@@ -222,8 +237,223 @@
 																				<p class="m-t-20">HCM</p>
 																		</div>
 																</div>
-																<div class="d-xl-flex justify-content-xl-end stext-108 px-4 mb-2">
-																		<a href="#" data-toggle="list">Edit</a>
+																<div
+																		class="d-xl-flex justify-content-xl-end stext-108 px-4 mb-2">
+																		<a
+																				href="#edit-info"
+																				data-toggle="list">Edit</a>
+																</div>
+														</div>
+												</div>
+												<div
+														id="edit-info"
+														class="tab-pane fade">
+														<div class="card">
+																<div class="m-all-40">
+																		<h5 class="text-left mtext-103 cl2">Edit Info</h5>
+																</div>
+																<div
+																		class="card-body d-flex flex-row justify-content-xl-start border-top mtext-107">
+																		<div class="col-xl-4">
+																				<p class="m-t-35">Name:</p>
+																				<p class="m-t-30">Email:</p>
+																				<p class="m-t-30">Phone number:</p>
+																				<p class="m-t-30">Defautl address:</p>
+																		</div>
+																		<div class="col-xl-8 align-items-xl-start">
+																				<form>
+																						<input
+																								class="form-control form-control m-t-30"
+																								type="text"
+																								name="name"
+																								value="Minh Trong"><input
+																								class="form-control form-control m-t-20"
+																								type="text"
+																								name="email"
+																								inputmode="email"
+																								value="minhtrong@gmail.com"><input
+																								class="form-control form-control m-t-20"
+																								type="text"
+																								inputmode="tel"
+																								name="phoneNumber"
+																								value="0123456"><select
+																								class="form-control m-t-20">
+																								<optgroup label="Adresss">
+																										<option
+																												value="12"
+																												selected="">HCM</option>
+																										<option value="13">Ca Mau</option>
+																										<option value="14">BRVT</option>
+																								</optgroup>
+																						</select>
+																						<div class="d-xl-flex justify-content-xl-end">
+																								<button
+																										class="btn btn-primary btn-sm my-3"
+																										type="submit">Save</button>
+																						</div>
+																				</form>
+																		</div>
+																</div>
+																<div class="d-xl-flex justify-content-xl-end px-4 mb-2"></div>
+														</div>
+												</div>
+												<div
+														id="address-book"
+														class="tab-pane fade">
+														<div class="card">
+																<div
+																		class="d-flex justify-content-between mtext-103 cl2 m-all-40">
+																		<h5 class="d-inline ">Address Book</h5>
+																		<a
+																				class="btn btn-link"
+																				role="button"
+																				data-toggle="list"
+																				href="#add-address">Add</a>
+																</div>
+																<div class="card-body d-flex flex-wrap border-top">
+																		<div class="card w-50">
+																				<div class="card-body">
+																						<div class="d-flex justify-content-between">
+																								<h6 class="text-muted mb-2 d-inline">Default</h6>
+																								<a href="#">
+																										<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-x-lg">
+                                                        <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"></path> 
+                                                        <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"></path>
+                                                    </svg>
+                                                </a>
+																						</div>
+																						<p class="card-text">HCM</p>
+																						<div class="d-xl-flex justify-content-xl-end"></div>
+																				</div>
+																		</div>
+																		<div class="card w-50">
+																				<div class="card-body">
+																						<div class="d-flex justify-content-between">
+																								<h6 class="text-muted mb-2 d-inline">Default</h6>
+																								<a href="#"><svg
+																												xmlns="http://www.w3.org/2000/svg"
+																												width="1em"
+																												height="1em"
+																												fill="currentColor"
+																												viewBox="0 0 16 16"
+																												class="bi bi-x-lg">
+                                                        <path
+																														fill-rule="evenodd"
+																														d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"></path>
+                                                        <path
+																														fill-rule="evenodd"
+																														d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"></path>
+                                                    </svg></a>
+																						</div>
+																						<p class="card-text">HCM</p>
+																						<div class="d-xl-flex justify-content-xl-end"></div>
+																				</div>
+																		</div>
+																</div>
+														</div>
+												</div>
+												<div
+														id="add-address"
+														class="tab-pane fade">
+														<div class="card">
+																<div
+																		class="d-flex justify-content-between mtext-103 cl2 m-all-40">
+																		<h5 class="d-inline">Add Address</h5>
+																</div>
+																<div class="card-body border-top mtext-107">
+																		<form>
+																				<div class="form-group">
+											<label for="address"><strong>City</strong></label>
+<%--city--%>					<input value="<c:if test="${city != null }">${city }</c:if>" class="form-control" type="text" id="address" placeholder="City" name="city">
+										</div>
+										<div class="form-group">
+											<label for="address"><strong>District</strong></label>
+<%--district--%>			<input value="<c:if test="${district != null }">${district }</c:if>" class="form-control" type="text" id="address-3" placeholder="District" name="district">
+										</div>
+										<div class="form-group">
+											<label for="address"><strong>Address Line</strong></label>
+<%--addressLine--%>		<input value="<c:if test="${addressLine != null }">${addressLine }</c:if>" class="form-control" type="text" id="address-2" placeholder="Address Line" name="addressLine">
+										</div>
+										<div class="form-group">
+											<label for="address"><strong>Unit Number</strong></label>
+<%--unitNumber--%>		<input value="<c:if test="${unitNumber != null }">${unitNumber }</c:if>" class="form-control" type="text" id="address-1" placeholder="Unit Number" name="unitNumber">
+										</div>
+																				<div class="d-xl-flex justify-content-xl-end mt-3">
+																						<button
+																								class="btn btn-primary btn-sm"
+																								type="submit">Save</button>
+																				</div>
+																		</form>
+																</div>
+														</div>
+												</div>
+												<div
+														id="change-pass"
+														class="tab-pane fade">
+														<div class="card">
+																<div class="mtext-103 cl2 m-all-40">
+																		<h5>Change password</h5>
+																</div>
+																<div class="card-body border-top">
+																		<form class="d-flex flex-column">
+																				<div class="d-flex align-items-xl-center m-b-30">
+																						<label class="w-25 mtext-107">Old
+																								password:</label><input
+																								class="form-control"
+																								type="password"
+																								placeholder="Old Password"
+																								name="oldPassword">
+																				</div>
+																				<div class="d-flex align-items-xl-center m-b-30">
+																						<label class="w-25 mtext-107">New
+																								password:</label><input
+																								class="form-control"
+																								type="password"
+																								placeholder="New Password"
+																								name="newPassword">
+																				</div>
+																				<div class="d-flex align-items-xl-center m-b-30">
+																						<label class="w-25 mtext-107">Repeat:</label><input
+																								class="form-control"
+																								type="password"
+																								placeholder="Repeat Password"
+																								name="repeatPassword">
+																				</div>
+																				<button
+																						class="btn btn-link align-self-end"
+																						type="submit">Save</button>
+																		</form>
+																</div>
+														</div>
+												</div>
+												<div
+														id="history"
+														class="tab-pane fade">
+														<div class="card">
+																<div class="m-all-40 mtext-103 cl2">
+																		<h5>History</h5>
+																</div>
+																<div class="card-body border-top">
+																		<div class="table-responsive">
+																				<table class="table">
+																						<thead>
+																								<tr>
+																										<th>Id</th>
+																										<th>Date</th>
+																										<th>Price</th>
+																										<th>Status</th>
+																								</tr>
+																						</thead>
+																						<tbody>
+																								<tr>
+																										<td>1</td>
+																										<td>2023</td>
+																										<td>1000</td>
+																										<td>Pending</td>
+																								</tr>
+																						</tbody>
+																				</table>
+																		</div>
 																</div>
 														</div>
 												</div>

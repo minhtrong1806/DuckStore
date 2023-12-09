@@ -11,10 +11,16 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/views/vendor/bootstrap/css/bootstrap.min.css" />
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/views/fonts/font-awesome-4.7.0/css/font-awesome.min.css"
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="${pageContext.request.contextPath}/views/fonts/font-awesome-4.7.0/css/font-awesome.min.css"
     />
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/views/fonts/iconic/css/material-design-iconic-font.min.css"
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="${pageContext.request.contextPath}/views/fonts/iconic/css/material-design-iconic-font.min.css"
     />
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/views/fonts/linearicons-v1.0.0/icon-font.min.css" />
@@ -188,10 +194,10 @@
 																Trong</h4>
 														<div class="border-top">
 																<div class="list-group">
-																		<a class="font-weight-bold list-group-item list-group-item-action border-0 mt-5 active"
+																		<a class="font-weight-bold list-group-item list-group-item-action border-0 mt-5"
 																				href="#" data-toggle="list">Info</a>
-																		<a class="font-weight-bold list-group-item list-group-item-action border-0"
-																				href="#" data-toggle="list">Address Book</a>
+																		<a class="font-weight-bold list-group-item list-group-item-action border-0 active"
+																				href="#" data-toggle="list">Address</a>
 																		<a  class="font-weight-bold list-group-item list-group-item-action border-0"
 																				href="#" data-toggle="list">Change password</a>
 																		<a  class="font-weight-bold list-group-item list-group-item-action border-0 mb-5"
@@ -202,31 +208,55 @@
 										</div>
 								</div>
 								<div class="col">
+										<div class="tab-content">
 														<div class="card">
-																<div class="m-all-40">
-																		<h5 class="text-left mtext-103 cl2">Your Info</h5>
-																</div>
 																<div
-																		class="card-body d-flex flex-row justify-content-xl-start border-top">
-																		<div class="col-xl-4 mtext-107">
-																				<p class="m-t-30">Name:</p>
-																				<p class="m-t-20">Email:</p>
-																				<p class="m-t-20">Phone number:</p>
-																				<p class="m-t-20">Defautl address:</p>
-																		</div>
-																		<div
-																				class="col-xl-8 d-flex flex-column align-items-xl-start mtext-107">
-																				<p class="m-t-30">Minh Trong</p>
-																				<p class="m-t-20">minhtrong@gmail.com</p>
-																				<p class="m-t-20">0123456789</p>
-																				<p class="m-t-20">HCM</p>
-																		</div>
+																		class="d-flex justify-content-between mtext-103 cl2 m-all-40">
+																		<h5 class="d-inline ">Address Book</h5>
+																		<a class="btn btn-link" role="button" data-toggle="list" href="#add-address">Add</a>
 																</div>
-																<div class="d-xl-flex justify-content-xl-end stext-108 px-4 mb-2">
-																		<a href="#" data-toggle="list">Edit</a>
+																<div class="card-body d-flex flex-wrap border-top">
+																		<div class="card w-50">	
+																				<div class="card-body">
+																						<div class="d-flex justify-content-between">
+																								<h6 class="text-muted mb-2 d-inline">Default</h6>
+																								<a href="#">
+																										<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-x-lg">
+                                                        <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"></path> 
+                                                        <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"></path>
+                                                    </svg>
+                                                </a>
+																						</div>
+																						<p class="card-text">HCM</p>
+																						<div class="d-xl-flex justify-content-xl-end"></div>
+																				</div>
+																		</div>
+																		<div class="card w-50">
+																				<div class="card-body">
+																						<div class="d-flex justify-content-between">
+																								<h6 class="text-muted mb-2 d-inline">Default</h6>
+																								<a href="#"><svg
+																												xmlns="http://www.w3.org/2000/svg"
+																												width="1em"
+																												height="1em"
+																												fill="currentColor"
+																												viewBox="0 0 16 16"
+																												class="bi bi-x-lg">
+                                                        <path
+																														fill-rule="evenodd"
+																														d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"></path>
+                                                        <path
+																														fill-rule="evenodd"
+																														d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"></path>
+                                                    </svg></a>
+																						</div>
+																						<p class="card-text">HCM</p>
+																						<div class="d-xl-flex justify-content-xl-end"></div>
+																				</div>
+																		</div>
 																</div>
 														</div>
-												</div>
+									
 										</div>
 								</div>
 						</div>

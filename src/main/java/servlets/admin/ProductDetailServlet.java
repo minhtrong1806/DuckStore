@@ -2,6 +2,7 @@ package servlets.admin;
 
 import jakarta.servlet.RequestDispatcher;
 
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,13 +12,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
-import org.apache.tomcat.jakartaee.commons.lang3.Validate;
 
 import DAO.ProductCategoryDAO;
 import DAO.ProductDAO;
@@ -26,7 +23,6 @@ import DAO.VariationOptionDAO;
 import bean.Product;
 import bean.ProductCategory;
 import bean.ProductItem;
-import bean.Variation;
 import bean.VariationOption;
 
 @WebServlet({"/admin-product-detail",
