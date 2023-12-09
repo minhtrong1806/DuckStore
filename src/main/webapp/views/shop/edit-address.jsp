@@ -195,69 +195,43 @@
 														<div class="border-top">
 																<div class="list-group">
 																		<a class="font-weight-bold list-group-item list-group-item-action border-0 mt-5"
-																				href="#" data-toggle="list">Info</a>
+																				href="my-account">Info</a>
 																		<a class="font-weight-bold list-group-item list-group-item-action border-0 active"
-																				href="#" data-toggle="list">Address</a>
+																				href="address">Address</a>
 																		<a  class="font-weight-bold list-group-item list-group-item-action border-0"
-																				href="#" data-toggle="list">Change password</a>
+																				href="change-password">Change password</a>
 																		<a  class="font-weight-bold list-group-item list-group-item-action border-0 mb-5"
-																				href="#" data-toggle="list">History</a>
+																				href="history">History</a>
 																</div>
 														</div>
 												</div>
 										</div>
 								</div>
 								<div class="col">
-										<div class="tab-content">
-														<div class="card">
-																<div
-																		class="d-flex justify-content-between mtext-103 cl2 m-all-40">
-																		<h5 class="d-inline ">Address Book</h5>
-																		<a class="btn btn-link" role="button" data-toggle="list" href="#add-address">Add</a>
-																</div>
-																<div class="card-body d-flex flex-wrap border-top">
-																		<div class="card w-50">	
-																				<div class="card-body">
-																						<div class="d-flex justify-content-between">
-																								<h6 class="text-muted mb-2 d-inline">Default</h6>
-																								<a href="#">
-																										<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-x-lg">
-                                                        <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"></path> 
-                                                        <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"></path>
-                                                    </svg>
-                                                </a>
-																						</div>
-																						<p class="card-text">HCM</p>
-																						<div class="d-xl-flex justify-content-xl-end"></div>
-																				</div>
-																		</div>
-																		<div class="card w-50">
-																				<div class="card-body">
-																						<div class="d-flex justify-content-between">
-																								<h6 class="text-muted mb-2 d-inline">Default</h6>
-																								<a href="#"><svg
-																												xmlns="http://www.w3.org/2000/svg"
-																												width="1em"
-																												height="1em"
-																												fill="currentColor"
-																												viewBox="0 0 16 16"
-																												class="bi bi-x-lg">
-                                                        <path
-																														fill-rule="evenodd"
-																														d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"></path>
-                                                        <path
-																														fill-rule="evenodd"
-																														d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"></path>
-                                                    </svg></a>
-																						</div>
-																						<p class="card-text">HCM</p>
-																						<div class="d-xl-flex justify-content-xl-end"></div>
-																				</div>
-																		</div>
-																</div>
-														</div>
-									
+										<%--address content--%>
+								<div class="card shadow">
+									<div class="card-header py-3">
+										<p class="text-primary m-0 font-weight-bold">Address</p>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label for="address"><strong>City</strong></label>
+<%--city--%>					<input value="<c:if test="${city != null }">${city }</c:if>" class="form-control" type="text" id="address" placeholder="City" name="city">
 										</div>
+										<div class="form-group">
+											<label for="address"><strong>District</strong></label>
+<%--district--%>			<input value="<c:if test="${district != null }">${district }</c:if>" class="form-control" type="text" id="address-3" placeholder="District" name="district">
+										</div>
+										<div class="form-group">
+											<label for="address"><strong>Address Line</strong></label>
+<%--addressLine--%>		<input value="<c:if test="${addressLine != null }">${addressLine }</c:if>" class="form-control" type="text" id="address-2" placeholder="Address Line" name="addressLine">
+										</div>
+										<div class="form-group">
+											<label for="address"><strong>Unit Number</strong></label>
+<%--unitNumber--%>		<input value="<c:if test="${unitNumber != null }">${unitNumber }</c:if>" class="form-control" type="text" id="address-1" placeholder="Unit Number" name="unitNumber">
+										</div>
+									</div>
+								</div>
 								</div>
 						</div>
 				</div>

@@ -18,7 +18,7 @@ public class ProductDetailServlet extends HttpServlet{
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/product-detail.jsp");
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/shop/product-detail.jsp");
 		
 		dispatcher.forward(request, response);
 	}

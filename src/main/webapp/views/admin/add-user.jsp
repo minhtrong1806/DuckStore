@@ -193,30 +193,6 @@
 											</div>
 									</div>
 								</div>
-<%--address content--%>
-								<div class="card shadow">
-									<div class="card-header py-3">
-										<p class="text-primary m-0 font-weight-bold">Address</p>
-									</div>
-									<div class="card-body">
-										<div class="form-group">
-											<label for="address"><strong>City</strong></label>
-<%--city--%>					<input value="<c:if test="${city != null }">${city }</c:if>" class="form-control" type="text" id="address" placeholder="City" name="city">
-										</div>
-										<div class="form-group">
-											<label for="address"><strong>District</strong></label>
-<%--district--%>			<input value="<c:if test="${district != null }">${district }</c:if>" class="form-control" type="text" id="address-3" placeholder="District" name="district">
-										</div>
-										<div class="form-group">
-											<label for="address"><strong>Address Line</strong></label>
-<%--addressLine--%>		<input value="<c:if test="${addressLine != null }">${addressLine }</c:if>" class="form-control" type="text" id="address-2" placeholder="Address Line" name="addressLine">
-										</div>
-										<div class="form-group">
-											<label for="address"><strong>Unit Number</strong></label>
-<%--unitNumber--%>		<input value="<c:if test="${unitNumber != null }">${unitNumber }</c:if>" class="form-control" type="text" id="address-1" placeholder="Unit Number" name="unitNumber">
-										</div>
-									</div>
-								</div>
 							</div>
 						</div>
 					</form>

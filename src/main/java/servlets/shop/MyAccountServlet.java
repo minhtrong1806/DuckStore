@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet({"/my-account"})
+@WebServlet({"/info"})
 public class MyAccountServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
     
@@ -18,8 +18,7 @@ public class MyAccountServlet extends HttpServlet{
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/my-account.jsp");
-		
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/shop/info.jsp");	
 		dispatcher.forward(request, response);
 	}
 

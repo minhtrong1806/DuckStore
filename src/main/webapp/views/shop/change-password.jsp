@@ -68,7 +68,7 @@
             <div class="menu-desktop">
               <ul class="main-menu">
                 <li><a href="home">Home</a></li>
-                <li class="active-menu"><a href="shop">Shop</a></li>
+                <li><a href="shop">Shop</a></li>
                 <li><a href="about">About</a></li>
                 <li><a href="contact">Contact</a></li>
               </ul>
@@ -176,10 +176,10 @@
     <!-- breadcrumb -->
     <div class="container">
       <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-        <a href="home" class="stext-109 cl8 hov-cl1 trans-04">
-          Home <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+        <a href="info" class="stext-109 cl8 hov-cl1 trans-04">
+          My Account <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
         </a>
-        <span class="stext-109 cl4"> My Account </span>
+        <span class="stext-109 cl4"> Change Password </span>
       </div>
     </div>
     <!-- My Account -->
@@ -195,272 +195,70 @@
 														<div class="border-top">
 																<div class="list-group">
 																		<a
-																				class="font-weight-bold list-group-item list-group-item-action border-0 mt-5 active"
-																				href="#info"
-																				data-toggle="list">Info</a><a
+																				class="font-weight-bold list-group-item list-group-item-action border-0 mt-5"
+																				href="info">Info</a><a
 																				class="font-weight-bold list-group-item list-group-item-action border-0"
-																				href="#address-book"
-																				data-toggle="list">Address Book</a><a
-																				class="font-weight-bold list-group-item list-group-item-action border-0"
-																				href="#change-pass"
-																				data-toggle="list">Change password</a><a
+																				href="address">Address Book</a><a
+																				class="font-weight-bold list-group-item list-group-item-action border-0 active"
+																				href="change-password">Change password</a><a
 																				class="font-weight-bold list-group-item list-group-item-action border-0 mb-5"
-																				href="#history"
-																				data-toggle="list">History</a>
+																				href="history">History</a>
 																</div>
 														</div>
 												</div>
 										</div>
 								</div>
 								<div class="col">
-										<div class="tab-content">
-												<div
-														id="info"
-														class="tab-pane fade active show">
-														<div class="card">
-																<div class="m-all-40">
-																		<h5 class="text-left mtext-103 cl2">Your Info</h5>
-																</div>
-																<div
-																		class="card-body d-flex flex-row justify-content-xl-start border-top">
-																		<div class="col-xl-4 mtext-107">
-																				<p class="m-t-30">Name:</p>
-																				<p class="m-t-20">Email:</p>
-																				<p class="m-t-20">Phone number:</p>
-																				<p class="m-t-20">Defautl address:</p>
-																		</div>
-																		<div
-																				class="col-xl-8 d-flex flex-column align-items-xl-start mtext-107">
-																				<p class="m-t-30">Minh Trong</p>
-																				<p class="m-t-20">minhtrong@gmail.com</p>
-																				<p class="m-t-20">0123456789</p>
-																				<p class="m-t-20">HCM</p>
-																		</div>
-																</div>
-																<div
-																		class="d-xl-flex justify-content-xl-end stext-108 px-4 mb-2">
-																		<a
-																				href="#edit-info"
-																				data-toggle="list">Edit</a>
-																</div>
+									<form action="">
+										<div class="card">
+											<div class="m-all-40">
+												<h5 class="text-left mtext-103 cl2">Edit Your Info</h5>
+											</div>
+											<div class="card-body border-top">
+												<div class="form-row">
+													<div class="col">
+														<div class="form-group w-100">
+															<label for="username"><strong>Old Password</strong></label> 
+															<div class="d-flex justify-content-between">
+																	<input value="<c:if test="${userName != null }">${userName }</c:if>"
+																		class="form-control size-121" type="password" id="OldPassword"
+																		placeholder="Old Password" name="oldPassword">
+																	<button class="btn btn-dark" type="button" onclick="togglePassword('OldPassword')">Show</button>
+															</div>
+														
 														</div>
-												</div>
-												<div
-														id="edit-info"
-														class="tab-pane fade">
-														<div class="card">
-																<div class="m-all-40">
-																		<h5 class="text-left mtext-103 cl2">Edit Info</h5>
-																</div>
-																<div
-																		class="card-body d-flex flex-row justify-content-xl-start border-top mtext-107">
-																		<div class="col-xl-4">
-																				<p class="m-t-35">Name:</p>
-																				<p class="m-t-30">Email:</p>
-																				<p class="m-t-30">Phone number:</p>
-																				<p class="m-t-30">Defautl address:</p>
-																		</div>
-																		<div class="col-xl-8 align-items-xl-start">
-																				<form>
-																						<input
-																								class="form-control form-control m-t-30"
-																								type="text"
-																								name="name"
-																								value="Minh Trong"><input
-																								class="form-control form-control m-t-20"
-																								type="text"
-																								name="email"
-																								inputmode="email"
-																								value="minhtrong@gmail.com"><input
-																								class="form-control form-control m-t-20"
-																								type="text"
-																								inputmode="tel"
-																								name="phoneNumber"
-																								value="0123456"><select
-																								class="form-control m-t-20">
-																								<optgroup label="Adresss">
-																										<option
-																												value="12"
-																												selected="">HCM</option>
-																										<option value="13">Ca Mau</option>
-																										<option value="14">BRVT</option>
-																								</optgroup>
-																						</select>
-																						<div class="d-xl-flex justify-content-xl-end">
-																								<button
-																										class="btn btn-primary btn-sm my-3"
-																										type="submit">Save</button>
-																						</div>
-																				</form>
-																		</div>
-																</div>
-																<div class="d-xl-flex justify-content-xl-end px-4 mb-2"></div>
+														<div class="form-group w-100 ">
+															<label class="m-t-10" for="email"><strong>New Password</strong></label> 
+															<div class="d-flex justify-content-between">
+																	<input value="<c:if test="${emailAddress != null }">${emailAddress }</c:if>"
+																		class="form-control size-121" type="password" id="NewPassword"
+																		placeholder="New Password" name="newPassword">
+																	<button class="btn btn-dark" type="button" onclick="togglePassword('NewPassword')">Show</button>
+															</div>
+															
 														</div>
-												</div>
-												<div
-														id="address-book"
-														class="tab-pane fade">
-														<div class="card">
-																<div
-																		class="d-flex justify-content-between mtext-103 cl2 m-all-40">
-																		<h5 class="d-inline ">Address Book</h5>
-																		<a
-																				class="btn btn-link"
-																				role="button"
-																				data-toggle="list"
-																				href="#add-address">Add</a>
-																</div>
-																<div class="card-body d-flex flex-wrap border-top">
-																		<div class="card w-50">
-																				<div class="card-body">
-																						<div class="d-flex justify-content-between">
-																								<h6 class="text-muted mb-2 d-inline">Default</h6>
-																								<a href="#">
-																										<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-x-lg">
-                                                        <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"></path> 
-                                                        <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"></path>
-                                                    </svg>
-                                                </a>
-																						</div>
-																						<p class="card-text">HCM</p>
-																						<div class="d-xl-flex justify-content-xl-end"></div>
-																				</div>
-																		</div>
-																		<div class="card w-50">
-																				<div class="card-body">
-																						<div class="d-flex justify-content-between">
-																								<h6 class="text-muted mb-2 d-inline">Default</h6>
-																								<a href="#"><svg
-																												xmlns="http://www.w3.org/2000/svg"
-																												width="1em"
-																												height="1em"
-																												fill="currentColor"
-																												viewBox="0 0 16 16"
-																												class="bi bi-x-lg">
-                                                        <path
-																														fill-rule="evenodd"
-																														d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"></path>
-                                                        <path
-																														fill-rule="evenodd"
-																														d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"></path>
-                                                    </svg></a>
-																						</div>
-																						<p class="card-text">HCM</p>
-																						<div class="d-xl-flex justify-content-xl-end"></div>
-																				</div>
-																		</div>
-																</div>
+														<div class="form-group w-100 ">
+															<label class="m-t-10" for="email"><strong>Repeat Password</strong></label> 
+															<div class="d-flex justify-content-between">
+																	<input value="<c:if test="${emailAddress != null }">${emailAddress }</c:if>"
+																		class="form-control size-121" type="password" id="RepeatPassword"
+																		placeholder="Repeat Password" name="repeatPassword">
+																	<button class="btn btn-dark" type="button" onclick="togglePassword('RepeatPassword')">Show</button>
+															</div>
 														</div>
+													</div>
 												</div>
-												<div
-														id="add-address"
-														class="tab-pane fade">
-														<div class="card">
-																<div
-																		class="d-flex justify-content-between mtext-103 cl2 m-all-40">
-																		<h5 class="d-inline">Add Address</h5>
-																</div>
-																<div class="card-body border-top mtext-107">
-																		<form>
-																				<div class="form-group">
-											<label for="address"><strong>City</strong></label>
-<%--city--%>					<input value="<c:if test="${city != null }">${city }</c:if>" class="form-control" type="text" id="address" placeholder="City" name="city">
+											</div>
+											<div class="d-xl-flex stext-108 px-4 mb-2">
+												<button
+													class="flex-c-m stext-101 cl0 size-104 bg1 bor1 hov-btn1 p-lr-15 trans-04"
+													type="submit">Save</button>
+											</div>
 										</div>
-										<div class="form-group">
-											<label for="address"><strong>District</strong></label>
-<%--district--%>			<input value="<c:if test="${district != null }">${district }</c:if>" class="form-control" type="text" id="address-3" placeholder="District" name="district">
-										</div>
-										<div class="form-group">
-											<label for="address"><strong>Address Line</strong></label>
-<%--addressLine--%>		<input value="<c:if test="${addressLine != null }">${addressLine }</c:if>" class="form-control" type="text" id="address-2" placeholder="Address Line" name="addressLine">
-										</div>
-										<div class="form-group">
-											<label for="address"><strong>Unit Number</strong></label>
-<%--unitNumber--%>		<input value="<c:if test="${unitNumber != null }">${unitNumber }</c:if>" class="form-control" type="text" id="address-1" placeholder="Unit Number" name="unitNumber">
-										</div>
-																				<div class="d-xl-flex justify-content-xl-end mt-3">
-																						<button
-																								class="btn btn-primary btn-sm"
-																								type="submit">Save</button>
-																				</div>
-																		</form>
-																</div>
-														</div>
-												</div>
-												<div
-														id="change-pass"
-														class="tab-pane fade">
-														<div class="card">
-																<div class="mtext-103 cl2 m-all-40">
-																		<h5>Change password</h5>
-																</div>
-																<div class="card-body border-top">
-																		<form class="d-flex flex-column">
-																				<div class="d-flex align-items-xl-center m-b-30">
-																						<label class="w-25 mtext-107">Old
-																								password:</label><input
-																								class="form-control"
-																								type="password"
-																								placeholder="Old Password"
-																								name="oldPassword">
-																				</div>
-																				<div class="d-flex align-items-xl-center m-b-30">
-																						<label class="w-25 mtext-107">New
-																								password:</label><input
-																								class="form-control"
-																								type="password"
-																								placeholder="New Password"
-																								name="newPassword">
-																				</div>
-																				<div class="d-flex align-items-xl-center m-b-30">
-																						<label class="w-25 mtext-107">Repeat:</label><input
-																								class="form-control"
-																								type="password"
-																								placeholder="Repeat Password"
-																								name="repeatPassword">
-																				</div>
-																				<button
-																						class="btn btn-link align-self-end"
-																						type="submit">Save</button>
-																		</form>
-																</div>
-														</div>
-												</div>
-												<div
-														id="history"
-														class="tab-pane fade">
-														<div class="card">
-																<div class="m-all-40 mtext-103 cl2">
-																		<h5>History</h5>
-																</div>
-																<div class="card-body border-top">
-																		<div class="table-responsive">
-																				<table class="table">
-																						<thead>
-																								<tr>
-																										<th>Id</th>
-																										<th>Date</th>
-																										<th>Price</th>
-																										<th>Status</th>
-																								</tr>
-																						</thead>
-																						<tbody>
-																								<tr>
-																										<td>1</td>
-																										<td>2023</td>
-																										<td>1000</td>
-																										<td>Pending</td>
-																								</tr>
-																						</tbody>
-																				</table>
-																		</div>
-																</div>
-														</div>
-												</div>
-										</div>
+									</form>
 								</div>
-						</div>
-				</div>
+								</div>
+			</div>
 		</div>
     <!-- Footer -->
     <%@ include file="footer.jsp"%>
@@ -506,6 +304,12 @@
         })
       })
     </script>
+    <script>
+			function togglePassword(fieldId) {
+			    var field = document.getElementById(fieldId); 
+			    field.type = (field.type === "password") ? "text" : "password";
+			}
+	</script>
     <!--===============================================================================================-->
     <!--===============================================================================================-->
     <script src="${pageContext.request.contextPath}/views/js/main.js"></script>

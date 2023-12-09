@@ -62,7 +62,7 @@
             <div class="menu-desktop">
               <ul class="main-menu">
                 <li><a href="home">Home</a></li>
-                <li class="active-menu"><a href="shop">Shop</a></li>
+                <li><a href="shop">Shop</a></li>
                 <li><a href="about">About</a></li>
                 <li><a href="contact">Contact</a></li>
               </ul>
@@ -170,10 +170,10 @@
     <!-- breadcrumb -->
     <div class="container">
       <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-        <a href="home" class="stext-109 cl8 hov-cl1 trans-04">
-          Home <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+        <a href="info" class="stext-109 cl8 hov-cl1 trans-04">
+          My Account <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
         </a>
-        <span class="stext-109 cl4"> My Account </span>
+        <span class="stext-109 cl4"> Edit Info </span>
       </div>
     </div>
     <!-- My Account -->
@@ -189,45 +189,47 @@
 														<div class="border-top">
 																<div class="list-group">
 																		<a class="font-weight-bold list-group-item list-group-item-action border-0 mt-5 active"
-																				href="#" data-toggle="list">Info</a>
+																				href="my-account">Info</a>
 																		<a class="font-weight-bold list-group-item list-group-item-action border-0"
-																				href="#" data-toggle="list">Address Book</a>
+																				href="address">Address Book</a>
 																		<a  class="font-weight-bold list-group-item list-group-item-action border-0"
-																				href="#" data-toggle="list">Change password</a>
+																				href="change-password">Change password</a>
 																		<a  class="font-weight-bold list-group-item list-group-item-action border-0 mb-5"
-																				href="#" data-toggle="list">History</a>
+																				href="history">History</a>
 																</div>
 														</div>
 												</div>
 										</div>
 								</div>
 								<div class="col">
+											<form action="">
 														<div class="card">
 																<div class="m-all-40">
-																		<h5 class="text-left mtext-103 cl2">Your Info</h5>
+																		<h5 class="text-left mtext-103 cl2">Edit Your Info</h5>
 																</div>
-																<div
-																		class="card-body d-flex flex-row justify-content-xl-start border-top">
-																		<div class="col-xl-4 mtext-107">
-																				<p class="m-t-30">Name:</p>
-																				<p class="m-t-20">Email:</p>
-																				<p class="m-t-20">Phone number:</p>
-																				<p class="m-t-20">Defautl address:</p>
+																<div class="card-body border-top">
+																		<div class="form-row">
+																		<div class="col">
+																				<div class="form-group w-100">
+																					<label for="username"><strong>Username</strong></label>
+<%--userName--%>													<input value="<c:if test="${userName != null }">${userName }</c:if>" class="form-control size-121" type="text" id="username" placeholder="User Name" name="userName">
+																				</div>
+																				<div class="form-group w-100 ">
+																					<label class="m-t-10" for="email"><strong>Email Address</strong></label>
+<%--emailAddress--%>											<input value="<c:if test="${emailAddress != null }">${emailAddress }</c:if>" class="form-control size-121" type="email" id="email" placeholder="Email Address" name="emailAddress">
+																				</div>
+																				<div class="form-group w-100">
+																					<label for="first_name"><strong>Phone Number</strong></label>
+<%--phoneNumber--%>			     							<input value="<c:if test="${phoneNumber != null }">${phoneNumber }</c:if>" class="form-control size-121" type="text" id="first_name" name="phoneNumber" placeholder="Phone Number">
+																				</div>
 																		</div>
-																		<div
-																				class="col-xl-8 d-flex flex-column align-items-xl-start mtext-107">
-																				<p class="m-t-30">Minh Trong</p>
-																				<p class="m-t-20">minhtrong@gmail.com</p>
-																				<p class="m-t-20">0123456789</p>
-																				<p class="m-t-20">HCM</p>
 																		</div>
 																</div>
 																<div class="d-xl-flex justify-content-xl-end stext-108 px-4 mb-2">
-																		<a href="#" data-toggle="list">Edit</a>
+																		<button class="flex-c-m stext-101 cl0 size-104 bg1 bor1 hov-btn1 p-lr-15 trans-04" type="submit">Save</button>
 																</div>
 														</div>
-												</div>
-										</div>
+											</form>		
 								</div>
 						</div>
 				</div>
