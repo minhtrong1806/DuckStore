@@ -23,20 +23,6 @@ public class UserAccountDAO {
 	 * static { initUsers(); }
 	 */
 
-	public ShoppingCart getShoppingCart(int userID) {
-		try(Session session = factory.openSession()){
-			CriteriaBuilder builder = session.getCriteriaBuilder();
-			CriteriaQuery<UserAccount> query = builder.createQuery(UserAccount.class);
-			Root<UserAccount> root = query.from(UserAccount.class);
-
-			query.select(root);
-			query.where(builder.equal(root.get("userID"), userID));
-
-			UserAccount userAccount = session.createQuery(query).uniqueResult();
-			return userAccount.getShoppingCart();
-		}
-	}
-
 	public UserAccount getUserAccount(int userID) {
 		try(Session session = factory.openSession()){
 			CriteriaBuilder builder = session.getCriteriaBuilder();
