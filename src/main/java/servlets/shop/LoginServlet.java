@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet{
     
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/login.jsp");
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/shop/login.jsp");
 		
 		dispatcher.forward(request, response);
 	}

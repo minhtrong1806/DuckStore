@@ -2,6 +2,7 @@ package servlets.admin;
 
 import jakarta.servlet.RequestDispatcher;
 
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -11,13 +12,11 @@ import utils.Constant;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
 import DAO.ProductCategoryDAO;
 import DAO.ProductDAO;
-import DAO.ProductItemDAO;
 import bean.Product;
 import bean.ProductCategory;
 import bean.ProductItem;
