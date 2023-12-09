@@ -36,7 +36,6 @@ maxRequestSize = 1024 * 1024 * 50) // 50MB
 
 public class ProductDetailServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
-    public int productId = -1;
     
     public static void name() {
 		
@@ -69,6 +68,18 @@ public class ProductDetailServlet extends HttpServlet{
 		}
 	}
 	
+	protected void editProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int productId = -1;
+		try {
+			productId = Integer.parseInt(request.getParameter("productId"));			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
+		
+	}
+	
 	protected void showVariant(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		ProductItemDAO itemDAO = new ProductItemDAO();
@@ -81,7 +92,6 @@ public class ProductDetailServlet extends HttpServlet{
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		System.out.println(itemId);
 		
 		if (itemId < 0) {
 			HttpSession session = request.getSession();
@@ -115,9 +125,9 @@ public class ProductDetailServlet extends HttpServlet{
 	}
 	
 	protected void productDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String productIdString = request.getParameter("productId");
+		int productId = -1;
 		try {
-			productId = Integer.parseInt(productIdString);			
+			productId = Integer.parseInt(request.getParameter("productId"));			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

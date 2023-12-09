@@ -106,7 +106,7 @@
 									<div
 										class="d-flex d-xl-flex justify-content-xl-center align-items-xl-center dataTables_length my-2">
 									</div>
-									<a class="btn btn-info btn-sm w-25" role="button"
+									<a class="btn btn-info text-center mb-4" role="button"
 										href="${pageContext.request.contextPath}/admin-add-user">ADD</a>
 								</div>
 							</div>
@@ -127,7 +127,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${UserList}" var="user" varStatus="i">
+										<c:forEach items="${listUser}" var="user" varStatus="i">
 											<tr>
 												<td>${i.index + 1}</td>
 												<td>${user.getName() }</td>
@@ -135,14 +135,10 @@
 												<td>${user.getPhone_number() }</td>
 												<td>${user.getRole() }</td>
 												<td>
-													<div
-														class="border rounded-0 border-white d-flex justify-content-around btn-group">
-														<button class="btn" type="button" aria-expanded="false" data-toggle="dropdown"><i class="fa fa-ellipsis-v icon-size"></i></button>
-														<div class="dropdown-menu dropdown-menu-right" style="background: var(--white); position: static">
-															<a class="btn dropdown-item" role="button" href="${pageContext.request.contextPath}/admin-user-detail">Detail</a> 
-															<a class="btn dropdown-item" role="button" href="${pageContext.request.contextPath}/admin-delete-user">Delete</a>
-														</div>
-													</div>
+													<div class="d-flex justify-content-center">                           
+                              <a class="btn btn-success mx-2" role="button " href="${pageContext.request.contextPath}/admin-user-detail?userId=${user.getUser_id()}">Detail</a>
+                              <a class="btn btn-danger mx-2" role="button " onclick="deleteConfirm(${user.getUser_id()});">Delete</a>
+                          </div>
 												</td>
 											</tr>
 										</c:forEach>
@@ -165,6 +161,48 @@
 		<a class="border rounded d-inline scroll-to-top" href="#page-top"><i
 			class="fas fa-angle-up"></i></a>
 	</div>
+	
+	    <!--thẻ div ẩn để chứa thông báo -->
+		<div id="successMessage" style="display: none;">
+		    <% 
+		    // Lấy thông báo từ session attribute
+		    String successMessage = (String) session.getAttribute("successMessage");
+		    // Kiểm tra nếu có thông báo thành công
+		    if (successMessage != null && !successMessage.trim().isEmpty()) {
+		        out.println(successMessage);
+		        // Xóa thông báo thành công khỏi session attribute sau khi đã lấy thông tin
+		        session.removeAttribute("successMessage");
+		    }
+		    %>
+		</div>
+		
+		<!-- Đoạn mã JavaScript để hiển thị thông báo khi trang tải xong -->
+		<script type="text/javascript">
+		    // Đợi cho trang tải xong
+		    window.onload = function() {
+		        var successMessageDiv = document.getElementById('successMessage');
+		        var successMessage = successMessageDiv.textContent.trim();
+		        if (successMessage !== '') {
+		            alert(successMessage);
+		        }
+		    }
+		</script>    
+		
+		<script type="text/javascript">
+				function deleteConfirm(id){
+					var result = confirm("Are you sure you want to delete this product?");
+					if(result){
+						window.location.href = "admin-delete-user?userId="+id;
+					} 
+					else {
+						return false;
+					}
+				}
+		</script>
+	
+	
+	
+	
 	<script
 		src="${pageContext.request.contextPath}/views/admin/assets/js/jquery.min.js"></script>
 	<script

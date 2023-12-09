@@ -130,11 +130,8 @@
                       />
                     </div>
                   </div>
-                  <div class="col-md-6 col-xl-4 text-nowrap">
-                 
-                  </div>
-                  <div class="col-xl-4 d-xl-flex justify-content-xl-end my-2">
-                    <a class="btn btn-info btn-sm w-50" role="button" href="admin-add-product">ADD</a>
+                  <div class="col d-flex justify-content-end  my-2">
+                    <a class="btn btn-info text-center align-self-center" role="button" href="admin-add-product">ADD</a>
                   </div>
                 </div>
                 <div class="table-responsive table mt-2" id="dataTable-1" role="grid" aria-describedby="dataTable_info">
@@ -169,9 +166,10 @@
                         <td>${product.getProductCategory().getCategoryName()}</td>
                         <td>${quantity.get(product.getProductID())}</td>
 												<td>${priceRange.get(product.getProductID())}</td>
-                        <td class="d-xl-flex justify-content-xl-center">
-                          <div class="border rounded-0 border-white d-flex justify-content-around btn-group">                           
-                              <a class="btn dropdown-item" role="button" href="admin-product-detail?productId=${product.getProductID()}">Detail</a>
+                        <td>
+                          <div class="d-flex justify-content-center">                           
+                              <a class="btn btn-success mx-2" role="button " href="admin-product-detail?productId=${product.getProductID()}">Detail</a>
+                              <a class="btn btn-danger mx-2" role="button " onclick="deleteConfirm(${product.getProductID()});">Delete</a>
                           </div>
                         </td>
                       </tr>
@@ -234,6 +232,18 @@
 		        }
 		    }
 		</script>    
+		
+		<script type="text/javascript">
+				function deleteConfirm(id){
+					var result = confirm("Are you sure you want to delete this product?");
+					if(result){
+						window.location.href = "admin-delete-product?productId="+id;
+					} 
+					else {
+						return false;
+					}
+				}
+		</script>
   
     <script src="${pageContext.request.contextPath}/views/admin/assets/js/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/views/admin/assets/bootstrap/js/bootstrap.min.js"></script>

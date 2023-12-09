@@ -99,18 +99,26 @@
 									<div class="card-header py-3">
 										<p class="text-primary m-0 font-weight-bold">Info</p>
 									</div>
+									<form action="${pageContext.request.contextPath}/admin-edit-user">
+									<input type="hidden" name="userId" value="<c:if test="${user.getUser_id() != null}">${user.getUser_id()}</c:if>">
 									<div class="card-body">
 										<div class="form-row">
 											<div class="col">
 												<div class="form-group">
 													<label for="username"><strong>Username</strong></label>
-													<input class="form-control" type="text" id="username" placeholder="User Name" name="username">
+													<input class="form-control" type="hidden" 
+																name="oldUsername" value="<c:if test="${user.getName() != null}">${user.getName()}</c:if>">
+													<input class="form-control" type="text" placeholder="User Name" 
+																name="newUsername" value="<c:if test="${user.getName() != null}">${user.getName()}</c:if>">
 												</div>
 											</div>
 											<div class="col">
 												<div class="form-group">
 													<label for="email"><strong>Email Address</strong></label>
-													<input class="form-control" type="email" id="email" placeholder="Email Address" name="email">
+													<input class="form-control" type="hidden" 
+													 name="oldEmail" value="<c:if test="${user.getEmailAddress() != null}">${user.getEmailAddress()}</c:if>">
+													<input class="form-control" type="email" placeholder="Email Address"
+													 name="newEmail" value="<c:if test="${user.getEmailAddress() != null}">${user.getEmailAddress()}</c:if>">
 												</div>
 											</div>
 										</div>
@@ -118,63 +126,45 @@
 											<div class="col">
 												<div class="form-group">
 													<label for="first_name"><strong>Phone Number</strong></label>
-													<input class="form-control" type="text" id="first_name" name="first_name" placeholder="Phone Number" minlength="10">
+													<input class="form-control" type="text" placeholder="Phone Number" minlength="10"
+													 name="oldPhoneNumber" value="<c:if test="${user.getPhone_number() != null}">${user.getPhone_number()}</c:if>">
+													<input class="form-control" type="hidden" placeholder="Phone Number" minlength="10"
+													 name="newPhoneNumber" value="<c:if test="${user.getPhone_number() != null}">${user.getPhone_number()}</c:if>">
 												</div>
 											</div>
 											<div class="col">
 												<div class="form-group">
-													<label for="last_name"><strong>Role</strong></label>
-													<select class="form-control">
-														<optgroup label="Role">
-															<option value="2" selected="">Customer</option>
-															<option value="1">Staff</option>
-															<option value="0">Manager</option>
-														</optgroup>
-													</select>
+													<label><strong>Role</strong></label>
+													<div class="d-flex justify-content-between mb-3">
+															<input disabled="" class="form-control" type="text" placeholder="Role" name="oldRole"  
+																		value="<c:if test="${role != null}">${role}</c:if>">
+															<button class="btn btn-secondary ml-3" type="button" data-target="#change-role" data-toggle="collapse" aria-expanded="false" aria-controls="change-role">Change</button>
+													</div>
+													<div id="change-role" class="collapse">
+		<%-- Role --%>				<select class="form-control" name="newRole">
+																<optgroup label="Role">
+																		<option value="2">Customer</option>
+																		<option value="1">Staff</option>
+																		<option value="0">Manager</option>
+																</optgroup>
+															</select>
+													</div>
 												</div>
 											</div>
 										</div>
-										<div class="form-row">
-											<div class="col">
-												<div class="form-group">
-													<label for="pass"><strong>Password</strong><br></label>
-													<input class="form-control" type="password" placeholder="Password">
-												</div>
-											</div>
-											<div class="col">
-												<div class="form-group">
-													<label for="pass repeat"><strong>Repeat Password</strong><br></label>
-															<input class="form-control" type="password" placeholder="Repeat Password">
-												</div>
-											</div>
+										<div class="form-row d-flex flex-column">
+													<c:if test="${userNameMessage != null }">
+															<small style="color: var(--red)" >${userNameMessage}</small>
+													</c:if>
+													<c:if test="${emailMessage != null }">
+															<small style="color: var(--red)" >${emailMessage}</small>
+													</c:if>
 										</div>
+										<button class="btn btn-primary" type="submit">Save</button>
 									</div>
+									</form>
 								</div>
-								<%--address content--%>
-								<div class="card shadow">
-									<div class="card-header py-3">
-										<p class="text-primary m-0 font-weight-bold">Address</p>
-									</div>
-									<div class="card-body">
-										<div class="form-group">
-											<label for="address"><strong>City</strong></label>
-											<input class="form-control" type="text" id="address" placeholder="City" name="City">
-										</div>
-										<div class="form-group">
-											<label for="address"><strong>District</strong></label>
-											<input class="form-control" type="text" id="address-3" placeholder="District" name="District">
-										</div>
-										<div class="form-group">
-											<label for="address"><strong>Address Line</strong></label>
-											<input class="form-control" type="text" id="address-2" placeholder="Address Line" name="addressLine">
-										</div>
-										<div class="form-group">
-											<label for="address"><strong>Unit Number</strong></label>
-											<input class="form-control" type="text" id="address-1" placeholder="Unit Number" name="unitNumber">
-										</div>
-									</div>
-								</div>
-							<%--  --%>
+
                 <div class="card">
                   <div class="card-header">
                     <p
@@ -186,20 +176,27 @@
                     >
                       Reset password
                     </p>
+                   	<div class="form-row d-flex flex-column">
+													<c:if test="${passwordMessage != null }">
+															<small style="color: var(--red)" >${passwordMessage}</small>
+													</c:if>
+										</div>
                   </div>
                   <div class="card-body collapse" id="reset_password">
-                    <form id="form-reset-pass">
+                    <form action="${pageContext.request.contextPath}/admin-reset-password" medthod="POST">
+                    	<input class="form-control" type="hidden" 
+												name="oldEmail" value="<c:if test="${user.getEmailAddress() != null}">${user.getEmailAddress()}</c:if>">
                       <div class="form-row">
                         <div class="col">
                           <div class="form-group">
                             <label for=""><strong>New Password</strong></label>
-                            <input class="form-control" type="password" placeholder="New Password" />
+                            <input name="newPassword" class="form-control" type="password" placeholder="New Password"/>
                           </div>
                         </div>
                         <div class="col">
                           <div class="form-group">
                             <label for=""><strong>Repeat Password</strong></label
-                            ><input class="form-control" type="password" placeholder="Repeat Password" />
+                            ><input name="repeatPassword" class="form-control" type="password" placeholder="Repeat Password" />
                           </div>
                         </div>
                       </div>
