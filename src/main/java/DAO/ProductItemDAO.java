@@ -134,4 +134,56 @@ public class ProductItemDAO {
             return productItemSet;
         }
     }
+
+    public boolean editProductItem(int productItemID ,int newQuantity, float newPrice){
+        try(Session session = factory.openSession()){
+            try{
+                session.getTransaction().begin();
+
+                ProductItem productItem = getProductItem(productItemID);
+                productItem.setPrice(newPrice);
+                productItem.setQty_in_stock(newQuantity);
+
+                session.saveOrUpdate(productItem);
+                session.getTransaction().commit();
+                System.out.println("Updated product Item with SKU" + productItem.getSku());
+                session.close();
+                return true;
+            }catch (Exception e){
+                if (session.getTransaction() != null) {
+                    session.getTransaction().rollback();
+                }
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+
+    public boolean deleteProductItem(int productItemID){
+        try(Session session = factory.openSession()){
+            session.getTransaction().begin();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<ProductItem> query = builder.createQuery(ProductItem.class);
+            Root<ProductItem> root = query.from(ProductItem.class);
+
+            Predicate condition = builder.equal(root.get("productItemID"), productItemID);
+            query.where(condition);
+            root.fetch("orderLines", JoinType.LEFT);
+
+            ProductItem productItem = session.createQuery(query).uniqueResult();
+            if(productItem.getOrderLines().size() == 0){
+                session.delete(productItem);
+                System.out.println("Successfully deleted product item");
+                session.getTransaction().commit();
+                session.close();
+                return true;
+            }
+            else {
+                System.out.println("This product item does exist order");
+                session.close();
+                return false;
+            }
+        }
+    }
+
 }

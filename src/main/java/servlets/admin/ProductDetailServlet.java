@@ -154,7 +154,4 @@ public class ProductDetailServlet extends HttpServlet{
 		return variationList;
 		
 	}
-
-
-
 }

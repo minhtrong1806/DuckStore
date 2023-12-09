@@ -99,8 +99,8 @@ public class ProductsServlet extends HttpServlet{
 	private HashMap<Integer, String> getPriceRange(List<Product> listProducts, ProductDAO productDAO) {
 		HashMap<Integer, String> priceRange = new HashMap<Integer, String>();
 		for (Product product:listProducts) {
-			int priceMax = Integer.MIN_VALUE;
-			int priceMin = Integer.MAX_VALUE;
+			float priceMax = Float.MIN_VALUE;
+			float priceMin = Float.MAX_VALUE;
 			Set<ProductItem> items = productDAO.getProductItemsByProduct(product.getProductID());
 			if (items == null || items.size() == 0) {
 				priceRange.put(product.getProductID(), "No items");
