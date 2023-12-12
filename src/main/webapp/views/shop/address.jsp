@@ -94,7 +94,7 @@
               </a>
                --%>
               <a
-                href="my-account"
+                href="info"
                 class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11"
                 data-notify="0"
               >
@@ -146,7 +146,7 @@
             <div class="right-top-bar flex-w h-full">
               <a href="login" class="flex-c-m p-lr-10 trans-04"> Login </a>
               <a href="logout" class="flex-c-m p-lr-10 trans-04"> Logout </a>
-              <a href="my-account" class="flex-c-m p-lr-10 trans-04"> Account </a>
+              <a href="info" class="flex-c-m p-lr-10 trans-04"> Account </a>
             </div>
           </li>
         </ul>
@@ -183,7 +183,6 @@
       </div>
     </div>
     <!-- My Account -->
-    <!-- My Account -->
 		<div class="container">
 				<div class="my-5">
 						<div class="row">
@@ -216,36 +215,28 @@
 																		<a href="add-address" class="flex-c-m stext-101 cl0 size-104 bg1 bor1 hov-btn1 p-lr-15 trans-04">Add</a>
 																</div>
 																<div class="card-body d-flex flex-wrap border-top">
-																		<div class="card w-50">	
-																				<div class="card-body">
-																						<div class="d-flex justify-content-between">
-																								<h6 class="text-muted mb-2 d-inline">Default</h6>
-																								<a href="#">
-																										<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-x-lg">
-                                                        <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"></path> 
-                                                        <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"></path>
-                                                    </svg>
-                                                </a>
-																						</div>
-																						<p class="card-text">HCM</p>
-																						<div class="d-xl-flex justify-content-xl-end"></div>
-																				</div>
-																		</div>
-																		<div class="card w-50">
-																				<div class="card-body">
-																						<div class="d-flex justify-content-between">
-																								<h6 class="text-muted mb-2 d-inline">Default</h6>
-																								<a href="#">
-																										<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-x-lg">
-                                                        <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"></path>
-                                                        <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"></path>
-                                                    </svg>
-                                                </a>
-																						</div>
-																						<p class="card-text">HCM</p>
-																						<div class="d-xl-flex justify-content-xl-end"></div>
-																				</div>
-																		</div>
+																	
+																	<c:forEach items="${addressList}" var="address" varStatus="i">
+																			<div class="w-50 p-lr-5">
+																				<div class="card">	
+																							<div class="card-body">
+																									<div class="d-flex justify-content-end">
+																											<a href="#">
+																													<i class="zmdi zmdi-close"></i>
+			                                                </a>
+																									</div>
+																									<h6>Address ${i.index + 1 }</h6>
+																									<p class="card-text">${address.getCity()}, ${address.getDistrict()}, ${address.getAddressLine()}, ${address.getUnitNumber()}</p>
+																									<div class="d-xl-flex justify-content-xl-end"></div>
+																							</div>
+																					</div>
+																			</div>
+																	</c:forEach>
+																		
+																	
+
+																	
+																
 																</div>
 														</div>
 									

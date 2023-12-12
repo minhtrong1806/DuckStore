@@ -7,7 +7,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import utils.AppUtils;
+
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
+
+import DAO.AddressDAO;
+import bean.Address;
+import bean.UserAccount;
 
 @WebServlet({"/address"})
 public class AddressServlet extends HttpServlet{
@@ -18,9 +26,18 @@ public class AddressServlet extends HttpServlet{
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/shop/address.jsp");
+		UserAccount userCurrent = AppUtils.getLoginedUser(request.getSession());
+		AddressDAO addressDAO = new AddressDAO();
 		
-		dispatcher.forward(request, response);
+		List<Address> addressList = addressDAO.listAddressByUser(userCurrent.getUser_id());
+		for (Address address : addressList) {
+			System.out.println(address.getCity());
+		}
+		
+		request.setAttribute("addressList", addressList);
+		
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/shop/address.jsp");
+		dispatcher.forward(request, response); 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

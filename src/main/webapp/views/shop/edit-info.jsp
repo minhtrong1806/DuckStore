@@ -88,7 +88,7 @@
               </a>
                --%>
               <a
-                href="my-account"
+                href="info"
                 class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11"
                 data-notify="0"
               >
@@ -140,7 +140,7 @@
             <div class="right-top-bar flex-w h-full">
               <a href="login" class="flex-c-m p-lr-10 trans-04"> Login </a>
               <a href="logout" class="flex-c-m p-lr-10 trans-04"> Logout </a>
-              <a href="my-account" class="flex-c-m p-lr-10 trans-04"> Account </a>
+              <a href="info" class="flex-c-m p-lr-10 trans-04"> Account </a>
             </div>
           </li>
         </ul>
@@ -177,7 +177,6 @@
       </div>
     </div>
     <!-- My Account -->
-    <!-- My Account -->
 		<div class="container">
 				<div class="my-5">
 						<div class="row">
@@ -189,7 +188,7 @@
 														<div class="border-top">
 																<div class="list-group">
 																		<a class="font-weight-bold list-group-item list-group-item-action border-0 mt-5 active"
-																				href="my-account">Info</a>
+																				href="info">Info</a>
 																		<a class="font-weight-bold list-group-item list-group-item-action border-0"
 																				href="address">Address Book</a>
 																		<a  class="font-weight-bold list-group-item list-group-item-action border-0"
@@ -202,7 +201,7 @@
 										</div>
 								</div>
 								<div class="col">
-											<form action="">
+											<form action="${pageContext.request.contextPath}/edit-info" method="POST">
 														<div class="card">
 																<div class="m-all-40">
 																		<h5 class="text-left mtext-103 cl2">Edit Your Info</h5>
@@ -212,15 +211,26 @@
 																		<div class="col">
 																				<div class="form-group w-100">
 																					<label for="username"><strong>Username</strong></label>
-<%--userName--%>													<input value="<c:if test="${userName != null }">${userName }</c:if>" class="form-control size-121" type="text" id="username" placeholder="User Name" name="userName">
+<%--userName--%>													<input value="<c:if test="${userCurrent.getName() != null }">${userCurrent.getName() }</c:if>" class="form-control size-121" 
+																							type="text" id="username" placeholder="User Name" name="userName">
 																				</div>
 																				<div class="form-group w-100 ">
 																					<label class="m-t-10" for="email"><strong>Email Address</strong></label>
-<%--emailAddress--%>											<input value="<c:if test="${emailAddress != null }">${emailAddress }</c:if>" class="form-control size-121" type="email" id="email" placeholder="Email Address" name="emailAddress">
+<%--emailAddress--%>											<input value="<c:if test="${userCurrent.getEmailAddress() != null}">${userCurrent.getEmailAddress()}</c:if>" class="form-control size-121" 
+																							type="email" id="email" placeholder="Email Address" name="emailAddress">
 																				</div>
 																				<div class="form-group w-100">
 																					<label for="first_name"><strong>Phone Number</strong></label>
-<%--phoneNumber--%>			     							<input value="<c:if test="${phoneNumber != null }">${phoneNumber }</c:if>" class="form-control size-121" type="text" id="first_name" name="phoneNumber" placeholder="Phone Number">
+<%--phoneNumber--%>			     							<input value="<c:if test="${userCurrent.getPhone_number() != null }">${userCurrent.getPhone_number() }</c:if>" class="form-control size-121" 
+																							type="text" id="first_name" name="phoneNumber" placeholder="Phone Number">
+																				</div>
+																				<div class="form-row d-flex flex-column">
+																							<c:if test="${userNameMessage != null }">
+																									<small style="color: var(--red)" >${userNameMessage}</small>
+																							</c:if>
+																							<c:if test="${emailMessage != null }">
+																									<small style="color: var(--red)" >${emailMessage}</small>
+																							</c:if>
 																				</div>
 																		</div>
 																		</div>

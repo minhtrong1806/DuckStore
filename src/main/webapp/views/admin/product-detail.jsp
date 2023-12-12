@@ -32,12 +32,6 @@
           </a>
           <hr class="sidebar-divider my-0" />
           <ul class="navbar-nav text-light" id="accordionSidebar">
-            <li class="nav-item" style="margin-top: 35%">
-              <a class="nav-link" href="${pageContext.request.contextPath}/admin-dashboard">
-                <i class="fa fa-dashboard" style="font-size: 1.3rem"></i>
-                <span class="nav-item-content">Dashboard</span>
-              </a>
-            </li>
             <li class="nav-item text-white-50">
               <div class="nav-item dropdown" style="margin-bottom: 0px">
                 <a aria-expanded="false" data-toggle="dropdown" class="nav-link active" href="#">
@@ -127,15 +121,18 @@
 						                   <th>
 						                      <c:choose>
 																			<c:when test="${item.getProduct_image() != null}">
-																				   <img class="mr-2 avatar rounded" width="auto" height="80" src="${pageContext.request.contextPath}/views/images/productItem/${item.getProduct_image()}"/> 
+																				   <img class="mr-2 avatar rounded" width="auto" height="80" src="${itemFolder}${item.getProduct_image()}"/> 
 																			</c:when>
 																			<c:otherwise>
 																				   <img class="mr-2" width="auto" height="80" src="${pageContext.request.contextPath}/views/images/default_image.jpg"/>
 																			</c:otherwise>
 																	</c:choose>
 																</th>
-						                    <td class="d-xl-flex justify-content-xl-center">
-						                       <a href="${pageContext.request.contextPath}/admin-product-detail/variant-detail?itemId=${item.getProductItemID()}" class="btn"><i class="fa fa-edit icon-size"></i></a>
+						                    <td>
+						                    		<div class="d-flex justify-content-center">                           
+					                              <a class="btn btn-success mx-2" role="button " href="${pageContext.request.contextPath}/admin-product-detail/variant-detail?itemId=${item.getProductItemID()}">Detail</a>
+					                              <a class="btn btn-danger mx-2" role="button " onclick="deleteConfirm(${product.getProductID()},${item.getProductItemID()});">Delete</a>
+					                          </div>
 						                    </td>
 				                    </tr>
 			                    </c:forEach>
@@ -147,6 +144,9 @@
             </div>
             <%--form edit product --%>
 					<form id="form-add-product" enctype="multipart/form-data" action="${pageContext.request.contextPath}/admin-add-product/add" method="POST">
+						<c:if test="${product.getName() != null}">
+           			<input type="hidden" name="productId" value="<c:out value='${product.getProductID()}' />" />
+          	</c:if> 
 						<div class="d-flex justify-content-between flex-wrap align-items-xl-center my-3 mx-5">
 							<div class="mt-4">
 								<h4 class="font-weight-bolder text-dark" style="color: var(--gray-dark)">Edit Product</h4>
@@ -174,7 +174,7 @@
 											<c:if test="${product.getName() != null}">
            							<input type="hidden" name="oldName" value="<c:out value='${product.getName()}' />" />
           						</c:if> 
-<%-- name --%>				<input class="form-control" type="text" name="name" placeholder="Name" 
+<%-- name --%>				<input class="form-control" type="text" name="newName" placeholder="Name" 
 														value="<c:if test="${product.getName() != null}">${product.getName()}</c:if>" />
 										</div>
 										
@@ -183,7 +183,7 @@
 											<c:if test="${product.getDescription() != null}">
            							<input type="hidden" name="oldDescription" value="<c:out value='${product.getDescription()}' />" />
           						</c:if> 
-<%--description--%>		<input class="form-control" type="text" placeholder="Product Descripition" name="description"  
+<%--description--%>		<input class="form-control" type="text" placeholder="Product Descripition" name="newDescription"  
 														value="<c:if test="${product.getDescription() != null}">${product.getDescription()}</c:if>">
 										</div>
 										
@@ -195,7 +195,7 @@
 													<button class="btn btn-secondary ml-3" type="button" data-target="#change-category" data-toggle="collapse" aria-expanded="false" aria-controls="change-category">Change</button>
 											</div>
 											<div id="change-category" class="collapse">
-<%-- Category --%>				<select class="form-control" name="category">
+<%-- Category --%>				<select class="form-control" name="newCategory">
 														<optgroup label="Category">
 															<c:forEach items="${categoryList}" var="category">
 																<option value="${category.getCategoryName()}">${category.getCategoryName()}</option>
@@ -212,9 +212,12 @@
 												<span style="color: rgb(84, 79, 90)">Image For Product</span>
 											</h5>
 											<div class="d-flex d-sm-flex justify-content-start align-items-center">
+												<c:if test="${product.getProduct_image() != null}">
+           										<input type="hidden" name="olPproductImage" value="<c:out value='${product.getProduct_image()}' />" />
+          							</c:if> 
 												<div id="selectedBanner">
 														<c:if test="${product.getProduct_image() != null}">
-															<img class="mr-2 avatar rounded" width="200px" height="auto" src="${pageContext.request.contextPath}/views/images/product/${product.getProduct_image()}"/>
+															<img class="mr-2 avatar rounded" width="200px" height="auto" src="${productFolder}${product.getProduct_image()}"/>
 														</c:if>
 												</div>
 												<div class="bg-secondary d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center upload-img m-2 pointer">
@@ -266,6 +269,18 @@
 		        }
 		    }
 		</script>    
+		
+		<script type="text/javascript">
+				function deleteConfirm(productId, itemId){
+					var result = confirm("Are you sure you want to delete this variant?");
+					if(result){
+						window.location.href = "${pageContext.request.contextPath}/admin-product-detail/delete-variant?productId=" + productId + "&itemId="+itemId;
+					} 
+					else {
+						return false;
+					}
+				}
+		</script>
   
     <script src="${pageContext.request.contextPath}/views/admin/assets/js/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/views/admin/assets/bootstrap/js/bootstrap.min.js"></script>

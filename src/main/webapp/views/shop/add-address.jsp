@@ -94,7 +94,7 @@
               </a>
                --%>
               <a
-                href="my-account"
+                href="info"
                 class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11"
                 data-notify="0"
               >
@@ -146,7 +146,7 @@
             <div class="right-top-bar flex-w h-full">
               <a href="login" class="flex-c-m p-lr-10 trans-04"> Login </a>
               <a href="logout" class="flex-c-m p-lr-10 trans-04"> Logout </a>
-              <a href="my-account" class="flex-c-m p-lr-10 trans-04"> Account </a>
+              <a href="info" class="flex-c-m p-lr-10 trans-04"> Account </a>
             </div>
           </li>
         </ul>
@@ -186,7 +186,6 @@
       </div>
     </div>
     <!-- My Account -->
-    <!-- My Account -->
 		<div class="container">
 				<div class="my-5">
 						<div class="row">
@@ -212,7 +211,7 @@
 								</div>
 								<div class="col">
 										<%--address content--%>
-										<form action="">
+										<form action="${pageContext.request.contextPath}/add-address" method="POST">
 												<div class="card shadow">
 													<div class="m-all-40">
 																<h5 class="text-left mtext-103 cl2">Add address	</h5>
@@ -220,25 +219,27 @@
 													<div class="card-body border-top">
 														<div class="form-group">
 															<label for="address"><strong>City</strong></label>
-				<%--city--%>					<input value="<c:if test="${city != null }">${city }</c:if>" class="form-control size-121" type="text" id="address" placeholder="City" name="city">
+				<%--city--%>					<input value="<c:if test="${address.getCity() != null }">${address.getCity() }</c:if>" class="form-control size-121" 
+																	type="text" id="address" placeholder="City" name="city">
 														</div>
 														<div class="form-group">
 															<label for="address"><strong>District</strong></label>
-				<%--district--%>			<input value="<c:if test="${district != null }">${district }</c:if>" class="form-control size-121" type="text" id="address-3" placeholder="District" name="district">
+				<%--district--%>			<input value="<c:if test="${address.getDistrict() != null }">${address.getDistrict() }</c:if>" class="form-control size-121" 
+																	type="text" id="address-3" placeholder="District" name="district">
 														</div>
 														<div class="form-group">
 															<label for="address"><strong>Address Line</strong></label>
-				<%--addressLine--%>		<input value="<c:if test="${addressLine != null }">${addressLine }</c:if>" class="form-control size-121" type="text" id="address-2" placeholder="Address Line" name="addressLine">
+				<%--addressLine--%>		<input value="<c:if test="${address.getAddressLine() != null }">${address.getAddressLine() }</c:if>" class="form-control size-121" 
+																	type="text" id="address-2" placeholder="Address Line" name="addressLine">
 														</div>
 														<div class="form-group">
 															<label for="address"><strong>Unit Number</strong></label>
-				<%--unitNumber--%>		<input value="<c:if test="${unitNumber != null }">${unitNumber }</c:if>" class="form-control size-121" type="text" id="address-1" placeholder="Unit Number" name="unitNumber">
+				<%--unitNumber--%>		<input value="<c:if test="${address.getUnitNumber() != null }">${address.getUnitNumber() }</c:if>" class="form-control size-121" 
+																	type="text" id="address-1" placeholder="Unit Number" name="unitNumber">
 														</div>
 													</div>
 													<div class="d-flex justify-content-end stext-108 m-b-20 m-r-20">
-																<button
-																	class="flex-c-m stext-101 cl0 size-104 bg1 bor1 hov-btn1 p-lr-15 trans-04"
-																	type="submit">Save</button>
+																<button class="flex-c-m stext-101 cl0 size-104 bg1 bor1 hov-btn1 p-lr-15 trans-04" type="submit">Save</button>
 													</div>
 												</div>
 								</form>

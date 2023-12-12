@@ -82,6 +82,23 @@ public class AddProductServlet extends HttpServlet {
 			errorString += "Empty values ​​are not allowed";
 			hasError = true;
 		}
+		
+		try {
+			if (request.getPart("productImage").getSize() == 0) {
+				errorString += "Please choose image!";
+				hasError = true;
+			}
+			else {
+				String folderStore = Constant.DIR + "\\product\\";
+				String fileName = "Product" + System.currentTimeMillis();
+				String productLink = UploadUtils.processUpload("productImage", request, folderStore , fileName);
+				product.setProduct_image(productLink);
+				
+			}
+		} catch (Exception e) {
+			
+			System.out.println(e.getMessage());
+		}
 		if (hasError) {
 
 			List<ProductCategory> categorieList = null;
@@ -98,22 +115,8 @@ public class AddProductServlet extends HttpServlet {
 
 		} else {
 			
-			
 			product.setName(name);
 			product.setDescription(description);
-
-			try {
-				if (request.getPart("productImage").getSize() != 0) {
-					String folderStore = Constant.DIR + "\\product\\";
-					String fileName = "Product" + System.currentTimeMillis();
-					String productLink = UploadUtils.processUpload("productImage", request, folderStore , fileName);
-					product.setProduct_image(productLink);
-					System.out.println(folderStore);
-				}
-			} catch (Exception e) {
-				
-				System.out.println(e.getMessage());
-			}
 			
 			Boolean addSuccess = productDAO.addProduct(product, categoryName);
 			if(addSuccess) {

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<!-- ADMIN -->
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -36,12 +37,6 @@
           </a>
           <hr class="sidebar-divider my-0" />
           <ul class="navbar-nav text-light" id="accordionSidebar">
-            <li class="nav-item" style="margin-top: 35%">
-              <a class="nav-link" href="${pageContext.request.contextPath}/admin-dashboard">
-                <i class="fa fa-dashboard" style="font-size: 1.3rem"></i>
-                <span class="nav-item-content">Dashboard</span>
-              </a>
-            </li>
             <li class="nav-item text-white-50">
               <div class="nav-item dropdown" style="margin-bottom: 0px">
                 <a aria-expanded="false" data-toggle="dropdown" class="nav-link active" href="#">
@@ -108,14 +103,6 @@
                       </optgroup>
                     </select>
                   </div>
-                  <div class="col-md-6 col-xl-5 text-nowrap d-xl-flex align-items-xl-center">
-<%--filter stock_status--%><select class="custom-select d-flex w-auto my-2" name="stockStatus">
-                      <optgroup label="stock">
-                        <option value="1" selected="">in stock</option>
-                        <option value="0">out of stock</option>
-                      </optgroup>
-                    </select>
-                  </div>
                 </div>
               </div>
               <div class="card-body" style="padding-top: 0px">
@@ -130,11 +117,8 @@
                       />
                     </div>
                   </div>
-                  <div class="col-md-6 col-xl-4 text-nowrap">
-                 
-                  </div>
-                  <div class="col-xl-4 d-xl-flex justify-content-xl-end my-2">
-                    <a class="btn btn-info btn-sm w-50" role="button" href="admin-add-product">ADD</a>
+                  <div class="col d-flex justify-content-end  my-2">
+                    <a class="btn btn-info text-center align-self-center" role="button" href="admin-add-product">ADD</a>
                   </div>
                 </div>
                 <div class="table-responsive table mt-2" id="dataTable-1" role="grid" aria-describedby="dataTable_info">
@@ -157,7 +141,7 @@
                         <td>
                         <c:choose>
 											    <c:when test="${product.getProduct_image() != null}">
-											        <img class="mr-2" width="auto" height="80" src="${pageContext.request.contextPath}/views/images/product/${product.getProduct_image()}"/> 
+											        <img class="mr-2" width="auto" height="80" src="${productFolder}${product.getProduct_image()}"/> 
 											    </c:when>
 											    <c:otherwise>
 											        <img class="mr-2" width="auto" height="80" src="${pageContext.request.contextPath}/views/images/default_image.jpg"/>
@@ -169,9 +153,10 @@
                         <td>${product.getProductCategory().getCategoryName()}</td>
                         <td>${quantity.get(product.getProductID())}</td>
 												<td>${priceRange.get(product.getProductID())}</td>
-                        <td class="d-xl-flex justify-content-xl-center">
-                          <div class="border rounded-0 border-white d-flex justify-content-around btn-group">                           
-                              <a class="btn dropdown-item" role="button" href="admin-product-detail?productId=${product.getProductID()}">Detail</a>
+                        <td>
+                          <div class="d-flex justify-content-center">                           
+                              <a class="btn btn-success mx-2" role="button " href="admin-product-detail?productId=${product.getProductID()}">Detail</a>
+                              <a class="btn btn-danger mx-2" role="button " onclick="deleteConfirm(${product.getProductID()});">Delete</a>
                           </div>
                         </td>
                       </tr>
@@ -234,6 +219,18 @@
 		        }
 		    }
 		</script>    
+		
+		<script type="text/javascript">
+				function deleteConfirm(id){
+					var result = confirm("Are you sure you want to delete this product?");
+					if(result){
+						window.location.href = "${pageContext.request.contextPath}/admin-product/delete?productId="+id;
+					} 
+					else {
+						return false;
+					}
+				}
+		</script>
   
     <script src="${pageContext.request.contextPath}/views/admin/assets/js/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/views/admin/assets/bootstrap/js/bootstrap.min.js"></script>

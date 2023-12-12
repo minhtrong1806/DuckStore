@@ -33,12 +33,6 @@
           </a>
           <hr class="sidebar-divider my-0" />
           <ul class="navbar-nav text-light" id="accordionSidebar">
-            <li class="nav-item" style="margin-top: 35%">
-              <a class="nav-link" href="${pageContext.request.contextPath}/admin-dashboard">
-                <i class="fa fa-dashboard" style="font-size: 1.3rem"></i>
-                <span class="nav-item-content">Dashboard</span>
-              </a>
-            </li>
             <li class="nav-item text-white-50">
               <div class="nav-item dropdown" style="margin-bottom: 0px">
                 <a aria-expanded="false" data-toggle="dropdown" class="nav-link" href="#">
@@ -99,18 +93,21 @@
 									<div class="card-header py-3">
 										<p class="text-primary m-0 font-weight-bold">Info</p>
 									</div>
+									<form action="${pageContext.request.contextPath}/admin-user/edit?userId=${user.getUser_id()}" method="POST">
 									<div class="card-body">
 										<div class="form-row">
 											<div class="col">
 												<div class="form-group">
-													<label for="username"><strong>Username</strong></label>
-													<input class="form-control" type="text" id="username" placeholder="User Name" name="username">
+													<label for="username"><strong>User Name</strong></label>
+													<input class="form-control" type="text" placeholder="User Name" 
+																name="newUsername" value="<c:if test="${user.getName() != null}">${user.getName()}</c:if>">
 												</div>
 											</div>
 											<div class="col">
 												<div class="form-group">
 													<label for="email"><strong>Email Address</strong></label>
-													<input class="form-control" type="email" id="email" placeholder="Email Address" name="email">
+													<input class="form-control" type="email" placeholder="Email Address"
+													 name="newEmail" value="<c:if test="${user.getEmailAddress() != null}">${user.getEmailAddress()}</c:if>">
 												</div>
 											</div>
 										</div>
@@ -118,63 +115,43 @@
 											<div class="col">
 												<div class="form-group">
 													<label for="first_name"><strong>Phone Number</strong></label>
-													<input class="form-control" type="text" id="first_name" name="first_name" placeholder="Phone Number" minlength="10">
+													<input class="form-control" type="text" placeholder="Phone Number" minlength="10"
+													 name="newPhoneNumber" value="<c:if test="${user.getPhone_number() != null}">${user.getPhone_number()}</c:if>">
 												</div>
 											</div>
 											<div class="col">
 												<div class="form-group">
-													<label for="last_name"><strong>Role</strong></label>
-													<select class="form-control">
-														<optgroup label="Role">
-															<option value="2" selected="">Customer</option>
-															<option value="1">Staff</option>
-															<option value="0">Manager</option>
-														</optgroup>
+													<label><strong>Role</strong></label>
+													<div class="d-flex justify-content-between mb-3">
+															<input disabled="" class="form-control" type="text" placeholder="Role" value="<c:if test="${role != null}">${role}</c:if>">
+															<button class="btn btn-secondary ml-3" type="button" data-target="#change-role" data-toggle="collapse" aria-expanded="false" aria-controls="change-role">Change</button>
+													</div>
+													<div id="change-role" class="collapse">
+		<%-- Role --%>				<select class="form-control" name="newRole">
+																<optgroup label="Role">
+																		<option value="" disabled selected hidden></option>
+																		<option value="2">Customer</option>
+																		<option value="1">Staff</option>
+																		<option value="0">Manager</option>
+																</optgroup>
 													</select>
+													</div>
 												</div>
 											</div>
 										</div>
-										<div class="form-row">
-											<div class="col">
-												<div class="form-group">
-													<label for="pass"><strong>Password</strong><br></label>
-													<input class="form-control" type="password" placeholder="Password">
-												</div>
-											</div>
-											<div class="col">
-												<div class="form-group">
-													<label for="pass repeat"><strong>Repeat Password</strong><br></label>
-															<input class="form-control" type="password" placeholder="Repeat Password">
-												</div>
-											</div>
+										<div class="form-row d-flex flex-column">
+													<c:if test="${userNameMessage != null }">
+															<small style="color: var(--red)" >${userNameMessage}</small>
+													</c:if>
+													<c:if test="${emailMessage != null }">
+															<small style="color: var(--red)" >${emailMessage}</small>
+													</c:if>
 										</div>
+										<button class="btn btn-primary" type="submit">Save</button>
 									</div>
+									</form>
 								</div>
-								<%--address content--%>
-								<div class="card shadow">
-									<div class="card-header py-3">
-										<p class="text-primary m-0 font-weight-bold">Address</p>
-									</div>
-									<div class="card-body">
-										<div class="form-group">
-											<label for="address"><strong>City</strong></label>
-											<input class="form-control" type="text" id="address" placeholder="City" name="City">
-										</div>
-										<div class="form-group">
-											<label for="address"><strong>District</strong></label>
-											<input class="form-control" type="text" id="address-3" placeholder="District" name="District">
-										</div>
-										<div class="form-group">
-											<label for="address"><strong>Address Line</strong></label>
-											<input class="form-control" type="text" id="address-2" placeholder="Address Line" name="addressLine">
-										</div>
-										<div class="form-group">
-											<label for="address"><strong>Unit Number</strong></label>
-											<input class="form-control" type="text" id="address-1" placeholder="Unit Number" name="unitNumber">
-										</div>
-									</div>
-								</div>
-							<%--  --%>
+
                 <div class="card">
                   <div class="card-header">
                     <p
@@ -186,20 +163,33 @@
                     >
                       Reset password
                     </p>
+                   	<div class="form-row d-flex flex-column">
+													<c:if test="${passwordMessage != null }">
+															<small style="color: var(--red)" >${passwordMessage}</small>
+													</c:if>
+										</div>
                   </div>
                   <div class="card-body collapse" id="reset_password">
-                    <form id="form-reset-pass">
+                    <form action="${pageContext.request.contextPath}/admin-user/reset-password?userId=${user.getUser_id()}" method="POST">
+                    	<input class="form-control" type="hidden" 
+												name="oldEmail" value="<c:if test="${user.getEmailAddress() != null}">${user.getEmailAddress()}</c:if>">
                       <div class="form-row">
                         <div class="col">
-                          <div class="form-group">
+                          <div class="form-group">                          
                             <label for=""><strong>New Password</strong></label>
-                            <input class="form-control" type="password" placeholder="New Password" />
+                            <div class="d-flex justify-content-between">
+                            		<input id="NewPassword" name="newPassword" class="form-control" type="password" placeholder="New Password"/>
+                            		<button class="btn btn-dark " type="button" onclick="togglePassword('NewPassword')">Show</button>
+                            </div>
                           </div>
                         </div>
                         <div class="col">
                           <div class="form-group">
-                            <label for=""><strong>Repeat Password</strong></label
-                            ><input class="form-control" type="password" placeholder="Repeat Password" />
+                            <label for=""><strong>Repeat Password</strong></label>
+                            <div class="d-flex justify-content-between">
+                            		<input id="RepeatPassword" name="repeatPassword" class="form-control" type="password" placeholder="Repeat Password" />
+                            		<button class="btn btn-dark " type="button" onclick="togglePassword('RepeatPassword')">Show</button>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -221,6 +211,13 @@
       </div>
       <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
+    
+		<script>
+		function togglePassword(fieldId) {
+		    var field = document.getElementById(fieldId);
+		    field.type = (field.type === "password") ? "text" : "password";
+		}
+		</script>
     <script src="${pageContext.request.contextPath}/views/admin/assets/js/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/views/admin/assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/views/admin/assets/js/bs-init.js"></script>

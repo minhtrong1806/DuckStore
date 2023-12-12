@@ -10,6 +10,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import utils.Constant;
+import utils.DeleteUtils;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -28,7 +30,8 @@ import bean.VariationOption;
 @WebServlet({"/admin-product-detail",
 	"/admin-product-detail/edit-variant",
 	"/admin-product-detail/variant-detail",
-	"/admin-product-detail/edit-product"})
+	"/admin-product-detail/edit-product",
+	"/admin-product-detail/delete-variant"})
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 50, // 10MB
 maxFileSize = 1024 * 1024 * 50, // 50MB
@@ -36,7 +39,6 @@ maxRequestSize = 1024 * 1024 * 50) // 50MB
 
 public class ProductDetailServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
-    public int productId = -1;
     
     public static void name() {
 		
@@ -55,9 +57,13 @@ public class ProductDetailServlet extends HttpServlet{
 		try {
 			switch (action) {
 			case "/admin-product-detail/edit-product":
+				
 				break;
 			case "/admin-product-detail/variant-detail":
 				showVariant(request, response);
+				break;
+			case "/admin-product-detail/delete-variant":
+				deleteVariant(request, response);
 				break;
 			default:
 				productDetail(request, response);
@@ -67,6 +73,61 @@ public class ProductDetailServlet extends HttpServlet{
 		} catch (Exception  e) {
 			throw new ServletException(e);
 		}
+	}
+	
+	protected void editProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int productId = -1;
+		try {
+			productId = Integer.parseInt(request.getParameter("productId"));			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
+	
+	}
+	
+	protected void deleteVariant(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		boolean hasErorr = false;
+		int itemId = -1;
+		int productId = -1;
+	
+		try {
+			productId = Integer.parseInt(request.getParameter("productId"));			
+		} catch (Exception e) {}
+		
+		try {
+			itemId = Integer.parseInt(request.getParameter("itemId"));
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		if (itemId < 0) {
+			hasErorr = true;
+		}
+		
+		if(hasErorr) {
+			HttpSession session = request.getSession();
+			session.setAttribute("successMessage", "An error occurred, please try again !");
+			response.sendRedirect(request.getContextPath() + "/admin-product-detail?productId="+productId);			
+		}
+		else {
+			ProductItemDAO itemDAO = new ProductItemDAO();
+			String fileNameStore = itemDAO.getProductItem(itemId).getProduct_image();
+			String folderStore = Constant.DIR + "\\productItem\\";
+			boolean deleteSuccess = itemDAO.deleteProductItem(itemId);
+			System.out.println(fileNameStore);
+			if (deleteSuccess) {
+				DeleteUtils.processDelete(fileNameStore, folderStore);
+				response.sendRedirect(request.getContextPath() + "/admin-product-detail?productId="+productId);	
+			}
+			else {
+				HttpSession session = request.getSession();
+				session.setAttribute("successMessage", "This variant cannot be deleted!");
+				response.sendRedirect(request.getContextPath() + "/admin-product-detail?productId="+productId);	
+			}
+			
+		}	
 	}
 	
 	protected void showVariant(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -81,7 +142,6 @@ public class ProductDetailServlet extends HttpServlet{
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		System.out.println(itemId);
 		
 		if (itemId < 0) {
 			HttpSession session = request.getSession();
@@ -89,6 +149,7 @@ public class ProductDetailServlet extends HttpServlet{
 			response.sendRedirect(request.getContextPath() + "/admin-products" );
 		}
 		else {
+			String itemFolder = request.getContextPath() + "\\views\\images\\productItem\\";
 			ProductItem itemCurent = itemDAO.getProductItem(itemId);
 			String size = null;
 			String color = null;
@@ -105,6 +166,7 @@ public class ProductDetailServlet extends HttpServlet{
 			
 			request.setAttribute("size",size);
 			request.setAttribute("color",color);
+			request.setAttribute("itemFolder",itemFolder);
 			request.setAttribute("itemCurent",itemCurent);
 			
 			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/admin/edit-variant.jsp");
@@ -115,9 +177,12 @@ public class ProductDetailServlet extends HttpServlet{
 	}
 	
 	protected void productDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String productIdString = request.getParameter("productId");
+		String itemFolder = request.getContextPath() + "\\views\\images\\productItem\\";
+		String productFolder = request.getContextPath() + "\\views\\images\\product\\";
+		
+		int productId = -1;
 		try {
-			productId = Integer.parseInt(productIdString);			
+			productId = Integer.parseInt(request.getParameter("productId"));			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -137,6 +202,8 @@ public class ProductDetailServlet extends HttpServlet{
 		request.setAttribute("listItems", listItems);
 		request.setAttribute("variationList", variationList);
 		request.setAttribute("categoryList", categoryList);
+		request.setAttribute("itemFolder", itemFolder);
+		request.setAttribute("productFolder", productFolder);
 		
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/admin/product-detail.jsp");
 		dispatcher.forward(request, response);

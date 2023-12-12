@@ -41,11 +41,6 @@
 				</a>
 				<hr class="sidebar-divider my-0" />
 				<ul class="navbar-nav text-light" id="accordionSidebar">
-					<li class="nav-item" style="margin-top: 35%"><a
-						class="nav-link" href="${pageContext.request.contextPath}/admin-dashboard"> <i
-							class="fa fa-dashboard" style="font-size: 1.3rem"></i> <span
-							class="nav-item-content">Dashboard</span>
-					</a></li>
 					<li class="nav-item text-white-50">
 						<div class="nav-item dropdown" style="margin-bottom: 0px">
 							<a aria-expanded="false" data-toggle="dropdown" class="nav-link"
@@ -100,7 +95,7 @@
 						</li>
 					</ol>
 <%--form add user --%>
-					<form id="form-add-user" action="${pageContext.request.contextPath}/admin-add-user" method="POST">
+					<form id="form-add-user" action="${pageContext.request.contextPath}/admin-user/add" method="POST">
 						<%--header --%>
 						<div class="d-flex justify-content-between flex-wrap align-items-xl-center my-3 mx-5">
 							<div class="mt-4">

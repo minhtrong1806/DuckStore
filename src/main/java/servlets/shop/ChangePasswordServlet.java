@@ -7,7 +7,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import utils.AppUtils;
+import utils.ValidatorUtils;
+
 import java.io.IOException;
+
+import DAO.UserAccountDAO;
+import bean.UserAccount;
 
 @WebServlet({"/change-password"})
 public class ChangePasswordServlet extends HttpServlet{
@@ -18,12 +24,56 @@ public class ChangePasswordServlet extends HttpServlet{
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/shop/change-password.jsp");
 		
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/shop/change-password.jsp");
 		dispatcher.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		UserAccountDAO userAccountDAO = new UserAccountDAO();
+		boolean hasError = false;
+		String errorString = "";
+		
+		String oldPassword = request.getParameter("oldPassword");
+		String newPassword = request.getParameter("newPassword");
+		String repeatPassword = request.getParameter("repeatPassword");
+		
+		UserAccount userCurrent = AppUtils.getLoginedUser(request.getSession());
+
+		if (!oldPassword.equals(userCurrent.getPassword())) {
+			errorString += "Incorrect password!";
+			
+			request.setAttribute("errorString", errorString);
+			
+			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/shop/change-password.jsp");
+			dispatcher.forward(request, response);
+		}
+		else {
+			if (!ValidatorUtils.isPasswordValid(newPassword)) {
+				errorString += "- Password must: At least 8 characters long," + " one lowercase letter,"
+						+ " one uppercase letter," + " one digit," + "	one special character from the set [@ $!%*?&].";
+				hasError = true;
+			} else {
+				if (!newPassword.equals(repeatPassword)) {
+					hasError = true;
+					errorString = errorString + "Repeated password is incorrect!";
+				}
+			}
+			if (hasError) {
+				request.setAttribute("errorString", errorString);
+				
+				RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/shop/change-password.jsp");
+				dispatcher.forward(request, response);
+			}
+			else {
+				userCurrent.setPassword(newPassword);
+
+				AppUtils.storeLoginedUser(request.getSession(), userCurrent);
+				userAccountDAO.editUser(userCurrent.getUser_id(), userCurrent);
+				response.sendRedirect(request.getContextPath() + "/info");
+			}
+			
+		}
+		
 	}
 }

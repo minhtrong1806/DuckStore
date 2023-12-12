@@ -60,11 +60,6 @@ public class AddVariantServlet extends HttpServlet {
 		String qty_in_stockString = (String)request.getParameter("qty_in_stock");	
 		String priceString = (String)request.getParameter("price");	
 
-		System.out.println(color);
-		System.out.println(size);
-		System.out.println(qty_in_stockString);
-		System.out.println(priceString);
-		
 		if (color == null || size == null
 				|| qty_in_stockString.length() == 0 || qty_in_stockString == null
 				|| priceString.length() == 0 || priceString == null){
@@ -90,15 +85,16 @@ public class AddVariantServlet extends HttpServlet {
 		}
 		
 		try {
-			if (request.getPart("itemImage").getSize() != 0) {
-				
+			if (request.getPart("itemImage").getSize() == 0) {
+				errorString += "Please choose image!";
+				hasError = true;
+			}
+			else {
 				String folderStore = Constant.DIR + "\\productItem\\";
 				String fileName = "Item" + System.currentTimeMillis();
 				String productLink = UploadUtils.processUpload("itemImage", request, folderStore, fileName);
 				
 				item.setProduct_image(productLink);
-				
-				System.out.println(folderStore);
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -121,12 +117,12 @@ public class AddVariantServlet extends HttpServlet {
 				// Lưu thông báo vào session attribute
 				HttpSession session = request.getSession();
 				session.setAttribute("successMessage", "The variation has been added successfully!");
-				response.sendRedirect(request.getContextPath() + "/admin-product-detail");
+				response.sendRedirect(request.getContextPath() + "/admin-product-detail?productId="+productId);
 			}
 			else {
 				HttpSession session = request.getSession();
 				session.setAttribute("message", "An error occurred ! \\nPlease use another name!");
-				response.sendRedirect(request.getContextPath() + "/admin-add-product");
+				response.sendRedirect(request.getContextPath() + "/admin-product-detail?productId="+productId);
 			}
 			
 			
