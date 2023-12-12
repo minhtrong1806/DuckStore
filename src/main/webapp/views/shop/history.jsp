@@ -94,7 +94,7 @@
               </a>
                --%>
               <a
-                href="my-account"
+                href="info"
                 class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11"
                 data-notify="0"
               >
@@ -146,7 +146,7 @@
             <div class="right-top-bar flex-w h-full">
               <a href="login" class="flex-c-m p-lr-10 trans-04"> Login </a>
               <a href="logout" class="flex-c-m p-lr-10 trans-04"> Logout </a>
-              <a href="my-account" class="flex-c-m p-lr-10 trans-04"> Account </a>
+              <a href="info" class="flex-c-m p-lr-10 trans-04"> Account </a>
             </div>
           </li>
         </ul>

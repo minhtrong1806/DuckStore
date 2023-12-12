@@ -88,7 +88,7 @@
               </a>
                --%>
               <a
-                href="my-account"
+                href="info"
                 class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11"
                 data-notify="0"
               >
@@ -140,7 +140,7 @@
             <div class="right-top-bar flex-w h-full">
               <a href="login" class="flex-c-m p-lr-10 trans-04"> Login </a>
               <a href="logout" class="flex-c-m p-lr-10 trans-04"> Logout </a>
-              <a href="my-account" class="flex-c-m p-lr-10 trans-04"> Account </a>
+              <a href="info" class="flex-c-m p-lr-10 trans-04"> Account </a>
             </div>
           </li>
         </ul>
@@ -176,7 +176,6 @@
         <span class="stext-109 cl4">Info </span>
       </div>
     </div>
-    <!-- My Account -->
     <!-- My Account -->
 		<div class="container">
 				<div class="my-5">
@@ -215,9 +214,9 @@
 																		</div>
 																		<div
 																				class="col-xl-8 d-flex flex-column align-items-xl-start mtext-107">
-																				<p class="m-t-30">Minh Trong</p>
-																				<p class="m-t-20">minhtrong@gmail.com</p>
-																				<p class="m-t-20">0123456789</p>
+																				<p class="m-t-30">${userCurrent.getName() }</p>
+																				<p class="m-t-20">${userCurrent.getEmailAddress() }</p>
+																				<p class="m-t-20">${userCurrent.getPhone_number() }</p>
 																		</div>
 																</div>
 																<div class="d-xl-flex justify-content-xl-end stext-108 px-4 mb-2">

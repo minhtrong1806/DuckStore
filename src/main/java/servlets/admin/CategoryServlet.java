@@ -10,22 +10,28 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import net.bytebuddy.utility.privilege.GetMethodAction;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
+import com.oracle.wls.shaded.org.apache.xalan.templates.ElemApplyImport;
+
 import DAO.ProductCategoryDAO;
+import DAO.UserAccountDAO;
 import bean.Product;
 import bean.ProductCategory;
+import bean.UserAccount;
 
 @WebServlet(urlPatterns = 
 		{"/admin-category", 
 		"/admin-category/showAdd",
 		"/admin-category/showEdit",
 		"/admin-category/add",
-		"/admin-category/edit"})
+		"/admin-category/edit",
+		"/admin-category/delete"})
 public class CategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -46,6 +52,9 @@ public class CategoryServlet extends HttpServlet {
 			switch (action) {
 			case "/admin-category/add":
 				insertCategory(request, response);
+				break;
+			case "/admin-category/delete":
+				deleteCategory(request, response);
 				break;
 			case "/admin-category/edit":
 				editCategory(request, response);
@@ -69,6 +78,40 @@ public class CategoryServlet extends HttpServlet {
 
 	}
 
+	protected void deleteCategory(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		boolean hasErorr = false;
+		int categoryId = -1;
+		
+		try {
+			categoryId = Integer.parseInt(request.getParameter("categoryId"));
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		if (categoryId < 0) {
+			hasErorr = true;
+		}
+		
+		if(hasErorr) {
+			HttpSession session = request.getSession();
+			session.setAttribute("successMessage", "An error occurred, please try again !");
+			response.sendRedirect(request.getContextPath() + "/admin-category");			
+		}
+		else {
+			ProductCategoryDAO productCategoryDAO = new ProductCategoryDAO();
+			boolean deleteSuccess  = productCategoryDAO.deteleCategory(categoryId);
+			if (deleteSuccess) {
+				response.sendRedirect(request.getContextPath() + "/admin-category");	
+			}
+			else {
+				HttpSession session = request.getSession();
+				session.setAttribute("successMessage", "This category cannot be deleted!");
+				response.sendRedirect(request.getContextPath() + "/admin-category");	
+			}
+			
+		}	
+	}
+	
 	protected void listCategory(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		

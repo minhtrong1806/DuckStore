@@ -94,7 +94,7 @@
               </a>
                --%>
               <a
-                href="my-account"
+                href="info"
                 class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11"
                 data-notify="0"
               >
@@ -146,7 +146,7 @@
             <div class="right-top-bar flex-w h-full">
               <a href="login" class="flex-c-m p-lr-10 trans-04"> Login </a>
               <a href="logout" class="flex-c-m p-lr-10 trans-04"> Logout </a>
-              <a href="my-account" class="flex-c-m p-lr-10 trans-04"> Account </a>
+              <a href="info" class="flex-c-m p-lr-10 trans-04"> Account </a>
             </div>
           </li>
         </ul>
@@ -183,15 +183,15 @@
       </div>
     </div>
     <!-- My Account -->
-    <!-- My Account -->
 		<div class="container">
 				<div class="my-5">
 						<div class="row">
 								<div class="col-xl-4">
 										<div class="card">
 												<div class="card-body">
-														<h4 class="ltext-108 cl2 text-center m-tb-20">Minh
-																Trong</h4>
+														<h4 class="ltext-108 cl2 text-center m-tb-20">
+															Minh Trong
+														</h4>
 														<div class="border-top">
 																<div class="list-group">
 																		<a
@@ -209,7 +209,7 @@
 										</div>
 								</div>
 								<div class="col">
-									<form action="">
+									<form action="${pageContext.request.contextPath}/change-password" method="POST">
 										<div class="card">
 											<div class="m-all-40">
 												<h5 class="text-left mtext-103 cl2">Edit Your Info</h5>
@@ -220,9 +220,8 @@
 														<div class="form-group w-100">
 															<label for="username"><strong>Old Password</strong></label> 
 															<div class="d-flex justify-content-between">
-																	<input value="<c:if test="${userName != null }">${userName }</c:if>"
-																		class="form-control size-121" type="password" id="OldPassword"
-																		placeholder="Old Password" name="oldPassword">
+																	<input class="form-control size-121" type="password" 
+																		placeholder="Old Password" name="oldPassword" id="OldPassword">
 																	<button class="btn btn-dark" type="button" onclick="togglePassword('OldPassword')">Show</button>
 															</div>
 														
@@ -230,9 +229,8 @@
 														<div class="form-group w-100 ">
 															<label class="m-t-10" for="email"><strong>New Password</strong></label> 
 															<div class="d-flex justify-content-between">
-																	<input value="<c:if test="${emailAddress != null }">${emailAddress }</c:if>"
-																		class="form-control size-121" type="password" id="NewPassword"
-																		placeholder="New Password" name="newPassword">
+																	<input class="form-control size-121" type="password"
+																		placeholder="New Password" name="newPassword" id="NewPassword">
 																	<button class="btn btn-dark" type="button" onclick="togglePassword('NewPassword')">Show</button>
 															</div>
 															
@@ -240,11 +238,15 @@
 														<div class="form-group w-100 ">
 															<label class="m-t-10" for="email"><strong>Repeat Password</strong></label> 
 															<div class="d-flex justify-content-between">
-																	<input value="<c:if test="${emailAddress != null }">${emailAddress }</c:if>"
-																		class="form-control size-121" type="password" id="RepeatPassword"
-																		placeholder="Repeat Password" name="repeatPassword">
+																	<input class="form-control size-121" type="password" 
+																		placeholder="Repeat Password" name="repeatPassword" id="RepeatPassword">
 																	<button class="btn btn-dark" type="button" onclick="togglePassword('RepeatPassword')">Show</button>
 															</div>
+														</div>
+														<div class="form-row d-flex flex-column">
+																<c:if test="${errorString != null }">
+																			<small style="color: var(--red)" >${errorString}</small>
+																</c:if>
 														</div>
 													</div>
 												</div>

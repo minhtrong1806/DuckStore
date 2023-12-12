@@ -33,12 +33,6 @@
           </a>
           <hr class="sidebar-divider my-0" />
           <ul class="navbar-nav text-light" id="accordionSidebar">
-            <li class="nav-item" style="margin-top: 35%">
-              <a class="nav-link " href="${pageContext.request.contextPath}/admin-dashboard">
-                <i class="fa fa-dashboard" style="font-size: 1.3rem"></i>
-                <span class="nav-item-content">Dashboard</span>
-              </a>
-            </li>
             <li class="nav-item text-white-50">
               <div class="nav-item dropdown" style="margin-bottom: 0px">
                 <a aria-expanded="false" data-toggle="dropdown" class="nav-link active" href="#">
@@ -118,10 +112,9 @@
 												</td>
                         <td>10</td>
                         <td>
-                          <div class="border rounded-0 border-white d-flex justify-content-center text-center">  
-                            <a class="btn" href="${pageContext.request.contextPath}/admin-category/showEdit?CategoryName=${category.getCategoryName() }">
-                            	<i class="fa fa-edit icon-size"></i>
-                          	</a>
+                          <div class="d-flex justify-content-center">                           
+                              <a class="btn btn-success mx-2" href="${pageContext.request.contextPath}/admin-category/showEdit?CategoryName=${category.getCategoryName() }">Detail</a>
+                              <a class="btn btn-danger mx-2" onclick="deleteConfirm(${category.getProductCategoryID() });">Delete</a>
                           </div>
                         </td>
                       </tr>
@@ -167,7 +160,19 @@
 		        if (successMessage !== '') {
 		            alert(successMessage);
 		        }
-		    }
+		    }		
+		</script>
+		    
+		<script type="text/javascript">
+				function deleteConfirm(id){
+					var result = confirm("Are you sure you want to delete this product?");
+					if(result){
+						window.location.href = "admin-category/delete?categoryId="+id;
+					} 
+					else {
+						return false;
+					}
+				}
 		</script>
    
 		<script src="${pageContext.request.contextPath}/views/admin/assets/js/jquery.min.js"></script>

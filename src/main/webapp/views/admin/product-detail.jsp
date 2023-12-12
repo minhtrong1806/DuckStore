@@ -32,12 +32,6 @@
           </a>
           <hr class="sidebar-divider my-0" />
           <ul class="navbar-nav text-light" id="accordionSidebar">
-            <li class="nav-item" style="margin-top: 35%">
-              <a class="nav-link" href="${pageContext.request.contextPath}/admin-dashboard">
-                <i class="fa fa-dashboard" style="font-size: 1.3rem"></i>
-                <span class="nav-item-content">Dashboard</span>
-              </a>
-            </li>
             <li class="nav-item text-white-50">
               <div class="nav-item dropdown" style="margin-bottom: 0px">
                 <a aria-expanded="false" data-toggle="dropdown" class="nav-link active" href="#">
@@ -127,7 +121,7 @@
 						                   <th>
 						                      <c:choose>
 																			<c:when test="${item.getProduct_image() != null}">
-																				   <img class="mr-2 avatar rounded" width="auto" height="80" src="${pageContext.request.contextPath}/views/images/productItem/${item.getProduct_image()}"/> 
+																				   <img class="mr-2 avatar rounded" width="auto" height="80" src="${itemFolder}${item.getProduct_image()}"/> 
 																			</c:when>
 																			<c:otherwise>
 																				   <img class="mr-2" width="auto" height="80" src="${pageContext.request.contextPath}/views/images/default_image.jpg"/>
@@ -137,7 +131,7 @@
 						                    <td>
 						                    		<div class="d-flex justify-content-center">                           
 					                              <a class="btn btn-success mx-2" role="button " href="${pageContext.request.contextPath}/admin-product-detail/variant-detail?itemId=${item.getProductItemID()}">Detail</a>
-					                              <a class="btn btn-danger mx-2" role="button " onclick="deleteConfirm(${item.getProductItemID()});">Delete</a>
+					                              <a class="btn btn-danger mx-2" role="button " onclick="deleteConfirm(${product.getProductID()},${item.getProductItemID()});">Delete</a>
 					                          </div>
 						                    </td>
 				                    </tr>
@@ -223,7 +217,7 @@
           							</c:if> 
 												<div id="selectedBanner">
 														<c:if test="${product.getProduct_image() != null}">
-															<img class="mr-2 avatar rounded" width="200px" height="auto" src="${pageContext.request.contextPath}/views/images/product/${product.getProduct_image()}"/>
+															<img class="mr-2 avatar rounded" width="200px" height="auto" src="${productFolder}${product.getProduct_image()}"/>
 														</c:if>
 												</div>
 												<div class="bg-secondary d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center upload-img m-2 pointer">
@@ -277,10 +271,10 @@
 		</script>    
 		
 		<script type="text/javascript">
-				function deleteConfirm(id){
-					var result = confirm("Are you sure you want to delete this product?");
+				function deleteConfirm(productId, itemId){
+					var result = confirm("Are you sure you want to delete this variant?");
 					if(result){
-						window.location.href = "deleteProduct?itemId="+id;
+						window.location.href = "${pageContext.request.contextPath}/admin-product-detail/delete-variant?productId=" + productId + "&itemId="+itemId;
 					} 
 					else {
 						return false;

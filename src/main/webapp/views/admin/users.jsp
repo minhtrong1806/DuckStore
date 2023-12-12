@@ -41,11 +41,6 @@
 				</a>
 				<hr class="sidebar-divider my-0" />
 				<ul class="navbar-nav text-light" id="accordionSidebar">
-					<li class="nav-item" style="margin-top: 35%"><a
-						class="nav-link" href="${pageContext.request.contextPath}/admin-dashboard"> <i
-							class="fa fa-dashboard" style="font-size: 1.3rem"></i> <span
-							class="nav-item-content">Dashboard</span>
-					</a></li>
 					<li class="nav-item text-white-50">
 						<div class="nav-item dropdown" style="margin-bottom: 0px">
 							<a aria-expanded="false" data-toggle="dropdown" class="nav-link"
@@ -107,7 +102,7 @@
 										class="d-flex d-xl-flex justify-content-xl-center align-items-xl-center dataTables_length my-2">
 									</div>
 									<a class="btn btn-info text-center mb-4" role="button"
-										href="${pageContext.request.contextPath}/admin-add-user">ADD</a>
+										href="${pageContext.request.contextPath}/admin-user/add">ADD</a>
 								</div>
 							</div>
 							
@@ -136,7 +131,7 @@
 												<td>${user.getRole() }</td>
 												<td>
 													<div class="d-flex justify-content-center">                           
-                              <a class="btn btn-success mx-2" role="button " href="${pageContext.request.contextPath}/admin-user-detail?userId=${user.getUser_id()}">Detail</a>
+                              <a class="btn btn-success mx-2" role="button " href="${pageContext.request.contextPath}/admin-user/detail?userId=${user.getUser_id()}">Detail</a>
                               <a class="btn btn-danger mx-2" role="button " onclick="deleteConfirm(${user.getUser_id()});">Delete</a>
                           </div>
 												</td>
@@ -190,9 +185,9 @@
 		
 		<script type="text/javascript">
 				function deleteConfirm(id){
-					var result = confirm("Are you sure you want to delete this product?");
+					var result = confirm("Are you sure you want to delete this user?");
 					if(result){
-						window.location.href = "admin-delete-user?userId="+id;
+						window.location.href = "${pageContext.request.contextPath}/admin-user/delete?userId="+id;
 					} 
 					else {
 						return false;

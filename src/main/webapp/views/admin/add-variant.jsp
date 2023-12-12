@@ -33,11 +33,6 @@
 				</a>
 				<hr class="sidebar-divider my-0" />
 				<ul class="navbar-nav text-light" id="accordionSidebar">
-					<li class="nav-item" style="margin-top: 35%"><a
-						class="nav-link " href="${pageContext.request.contextPath}/admin-dashboard"> <i
-							class="fa fa-dashboard" style="font-size: 1.3rem"></i> <span
-							class="nav-item-content">Dashboard</span>
-					</a></li>
 					<li class="nav-item text-white-50">
 						<div class="nav-item dropdown" style="margin-bottom: 0px">
 							<a aria-expanded="false" data-toggle="dropdown"

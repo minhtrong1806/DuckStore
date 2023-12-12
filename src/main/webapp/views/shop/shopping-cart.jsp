@@ -119,7 +119,7 @@
 														class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 ">
 														<i class="zmdi zmdi-shopping-cart"></i>
 												</a> <a
-														href="my-account"
+														href="info"
 														class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11"
 														data-notify="0"> <i class="zmdi zmdi-account-circle"></i>
 												</a>
@@ -168,7 +168,7 @@
 														class="flex-c-m p-lr-10 trans-04"> Login </a> <a
 														href="logout"
 														class="flex-c-m p-lr-10 trans-04"> Logout </a> <a
-														href="my-account"
+														href="info"
 														class="flex-c-m p-lr-10 trans-04"> Account </a>
 										</div>
 								</li>

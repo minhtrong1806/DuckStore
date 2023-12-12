@@ -32,11 +32,6 @@
 					</a>
 					<hr class="sidebar-divider my-0" />
 					<ul class="navbar-nav text-light" id="accordionSidebar">
-						<li class="nav-item" style="margin-top: 35%"><a
-							class="nav-link" href="${pageContext.request.contextPath}/admin-dashboard"> <i
-								class="fa fa-dashboard" style="font-size: 1.3rem"></i> <span
-								class="nav-item-content">Dashboard</span>
-						</a></li>
 						<li class="nav-item text-white-50">
 							<div class="nav-item dropdown" style="margin-bottom: 0px">
 								<a aria-expanded="false" data-toggle="dropdown" class="nav-link active"
@@ -125,7 +120,7 @@
 																<div class="d-flex d-sm-flex justify-content-start align-items-center">
 																	<div id="selectedBanner">
 																			<c:if test="${itemCurent.getProduct_image() != null}">
-																				<img class="mr-2 avatar rounded" width="200px" height="auto" src="${pageContext.request.contextPath}/views/images/productItem/${itemCurent.getProduct_image()}"/> 
+																				<img class="mr-2 avatar rounded" width="200px" height="auto" src="${itemFolder}${itemCurent.getProduct_image()}"/> 
 																			</c:if>
 																	</div>
 																	<div class="bg-secondary d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center upload-img m-2 pointer">

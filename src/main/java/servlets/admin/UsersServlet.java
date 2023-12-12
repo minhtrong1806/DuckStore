@@ -16,7 +16,7 @@ import DAO.UserAccountDAO;
 import bean.UserAccount;
 
 @WebServlet({"/admin-users",
-	"/admin-delete-user"})
+	"/admin-user/delete"})
 public class UsersServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
     
@@ -32,7 +32,7 @@ public class UsersServlet extends HttpServlet{
 		String action = request.getServletPath();
 		try {
 			switch (action) {
-			case "/admin-delete-user":
+			case "/admin-user/delete":
 				deleteUser(request, response);
 				break;
 			default:
@@ -46,6 +46,7 @@ public class UsersServlet extends HttpServlet{
 	}
 	
 	protected void deleteUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("delete");
 		Boolean hasErorr = false;
 		int userId = -1;
 		try {
@@ -67,8 +68,7 @@ public class UsersServlet extends HttpServlet{
 			UserAccount user = userAccountDAO.getUserAccount(userId);
 			
 			userAccountDAO.deleteUser(userId);
-			HttpSession session = request.getSession();
-			session.setAttribute("successMessage", "User: " + user.getName() + " has been deleted!");
+			
 			response.sendRedirect(request.getContextPath() + "/admin-users");		
 		}
 	}

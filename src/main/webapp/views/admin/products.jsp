@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<!-- ADMIN -->
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -36,12 +37,6 @@
           </a>
           <hr class="sidebar-divider my-0" />
           <ul class="navbar-nav text-light" id="accordionSidebar">
-            <li class="nav-item" style="margin-top: 35%">
-              <a class="nav-link" href="${pageContext.request.contextPath}/admin-dashboard">
-                <i class="fa fa-dashboard" style="font-size: 1.3rem"></i>
-                <span class="nav-item-content">Dashboard</span>
-              </a>
-            </li>
             <li class="nav-item text-white-50">
               <div class="nav-item dropdown" style="margin-bottom: 0px">
                 <a aria-expanded="false" data-toggle="dropdown" class="nav-link active" href="#">
@@ -108,14 +103,6 @@
                       </optgroup>
                     </select>
                   </div>
-                  <div class="col-md-6 col-xl-5 text-nowrap d-xl-flex align-items-xl-center">
-<%--filter stock_status--%><select class="custom-select d-flex w-auto my-2" name="stockStatus">
-                      <optgroup label="stock">
-                        <option value="1" selected="">in stock</option>
-                        <option value="0">out of stock</option>
-                      </optgroup>
-                    </select>
-                  </div>
                 </div>
               </div>
               <div class="card-body" style="padding-top: 0px">
@@ -154,7 +141,7 @@
                         <td>
                         <c:choose>
 											    <c:when test="${product.getProduct_image() != null}">
-											        <img class="mr-2" width="auto" height="80" src="${pageContext.request.contextPath}/views/images/product/${product.getProduct_image()}"/> 
+											        <img class="mr-2" width="auto" height="80" src="${productFolder}${product.getProduct_image()}"/> 
 											    </c:when>
 											    <c:otherwise>
 											        <img class="mr-2" width="auto" height="80" src="${pageContext.request.contextPath}/views/images/default_image.jpg"/>
@@ -237,7 +224,7 @@
 				function deleteConfirm(id){
 					var result = confirm("Are you sure you want to delete this product?");
 					if(result){
-						window.location.href = "admin-delete-product?productId="+id;
+						window.location.href = "${pageContext.request.contextPath}/admin-product/delete?productId="+id;
 					} 
 					else {
 						return false;

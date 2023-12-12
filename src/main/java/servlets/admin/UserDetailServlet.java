@@ -20,9 +20,9 @@ import org.apache.lucene.queryparser.flexible.standard.processors.AnalyzerQueryN
 import DAO.UserAccountDAO;
 import bean.UserAccount;
 
-@WebServlet({"/admin-user-detail",
-	"/admin-edit-user",
-	"/admin-reset-password"})
+@WebServlet({"/admin-user/detail",
+	"/admin-user/edit",
+	"/admin-user/reset-password"})
 public class UserDetailServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
     
@@ -38,8 +38,11 @@ public class UserDetailServlet extends HttpServlet{
 		String action = request.getServletPath();
 		try {
 			switch (action) {
-			case "/admin-edit-user":
+			case "/admin-user/edit":
 				editUser(request, response);
+				break;
+			case "/admin-user/reset-password":
+				resetPassword(request, response);
 				break;
 			default:
 				userDetail(request, response);
@@ -69,30 +72,58 @@ public class UserDetailServlet extends HttpServlet{
 		
 		String newPassword = request.getParameter("newPassword");
 		String repeatPassword = request.getParameter("repeatPassword");
-		if (!ValidatorUtils.isPasswordValid(newPassword)) {
-			passwordMessage = "- Password must: At least 8 characters long," + " one lowercase letter,"
-					+ " one uppercase letter," + " one digit," + "	one special character from the set [@ $!%*?&].";
-			hasError = true;
-		} 
-		else {
-				if (!newPassword.equals(repeatPassword)) {
-					hasError = true;
-					passwordMessage = passwordMessage + "Repeated password is incorrect!";
-				}
-		}
+//		if (!ValidatorUtils.isPasswordValid(newPassword)) {
+//			passwordMessage = "- Password must: At least 8 characters long," + " one lowercase letter,"
+//					+ " one uppercase letter," + " one digit," + "	one special character from the set [@ $!%*?&].";
+//			hasError = true;
+//		} else {
+//			if (!newPassword.equals(repeatPassword)) {
+//				hasError = true;
+//				passwordMessage = passwordMessage + "Repeated password is incorrect!";
+//			}
+//		}
 		
 		if (hasError) {
+			UserAccountDAO userAccountDAO = new UserAccountDAO();
+			UserAccount userCurrent = userAccountDAO.getUserAccount(userId);
+			String role = null;
+			
+			switch (userCurrent.getRole()) {
+			case 0:
+				role = "Manager";
+				break;
+			case 1:
+				role = "Staff";
+				break;
+			case 2:
+				role = "Customer";
+				break;
+			}
+			request.setAttribute("role", role);
+			request.setAttribute("user", userCurrent);
 			request.setAttribute("passwordMessage", passwordMessage);
-
 			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/admin/user-detail.jsp");
 			dispatcher.forward(request, response);			
+		}
+		else {
+			UserAccount userAccount = new UserAccount();
+			UserAccountDAO userAccountDAO = new UserAccountDAO();
+			
+			userAccount.setPassword(newPassword);
+			
+			userAccountDAO.editUser(userId, userAccount);
+			response.sendRedirect(request.getContextPath() + "/admin-users");
 		}
 
 	}
 	
+		
+
+	
 	protected void editUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		UserAccountDAO userAccountDAO = new UserAccountDAO();
+		
 		boolean hasError = false;
-		boolean hasChange = false;
 		String userNameMessage = "";
 		String emailMessage = "";
 
@@ -109,50 +140,65 @@ public class UserDetailServlet extends HttpServlet{
 			response.sendRedirect(request.getContextPath() + "/admin-users");
 		}
 
-		String oldUsername = request.getParameter("oldUsername");
 		String newUsername = request.getParameter("newUsername");
-		String oldEmail = request.getParameter("oldEmail");
 		String newEmail = request.getParameter("newEmail");
-		String oldPhoneNumber = request.getParameter("oldPhoneNumber");
 		String newPhoneNumber = request.getParameter("newPhoneNumber");
-		String oldRole = request.getParameter("oldRole");
 		String newRole = request.getParameter("newRole");
 		
-		if (!oldUsername.equals(newUsername) || !oldEmail.equals(newEmail) 
-			|| !oldPhoneNumber.equals(newPhoneNumber) || newRole != null) {
-			hasChange = true;
+		if (!ValidatorUtils.isUserNameValid(newUsername)) {
+			userNameMessage = "- Username must start and end with a letter or a digit."
+					+ " Have a length between 3 and 18 characters."
+					+ " Allow dots, underscores, or hyphens in between characters, but not consecutively.";
+			hasError = true;
 		}
-		
-		if(hasChange) {
-			if (!ValidatorUtils.isUserNameValid(newUsername)) {
-				userNameMessage = 
-						"- Username must start and end with a letter or a digit."
-						+ " Have a length between 3 and 18 characters."
-						+ " Allow dots, underscores, or hyphens in between characters, but not consecutively.";
-				hasError = true;
-			}
-			if (!ValidatorUtils.isEmailValid(newEmail)) {
-				emailMessage = "- Invalid email";
-				hasError = true;
-			}
-			if (hasError) {
-				request.setAttribute("userNameMessage", userNameMessage);
-				request.setAttribute("emailMessage", emailMessage);
+		if (!ValidatorUtils.isEmailValid(newEmail)) {
+			emailMessage = "- Invalid email";
+			hasError = true;
+		}
 
-				RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/admin/user-detail.jsp");
-				dispatcher.forward(request, response);
+		if (hasError) {
+			UserAccount userCurrent = userAccountDAO.getUserAccount(userId);
+			String role = null;
+			
+			switch (userCurrent.getRole()) {
+			case 0:
+				role = "Manager";
+				break;
+			case 1:
+				role = "Staff";
+				break;
+			case 2:
+				role = "Customer";
+				break;
 			}
-			else {
-				UserAccountDAO userAccountDAO = new UserAccountDAO();
-				response.sendRedirect(request.getContextPath() + "/admin-users");
-			}
+			
+			request.setAttribute("role", role);
+			request.setAttribute("user", userCurrent);
+			request.setAttribute("userNameMessage", userNameMessage);
+			request.setAttribute("emailMessage", emailMessage);
+
+			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/admin/user-detail.jsp");
+			dispatcher.forward(request, response);
 		}
 		else {
+
+			int role = userAccountDAO.getUserAccount(userId).getRole();
+			try {
+				role = Integer.parseInt(newRole);
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+			
+			UserAccount userAccount = new UserAccount();
+
+			userAccount.setName(newUsername);
+			userAccount.setEmailAddress(newEmail);
+			userAccount.setPhone_number(newPhoneNumber);
+			userAccount.setRole(role);
+			
+			userAccountDAO.editUser(userId, userAccount);
 			response.sendRedirect(request.getContextPath() + "/admin-users");
 		}
-		
-
-
 	}
 	
 	protected void userDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

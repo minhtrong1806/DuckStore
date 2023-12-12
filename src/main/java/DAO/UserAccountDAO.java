@@ -148,7 +148,7 @@ public class UserAccountDAO {
 	}
 
 	// edit User
-	public void editUser(String oldEmail, String newEmail, String newPhoneNumber, String newPassword, String newName) {
+	public void editUser(int userID, UserAccount newUserAccount) {
 		try (Session session = factory.openSession()) {
 
 			try {
@@ -159,24 +159,27 @@ public class UserAccountDAO {
 				Root<UserAccount> root = query.from(UserAccount.class);
 
 				// Tìm kiếm UserAccount dựa trên oldEmail
-				Predicate conditionPredicate = builder.equal(root.get("emailAddress"), oldEmail);
+				Predicate conditionPredicate = builder.equal(root.get("userID"), userID);
 				query.where(conditionPredicate);
 
 				UserAccount userAccount = session.createQuery(query).uniqueResult();
 
 				// Kiểm tra nếu userAccount không null và có giá trị mới được truyền vào
 				if (userAccount != null) {
-					if (newEmail != null) {
-						userAccount.setEmailAddress(newEmail);
+					if (newUserAccount.getEmailAddress() != null) {
+						userAccount.setEmailAddress(newUserAccount.getEmailAddress());
 					}
-					if (newPhoneNumber != null) {
-						userAccount.setPhone_number(newPhoneNumber);
+					if (newUserAccount.getPhone_number() != null) {
+						userAccount.setPhone_number(newUserAccount.getPhone_number());
 					}
-					if (newPassword != null) {
-						userAccount.setPassword(newPassword);
+					if (newUserAccount.getPassword() != null) {
+						userAccount.setPassword(newUserAccount.getPassword());
 					}
-					if (newName != null) {
-						userAccount.setName(newName);
+					if (newUserAccount.getName() != null) {
+						userAccount.setName(newUserAccount.getName());
+					}
+					if (newUserAccount.getRole() != null) {
+						userAccount.setRole(newUserAccount.getRole());
 					}
 					// Cập nhật UserAccount trong cơ sở dữ liệu
 					session.update(userAccount);

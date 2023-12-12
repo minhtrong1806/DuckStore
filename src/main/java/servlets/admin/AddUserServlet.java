@@ -16,7 +16,7 @@ import DAO.UserAccountDAO;
 import bean.UserAccount;
 import utils.ValidatorUtils;
 
-@WebServlet({ "/admin-add-user" })
+@WebServlet({ "/admin-user/add" })
 public class AddUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -38,6 +38,7 @@ public class AddUserServlet extends HttpServlet {
 		String emailMessage = "";
 		String passwordMessage = "";
 		boolean hasError = false;
+		boolean addSuccess = false;
 
 		String userName = request.getParameter("userName");
 		String emailAddress = request.getParameter("emailAddress");
@@ -101,24 +102,24 @@ public class AddUserServlet extends HttpServlet {
 			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/admin/add-user.jsp");
 			dispatcher.forward(request, response);
 		}
+		else {
+			UserAccount newUser = new UserAccount();
+			UserAccountDAO userAccountDAO = new UserAccountDAO();
+			
+			newUser.setName(userName);
+			newUser.setRole(role);
+			newUser.setEmailAddress(emailAddress);
+			newUser.setPhone_number(phoneNumber);
+			newUser.setPassword(password);
+			
+			userAccountDAO.addUser(newUser);
+			System.out.println("add user success");	
+		}
 		
-		UserAccount newUser = new UserAccount();
-		UserAccountDAO userAccountDAO = new UserAccountDAO();
 		
-		newUser.setName(userName);
-		newUser.setRole(role);
-		newUser.setEmailAddress(emailAddress);
-		newUser.setPhone_number(phoneNumber);
-		newUser.setPassword(password);
-		
-		userAccountDAO.addUser(newUser);
-		System.out.println("add user success");
-//		Boolean addSuccess =
+//		
 		
 //		if(addSuccess) {
-//			// Lưu thông báo vào session attribute
-//			HttpSession session = request.getSession();
-//			session.setAttribute("successMessage", "The user has been added successfully!");
 			response.sendRedirect(request.getContextPath() + "/admin-users");
 //		}
 //		else {
