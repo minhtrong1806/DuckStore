@@ -2,27 +2,29 @@ package servlets.admin;
 
 import jakarta.servlet.RequestDispatcher;
 
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import utils.Constant;
+import utils.DeleteUtils;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
 import DAO.ProductCategoryDAO;
 import DAO.ProductDAO;
-import DAO.ProductItemDAO;
 import bean.Product;
 import bean.ProductCategory;
 import bean.ProductItem;
 
-@WebServlet({"/admin-products"})
+@WebServlet({"/admin-products",
+	"/admin-product/delete"})
 public class ProductsServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
     
@@ -38,8 +40,8 @@ public class ProductsServlet extends HttpServlet{
 		String action = request.getServletPath();
 		try {
 			switch (action) {
-			case "/admin-add-product/add":
-//				addProduct(request, response);
+			case "/admin-product/delete":
+				deleteProduct(request, response);
 				break;
 			default:
 				list(request, response);
@@ -49,6 +51,43 @@ public class ProductsServlet extends HttpServlet{
 		} catch (Exception  e) {
 			throw new ServletException(e);
 		}
+	}
+	
+	protected void deleteProduct(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		boolean hasErorr = false;
+		int productId = -1;
+		
+		try {
+			productId = Integer.parseInt(request.getParameter("productId"));
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		if (productId < 0) {
+			hasErorr = true;
+		}
+		
+		if(hasErorr) {
+			HttpSession session = request.getSession();
+			session.setAttribute("successMessage", "An error occurred, please try again !");
+			response.sendRedirect(request.getContextPath() + "/admin-products");			
+		}
+		else {
+			ProductDAO productDAO = new ProductDAO();
+			String fileNameStore = productDAO.getProductbyID(productId).getProduct_image();
+			String folderStore = Constant.DIR + "\\products\\";
+			boolean deleteSuccess  = productDAO.deteleProduct(productId);
+			if (deleteSuccess) {
+				DeleteUtils.processDelete(fileNameStore, folderStore, request);
+				response.sendRedirect(request.getContextPath() + "/admin-products");	
+			}
+			else {
+				HttpSession session = request.getSession();
+				session.setAttribute("successMessage", "This product cannot be deleted!");
+				response.sendRedirect(request.getContextPath() + "/admin-products");	
+			}
+			
+		}	
 	}
 	
 	private void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -64,13 +103,13 @@ public class ProductsServlet extends HttpServlet{
 		priceRange = getPriceRange(listProducts, productDAO);
 		quantity = getQty(listProducts, productDAO);
 		
-		String folderStore = Constant.DIR + "\\product\\";
+		String folderStore = request.getContextPath()+ "\\views\\images\\products\\";
 		
 		request.setAttribute("categoryList", categorieList);
 		request.setAttribute("listProducts", listProducts);
 		request.setAttribute("priceRange", priceRange);
 		request.setAttribute("quantity", quantity);
-		request.setAttribute("folder", folderStore);
+		request.setAttribute("productFolder", folderStore);
 		
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/admin/products.jsp");
 		dispatcher.forward(request, response);

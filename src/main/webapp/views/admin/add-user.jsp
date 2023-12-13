@@ -41,12 +41,7 @@
 				</a>
 				<hr class="sidebar-divider my-0" />
 				<ul class="navbar-nav text-light" id="accordionSidebar">
-					<li class="nav-item" style="margin-top: 35%"><a
-						class="nav-link" href="${pageContext.request.contextPath}/admin-dashboard"> <i
-							class="fa fa-dashboard" style="font-size: 1.3rem"></i> <span
-							class="nav-item-content">Dashboard</span>
-					</a></li>
-					<li class="nav-item text-white-50">
+					<li class="nav-item text-white-50" style="margin-top: 70%;">
 						<div class="nav-item dropdown" style="margin-bottom: 0px">
 							<a aria-expanded="false" data-toggle="dropdown" class="nav-link"
 								href="#"> <i class="fa fa-inbox" style="font-size: 1.3rem"></i>
@@ -100,11 +95,14 @@
 						</li>
 					</ol>
 <%--form add user --%>
-					<form id="form-add-user" action="${pageContext.request.contextPath}/admin-add-user" method="POST">
+					<form id="form-add-user" action="${pageContext.request.contextPath}/admin-user/add" method="POST">
 						<%--header --%>
 						<div class="d-flex justify-content-between flex-wrap align-items-xl-center my-3 mx-5">
 							<div class="mt-4">
 								<h4 class="font-weight-bolder text-dark" style="color: var(--gray-dark)">Add a new user</h4>	
+								<c:if test="${errorString != null }">
+											<small style="color: var(--red)" >${errorString}</small>
+										</c:if>
 							</div>
 							<div class="d-flex flex-row justify-content-end justify-content-xl-end w-50">
 								<a href="${pageContext.request.contextPath}/admin-users" class="btn btn-danger text-uppercase font-weight-bold mr-3 my-2" role="button" style="border-style: solid; border-color: var(--gray)">
@@ -125,21 +123,22 @@
 											<div class="col">
 												<div class="form-group">
 													<label for="username"><strong>Username</strong></label>
-<%--userName--%>					<input class="form-control" type="text" id="username" placeholder="User Name" name="userName">
+<%--userName--%>					<input value="<c:if test="${userName != null }">${userName }</c:if>" class="form-control" type="text" id="username" placeholder="User Name" name="userName">
 												</div>
 											</div>
 											<div class="col">
 												<div class="form-group">
 													<label for="email"><strong>Email Address</strong></label>
-<%--emailAddress--%>			<input class="form-control" type="email" id="email" placeholder="Email Address" name="emailAddress">
+<%--emailAddress--%>			<input value="<c:if test="${emailAddress != null }">${emailAddress }</c:if>" class="form-control" type="email" id="email" placeholder="Email Address" name="emailAddress">
 												</div>
 											</div>
 										</div>
+									
 										<div class="form-row">
 											<div class="col">
 												<div class="form-group">
 													<label for="first_name"><strong>Phone Number</strong></label>
-<%--phoneNumber--%>				<input class="form-control" type="text" id="first_name" name="phoneNumber" placeholder="Phone Number" minlength="10">
+<%--phoneNumber--%>				<input value="<c:if test="${phoneNumber != null }">${phoneNumber }</c:if>" class="form-control" type="text" id="first_name" name="phoneNumber" placeholder="Phone Number" minlength="10">
 												</div>
 											</div>
 											<div class="col">
@@ -159,40 +158,34 @@
 											<div class="col">
 												<div class="form-group">
 													<label for="pass"><strong>Password</strong><br></label>
-<%--password--%>					<input class="form-control" type="password" placeholder="Password" name="password">
+													<div class="d-flex justify-content-between">
+<%--password--%>							<input id="passwordField" class="form-control" type="password" placeholder="Password" name="password" >
+															<button class="btn btn-dark " type="button" onclick="togglePassword('passwordField')">Show</button>
+													</div>
+
 												</div>
 											</div>
 											<div class="col">
 												<div class="form-group">
 													<label for="pass repeat"><strong>Repeat Password</strong><br></label>
-<%--passwordRepeat--%>		<input class="form-control" type="password" placeholder="Repeat Password" name="passwordRepeat">
+													<div class="d-flex justify-content-between">
+<%--passwordRepeat--%>				<input  id="passwordRepeatField" class="form-control" type="password" placeholder="Repeat Password" name="passwordRepeat">
+															<button class="btn btn-dark" type="button" onclick="togglePassword('passwordRepeatField')">Show</button>
+													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-								</div>
-<%--address content--%>
-								<div class="card shadow">
-									<div class="card-header py-3">
-										<p class="text-primary m-0 font-weight-bold">Address</p>
-									</div>
-									<div class="card-body">
-										<div class="form-group">
-											<label for="address"><strong>City</strong></label>
-<%--city--%>					<input class="form-control" type="text" id="address" placeholder="City" name="city">
-										</div>
-										<div class="form-group">
-											<label for="address"><strong>District</strong></label>
-<%--district--%>			<input class="form-control" type="text" id="address-3" placeholder="District" name="district">
-										</div>
-										<div class="form-group">
-											<label for="address"><strong>Address Line</strong></label>
-<%--addressLine--%>		<input class="form-control" type="text" id="address-2" placeholder="Address Line" name="addressLine">
-										</div>
-										<div class="form-group">
-											<label for="address"><strong>Unit Number</strong></label>
-<%--unitNumber--%>		<input class="form-control" type="text" id="address-1" placeholder="Unit Number" name="unitNumber">
-										</div>
+										<div class="form-row d-flex flex-column">
+													<c:if test="${userNameMessage != null }">
+															<small style="color: var(--red)" >${userNameMessage}</small>
+													</c:if>
+													<c:if test="${emailMessage != null }">
+															<small style="color: var(--red)" >${emailMessage}</small>
+													</c:if>
+													<c:if test="${passwordMessage != null }">
+															<small style="color: var(--red)" >${passwordMessage}</small>
+													</c:if>
+											</div>
 									</div>
 								</div>
 							</div>
@@ -211,6 +204,7 @@
 		<a class="border rounded d-inline scroll-to-top" href="#page-top"><i
 			class="fas fa-angle-up"></i></a>
 	</div>
+	
 	<script
 		src="${pageContext.request.contextPath}/views/admin/assets/js/jquery.min.js"></script>
 	<script
@@ -222,5 +216,12 @@
 		type="module"></script>
 	<script
 		src="${pageContext.request.contextPath}/views/admin/assets/js/theme.js"></script>
+		
+	<script>
+	function togglePassword(fieldId) {
+	    var field = document.getElementById(fieldId);
+	    field.type = (field.type === "password") ? "text" : "password";
+	}
+	</script>
 </body>
 </html>

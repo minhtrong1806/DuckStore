@@ -2049,8 +2049,22 @@ input.num-product::-webkit-inner-spin-button {
 
 /*//////////////////////////////////////////////////////////////////
 [ Block2 ]*/
+
+.product-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Fill the container width */
+  height: 100%; /* Fill the container height */
+  object-fit: cover; /* Maintain aspect ratio without stretching */
+}
 .block2-pic {
+  width: 100%; /* Ensure the container spans the full width available */
+  max-width: 390px; /* Set maximum width */
+  height: 0; /* Set initial height to 0 */
+  padding-bottom: 126.67%; /* Maintain aspect ratio (390/315 * 100) */
   position: relative;
+  overflow: hidden;
 }
 
 .block2-btn {
@@ -2168,7 +2182,7 @@ input.num-product::-webkit-inner-spin-button {
 
 .stext-104 {
   font-family: Poppins-Regular;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.466667;
 }
 
@@ -2559,6 +2573,8 @@ input.num-product::-webkit-inner-spin-button {
 .size-201 {
   max-width: 270px;
 }
+
+
 
 .size-202 {
   width: calc(100% / 3);
@@ -2959,7 +2975,14 @@ input.num-product::-webkit-inner-spin-button {
   top: 15px;
   left: 10px;
 }
-
+/*----------------------------------------------*/
+img.responsive-image {
+    width: 100%;
+    height: auto;
+    max-width: 100%; /* Ensure the image doesn't exceed its container */
+    display: block; /* Prevent extra space under the image */
+    object-fit: contain; /* Maintain proportions and fit within container */
+}
 
 
 /*---------------------------------------------*/

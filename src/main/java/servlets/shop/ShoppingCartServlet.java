@@ -18,7 +18,7 @@ public class ShoppingCartServlet extends HttpServlet{
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/shopping-cart.jsp");
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/shop/shopping-cart.jsp");
 		
 		dispatcher.forward(request, response);
 	}

@@ -25,11 +25,15 @@ public class SecurityConfig {
 		// Cấu hình cho vai trò "STAFF".
 		List<String> urlPatterns1 = new ArrayList<String>();
 		
-//		urlPatterns1.add("/admin-dashboard");
+//		urlPatterns1.add("/admin-products");	
+//		urlPatterns1.add("/admin-product/*");	
 //		urlPatterns1.add("/admin-add-product");
+//		urlPatterns1.add("/admin-add-product/*");
 //		urlPatterns1.add("/admin-product-detail");
-//		urlPatterns1.add("/admin-products");
+//		urlPatterns1.add("/admin-product-detail/*");
 //		urlPatterns1.add("/admin-category");
+//		urlPatterns1.add("/admin-category/*");
+//		urlPatterns1.add("/admin-add-variant");
 //		urlPatterns1.add("/admin-order-detail");
 //		urlPatterns1.add("/admin-orders");
 	
@@ -38,16 +42,22 @@ public class SecurityConfig {
 		// Cấu hình cho vai trò "MANAGER".
 		List<String> urlPatterns2 = new ArrayList<String>();
 		
+//		urlPatterns2.add("/admin-promotions");
+//		urlPatterns2.add("/admin-add-promotion");
 //		urlPatterns2.add("/admin-users");
-//		urlPatterns2.add("/admin-user-detail");
-//		urlPatterns2.add("/admin-add-user");
+//		urlPatterns2.add("/admin-user/*");
 		
 		mapConfig.put(ROLE_MANAGER, urlPatterns2);
 		
 		// Cấu hình cho vai trò "CUSTOMER".
 				List<String> urlPatterns3 = new ArrayList<String>();
 
-//				urlPatterns3.add("/my-account");
+//				urlPatterns3.add("/info");
+//				urlPatterns3.add("/edit-info");
+//				urlPatterns3.add("/address");
+//				urlPatterns3.add("/add-address");
+//				urlPatterns3.add("/edit-address");
+//				urlPatterns3.add("/change-password");
 //				urlPatterns3.add("/forgot");
 
 				mapConfig.put(ROLE_CUSTOMER, urlPatterns3);

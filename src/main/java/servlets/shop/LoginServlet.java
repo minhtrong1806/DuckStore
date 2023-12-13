@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet{
     
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/login.jsp");
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/shop/login.jsp");
 		
 		dispatcher.forward(request, response);
 	}
@@ -45,7 +45,7 @@ public class LoginServlet extends HttpServlet{
 
 			request.setAttribute("errorMessage", errorMessage);
 
-			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/login.jsp");
+			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/shop/login.jsp");
 			dispatcher.forward(request, response);
 			return;
 		}
@@ -60,7 +60,7 @@ public class LoginServlet extends HttpServlet{
 		} catch (Exception e) {
 		}
 		if (userAccount.getRole() == 0 || userAccount.getRole() == 1) {
-	        response.sendRedirect(request.getContextPath() + "/admin-dashboard");
+	        response.sendRedirect(request.getContextPath() + "/admin-products");
 	    } else {
 	        String requestUri = AppUtils.getRedirectAfterLoginUrl(request.getSession(), redirectId);
 	        if (requestUri != null) {

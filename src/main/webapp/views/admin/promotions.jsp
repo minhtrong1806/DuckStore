@@ -50,16 +50,7 @@
 								<ul
 										class="navbar-nav text-light"
 										id="accordionSidebar">
-										<li
-												class="nav-item"
-												style="margin-top: 35%"><a
-												class="nav-link"
-												href="${pageContext.request.contextPath}/admin-dashboard"> <i
-														class="fa fa-dashboard"
-														style="font-size: 1.3rem"></i> <span
-														class="nav-item-content">Dashboard</span>
-										</a></li>
-										<li class="nav-item text-white-50">
+										<li class="nav-item text-white-50" style="margin-top: 70%;">
 												<div
 														class="nav-item dropdown"
 														style="margin-bottom: 0px">

@@ -1,3 +1,5 @@
+<%@page import="utils.AppUtils"%>
+<%@page import="bean.UserAccount"%>
 <nav
 		class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
 		<div class="container-fluid">
@@ -56,9 +58,16 @@
 												class="dropdown-toggle nav-link"
 												aria-expanded="false"
 												data-toggle="dropdown"
-												href="#"> <span
-												class="d-none d-lg-inline mr-2 text-gray-600 small">Minh
-														Trong</span> <img
+												href="#"> 
+												<span class="d-none d-lg-inline mr-2 text-gray-600 small">
+												<%
+												UserAccount userCurrent = AppUtils.getLoginedUser(session); 
+												if(userCurrent != null){
+													out.println(userCurrent.getName());
+												}
+												%>
+												</span> 
+												<img
 												class="border rounded-circle img-profile"
 												src="${pageContext.request.contextPath}/views/admin/assets/img/avatars/anh.jpg?h=d233e08feddcdd2a8275c132af92e075" />
 										</a>

@@ -35,7 +35,7 @@ public class HibernateUtil {
 		pros.put(Environment.DIALECT, "org.hibernate.dialect.SQLServerDialect");
 		pros.put(Environment.DRIVER, "com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		pros.put(Environment.URL,
-				"jdbc:sqlserver://26.46.117.205:2703;databaseName=testDuckstore;encrypt=true;trustServerCertificate=true;characterEncoding=UTF-8;useUnicode=true");
+				"jdbc:sqlserver://192.168.153.1:1433;databaseName=DuckStore;encrypt=true;trustServerCertificate=true;characterEncoding=UTF-8;useUnicode=true");
 		pros.put(Environment.USER, "sa");
 		pros.put(Environment.PASS, "123456");
 		
