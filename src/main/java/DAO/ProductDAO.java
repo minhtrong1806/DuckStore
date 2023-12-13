@@ -67,14 +67,14 @@ public class ProductDAO {
 		}
 	}
 
-	public Product getProduct(String productName) {
+	public Product getProduct(int productID) {
 		try(Session session = factory.openSession()){
 			CriteriaBuilder builder = session.getCriteriaBuilder();
 			CriteriaQuery<Product> query = builder.createQuery(Product.class);
 			Root<Product> root = query.from(Product.class);
 
 			query.select(root);
-			query.where(builder.equal(builder.lower(root.get("name")), productName.toLowerCase()));
+			query.where(builder.equal(builder.lower(root.get("productID")), productID));
 			root.fetch("productItems", JoinType.LEFT);
 
 			return session.createQuery(query).uniqueResult();
@@ -133,7 +133,7 @@ public class ProductDAO {
 	public boolean deteleProduct(int productID){
 		try(Session session = factory.openSession()){
 			session.getTransaction().begin();
-			Product product = getProduct(getProductbyID(productID).getName());
+			Product product = getProduct(productID);
 			if(product.getProductItems().size() == 0){
 				session.delete(product);
 				System.out.println("Successfully deleted product");
@@ -154,7 +154,7 @@ public class ProductDAO {
 			try{
 				session.getTransaction().begin();
 
-				Product oldProduct = getProduct(getProductbyID(oldProductID).getName());
+				Product oldProduct = getProduct(oldProductID);
 				if(newProduct.getProductCategory() != null){
 					oldProduct.setProductCategory(newProduct.getProductCategory());
 				}
@@ -168,6 +168,7 @@ public class ProductDAO {
 					oldProduct.setProduct_image(newProduct.getProduct_image());
 				}
 
+				session.saveOrUpdate(oldProduct);
 				session.getTransaction().commit();
 				System.out.println("Successfully edit product");
 				session.close();
@@ -182,5 +183,15 @@ public class ProductDAO {
 			return false;
 		}
 	}
-
+//	public List<Customer> getItemsOnSecondPage(int pageSize) {
+//		int pageNumber = 2; // Trang thứ 2
+//		int startPosition = (pageNumber - 1) * pageSize; // Tính vị trí bắt đầu từ số trang và kích thước trang
+//
+//		Session session = sessionFactory.openSession();
+//		Criteria criteria = session.createCriteria(Customer.class);
+//		criteria.setFirstResult(startPosition);
+//		criteria.setMaxResults(pageSize);
+//
+//		return criteria.list();
+//	}
 }
