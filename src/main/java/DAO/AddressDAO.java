@@ -1,13 +1,11 @@
 package DAO;
 
 import java.util.List;
+import java.util.Set;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Join;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 
+import bean.Product;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -19,18 +17,18 @@ import utils.HibernateUtil;
 public class AddressDAO {
 	private static final SessionFactory factory = HibernateUtil.getSessionFactory();
 
-	public List<Address> listAddressByUser(int userID) {
+	public Set<Address> listAddressByUser(int userID) {
 		try (Session session = factory.openSession()) {
 			CriteriaBuilder builder = session.getCriteriaBuilder();
-			CriteriaQuery<Address> query = builder.createQuery(Address.class);
-			Root<UserAccount> useRoot = query.from(UserAccount.class);
+			CriteriaQuery<UserAccount> query = builder.createQuery(UserAccount.class);
+			Root<UserAccount> root = query.from(UserAccount.class);
 
-			Join<Address, UserAccount> addressJoin = useRoot.join("addresses");
+			query.select(root);
+			query.where(builder.equal(root.get("userID"), userID));
+			root.fetch("addresses", JoinType.LEFT);
+			UserAccount userAccount = session.createQuery(query).uniqueResult();
 
-			query.multiselect(addressJoin).where(builder.equal(useRoot.get("userID"), userID));
-			Query<Address> addressQuery = session.createQuery(query);
-
-			return addressQuery.getResultList();
+			return userAccount.getAddresses();
 		}
 	}
 
