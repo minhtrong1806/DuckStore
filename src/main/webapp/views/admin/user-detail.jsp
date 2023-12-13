@@ -33,7 +33,7 @@
           </a>
           <hr class="sidebar-divider my-0" />
           <ul class="navbar-nav text-light" id="accordionSidebar">
-            <li class="nav-item text-white-50">
+            <li class="nav-item text-white-50" style="margin-top: 70%;">
               <div class="nav-item dropdown" style="margin-bottom: 0px">
                 <a aria-expanded="false" data-toggle="dropdown" class="nav-link" href="#">
                   <i class="fa fa-inbox" style="font-size: 1.3rem"></i>

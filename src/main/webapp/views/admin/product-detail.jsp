@@ -32,7 +32,7 @@
           </a>
           <hr class="sidebar-divider my-0" />
           <ul class="navbar-nav text-light" id="accordionSidebar">
-            <li class="nav-item text-white-50">
+            <li class="nav-item text-white-50" style="margin-top: 70%;">
               <div class="nav-item dropdown" style="margin-bottom: 0px">
                 <a aria-expanded="false" data-toggle="dropdown" class="nav-link active" href="#">
                   <i class="fa fa-inbox" style="font-size: 1.3rem"></i>
@@ -143,10 +143,7 @@
               </div>
             </div>
             <%--form edit product --%>
-					<form id="form-add-product" enctype="multipart/form-data" action="${pageContext.request.contextPath}/admin-add-product/add" method="POST">
-						<c:if test="${product.getName() != null}">
-           			<input type="hidden" name="productId" value="<c:out value='${product.getProductID()}' />" />
-          	</c:if> 
+					<form id="form-add-product" enctype="multipart/form-data" action="${pageContext.request.contextPath}/admin-product-detail/edit-product?productId=${product.getProductID()}" method="POST">
 						<div class="d-flex justify-content-between flex-wrap align-items-xl-center my-3 mx-5">
 							<div class="mt-4">
 								<h4 class="font-weight-bolder text-dark" style="color: var(--gray-dark)">Edit Product</h4>
@@ -166,23 +163,15 @@
 						<div class="form-row d-flex justify-content-xl-center px-5">
 							<div class="col">
 								<div class="card mb-3">
-								
 									<div class="card-body">
 										<h5 class="font-weight-bold text-dark mb-4">Product information</h5>
 										<div class="form-group">
 											<label class="mt-3"><strong>Name</strong></label>
-											<c:if test="${product.getName() != null}">
-           							<input type="hidden" name="oldName" value="<c:out value='${product.getName()}' />" />
-          						</c:if> 
 <%-- name --%>				<input class="form-control" type="text" name="newName" placeholder="Name" 
 														value="<c:if test="${product.getName() != null}">${product.getName()}</c:if>" />
 										</div>
-										
 										<div class="form-group">
 											<label class="mt-3"><strong>Description</strong></label>
-											<c:if test="${product.getDescription() != null}">
-           							<input type="hidden" name="oldDescription" value="<c:out value='${product.getDescription()}' />" />
-          						</c:if> 
 <%--description--%>		<input class="form-control" type="text" placeholder="Product Descripition" name="newDescription"  
 														value="<c:if test="${product.getDescription() != null}">${product.getDescription()}</c:if>">
 										</div>
@@ -197,6 +186,7 @@
 											<div id="change-category" class="collapse">
 <%-- Category --%>				<select class="form-control" name="newCategory">
 														<optgroup label="Category">
+																<option value="" disabled selected hidden>Choose Category</option>
 															<c:forEach items="${categoryList}" var="category">
 																<option value="${category.getCategoryName()}">${category.getCategoryName()}</option>
 															</c:forEach>
@@ -222,13 +212,12 @@
 												</div>
 												<div class="bg-secondary d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center upload-img m-2 pointer">
 													<i class="fa fa-plus icon-add-image pointer"></i> 
-<%--productImage--%>			<input id="productImage" class="custom-file-input w-100 h-100" type="file" name="productImage"/>
+<%--productImage--%>			<input id="productImage" class="custom-file-input w-100 h-100" type="file" name="newProductImage"/>
 												</div>
 											</div>
 										</div>
 								</div>
-								
-								
+
 							</div>
 						</div>
 					</form>

@@ -32,7 +32,7 @@
 					</a>
 					<hr class="sidebar-divider my-0" />
 					<ul class="navbar-nav text-light" id="accordionSidebar">
-						<li class="nav-item text-white-50">
+						<li class="nav-item text-white-50" style="margin-top: 70%;">
 							<div class="nav-item dropdown" style="margin-bottom: 0px">
 								<a aria-expanded="false" data-toggle="dropdown" class="nav-link active"
 									href="#"> <i class="fa fa-inbox" style="font-size: 1.3rem"></i>
@@ -81,7 +81,7 @@
 												<li class="breadcrumb-item active text-uppercase font-weight-bold"><span>add variant&nbsp;</span></li>
 										</ol>
 										
-										<form enctype="multipart/form-data">
+										<form action="${pageContext.request.contextPath}/admin-product-detail/edit-variant?itemId=${itemCurent.getProductItemID()}" method="POST" enctype="multipart/form-data">
 										<div class="row d-flex justify-content-center px-5">
 												<div class="col d-flex justify-content-center">
 														<div class="card w-50">
@@ -104,11 +104,13 @@
 																			<c:if test="${product.getName() != null}">
 								           							<input type="number" name="oldQty_in_stock" value="<c:out value='${itemCurent.getQty_in_stock()}' />" />
 								          						</c:if> 
-<%-- qty_in_stock --%>								<input value="<c:if test="${itemCurent.getQty_in_stock() != null}">${itemCurent.getQty_in_stock()}</c:if>" class="form-control" type="number" id="qtyStock" name="qty_in_stock" placeholder="Quantity" min="0" step="1"/>
+<%-- qty_in_stock --%>								<input value="<c:if test="${itemCurent.getQty_in_stock() != null}">${itemCurent.getQty_in_stock()}</c:if>" class="form-control" 
+																						type="number" id="qtyStock" name="newQty" placeholder="Quantity" min="0" step="1"/>
 																		</div>
 																		<div>
 																			<label class="mt-3"><strong>Price</strong></label>
-<%-- price --%>												<input value="<c:if test="${itemCurent.getPrice() != null}">${itemCurent.getPrice()}</c:if>" class="form-control" type="number" name="price" placeholder="Price" min="0" step="1"/>
+<%-- price --%>												<input value="<c:if test="${itemCurent.getPrice() != null}">${itemCurent.getPrice()}</c:if>" class="form-control" 
+																						type="number" name="newPrice" placeholder="Price" min="0" step="0.01"/>
 																		</div>
 																</div>
 														<div class="card mb-3">

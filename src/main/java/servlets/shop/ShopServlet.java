@@ -44,7 +44,7 @@ public class ShopServlet extends HttpServlet{
 	}
 	
 	protected void listProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String folderStore = request.getContextPath()+ "\\views\\images\\product\\";
+		String folderStore = request.getContextPath()+ "\\views\\images\\products\\";
 		ProductCategoryDAO productCategoryDAO = new ProductCategoryDAO();
 		ProductDAO productDAO = new ProductDAO();
 		

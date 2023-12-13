@@ -89,7 +89,7 @@ public class AddProductServlet extends HttpServlet {
 				hasError = true;
 			}
 			else {
-				String folderStore = Constant.DIR + "\\product\\";
+				String folderStore = Constant.DIR + "\\products\\";
 				String fileName = "Product" + System.currentTimeMillis();
 				String productLink = UploadUtils.processUpload("productImage", request, folderStore , fileName);
 				product.setProduct_image(productLink);

@@ -50,7 +50,7 @@
 								<ul
 										class="navbar-nav text-light"
 										id="accordionSidebar">
-										<li class="nav-item text-white-50">
+										<li class="nav-item text-white-50" style="margin-top: 70%;">
 												<div
 														class="nav-item dropdown"
 														style="margin-bottom: 0px">

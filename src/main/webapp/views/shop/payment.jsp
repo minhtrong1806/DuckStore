@@ -76,25 +76,14 @@
 		<header class="header-v4">
 				<!-- Header desktop -->
 				<div class="container-menu-desktop">
-						<!-- Topbar -->
-						<div class="top-bar">
-								<div class="content-topbar flex-sb-m h-full container">
-										<div class="left-top-bar">Free shipping for standard
-												order over $100</div>
-										<div class="right-top-bar flex-w h-full">
-												<a
-														href="login"
-														class="flex-c-m trans-04 p-lr-25"> Login </a> <a
-														href="logout"
-														class="flex-c-m trans-04 p-lr-25"> Logout </a>
-										</div>
-								</div>
-						</div>
+	        <!-- Topbar -->
+					<%@include file="top-bar.jsp" %>
+					<!--  -->
 						<div class="wrap-menu-desktop how-shadow1">
 								<nav class="limiter-menu-desktop container">
 										<!-- Logo desktop -->
 										<a
-												href="#"
+												href="home"
 												class="logo"> <img
 												src="${pageContext.request.contextPath}/views/images/icons/logo-01.png"
 												alt="IMG-LOGO" />
@@ -109,21 +98,8 @@
 												</ul>
 										</div>
 										<!-- Icon header -->
-										<div class="wrap-icon-header flex-w flex-r-m">
-												<div
-														class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
-														<i class="zmdi zmdi-search"></i>
-												</div>
-												<a
-														href="shopping-cart"
-														class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 ">
-														<i class="zmdi zmdi-shopping-cart"></i>
-												</a> <a
-														href="info"
-														class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11"
-														data-notify="0"> <i class="zmdi zmdi-account-circle"></i>
-												</a>
-										</div>
+										<%@include file="icon-header-desktop.jsp" %>
+										<!--  -->
 								</nav>
 						</div>
 				</div>
@@ -136,17 +112,8 @@
 										alt="IMG-LOGO" /></a>
 						</div>
 						<!-- Icon header -->
-						<div class="wrap-icon-header flex-w flex-r-m m-r-15">
-								<div
-										class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
-										<i class="zmdi zmdi-search"></i>
-								</div>
-								<a
-										href="shopping-cart"
-										class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 ">
-										<i class="zmdi zmdi-shopping-cart"></i>
-								</a>
-						</div>
+						<%@include file="icon-header-mobile.jsp" %>
+						<!--  -->
 						<!-- Button show menu -->
 						<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
 								<span class="hamburger-box"> <span
@@ -345,6 +312,8 @@
 						</div>
 				</div>
 		</form>
+		<!-- Cart -->
+    <%@ include file="cart.jsp" %>
 		<!-- Footer -->
 		<%@ include file="footer.jsp"%>
 		<!-- Back to top -->

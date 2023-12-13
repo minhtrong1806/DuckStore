@@ -30,10 +30,13 @@ public class UploadUtils {
 			storeFilename +="." + FilenameUtils.getExtension(Paths.get(filePart.getSubmittedFileName()).getFileName().toString());
 		}
 		Path uploadPath = Paths.get(storeFolder);
+		Path uploadPathTemp = Paths.get(request.getServletContext().getRealPath("/") + "\\views\\images\\products");
 		if(!Files.exists(uploadPath)) {
 			Files.createDirectories(uploadPath);
 		}
+
 		filePart.write(Paths.get(uploadPath.toString(),storeFilename).toString());	
+		filePart.write(Paths.get(uploadPathTemp.toString(),storeFilename).toString());	
 		return storeFilename;
 	}
 	
