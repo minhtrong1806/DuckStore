@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import utils.Constant;
+import utils.DeleteUtils;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -73,8 +74,11 @@ public class ProductsServlet extends HttpServlet{
 		}
 		else {
 			ProductDAO productDAO = new ProductDAO();
+			String fileNameStore = productDAO.getProductbyID(productId).getProduct_image();
+			String folderStore = Constant.DIR + "\\products\\";
 			boolean deleteSuccess  = productDAO.deteleProduct(productId);
 			if (deleteSuccess) {
+				DeleteUtils.processDelete(fileNameStore, folderStore, request);
 				response.sendRedirect(request.getContextPath() + "/admin-products");	
 			}
 			else {
@@ -99,7 +103,7 @@ public class ProductsServlet extends HttpServlet{
 		priceRange = getPriceRange(listProducts, productDAO);
 		quantity = getQty(listProducts, productDAO);
 		
-		String folderStore = request.getContextPath()+ "\\views\\images\\product\\";
+		String folderStore = request.getContextPath()+ "\\views\\images\\products\\";
 		
 		request.setAttribute("categoryList", categorieList);
 		request.setAttribute("listProducts", listProducts);

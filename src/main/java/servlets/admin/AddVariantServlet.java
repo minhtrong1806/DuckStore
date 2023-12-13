@@ -90,7 +90,7 @@ public class AddVariantServlet extends HttpServlet {
 				hasError = true;
 			}
 			else {
-				String folderStore = Constant.DIR + "\\productItem\\";
+				String folderStore = Constant.DIR + "\\products\\";
 				String fileName = "Item" + System.currentTimeMillis();
 				String productLink = UploadUtils.processUpload("itemImage", request, folderStore, fileName);
 				
