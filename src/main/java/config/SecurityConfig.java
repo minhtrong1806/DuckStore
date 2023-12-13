@@ -58,6 +58,8 @@ public class SecurityConfig {
 //				urlPatterns3.add("/add-address");
 //				urlPatterns3.add("/edit-address");
 //				urlPatterns3.add("/change-password");
+//				urlPatterns3.add("/shopping-cart");
+//				urlPatterns3.add("/payment");
 //				urlPatterns3.add("/forgot");
 
 				mapConfig.put(ROLE_CUSTOMER, urlPatterns3);

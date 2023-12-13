@@ -1952,6 +1952,11 @@ input.num-product::-webkit-inner-spin-button {
 
 .table-shopping-cart .column-5 {
   width: 172px;
+  text-align: right;
+  font-size: 16px;
+}
+.table-shopping-cart .column-6 {
+  width: 100px;
   padding-right: 50px;
   text-align: right;
   font-size: 16px;
@@ -2764,9 +2769,8 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .bor15 {
-  border-left: 1px solid #e6e6e6;
-  border-right: 1px solid #e6e6e6;
   border-bottom: 1px solid #e6e6e6;
+  border-top: 1px solid #e6e6e6;
 }
 
 .bor16 {
