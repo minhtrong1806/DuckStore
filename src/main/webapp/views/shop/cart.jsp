@@ -1,3 +1,4 @@
+<%@page import="jakarta.servlet.jsp.tagext.TryCatchFinally"%>
 <%@page import="bean.ShoppingCart"%>
 <%@page import="utils.AppUtils"%>
 <%@page import="bean.UserAccount"%>
@@ -23,32 +24,39 @@
 				
 				
 				<%
-				ShoppingCartDAO cartDAO = new ShoppingCartDAO();
-				ShoppingCartItemDAO cartItemDAO = new ShoppingCartItemDAO();
-				
-				String folderStore = request.getContextPath()+ "\\views\\images\\products\\";
-				Set<ShoppingCartItem> itemList = null;
-				
-				UserAccount user = AppUtils.getLoginedUser(request.getSession());
-				ShoppingCart cartOfUserCurrent = cartDAO.getShoppingCart(user.getUser_id());
-				if (cartOfUserCurrent != null) {
-					itemList = cartDAO.listProductItemByUserID(user.getUser_id());
+					ShoppingCartDAO cartDAO = new ShoppingCartDAO();
+					ShoppingCartItemDAO cartItemDAO = new ShoppingCartItemDAO();
+					String folderStore = request.getContextPath()+ "\\views\\images\\products\\";
+					Set<ShoppingCartItem> itemList = null;
+					ShoppingCart cartOfUserCurrent = null;
+					
+					try {
+						UserAccount user = AppUtils.getLoginedUser(request.getSession());
+					if(user != null) {
+						cartOfUserCurrent = cartDAO.getShoppingCart(user.getUser_id());
+					}
+					if (cartOfUserCurrent != null) {
+						itemList = cartDAO.listProductItemByUserID(user.getUser_id());
+					}
+					for (ShoppingCartItem item : itemList) {
+						out.println("<li class='header-cart-item flex-w flex-t m-b-12'>");
+						out.println("<div class='header-cart-item-img'>");
+						out.println("<img src='" + folderStore + item.getProductItem().getProduct_image() +"' alt='IMG' />");
+						out.println("</div>");
+						out.println("<div class='header-cart-item-txt p-t-8'>");
+						out.println("<a href='#' class='header-cart-item-name m-b-18 hov-cl1 trans-04'>");
+						out.println(item.getProductItem().getProduct().getName());
+						out.println("</a>");
+						out.println("<span class='header-cart-item-info'>");
+						out.println(item.getQty() + " x " + item.getProductItem().getPrice());
+						out.println("</span>");
+						out.println("</div>");
+						out.println("</li>");
+					}
+				} catch (Exception e) {
+					e.getStackTrace();
 				}
-				for (ShoppingCartItem item : itemList) {
-					out.println("<li class='header-cart-item flex-w flex-t m-b-12'>");
-					out.println("<div class='header-cart-item-img'>");
-					out.println("<img src='" + folderStore + item.getProductItem().getProduct_image() +"' alt='IMG' />");
-					out.println("</div>");
-					out.println("<div class='header-cart-item-txt p-t-8'>");
-					out.println("<a href='#' class='header-cart-item-name m-b-18 hov-cl1 trans-04'>");
-					out.println(item.getProductItem().getProduct().getName());
-					out.println("</a>");
-					out.println("<span class='header-cart-item-info'>");
-					out.println(item.getQty() + " x " + item.getProductItem().getPrice());
-					out.println("</span>");
-					out.println("</div>");
-					out.println("</li>");
-				}
+				
 				
 				%>
 
@@ -57,13 +65,20 @@
 			</ul>
 			<div class="w-full">
 				<div class="header-cart-total w-full p-tb-40">
-					Total: 
 				<%
-					float total = 0;
-					for (ShoppingCartItem item : itemList) {
-						total += item.getProductItem().getPrice()*item.getQty();
+					try {
+						if(itemList != null) {
+							float total = 0;
+							for (ShoppingCartItem item : itemList) {
+								total += item.getProductItem().getPrice()*item.getQty();
+							}
+							out.println("Total: " + total);
+						}
+						
+						
+					} catch (Exception e){
+						e.getStackTrace();
 					}
-					out.println(total);
 				%>	
 				</div>
 				<div class="header-cart-buttons flex-w w-full">
