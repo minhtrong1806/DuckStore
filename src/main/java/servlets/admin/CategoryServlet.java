@@ -17,8 +17,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-import com.oracle.wls.shaded.org.apache.xalan.templates.ElemApplyImport;
-
 import DAO.ProductCategoryDAO;
 import DAO.UserAccountDAO;
 import bean.Product;
