@@ -106,7 +106,7 @@
 										<div class="menu-desktop">
 												<ul class="main-menu">
 														<li><a href="home">Home</a></li>
-														<li><a href="shop">Shop</a></li>
+														<li><a href="shop?category=All+Products">Shop</a></li>
 														<li><a href="about">About</a></li>
 														<li><a href="contact">Contact</a></li>
 												</ul>
@@ -156,33 +156,14 @@
 						</ul>
 						<ul class="main-menu-m">
 								<li><a href="home">Home</a></li>
-								<li><a href="shop">Shop</a></li>
+								<li><a href="shop?category=All+Products">Shop</a></li>
 								<li><a href="about">About</a></li>
 								<li><a href="contact">Contact</a></li>
 						</ul>
 				</div>
-				<!-- Modal Search -->
-				<div
-						class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
-						<div class="container-search-header">
-								<button
-										class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-										<img
-												src="${pageContext.request.contextPath}/views/images/icons/icon-close2.png"
-												alt="CLOSE" />
-								</button>
-								<form class="wrap-search-header flex-w p-l-15">
-										<button class="flex-c-m trans-04">
-												<i class="zmdi zmdi-search"></i>
-										</button>
-										<input
-												class="plh3"
-												type="text"
-												name="search"
-												placeholder="Search..." />
-								</form>
-						</div>
-				</div>
+      </div>
+   	<!-- Modal Search -->
+		<%@include file="modal-search.jsp" %>
 		</header>
 	
 		<!-- breadcrumb -->
@@ -213,15 +194,26 @@
 														<div class="slick3 gallery-lb">
 																<!-- ẢNH PRODUCT-->
 																
-																<div class="item-slick3" data-thumb="${productFolder}${product.getProduct_image()}">
+																<div class="item-slick3" data-thumb="${folder}${product.getProduct_image()}">
 																		<div class="wrap-pic-w pos-relative">
-																				<img src="${productFolder}${product.getProduct_image()}" alt="IMG-PRODUCT" class="responsive-image"> 
+																				<img src="${folder}${product.getProduct_image()}" alt="IMG-PRODUCT" class="responsive-image"> 
 																				<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-																						href="${productFolder}${product.getProduct_image()}"> 
+																						href="${folder}${product.getProduct_image()}"> 
 																						<i class="fa fa-expand"></i>
 																				</a>
 																		</div>
 																</div>
+																<c:forEach items="${imageList}" var="image">
+																	<div class="item-slick3" data-thumb="${folder}${image}">
+																			<div class="wrap-pic-w pos-relative">
+																					<img src="${folder}${image}" alt="IMG-PRODUCT" class="responsive-image"> 
+																					<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+																							href="${folder}${image}"> 
+																							<i class="fa fa-expand"></i>
+																					</a>
+																			</div>
+																	</div>
+																</c:forEach>
 																
 																<!--  -->
 														</div>
@@ -234,20 +226,20 @@
 												<h4 class="mtext-105 cl2 js-name-detail p-b-14">
 														${product.getName()}
 												</h4>
-												<span class="mtext-106 cl2"> $58.79 </span>
+												<c:if test="${message != null }">
+													<p style="color: red;	">${message}</p>
+												</c:if>
+												<span class="mtext-106 cl2"> ${price} </span>
 												<!--  -->
 												<div class="p-t-33">
 														<div class="flex-w flex-r-m p-b-10">
 																<div class="size-203 flex-c-m respon6">Size</div>
 																<div class="size-204 respon6-next">
-																		<div class="rs1-select2 bor8 bg0">
-																				<select
-																						class="js-select2"
-																						name="size">
-																						<option>Size S</option>
-																						<option>Size M</option>
-																						<option>Size L</option>
-																						<option>Size XL</option>
+																		<div class="bor8 bg0">
+																				<select class="form-control" id="size" name="size" onchange="reloadPage()">
+																					<c:forEach items="${sizeList}" var="size">
+																						<option value="${size}">Size ${size}</option>
+																					</c:forEach>
 																				</select>
 																				<div class="dropDownSelect2"></div>
 																		</div>
@@ -256,14 +248,11 @@
 														<div class="flex-w flex-r-m p-b-10">
 																<div class="size-203 flex-c-m respon6">Color</div>
 																<div class="size-204 respon6-next">
-																		<div class="rs1-select2 bor8 bg0">
-																				<select
-																						class="js-select2"
-																						name="color">
-																						<option>Red</option>
-																						<option>Blue</option>
-																						<option>White</option>
-																						<option>Grey</option>
+																		<div class="bor8 bg0">
+																				<select class="form-control" id="color" name="color" onchange="reloadPage()">
+																					<c:forEach items="${colorList}" var="color">
+																						<option value="${color}">${color}</option>
+																					</c:forEach>
 																				</select>
 																				<div class="dropDownSelect2"></div>
 																		</div>
@@ -272,24 +261,25 @@
 														<div class="flex-w flex-r-m p-b-10">
 																<div class="size-204 flex-w flex-m respon6-next">
 																		<div class="wrap-num-product flex-w m-r-20 m-tb-10">
-																				<div
-																						class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+																				<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 																						<i class="fs-16 zmdi zmdi-minus"></i>
 																				</div>
-																				<input
-																						class="mtext-104 cl3 txt-center num-product"
-																						type="number"
-																						name="num-product"
-																						value="1"
-																						max="10">
-																				<div
-																						class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+																				<input class="mtext-104 cl3 txt-center num-product"
+																						type="number" name="numProduct" value="1" max="${quantity}">
+																				<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 																						<i class="fs-16 zmdi zmdi-plus"></i>
 																				</div>
 																		</div>
+																		<input type="hidden" name="productId" value="${product.getProductID()}">
 																		<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" type="submit">
 																				Add to cart
 																		</button>
+																</div>
+														</div>
+														<div class="flex-w flex-r-m">
+																<div class="size-203 flex-c-m respon6"></div>
+																<div class="size-204 respon6-next">
+																		${quantity} products available
 																</div>
 														</div>
 												</div>
@@ -338,7 +328,7 @@
 												<!-- Block2 -->
 											<div class="block2">
 					              <div class="block2-pic hov-img0">
-													<img class="product-image" src="${productFolder}${product.getProduct_image()}" alt="IMG-PRODUCT" />
+													<img class="product-image" src="${folder}${product.getProduct_image()}" alt="IMG-PRODUCT" />
 					                <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
 					                  Add to cart
 					                </a>
@@ -371,6 +361,32 @@
 				</span>
 		</div>
 		
+		<!--===============================================================================================-->
+		<!--thẻ div ẩn để chứa thông báo -->
+		<div id="message" style="display: none;">
+		    <% 
+		    // Lấy thông báo từ session attribute
+		    String message = (String) session.getAttribute("message");
+		    // Kiểm tra nếu có thông báo thành công
+		    if (message != null && !message.trim().isEmpty()) {
+		        out.println(message);
+		        // Xóa thông báo thành công khỏi session attribute sau khi đã lấy thông tin
+		        session.removeAttribute("message");
+		    }
+		    %>
+		</div>
+		
+		<!-- Đoạn mã JavaScript để hiển thị thông báo khi trang tải xong -->
+		<script type="text/javascript">
+		    // Đợi cho trang tải xong
+		    window.onload = function() {
+		        var messageDiv = document.getElementById('message');
+		        var message = messageDiv.textContent.trim();
+		        if (message !== '') {
+		        	swal(message);
+		        }
+		    }
+		</script>    
 		<!--===============================================================================================-->
 		<script src="${pageContext.request.contextPath}/views/vendor/jquery/jquery-3.2.1.min.js"></script>
 		<!--===============================================================================================-->
@@ -441,6 +457,66 @@
 				})
 			});
 		</script>
+		<!--===============================================================================================-->
+		<script>
+		    document.addEventListener('DOMContentLoaded', function() {
+		        var selectedSize = sessionStorage.getItem('selectedSize');
+		        var selectedColor = sessionStorage.getItem('selectedColor');
+		
+		        var sizeDropdown = document.querySelector('select[name="size"]');
+		        var colorDropdown = document.querySelector('select[name="color"]');
+		
+		        Array.from(sizeDropdown.options).forEach(function(option) {
+		            if (option.value === selectedSize) {
+		                option.setAttribute('selected', 'selected');
+		            }
+		        });
+		
+		        Array.from(colorDropdown.options).forEach(function(option) {
+		            if (option.value === selectedColor) {
+		                option.setAttribute('selected', 'selected');
+		            }
+		        });
+		
+		        sizeDropdown.addEventListener('change', function() {
+		            updateSelection();
+		            updateURL();
+		            reloadPage(); // Tải lại trang khi dropdown thay đổi
+		        });
+		
+		        colorDropdown.addEventListener('change', function() {
+		            updateSelection();
+		            updateURL();
+		            reloadPage(); // Tải lại trang khi dropdown thay đổi
+		        });
+		
+		        function updateSelection() {
+		            var selectedSize = document.querySelector('select[name="size"]').value;
+		            var selectedColor = document.querySelector('select[name="color"]').value;
+		
+		            sessionStorage.setItem('selectedSize', selectedSize);
+		            sessionStorage.setItem('selectedColor', selectedColor);
+		        }
+		
+		        function updateURL() {
+		            var selectedSize = document.querySelector('select[name="size"]').value;
+		            var selectedColor = document.querySelector('select[name="color"]').value;
+		
+		            var currentURL = window.location.href;
+		            var url = new URL(currentURL);
+		
+		            url.searchParams.set('size', selectedSize);
+		            url.searchParams.set('color', selectedColor);
+		
+		            history.pushState(null, null, url);
+		        }
+		
+		        function reloadPage() {
+		            location.reload(); // Tải lại trang
+		        }
+		    });
+		</script>
+
 		<!--===============================================================================================-->
 		<script src="${pageContext.request.contextPath}/views/js/main.js"></script>
 </body>

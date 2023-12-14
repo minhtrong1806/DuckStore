@@ -80,7 +80,10 @@ public class ProductDetailServlet extends HttpServlet{
 	}
 	protected void editVariant(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ProductItemDAO itemDAO = new ProductItemDAO();
+		
+		String folderStore = Constant.DIR + "\\products\\";
 		String itemIdString = request.getParameter("itemId");
+		
 		int itemId = -1;
 		try {
 			itemId = Integer.parseInt(itemIdString);			
@@ -89,6 +92,8 @@ public class ProductDetailServlet extends HttpServlet{
 		}
 		
 		ProductItem itemCurrent = itemDAO.getProductItem(itemId);
+		String oldImage = itemCurrent.getProduct_image();
+		String productLink = itemCurrent.getProduct_image();
 		int newQty = itemCurrent.getQty_in_stock();
 		float newPrice = itemCurrent.getPrice();
 		if (request.getParameter("newQty") != null) {
@@ -103,14 +108,26 @@ public class ProductDetailServlet extends HttpServlet{
 				newPrice = Float.parseFloat(request.getParameter("newPrice"));
 				System.out.println(newPrice);
 			} catch (Exception e) {
-			}
-			
+			}	
 		}
 		
-		boolean success = itemDAO.editProductItem(itemId, newQty, newPrice);
-		if (success) {
-			response.sendRedirect(request.getContextPath() + "/admin-product-detail?productId="+itemCurrent.getProduct().getProductID());
+		try {
+			if (request.getPart("productItemImage").getSize() != 0) {
+				String fileName = "Item" + System.currentTimeMillis();
+				productLink = UploadUtils.processUpload("productItemImage", request, folderStore, fileName);
+				
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
+		
+		boolean success = itemDAO.editProductItem(itemId, newQty, newPrice , productLink);
+		if (success) {
+			if (!productLink.equals(oldImage)) {
+				DeleteUtils.processDelete(oldImage, folderStore, request);
+			}
+		}
+		response.sendRedirect(request.getContextPath() + "/admin-product-detail?productId="+itemCurrent.getProduct().getProductID());
 	
 		
 	}
@@ -166,12 +183,14 @@ protected void showVariant(HttpServletRequest request, HttpServletResponse respo
 			System.out.println(e.getMessage());
 		}
 		ProductDAO productDAO = new ProductDAO();
+		ProductCategoryDAO productCategoryDAO = new ProductCategoryDAO();
 		Product productCurrent = productDAO.getProductbyID(productId);
 		
 		String newName = productCurrent.getName();
 		String newDescription = productCurrent.getDescription();
 		String newCategoryName = productCurrent.getProductCategory().getCategoryName();
 		String oldImage = productCurrent.getProduct_image();
+		String newImage = productCurrent.getProduct_image();
 		
 		if (request.getParameter("newName") != null) {
 			newName = request.getParameter("newName");
@@ -183,14 +202,14 @@ protected void showVariant(HttpServletRequest request, HttpServletResponse respo
 		}
 		if (request.getParameter("newCategory") != null) {
 			newCategoryName = request.getParameter("newCategory");
-			ProductCategory newCategory = new ProductCategory(newCategoryName, null);
+			ProductCategory newCategory = productCategoryDAO.getProductCategory(newCategoryName);
 			productCurrent.setProductCategory(newCategory);
 		}
 		try {
 			if (request.getPart("newProductImage").getSize() != 0) {
 				String fileName = "Product" + System.currentTimeMillis();
-				String productLink = UploadUtils.processUpload("newProductImage", request, folderStore , fileName);
-				productCurrent.setProduct_image(productLink);
+				newImage = UploadUtils.processUpload("newProductImage", request, folderStore , fileName);
+				productCurrent.setProduct_image(newImage);
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -198,8 +217,11 @@ protected void showVariant(HttpServletRequest request, HttpServletResponse respo
 		
 		boolean success = productDAO.editProduct(productId, productCurrent);
 		if (success) {
-			DeleteUtils.processDelete(oldImage, folderStore ,request);
+			if (!newImage.equals(oldImage)) {
+				DeleteUtils.processDelete(oldImage, folderStore ,request);	
+			}
 		}
+		response.sendRedirect(request.getContextPath() + "/admin-product-detail?productId="+productId);
 	}
 	
 	protected void deleteVariant(HttpServletRequest request, HttpServletResponse response)

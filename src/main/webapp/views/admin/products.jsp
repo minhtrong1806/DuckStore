@@ -88,33 +88,14 @@
               <li class="breadcrumb-item active text-uppercase font-weight-bold"><span>product list</span></li>
             </ol>
             <div class="card shadow">
-              <div class="card-header py-3 mb-3">
-                <div class="row">
-                  <div class="col-xl-2 d-xl-flex align-items-xl-center">
-                    <h5 class="d-inline-block font-weight-bold text-primary text-uppercase">Filter</h5>
-                  </div>
-                  <div class="col-md-6 col-xl-5 text-nowrap d-xl-flex align-items-xl-center">
-<%--filter category--%><select class="custom-select d-flex w-auto my-2" name="productCategory">
-                      <optgroup label="category">
-                      			<option value="all">All</option>
-                        <c:forEach items="${categoryList}" var="category">
-														<option value="${category.getCategoryName()}">${category.getCategoryName()}</option>
-												</c:forEach>
-                      </optgroup>
-                    </select>
-                  </div>
-                </div>
-              </div>
               <div class="card-body" style="padding-top: 0px">
-                <div class="row mb-3">
-                  <div class="col-md-6 col-xl-4 d-flex d-xl-flex align-items-xl-center my-2">
+                <div class="row my-3 ">
+                  <div class="col-md-8 col-xl-6 d-flex d-xl-flex align-items-xl-center my-2">
                     <div class="text-md-right d-xl-flex dataTables_filter" id="dataTable_filter" style="width: 70%">
-                      <input
-                        class="d-xl-flex form-control form-control-sm w-75"
-                        type="search"
-                        aria-controls="dataTable"
-                        placeholder="Search"
-                      />
+                      <form action="">
+                      		<input class="d-xl-flex form-control form-control-sm" type="search" placeholder="Search"/>
+                      </form>
+                      
                     </div>
                   </div>
                   <div class="col d-flex justify-content-end  my-2">

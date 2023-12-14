@@ -8,8 +8,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import DAO.ProductCategoryDAO;
 import DAO.ProductDAO;
@@ -43,15 +45,44 @@ public class ShopServlet extends HttpServlet{
 		
 	}
 	
+	@SuppressWarnings("unchecked")
 	protected void listProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String folderStore = request.getContextPath()+ "\\views\\images\\products\\";
 		ProductCategoryDAO productCategoryDAO = new ProductCategoryDAO();
 		ProductDAO productDAO = new ProductDAO();
 		
 		List<ProductCategory> categorieList = productCategoryDAO.listProductCategories();
-		List<Product> listProduct = productDAO.getProductList();
-
-
+		
+		String category = request.getParameter("category");
+		String search = request.getParameter("search");
+		List<Product> listProduct = null;
+		
+		if (search != null) {
+			try {
+				System.out.println("search: " + search);
+				listProduct = productDAO.searchProduct(search);
+			} catch (Exception e) {
+				listProduct = productDAO.getProductList();
+				e.printStackTrace();
+			}
+		}
+		else {
+			if (category.equals("All Products")) {
+				listProduct = productDAO.getProductList();
+			}
+			else {
+				Set<Product> setProduct= productCategoryDAO.getProductByCategory(category);
+				try {
+					listProduct = new ArrayList<>(setProduct);
+					System.out.println("caterory: " + category);
+				} catch (Exception e) {
+					listProduct = productDAO.getProductList();
+					e.printStackTrace();
+				}
+			}
+			
+		}
+		
 		request.setAttribute("categoryList", categorieList);
 		request.setAttribute("listProduct", listProduct);
 		request.setAttribute("productFolder", folderStore);

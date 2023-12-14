@@ -77,52 +77,11 @@
                 <span>orders</span>
               </li>
             </ol>
-            <div class="card my-3">
-              <div class="card-body d-flex justify-content-between flex-wrap">
-                <div class="d-flex justify-content-between align-items-center overview-order">
-                  <div>
-                    <h3 class="font-weight-bold text-dark">56</h3>
-                    <p class="text-nowrap">Pending payment</p>
-                  </div>
-                  <div class="icon-wraper"><i class="fa fa-calendar"></i></div>
-                </div>
-                <div class="d-flex justify-content-between align-items-center overview-order">
-                  <div>
-                    <h3 class="font-weight-bold text-dark">56</h3>
-                    <p class="text-nowrap">Completed</p>
-                  </div>
-                  <div class="icon-wraper"><i class="fa fa-check"></i></div>
-                </div>
-                <div class="d-flex justify-content-between align-items-center overview-order">
-                  <div>
-                    <h3 class="font-weight-bold text-dark">56</h3>
-                    <p class="text-nowrap">Refunded</p>
-                  </div>
-                  <div class="icon-wraper">
-                    <i class="fa fa-rotate-left"></i>
-                  </div>
-                </div>
-                <div class="d-flex justify-content-between align-items-center overview-order">
-                  <div>
-                    <h3 class="font-weight-bold text-dark">56</h3>
-                    <p class="text-nowrap">failded</p>
-                  </div>
-                  <div class="icon-wraper"><i class="fa fa-bug"></i></div>
-                </div>
-              </div>
-            </div>
+            
             <div class="card shadow">
               <div class="card-body" style="padding-top: 0px">
                 <div class="row mb-3 my-2">
                   <div class="col-md-6 col-xl-4 d-flex d-xl-flex align-items-xl-center my-2">
-                    <div class="text-md-right d-xl-flex dataTables_filter" id="dataTable_filter" style="width: 70%">
-                      <input
-                        class="d-xl-flex form-control form-control-sm w-75"
-                        type="search"
-                        aria-controls="dataTable"
-                        placeholder="Search"
-                      />
-                    </div>
                   </div>
                   <div class="col-md-6 col-xl-4 text-nowrap">
                     <div class="d-flex d-xl-flex justify-content-xl-center align-items-xl-center dataTables_length my-2" id="dataTable_length" aria-controls="dataTable" >
@@ -173,29 +132,6 @@
                       <tr></tr>
                     </tfoot>
                   </table>
-                </div>
-                <div class="row">
-                  <div class="col-md-6 col-xl-12 d-xl-flex justify-content-xl-center">
-                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                      <ul class="pagination">
-                        <li class="page-item disabled">
-                          <a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a>
-                        </li>
-                        <li class="page-item active">
-                          <a class="page-link" href="#">1</a>
-                        </li>
-                        <li class="page-item">
-                          <a class="page-link" href="#">2</a>
-                        </li>
-                        <li class="page-item">
-                          <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                          <a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a>
-                        </li>
-                      </ul>
-                    </nav>
-                  </div>
                 </div>
               </div>
             </div>

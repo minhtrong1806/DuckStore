@@ -150,39 +150,39 @@ public class ProductDAO {
 	}
 
 	public boolean editProduct(int oldProductID, Product newProduct){
-		try(Session session = factory.openSession()){
-			try{
-				session.getTransaction().begin();
+        try(Session session = factory.openSession()){
+            try{
+                session.getTransaction().begin();
 
-				Product oldProduct = getProduct(oldProductID);
-				if(newProduct.getProductCategory() != null){
-					oldProduct.setProductCategory(newProduct.getProductCategory());
-				}
-				if(newProduct.getName() != null){
-					oldProduct.setName(newProduct.getName());
-				}
-				if(newProduct.getDescription() != null){
-					oldProduct.setDescription(newProduct.getDescription());
-				}
-				if(newProduct.getProduct_image() != null){
-					oldProduct.setProduct_image(newProduct.getProduct_image());
-				}
+                Product oldProduct = getProduct(oldProductID);
+                if(newProduct.getProductCategory() != null){
+                    oldProduct.setProductCategory(newProduct.getProductCategory());
+                }
+                if(newProduct.getName() != null && !isProductNameExists(session ,newProduct.getName())){
+                    oldProduct.setName(newProduct.getName());
+                }
+                if(newProduct.getDescription() != null){
+                    oldProduct.setDescription(newProduct.getDescription());
+                }
+                if(newProduct.getProduct_image() != null){
+                    oldProduct.setProduct_image(newProduct.getProduct_image());
+                }
 
-				session.saveOrUpdate(oldProduct);
-				session.getTransaction().commit();
-				System.out.println("Successfully edit product");
-				session.close();
-			}catch (Exception e){
-				if (session.getTransaction() != null) {
-					session.getTransaction().rollback();
-				}
-				System.out.println("An error occurred during the update process");
-				e.printStackTrace();
-			}
+                session.saveOrUpdate(oldProduct);
+                session.getTransaction().commit();
+                System.out.println("Successfully edit product");
+                session.close();
+            }catch (Exception e){
+                if (session.getTransaction() != null) {
+                    session.getTransaction().rollback();
+                }
+                System.out.println("An error occurred during the update process");
+                e.printStackTrace();
+            }
 
-			return false;
-		}
-	}
+            return false;
+        }
+    }
 //	public List<Customer> getItemsOnSecondPage(int pageSize) {
 //		int pageNumber = 2; // Trang thứ 2
 //		int startPosition = (pageNumber - 1) * pageSize; // Tính vị trí bắt đầu từ số trang và kích thước trang
