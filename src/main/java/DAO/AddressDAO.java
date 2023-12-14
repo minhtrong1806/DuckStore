@@ -17,6 +17,27 @@ import utils.HibernateUtil;
 public class AddressDAO {
 	private static final SessionFactory factory = HibernateUtil.getSessionFactory();
 
+	public boolean deleteAddress(int addressID){
+		try(Session session = factory.openSession()){
+			try {
+				session.getTransaction().begin();
+				Address address = session.get(Address.class, addressID);
+				session.delete(address);
+				session.getTransaction().commit();
+				System.out.println("Address successfully deleted");
+				session.close();
+				return true;
+			}catch (Exception e){
+				if (session.getTransaction() != null) {
+					session.getTransaction().rollback();
+					System.out.println("Address has failed to be deleted");
+				}
+				e.printStackTrace();
+				return false;
+			}
+		}
+	}
+
 	public Set<Address> listAddressByUser(int userID) {
 		try (Session session = factory.openSession()) {
 			CriteriaBuilder builder = session.getCriteriaBuilder();
