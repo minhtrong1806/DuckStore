@@ -12,6 +12,7 @@ import utils.AppUtils;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import DAO.AddressDAO;
 import bean.Address;
@@ -28,11 +29,8 @@ public class AddressServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserAccount userCurrent = AppUtils.getLoginedUser(request.getSession());
 		AddressDAO addressDAO = new AddressDAO();
-		
-		List<Address> addressList = addressDAO.listAddressByUser(userCurrent.getUser_id());
-		for (Address address : addressList) {
-			System.out.println(address.getCity());
-		}
+	
+		Set<Address> addressList = addressDAO.listAddressByUser(userCurrent.getUser_id());
 		
 		request.setAttribute("addressList", addressList);
 		

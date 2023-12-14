@@ -60,7 +60,7 @@
             <div class="menu-desktop">
               <ul class="main-menu">
                 <li class="active-menu"><a href="home">Home</a></li>
-                <li><a href="shop">Shop</a></li>
+                <li><a href="shop?category=All+Products">Shop</a></li>
                 <li><a href="about">About</a></li>
                 <li><a href="contact">Contact</a></li>
               </ul>
@@ -106,25 +106,14 @@
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </span>
           </li>
-          <li><a href="shop">Shop</a></li>
+          <li><a href="shop?category=All+Products">Shop</a></li>
           <li><a href="about">About</a></li>
           <li><a href="contact">Contact</a></li>
         </ul>
       </div>
-      <!-- Modal Search -->
-      <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
-        <div class="container-search-header">
-          <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-            <img src="${pageContext.request.contextPath}/views/images/icons/icon-close2.png" alt="CLOSE" />
-          </button>
-          <form class="wrap-search-header flex-w p-l-15">
-            <button class="flex-c-m trans-04">
-              <i class="zmdi zmdi-search"></i>
-            </button>
-            <input class="plh3" type="text" name="search" placeholder="Search..." />
-          </form>
-        </div>
       </div>
+   	<!-- Modal Search -->
+		<%@include file="modal-search.jsp" %>
     </header>
     <!-- Slider -->
     <section class="section-slide">
@@ -238,7 +227,7 @@
             <div class="block1 wrap-pic-w">
               <img src="${pageContext.request.contextPath}/views/images/banner-01.jpg" alt="IMG-BANNER" />
               <a
-                href="product"
+                href="shop?category=All+Products"
                 class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3"
               >
                 <div class="block1-txt-child1 flex-col-l">
@@ -256,7 +245,7 @@
             <div class="block1 wrap-pic-w">
               <img src="${pageContext.request.contextPath}/views/images/banner-02.jpg" alt="IMG-BANNER" />
               <a
-                href="product"
+                href="shop?category=All+Products"
                 class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3"
               >
                 <div class="block1-txt-child1 flex-col-l">
@@ -274,7 +263,7 @@
             <div class="block1 wrap-pic-w">
               <img src="${pageContext.request.contextPath}/views/images/banner-03.jpg" alt="IMG-BANNER" />
               <a
-                href="product"
+                href="shop?category=All+Products"
                 class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3"
               >
                 <div class="block1-txt-child1 flex-col-l">

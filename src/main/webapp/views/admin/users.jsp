@@ -93,11 +93,6 @@
 							<div class="row mb-3">
 								<div
 									class="col-md-6 col-xl-12 d-flex d-xl-flex justify-content-between align-items-xl-center my-2">
-									<div class="text-md-right d-xl-flex dataTables_filter"
-										id="dataTable_filter">
-										<input class="d-xl-flex form-control form-control-sm"
-											type="search" placeholder="Search" />
-									</div>
 									<div
 										class="d-flex d-xl-flex justify-content-xl-center align-items-xl-center dataTables_length my-2">
 									</div>

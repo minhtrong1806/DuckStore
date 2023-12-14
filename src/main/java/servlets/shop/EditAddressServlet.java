@@ -9,6 +9,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import org.apache.tomcat.util.buf.Ascii;
+
+import DAO.AddressDAO;
+import bean.Address;
+
 @WebServlet({"/edit-address"})
 public class EditAddressServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
@@ -18,8 +23,16 @@ public class EditAddressServlet extends HttpServlet{
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/shop/address.jsp");
+		int addressId = -1;
+		try {
+			addressId = Integer.parseInt(request.getParameter("addressId"));
+		} catch (Exception e) {
+		}
 		
+		AddressDAO addressDAO = new AddressDAO();
+//		Address addressCurent = addressDAO
+		
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/shop/edit-address.jsp");
 		dispatcher.forward(request, response);
 	}
 
