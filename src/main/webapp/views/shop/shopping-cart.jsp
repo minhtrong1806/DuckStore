@@ -1,3 +1,5 @@
+<%@page import="bean.VariationOption"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -162,79 +164,91 @@
 		</div>
 		<!-- Shoping Cart -->
 		<form class="bg0 p-t-75 p-b-85">
-				<div class="container">
-						<div class="row">
-								<div class="col-lg-12 col-xl-10 m-lr-auto m-b-50">
-										<div class="m-l-25 m-r--38 m-lr-0-xl">
-												<div class="table-responsive table mt-2" id="dataTable-1" role="grid" aria-describedby="dataTable_info">
-                  <table class="table my-0" id="dataTable">
-                    <thead>
-                      <tr>
-                        <th class="text-uppercase">image</th>
-                        <th class="text-uppercase">Name</th>
-                        <th class="text-uppercase"></th>
-                        <th class="text-uppercase text-center">unit price</th>
-                        <th class="text-uppercase text-center">quantity</th>
-                        <th class="text-uppercase text-center">total</th>
-                        <th class="text-uppercase text-center">actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    
-                    	<tr>
-                        <td class="align-middle">
-                        			<img class="mr-2" width="auto" height="80" src="${productFolder}${product.getProduct_image()}" alt="image"/> 
-                        </td>
-                        <td class="text-center align-middle">T-shirt</td>
-                        <td class="text-center align-middle">Variant: L, Blue</td>
-                        <td class="text-center align-middle">5$</td>
-												<td class="align-middle">
-														<div class="d-flex justify-content-center">
-														<div class="wrap-num-product flex-w">
-																<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-																		<i class="fs-16 zmdi zmdi-minus"></i>
-																</div>
-																<input class="mtext-104 cl3 txt-center num-product"
-																			type="number" name="num-product1" value="1" min="1" max="10">
-																<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-																		<i class="fs-16 zmdi zmdi-plus"></i>
-																</div>
-														</div>
-														</div>
-												</td>
-												<td class="text-center align-middle">60$</td>
-                        <td class="align-middle">
-                          <div class="d-flex justify-content-center">                           
-                              <a class="btn" role="button " onclick="deleteConfirm(${product.getProductID()});">Delete</a>
-                          </div>
-                        </td>
-                      </tr>
 
-                      
-                    </tbody>
-                  </table>
-                  <div class="flex-w float-r bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
-                  		<div class="size-208 p-lr-15 ">
-														<span class="mtext-101 cl2"> Total: 200</span>
-											</div>
-											
-									</div>
-                  <div class="flex-w flex-sb-m p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
-											<button class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 pointer m-tb-10">
-														Update Cart
-											</button>
-											
-											<button class="flex-c-m stext-101 cl0 size-119 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
-																Proceed to Checkout
-											</button>
-									</div>
-
+  <div class="container h-100 py-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col" class="h5">Shopping cart</th>
+                <th scope="col">Format</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% Set<ShoppingCartItem> items = (Set<ShoppingCartItem>) request.getAttribute("productItemList"); 
+							float sum = 0;
+              for(ShoppingCartItem item: items){
+            	  	String size = "";
+            	  	String color = "";
+            	 		sum += item.getProductItem().getPrice();
+            	  	Set<VariationOption> variantOptions = item.getProductItem().getVariationOptions();
+            	  	for (VariationOption variationOption: variantOptions){
+            	  		if(variationOption.getVariation().getName().equals("size")){
+            	  			size = variationOption.getValue();
+            	  		} else {
+            	  			color = variationOption.getValue();
+            	  		}
+            	  	}
+              %>
+              <tr>
+                <th scope="row">
+                  <div class="d-flex align-items-center">
+                    <img src="${folder}<%= item.getProductItem().getProduct_image() %>" class="img-fluid rounded-3" style="width: 120px;" alt="Product">
+                    <div class="flex-column ms-4">
+                      <a href="product-detail?productId=<%=item.getProductItem().getProduct().getProductID() %>" class="mb-2 ml-3 cl3 pointer"><%= item.getProductItem().getProduct().getName() %></a>
+                    </div>
+                  </div>
+                </th>
+                <td class="align-middle">
+                  <p class="mb-0" style="font-weight: 500;">Color: <%= color %></p>
+                  <p class="mb-0" style="font-weight: 500;">Size: <%= size %></p>
+                </td>
+                <td class="align-middle">
+                  <p class="mb-0" style="font-weight: 500;"><%= item.getQty() %></p>
+                </td>
+                <td class="align-middle">
+                  <p class="mb-0" style="font-weight: 500;">$<%= item.getProductItem().getPrice() %></p>
+                </td>
+                <td class="align-middle">
+                  <a href="delete-item-cart?itemId=<%= item.getShoppingCartItemID() %>" class="cl1 mb-0 pointer"  style="font-weight: 500;">Delete</a>
+                </td>
+              </tr>
+              <%} %>
+            </tbody>
+          </table>
+        </div>
+        <div class="card shadow-2-strong mb-5 mb-lg-0" style="border-radius: 16px;">
+          <div class="card-body p-4">
+            <div class="row d-flex justify-content-center">
+              <div class="col-lg-12 col-xl-12">
+                <div class="d-flex justify-content-between" style="font-weight: 500;">
+                  <p class="mb-2">Subtotal</p>
+                  <p class="mb-2">$<%= sum %></p>
                 </div>
-										</div>
-								</div>
-								
-						</div>
-				</div>
+
+                <hr class="my-4">
+
+                <a type="button" class="btn btn-primary btn-block btn-lg">
+                  <div class="d-flex justify-content-center">
+                    <span>Checkout</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+			
 		</form>
 		<!-- Cart -->
     <%@ include file="cart.jsp" %>

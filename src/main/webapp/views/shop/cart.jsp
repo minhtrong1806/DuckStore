@@ -48,7 +48,7 @@
 						out.println(item.getProductItem().getProduct().getName());
 						out.println("</a>");
 						out.println("<span class='header-cart-item-info'>");
-						out.println(item.getQty() + " x " + item.getProductItem().getPrice());
+						out.println(item.getQty() + " x $" + item.getProductItem().getPrice());
 						out.println("</span>");
 						out.println("</div>");
 						out.println("</li>");
@@ -72,7 +72,7 @@
 							for (ShoppingCartItem item : itemList) {
 								total += item.getProductItem().getPrice()*item.getQty();
 							}
-							out.println("Total: " + total);
+							out.println("Total: $" + total);
 						}
 						
 						
@@ -96,3 +96,5 @@
 		</div>
 	</div>
 </div>
+
+

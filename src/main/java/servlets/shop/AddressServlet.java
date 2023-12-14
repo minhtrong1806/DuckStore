@@ -18,7 +18,8 @@ import DAO.AddressDAO;
 import bean.Address;
 import bean.UserAccount;
 
-@WebServlet({"/address"})
+@WebServlet({"/address",
+	"/delete-address"})
 public class AddressServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
     
@@ -27,6 +28,41 @@ public class AddressServlet extends HttpServlet{
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String action = request.getServletPath();
+		try {
+			switch (action) {
+			case "/address":
+				showAddress(request, response);
+				break;
+			case "/delete-address":
+				deleteAddress(request, response);
+				break;
+			}
+				
+		} catch (Exception  e) {
+			throw new ServletException(e);
+		}
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+	protected void deleteAddress(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int addressId = -1;
+		boolean success = false;
+		AddressDAO addressDAO = new AddressDAO();
+		try {
+			addressId = Integer.parseInt(request.getParameter("addressId"));
+			success = addressDAO.deleteAddress(addressId);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
+		response.sendRedirect(request.getContextPath() + "/address");	
+	}
+	
+	protected void showAddress(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserAccount userCurrent = AppUtils.getLoginedUser(request.getSession());
 		AddressDAO addressDAO = new AddressDAO();
 	
@@ -37,8 +73,6 @@ public class AddressServlet extends HttpServlet{
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/shop/address.jsp");
 		dispatcher.forward(request, response); 
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-	}
+	
+	
 }

@@ -14,6 +14,9 @@
 					out.println("<a href='info' class='flex-c-m trans-04 p-lr-25'>");
 					out.println(userCurrent.getName());
 					out.println("</a>");
+					out.println("<a href='admin-products' class='flex-c-m trans-04 p-lr-25'>");
+					out.println("Admin Dashboard");
+					out.println("</a>");
 				}
 				%>
 			 

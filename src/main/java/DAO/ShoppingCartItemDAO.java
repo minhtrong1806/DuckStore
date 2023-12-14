@@ -54,34 +54,37 @@ public class ShoppingCartItemDAO {
 	}
 
 	public boolean deleleProductToShoppingCart(int productItemID, int userID){
-		try(Session session = factory.openSession()){
-			try{
-				session.getTransaction().begin();
-				CriteriaBuilder builder = session.getCriteriaBuilder();
-				CriteriaQuery<ShoppingCartItem> query = builder.createQuery(ShoppingCartItem.class);
-				Root<ShoppingCartItem> root = query.from(ShoppingCartItem.class);
+        try(Session session = factory.openSession()){
+            try{
+                session.getTransaction().begin();
+                CriteriaBuilder builder = session.getCriteriaBuilder();
+                CriteriaQuery<ShoppingCartItem> query = builder.createQuery(ShoppingCartItem.class);
+                Root<ShoppingCartItem> root = query.from(ShoppingCartItem.class);
 
-				ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAO();
-				ShoppingCart shoppingCart = shoppingCartDAO.getShoppingCart(userID);
+                ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAO();
+                ShoppingCart shoppingCart = shoppingCartDAO.getShoppingCart(userID);
 
-				Predicate predicate = builder.and(
-						builder.equal(root.get("shoppingCart"), shoppingCart.getShoppingCartID()),
-						builder.equal(root.get("productItem"), productItemID)
-				);
+                Predicate predicate = builder.and(
+                        builder.equal(root.get("shoppingCart"), shoppingCart.getShoppingCartID()),
+                        builder.equal(root.get("productItem"), productItemID)
+                );
 
-				query.where(predicate);
-				ShoppingCartItem shoppingCartItem = session.createQuery(query).uniqueResult();
+                query.where(predicate);
+                ShoppingCartItem shoppingCartItem = session.createQuery(query).uniqueResult();
 
-				session.delete(shoppingCartItem);
-				System.out.println("Completed removing item from cart");
-				session.getTransaction().commit();
-				session.close();
-				return true;
-			}catch (Exception e){
-				session.getTransaction().rollback();
-				session.close();
-			}
-		}
-		return false;
-	}
+                session.delete(shoppingCartItem);
+                System.out.println("Completed removing item from cart");
+                session.getTransaction().commit();
+                session.close();
+                return true;
+            }catch (Exception e){
+                if (session.getTransaction() != null) {
+                    session.getTransaction().rollback();
+                    System.out.println("Failed removing item from cart");
+                }
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
 }

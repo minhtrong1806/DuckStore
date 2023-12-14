@@ -92,10 +92,9 @@
                 <div class="row my-3 ">
                   <div class="col-md-8 col-xl-6 d-flex d-xl-flex align-items-xl-center my-2">
                     <div class="text-md-right d-xl-flex dataTables_filter" id="dataTable_filter" style="width: 70%">
-                      <form action="">
-                      		<input class="d-xl-flex form-control form-control-sm" type="search" placeholder="Search"/>
+                      <form action="${pageContext.request.contextPath}/admin-products" method="POST">
+                      		<input class="d-xl-flex form-control form-control-sm" type="search" placeholder="Search" name="search"/>
                       </form>
-                      
                     </div>
                   </div>
                   <div class="col d-flex justify-content-end  my-2">
@@ -145,23 +144,6 @@
                       
                     </tbody>
                   </table>
-                </div>
-                <div class="row">
-                  <div class="col-md-6 col-xl-12 d-xl-flex justify-content-xl-center">
-                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                      <ul class="pagination">
-                        <li class="page-item disabled">
-                          <a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                          <a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a>
-                        </li>
-                      </ul>
-                    </nav>
-                  </div>
                 </div>
               </div>
             </div>

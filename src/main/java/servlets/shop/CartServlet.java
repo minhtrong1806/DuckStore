@@ -23,7 +23,8 @@ import bean.ShoppingCart;
 import bean.ShoppingCartItem;
 import bean.UserAccount;
 
-@WebServlet({"/add-to-cart"})
+@WebServlet({"/add-to-cart",
+	"/delete-item-cart"})
 public class CartServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
     
@@ -40,6 +41,9 @@ public class CartServlet extends HttpServlet{
 			case "/add-to-cart":
 				add2Cart(request, response);
 				break;
+			case "/delete-item-cart":
+				deleteItemToCart(request, response);
+				break;
 			}
 				
 		} catch (Exception  e) {
@@ -47,31 +51,25 @@ public class CartServlet extends HttpServlet{
 		}
 	}
 	
-	protected void cartPopup(HttpServletRequest request, HttpServletResponse response) throws ServletException, Exception {
-		ShoppingCartDAO cartDAO = new ShoppingCartDAO();
-		ShoppingCartItemDAO cartItemDAO = new ShoppingCartItemDAO();
-		
-		String folderStore = request.getContextPath()+ "\\views\\images\\products\\";
-		Set<ShoppingCartItem> itemList = null;
-		
-		UserAccount userCurrent = AppUtils.getLoginedUser(request.getSession());
-		ShoppingCart cartOfUserCurrent = cartDAO.getShoppingCart(userCurrent.getUser_id());
-		if (cartOfUserCurrent != null) {
-			itemList = cartDAO.listProductItemByUserID(userCurrent.getUser_id());
-		}
-		
-		for (ShoppingCartItem shoppingCartItem : itemList) {
-			System.out.println(shoppingCartItem.getProductItem().getProduct_image());
-			System.out.println(shoppingCartItem.getQty());
-			System.out.println(shoppingCartItem.getProductItem().getPrice());
-		}
+	protected void deleteItemToCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, Exception {
+		ShoppingCartItemDAO shoppingCartItemDAO = new ShoppingCartItemDAO();
+		UserAccount user = AppUtils.getLoginedUser(request.getSession());
 
-		request.setAttribute("itemList", itemList);
-		request.setAttribute("folderStore", folderStore);
+		boolean success = false;
+		int itemId = -1;
+		try {
+			itemId = Integer.parseInt(request.getParameter("itemId"));
+			success = shoppingCartItemDAO.deleleProductToShoppingCart(itemId, user.getUser_id());
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		System.out.println(itemId);
+		System.out.println(user.getUser_id());
+		
 
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/shop/cart.jsp");
-		dispatcher.forward(request, response);
+		response.sendRedirect(request.getContextPath() + "/shopping-cart");	
 	}
+	
 	protected void add2Cart(HttpServletRequest request, HttpServletResponse response) throws ServletException, Exception {
 		ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAO();
 		ShoppingCartItemDAO shoppingCartItemDAO = new ShoppingCartItemDAO();
@@ -88,7 +86,6 @@ public class CartServlet extends HttpServlet{
 			numProduct = Integer.parseInt(request.getParameter("numProduct"));
 		} catch (Exception e) {
 		}	
-		System.out.println(productId);
 		
 		
 		UserAccount userCurrent = AppUtils.getLoginedUser(request.getSession());
@@ -97,16 +94,23 @@ public class CartServlet extends HttpServlet{
 			shoppingCartDAO.addShoppingCart(userCurrent.getUser_id());
 			cartOfUserCurrent = shoppingCartDAO.getShoppingCart(userCurrent.getUser_id());
 		}
-				
-		ProductItem itemSelected = itemDAO.getProductItemsByConditions(productId, size, color);
-		if (itemSelected == null) {
+		
+		ProductItem itemSelected = null;
+		try {
+			itemSelected = itemDAO.getProductItemsByConditions(productId, size, color);
+		} catch (Exception e) {
+			hasError = true;
+		}		
+		
+		if (itemSelected == null || hasError) {
 			hasError = true;
 			HttpSession session = request.getSession();
 			session.setAttribute("message", "Please choose color and size !");
-			response.sendRedirect(request.getContextPath() + "/product-detail");
+			response.sendRedirect(request.getContextPath() + "/product-detail?productId=" + productId);
+			System.out.println("loi");
 		}
 		
-		if (!hasError) {
+		else {
 			boolean success = shoppingCartItemDAO.addProductToShoppingCart(itemSelected.getProductItemID(), userCurrent.getUser_id(), numProduct);
 			response.sendRedirect(request.getContextPath() + "/product-detail?productId=" + productId);		
 		}
