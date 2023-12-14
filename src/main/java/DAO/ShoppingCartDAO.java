@@ -1,10 +1,11 @@
 package DAO;
 
-import bean.ShoppingCart;
 import bean.ShoppingCartItem;
-import bean.UserAccount;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+
+import bean.ShoppingCart;
+import bean.UserAccount;
 import utils.HibernateUtil;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -15,16 +16,16 @@ import java.util.Set;
 
 public class ShoppingCartDAO {
 	private static final SessionFactory factory = HibernateUtil.getSessionFactory();
-	
+
 	public void addShoppingCart(int userID) {
 		try (Session session = factory.openSession()) {
 			session.getTransaction().begin();
-			
+
 			UserAccountDAO userAccountDAO = new UserAccountDAO();
 			UserAccount userAccount = userAccountDAO.getUserAccount(userID);
 
 			ShoppingCart newsShoppingCart = new ShoppingCart(userAccount, null);
-			
+
 			session.save(newsShoppingCart);
 			System.out.println("Added ShoppingCart for users with name" + userAccount.getName());
 			session.getTransaction().commit();

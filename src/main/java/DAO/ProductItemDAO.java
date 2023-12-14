@@ -103,10 +103,10 @@ public class ProductItemDAO {
                 boolean contrainSize = false;
 
                 for(VariationOption variationOption : variationOptions){
-                    if(size.equals(variationOption.getValue())){
+                    if(size.toLowerCase().equals(variationOption.getValue().toLowerCase())){
                         contrainSize = true;
                     }
-                    else if(color.equals(variationOption.getValue())){
+                    else if(color.toLowerCase().equals(variationOption.getValue().toLowerCase())){
                         containColor = true;
                     }
                 }
