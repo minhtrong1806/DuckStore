@@ -17,6 +17,12 @@ import utils.HibernateUtil;
 public class AddressDAO {
 	private static final SessionFactory factory = HibernateUtil.getSessionFactory();
 
+	public Address getAddress(int addressID){
+		try(Session session = factory.openSession()){
+			return session.get(Address.class, addressID);
+		}
+	}
+
 	public boolean deleteAddress(int addressID){
 		try(Session session = factory.openSession()){
 			try {

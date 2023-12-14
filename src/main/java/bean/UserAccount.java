@@ -17,26 +17,26 @@ import javax.persistence.Table;
 @Table(name = "site_user")
 public class UserAccount implements Serializable {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int userID;
-	
+
 	@Column(name = "name")
 	private String name;
-	
+
 	@Column(name = "email_address")
 	private String emailAddress;
-	
+
 	@Column(name = "phone_number")
 	private String phoneNumber;
-	
+
 	@Column(name = "password")
 	private String password;
-	
+
 	@Column(name = "role")
 	private Integer role;
 
@@ -46,8 +46,11 @@ public class UserAccount implements Serializable {
 	@OneToOne(mappedBy = "userAccount")
 	private ShoppingCart shoppingCart;
 
+	@OneToMany(mappedBy = "userAccount")
+	private Set<ShopOrder> shopOrders;
+
 	public UserAccount(String name, String emailAddress, String phoneNumber, String password, Integer role,
-			Set<Address> addresses, ShoppingCart shoppingCarts) {
+					   Set<Address> addresses, ShoppingCart shoppingCarts) {
 		super();
 		this.name = name;
 		this.emailAddress = emailAddress;
@@ -61,7 +64,7 @@ public class UserAccount implements Serializable {
 			this.shoppingCart = shoppingCarts;
 		}
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -117,7 +120,7 @@ public class UserAccount implements Serializable {
 	public void setRole(Integer role) {
 		this.role = role;
 	}
-	
+
 	public ShoppingCart getShoppingCart() {
 		return shoppingCart;
 	}
@@ -134,4 +137,11 @@ public class UserAccount implements Serializable {
 		return serialVersionUID;
 	}
 
+	public Set<ShopOrder> getShopOrders() {
+		return shopOrders;
+	}
+
+	public void setShopOrders(Set<ShopOrder> shopOrders) {
+		this.shopOrders = shopOrders;
+	}
 }

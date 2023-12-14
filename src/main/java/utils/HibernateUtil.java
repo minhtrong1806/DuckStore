@@ -3,26 +3,12 @@ package utils;
 import java.util.Properties;
 
 
+import bean.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
-
-import bean.Address;
-import bean.OrderLine;
-import bean.OrderStatus;
-import bean.Product;
-import bean.ProductCategory;
-import bean.ProductItem;
-import bean.Promotion;
-import bean.ShippingMethod;
-import bean.ShopOrder;
-import bean.ShoppingCart;
-import bean.ShoppingCartItem;
-import bean.UserAccount;
-import bean.Variation;
-import bean.VariationOption;
 
 
 public class HibernateUtil {
@@ -56,6 +42,7 @@ public class HibernateUtil {
 		conf.addAnnotatedClass(OrderStatus.class);
 		conf.addAnnotatedClass(ShopOrder.class);
 		conf.addAnnotatedClass(OrderLine.class);
+		conf.addAnnotatedClass(PaymentMethod.class);
 
 		
 		ServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(conf.getProperties()).build();
