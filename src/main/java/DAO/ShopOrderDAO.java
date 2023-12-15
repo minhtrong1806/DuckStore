@@ -10,6 +10,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 public class ShopOrderDAO {
@@ -22,6 +23,7 @@ public class ShopOrderDAO {
         PaymentMethodDAO paymentMethodDAO = new PaymentMethodDAO();
         OrderStatusDAO orderStatusDAO = new OrderStatusDAO();
         OrderLineDAO orderLineDAO = new OrderLineDAO();
+        ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAO();
 
         ShopOrder newShopOrder = new ShopOrder();
         UserAccount userAccount = userAccountDAO.getUserAccount(userID);
@@ -35,6 +37,7 @@ public class ShopOrderDAO {
         newShopOrder.setUserAccount(userAccount);
         newShopOrder.setShippingMethod(shippingMethod);
         newShopOrder.setPaymentMethod(paymentMethod);
+        newShopOrder.setOrderTotal(shoppingCartDAO.cartCheckoutByUserID(userID) + shippingMethod.getPrice());
 
         try(Session session = factory.openSession()){
             try {
@@ -69,4 +72,33 @@ public class ShopOrderDAO {
         }
     }
 
+    public void updateOrderStatus(int shopOrderID, int orderStatusID){
+        try(Session session = factory.openSession()){
+            try{
+                session.getTransaction().begin();
+                ShopOrder shopOrder = session.get(ShopOrder.class, shopOrderID);
+                OrderStatus orderStatus = session.get(OrderStatus.class, orderStatusID);
+                shopOrder.setOrderStatus(orderStatus);
+                session.saveOrUpdate(shopOrder);
+                session.getTransaction().commit();
+                session.close();
+            }catch (Exception e){
+                if (session.getTransaction() != null) {
+                    session.getTransaction().rollback();
+                    System.out.println("An error occurred while adding a shop order");
+                }
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public List<ShopOrder> getShopOrderList(){
+        try(Session session = factory.openSession()){
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<ShopOrder> query = builder.createQuery(ShopOrder.class);
+            Root<ShopOrder> root = query.from(ShopOrder.class);
+
+            return session.createQuery(query).getResultList();
+        }
+    }
 }

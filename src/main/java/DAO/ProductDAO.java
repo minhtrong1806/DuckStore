@@ -1,5 +1,6 @@
 package DAO;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Set;
@@ -181,18 +182,12 @@ public class ProductDAO {
 		}
 	}
 
-	public List<Product> getProductsByPage(int pageNumber, int pageSize) {
-		try (Session session = factory.openSession()) {
-			String sql = "SELECT * FROM product ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
-
-			org.hibernate.query.Query<Product> nativeQuery = session.createNativeQuery(sql, Product.class);
-			nativeQuery.setParameter(1, (pageNumber - 1) * pageSize);
-			nativeQuery.setParameter(2, pageSize);
-
-			List<Product> products = nativeQuery.getResultList();
-			return products;
+	public List<Product> getProductsByPage(List<Product> Productlist, int pageNumber, int pageSize) {
+		int fromIndex = (pageNumber - 1) * pageSize;
+		int toIndex = fromIndex + pageSize;
+		if (Productlist == null || fromIndex < 0 || toIndex > Productlist.size() || fromIndex > toIndex) {
+			throw new IllegalArgumentException("Invalid input parameters");
 		}
+		return new ArrayList<>(Productlist.subList(fromIndex, toIndex));
 	}
-
-
 }
