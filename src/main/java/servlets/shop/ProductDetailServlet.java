@@ -94,20 +94,18 @@ public class ProductDetailServlet extends HttpServlet{
 			if (selectedSize == null) {
 				selectedSize = sizeList.iterator().next();
 			}
-			else {
-				try {
-					ProductItem selectedItem = itemDAO.getProductItemsByConditions(productId, selectedSize, selectedColor);
-					if (selectedItem == null) {
-						price = CalUtils.getMinPrice(productId);
-					}
-					else {
-						quantity = selectedItem.getQty_in_stock();
-						price = selectedItem.getPrice();
-						sku = selectedItem.getSku();
-					}
-				} catch (Exception e) {
+			try {
+				ProductItem selectedItem = itemDAO.getProductItemsByConditions(productId, selectedSize, selectedColor);
+				if (selectedItem == null) {
+					price = CalUtils.getMinPrice(productId);
+				} else {
+					quantity = selectedItem.getQty_in_stock();
+					price = selectedItem.getPrice();
+					sku = selectedItem.getSku();
 				}
+			} catch (Exception e) {
 			}
+
 		}
 		
 			

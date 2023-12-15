@@ -59,15 +59,12 @@ public class LoginServlet extends HttpServlet{
 			redirectId = Integer.parseInt(request.getParameter("redirectId"));
 		} catch (Exception e) {
 		}
-		if (userAccount.getRole() == 0 || userAccount.getRole() == 1) {
-	        response.sendRedirect(request.getContextPath() + "/admin-products");
-	    } else {
-	        String requestUri = AppUtils.getRedirectAfterLoginUrl(request.getSession(), redirectId);
-	        if (requestUri != null) {
-	            response.sendRedirect(requestUri);
-	        } else {
-	            response.sendRedirect(request.getContextPath() + "/home");
-	        }
-	    }
+		String requestUri = AppUtils.getRedirectAfterLoginUrl(request.getSession(), redirectId);
+		if (requestUri != null) {
+			response.sendRedirect(requestUri);
+		} else {
+			response.sendRedirect(request.getContextPath() + "/home");
+		}
+	    
 	}
 }

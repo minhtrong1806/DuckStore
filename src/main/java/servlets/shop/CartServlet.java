@@ -63,9 +63,6 @@ public class CartServlet extends HttpServlet{
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		System.out.println(itemId);
-		System.out.println(user.getUser_id());
-		
 
 		response.sendRedirect(request.getContextPath() + "/shopping-cart");	
 	}

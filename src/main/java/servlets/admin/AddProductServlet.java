@@ -121,9 +121,6 @@ public class AddProductServlet extends HttpServlet {
 			Boolean addSuccess = productDAO.addProduct(product, categoryName);
 			if(addSuccess) {
 				int id = product.getProductID();
-				// Lưu thông báo vào session attribute
-				HttpSession session = request.getSession();
-				session.setAttribute("successMessage", "The product has been added successfully! \n Let's add variations to product");
 				response.sendRedirect(request.getContextPath() + "/admin-product-detail?productId=" + id);
 			}
 			else {

@@ -238,12 +238,25 @@
                 </div>
 
                 <hr class="my-4">
-
-                <a type="button" class="btn btn-primary btn-block btn-lg">
-                  <div class="d-flex justify-content-center">
-                    <span>Checkout</span>
-                  </div>
-                </a>
+								
+								<div class="d-flex justify-content-between">
+										<a href="shop?category=All+Products">
+		                  <div class="d-flex justify-content-center align-items-center cl1 hov-cl2 trans-04">
+		                    <i style="font-size: 30px; margin-right: 10px;" class="zmdi zmdi-arrow-left"></i>
+		                    <span class="stext-301">Continue Shopping</span>
+		                  </div>
+		                </a>
+		                <a href="home" class="stext-301 cl2 hov-cl1 trans-04">
+		                		<i style="font-size: 30px;" class="zmdi zmdi-home"></i>
+		                </a>
+										<a href="payment">
+		                  <div class="d-flex justify-content-center align-items-center cl1 hov-cl2 trans-04">
+		                    <span class="stext-301">Checkout</span>
+		                    <i style="font-size: 30px; margin-left: 10px;" class="zmdi zmdi-arrow-right"></i>
+		                  </div>
+		                </a>
+								</div>
+                
               </div>
             </div>
           </div>

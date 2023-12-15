@@ -10,9 +10,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import utils.AppUtils;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Set;
 
 import DAO.AddressDAO;
+import DAO.ShopOrderDAO;
 import bean.Address;
 import bean.UserAccount;
 
@@ -47,20 +49,41 @@ public class PaymentServlet extends HttpServlet{
 	protected void showForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AddressDAO addressDAO = new AddressDAO();
 		UserAccount userCurrent = AppUtils.getLoginedUser(request.getSession());
+		Set<Address> listAddress= null;
+		Address selectedAddress = null;
 		try {
-			Set<Address> listAddress = addressDAO.listAddressByUser(userCurrent.getUser_id());
-			Address firstAddress = listAddress.iterator().next();
-			request.setAttribute("user", userCurrent);
-			request.setAttribute("listAddress", listAddress);
-			request.setAttribute("firstAddress", firstAddress);
+			listAddress = addressDAO.listAddressByUser(userCurrent.getUser_id());
+			selectedAddress = listAddress.iterator().next();
+
 		} catch (Exception e) {
 		}
+		try {
+			int id = Integer.parseInt(request.getParameter("addressId"));
+			selectedAddress = addressDAO.getAddress(id);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		request.setAttribute("selectedAddress", selectedAddress);
 		
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/shop/payment.jsp");
 		dispatcher.forward(request, response);
 	}
 	protected void processPayment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/shop/payment.jsp");
-		dispatcher.forward(request, response);
+		ShopOrderDAO shopOrderDAO = new ShopOrderDAO();
+		UserAccount user = AppUtils.getLoginedUser(request.getSession());
+		
+		String address = request.getParameter("addressId");
+		String shippingMedthod = request.getParameter("shippingMethod");
+		String paymentMethod = request.getParameter("paymentMethod");
+		try {
+			int ShippingId = Integer.parseInt(shippingMedthod);
+			int paymentId = Integer.parseInt(paymentMethod);
+			int addressId = Integer.parseInt(address);
+			shopOrderDAO.addShopOrder(ShippingId, addressId, user.getUser_id(), paymentId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+		response.sendRedirect(request.getContextPath() + "/shopping-cart");		
 	}
 }
