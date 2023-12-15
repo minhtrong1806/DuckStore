@@ -1,5 +1,9 @@
+<%@page import="bean.ShopOrder"%>
+<%@page import="java.util.List"%>
+<%@page import="DAO.ShopOrderDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -93,29 +97,38 @@
                         <th class="text-uppercase">order</th>
                         <th class="text-uppercase">date</th>
                         <th class="text-uppercase">customers</th>
-                        <th class="text-uppercase">payment</th>
+                        <th class="text-uppercase">payment method</th>
                         <th class="text-uppercase">status</th>
-                        <th class="text-uppercase">method</th>
+                        <th class="text-uppercase">Order value</th>
                         <th class="text-uppercase text-center d-xl-flex justify-content-xl-center">actions</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>22/22/33</td>
-                        <td>do minh trong</td>
-                        <td>pending</td>
-                        <td>
-                          <span style="color: rgb(22, 177, 255); background-color: rgb(220, 243, 255)">delivered</span>
-                        </td>
-                        <td>momo</td>
-                        <td>
-													<div class="d-flex justify-content-center">                           
-                              <a class="btn btn-info mx-2" role="button " href="${pageContext.request.contextPath}/admin-order-detail">Detail</a>
-                              <a class="btn btn-success mx-2" role="button " href="${pageContext.request.contextPath}/admin-order-detail">confirm</a>
-                          </div>
-                        </td>
-                      </tr>
+                    <%
+                    try {
+            				List<ShopOrder>  listOrder = (List<ShopOrder>) request.getAttribute("listOrder");
+            				int i= 1 ;
+            				for(ShopOrder order:listOrder){
+                    %>
+	                   	 <tr>
+	                        <td><%= i %></td>
+	                        <td><%= order.getOrderDate() %></td>
+	                        <td><%= order.getUserAccount().getName() %></td>
+	                        <td><%= order.getPaymentMethod().getName() %></td>
+	                        <td>
+	                          <span><%= order.getOrderStatus().getStatus() %></span>
+	                        </td>
+	                        <td><%= order.getOrderTotal() %></td>
+	                        <td>
+														<div class="d-flex justify-content-center">                           
+	                              <a class="btn btn-success mx-2" role="button " href="${pageContext.request.contextPath}/admin-order-detail?orderId=<%= order.getShopOrderID()%>">Detail</a>
+	                          </div>
+	                        </td>
+	                      </tr>
+                   		<% 
+	                   	i ++;	
+	            				}} catch (Exception e) {} %>
+                      
                     </tbody>
                     <tfoot>
                       <tr></tr>
