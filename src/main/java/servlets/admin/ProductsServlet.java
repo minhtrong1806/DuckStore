@@ -112,9 +112,11 @@ public class ProductsServlet extends HttpServlet{
 		
 		HashMap<Integer, String> priceRange = new HashMap<Integer, String>();
 		HashMap<Integer, Integer> quantity = new HashMap<Integer, Integer>();
+		HashMap<Integer, Integer> sold = new HashMap<Integer, Integer>();
 		
 		priceRange = getPriceRange(listProducts, productDAO);
 		quantity = getQty(listProducts, productDAO);
+		sold = getSold(listProducts, productDAO);
 		
 		String folderStore = request.getContextPath()+ "\\views\\images\\products\\";
 		
@@ -122,6 +124,7 @@ public class ProductsServlet extends HttpServlet{
 		request.setAttribute("listProducts", listProducts);
 		request.setAttribute("priceRange", priceRange);
 		request.setAttribute("quantity", quantity);
+		request.setAttribute("sold", sold);
 		request.setAttribute("productFolder", folderStore);
 		
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/admin/products.jsp");
@@ -135,7 +138,14 @@ public class ProductsServlet extends HttpServlet{
 		}
 		return sumQtys;
 	}
-		
+
+	private HashMap<Integer, Integer> getSold(List<Product> listProducts, ProductDAO productDAO){
+		HashMap<Integer, Integer> sumSold = new HashMap<Integer, Integer>();
+		for(Product product : listProducts){
+			sumSold.put(product.getProductID(), productDAO.totalSold(product.getProductID()));
+		}
+		return sumSold;
+	}
 	
 	private HashMap<Integer, String> getPriceRange(List<Product> listProducts, ProductDAO productDAO) {
 		HashMap<Integer, String> priceRange = new HashMap<Integer, String>();

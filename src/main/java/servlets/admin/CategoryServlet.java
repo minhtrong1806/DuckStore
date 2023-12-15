@@ -1,5 +1,6 @@
 package servlets.admin;
 
+import DAO.ProductDAO;
 import jakarta.servlet.RequestDispatcher;
 
 
@@ -112,21 +113,28 @@ public class CategoryServlet extends HttpServlet {
 	
 	protected void listCategory(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		
 		ProductCategoryDAO productCategoryDAO = new ProductCategoryDAO();
 		List<ProductCategory> categorieList = productCategoryDAO.listProductCategories();
 		HashMap<Integer, Integer> qtyProductOfCategory = new HashMap<Integer, Integer>();
+		HashMap<Integer, Integer> sold = new HashMap<Integer, Integer>();
 		
 		qtyProductOfCategory = getQty(categorieList, productCategoryDAO);
+		sold = getSold(categorieList, productCategoryDAO);
 		
 		request.setAttribute("categoryList", categorieList);
 		request.setAttribute("qty", qtyProductOfCategory);
+		request.setAttribute("sold", sold);
 			
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/admin/category.jsp");
 		dispatcher.forward(request, response);
-		
-		
+	}
+
+	private HashMap<Integer, Integer> getSold(List<ProductCategory> categorieList, ProductCategoryDAO productCategoryDAO){
+		HashMap<Integer, Integer> sumSold = new HashMap<Integer, Integer>();
+		for(ProductCategory productCategory : categorieList){
+			sumSold.put(productCategory.getProductCategoryID(), productCategoryDAO.totalSold(productCategory.getProductCategoryID()));
+		}
+		return sumSold;
 	}
 	
 	private HashMap<Integer, Integer> getQty(List<ProductCategory> categorieList, ProductCategoryDAO productCategoryDAO) {
@@ -167,7 +175,7 @@ public class CategoryServlet extends HttpServlet {
 		String nameCategory = request.getParameter("NewCategoryName");
 		
 		if(nameCategory == null || nameCategory.isEmpty()) {
-			errorString += "Empty values ​​are not allowed"; 
+			errorString += "Empty values ​​are not allowed";
 			hasError = true;
 		}
 		
