@@ -204,6 +204,7 @@ public class UserAccountDAO {
 
 			query.where(builder.equal(root.get("userID"), userID));
 			root.fetch("shopOrders",JoinType.LEFT);
+			query.orderBy(builder.desc(root.get("shopOrders").get("orderDate")));
 
 			UserAccount userAccount = session.createQuery(query).uniqueResult();
 			return userAccount.getShopOrders();
