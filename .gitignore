@@ -6,3 +6,4 @@ src/main/java/utils/HibernateUtil.java
 src/main/java/config
 
 .idea
+src/main/webapp/views/images
