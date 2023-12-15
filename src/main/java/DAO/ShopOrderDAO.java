@@ -16,7 +16,7 @@ import java.util.Set;
 public class ShopOrderDAO {
     private static final SessionFactory factory = HibernateUtil.getSessionFactory();
 
-    public void addShopOrder(int shippingMethodID, int addressID, int userID, int paymentMethodID){
+    public boolean addShopOrder(int shippingMethodID, int addressID, int userID, int paymentMethodID){
         ShippingMethodDAO shippingMethodDAO = new ShippingMethodDAO();
         AddressDAO addressDAO = new AddressDAO();
         UserAccountDAO userAccountDAO = new UserAccountDAO();
@@ -43,18 +43,34 @@ public class ShopOrderDAO {
             try {
                 session.getTransaction().begin();
                 session.save(newShopOrder);
-                session.getTransaction().commit();
-                System.out.println("Complete cart checkout");
+                if(orderLineDAO.addOrderLineByUserID(session, newShopOrder, userID)){
+                    shoppingCartDAO.cleanCartAfterCheckout(userID);
+                    session.getTransaction().commit();
+                    System.out.println("Complete cart checkout");
+                }else{
+                    System.out.println("An error occurred while adding a shop order");
+                    session.getTransaction().rollback();
+                    return false;
+                }
             }catch (Exception e) {
                 if (session.getTransaction() != null) {
                     session.getTransaction().rollback();
                     System.out.println("An error occurred while adding a shop order");
                 }
                 e.printStackTrace();
+                session.close();
+                return false;
+            } finally {
+                // Đảm bảo rằng session.close() được gọi trước khi return
+                try {
+                    session.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-            session.close();
+            // Nếu đến đây, có nghĩa là mọi thứ đã diễn ra suôn sẻ, có thể return true
+            return true;
         }
-        orderLineDAO.addOrderLineByUserID(newShopOrder, userID);
     }
 
     public Set<ShopOrder> getShopOrderByUserID(int userID){
@@ -101,4 +117,5 @@ public class ShopOrderDAO {
             return session.createQuery(query).getResultList();
         }
     }
+
 }
