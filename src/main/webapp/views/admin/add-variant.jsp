@@ -97,6 +97,11 @@
                                                         <option value="Red">Red</option>
                                                         <option value="White">White</option>
                                                         <option value="Black">Black</option>
+                                                        <option value="Violet">Violet</option>
+                                                        <option value="Grey">Grey</option>
+                                                        <option value="Green">Green</option>
+                                                        <option value="Brown">Brown</option>
+                                                        <option value="Pink">Pink</option>
                                                     </optgroup>
                                                 </select></div>
                                             <div class="form-group align-items-xl-center"><label class="font-weight-bold">Size</label><select class="form-control" name="size">

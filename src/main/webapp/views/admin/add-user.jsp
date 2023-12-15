@@ -84,7 +84,7 @@
 				<div class="container-fluid px-container">
 					<ol class="breadcrumb m mx-5">
 						<li class="breadcrumb-item text-uppercase font-weight-bold">
-							<a href="${pageContext.request.contextPath}/admin-users"> <span>users</span>
+							<a href="${pageContext.request.contextPath}/admin-users"> <span>Users</span>
 						</a>
 						</li>
 						<li class="breadcrumb-item active text-uppercase font-weight-bold">
