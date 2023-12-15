@@ -131,7 +131,7 @@
                     
                     <div class="form-group">
 											<div class="d-flex justify-content-between mb-3">
-													<input readonly class="form-control" type="text" placeholder="Status" name="oldStatus"  
+													<input readonly class="form-control" type="text" placeholder="Status"  
 																value="1">
 													<button class="btn btn-secondary ml-3" type="button" data-target="#change-category" data-toggle="collapse" aria-expanded="false" aria-controls="change-category">Status</button>
 											</div>
