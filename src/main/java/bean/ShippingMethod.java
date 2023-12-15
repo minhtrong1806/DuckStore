@@ -15,9 +15,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "shipping_method")
 public class ShippingMethod implements Serializable{
-	
+
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -25,13 +25,13 @@ public class ShippingMethod implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int shippingMethodID;
-	
+
 	@Column(name = "name")
 	private String name;
-	
+
 	@Column(name = "price")
-	private int price;
-	
+	private float price;
+
 	@OneToMany(mappedBy = "shippingMethod")
 	private Set<ShopOrder> shopOrders = new HashSet<ShopOrder>();
 
@@ -62,11 +62,11 @@ public class ShippingMethod implements Serializable{
 		this.name = name;
 	}
 
-	public int getPrice() {
+	public float getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(float price) {
 		this.price = price;
 	}
 
@@ -81,6 +81,6 @@ public class ShippingMethod implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
+
+
 }

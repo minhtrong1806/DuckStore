@@ -15,9 +15,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "order_line")
 public class OrderLine implements Serializable{
-	
+
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -28,18 +28,18 @@ public class OrderLine implements Serializable{
 
 	@Column(name = "qty")
 	private int qty;
-	
+
 	@Column(name = "price")
-	private int price;
-	
+	private float price;
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "product_item_id")
 	private ProductItem productItem;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "order_id")
 	private ShopOrder shopOrder;
-	
+
 	public OrderLine(int qty, int price, ProductItem productItem, ShopOrder shopOrder) {
 		super();
 		this.qty = qty;
@@ -68,11 +68,11 @@ public class OrderLine implements Serializable{
 		this.qty = qty;
 	}
 
-	public int getPrice() {
+	public float getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(float price) {
 		this.price = price;
 	}
 
@@ -95,6 +95,6 @@ public class OrderLine implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
+
+
 }
