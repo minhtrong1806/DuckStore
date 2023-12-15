@@ -82,7 +82,7 @@
 				<%-- end navbar --%>
 				<div class="container-fluid">
 					<ol class="breadcrumb">
-						<li class="breadcrumb-item active text-uppercase font-weight-bold"><span>user
+						<li class="breadcrumb-item active text-uppercase font-weight-bold"><span>User
 								list</span></li>
 					</ol>
 					<div class="card shadow">
@@ -105,12 +105,12 @@
 									<thead>
 										<tr>
 											<th class="text-uppercase"></th>
-											<th class="text-uppercase">name</th>
-											<th class="text-uppercase">email</th>
+											<th class="text-uppercase">Name</th>
+											<th class="text-uppercase">Email</th>
 											<th class="text-uppercase">Phone Number</th>
-											<th class="text-uppercase">role</th>
+											<th class="text-uppercase">Role</th>
 											<th
-												class="text-uppercase text-center d-xl-flex justify-content-xl-center">actions</th>
+												class="text-uppercase text-center d-xl-flex justify-content-xl-center">Actions</th>
 										</tr>
 									</thead>
 									<tbody>

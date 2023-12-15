@@ -95,13 +95,13 @@
                     <thead>
                       <tr>
 
-                        <th class="text-uppercase">order</th>
-                        <th class="text-uppercase">date</th>
-                        <th class="text-uppercase">customers</th>
-                        <th class="text-uppercase">payment method</th>
-                        <th class="text-uppercase">status</th>
+                        <th class="text-uppercase">Order</th>
+                        <th class="text-uppercase">Date</th>
+                        <th class="text-uppercase">Customers</th>
+                        <th class="text-uppercase">Payment method</th>
+                        <th class="text-uppercase">Status</th>
                         <th class="text-uppercase">Order value</th>
-                        <th class="text-uppercase text-center d-xl-flex justify-content-xl-center">actions</th>
+                        <th class="text-uppercase text-center d-xl-flex justify-content-xl-center">Actions</th>
                       </tr>
                     </thead>
                     <tbody>

@@ -90,9 +90,9 @@
 								<a class="btn btn-danger text-uppercase font-weight-bold mr-3 my-2" 
 									role="button"
 									style="border-style: solid; border-color: var(--gray);"
-									href="${pageContext.request.contextPath}/admin-category">discard
+									href="${pageContext.request.contextPath}/admin-category">Discard
 								</a>
-								<button class="btn btn-success text-uppercase font-weight-bold my-2" type="submit">add</button>
+								<button class="btn btn-success text-uppercase font-weight-bold my-2" type="submit">Add</button>
 							</div>
 						</div>
 						<div class="form-row d-flex justify-content-xl-center px-5">
