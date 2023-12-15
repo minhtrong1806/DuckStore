@@ -148,7 +148,7 @@
               <div class="size-212 p-t-2">
                 <span class="mtext-110 cl2"> Address </span>
                 <p class="stext-115 cl6 size-213 p-t-18">
-                  Coza Store Center 8th floor, 379 Hudson St, New York, NY 10018 US
+                  01 Vo Van Ngan, Linh Chieu, Thu Duc, TP. Ho Chi Minh
                 </p>
               </div>
             </div>
@@ -158,7 +158,7 @@
               </span>
               <div class="size-212 p-t-2">
                 <span class="mtext-110 cl2"> Lets Talk </span>
-                <p class="stext-115 cl1 size-213 p-t-18">+1 800 1236879</p>
+                <p class="stext-115 cl1 size-213 p-t-18">(+84) 123 456 789</p>
               </div>
             </div>
             <div class="flex-w w-full">
@@ -167,7 +167,7 @@
               </span>
               <div class="size-212 p-t-2">
                 <span class="mtext-110 cl2"> Sale Support </span>
-                <p class="stext-115 cl1 size-213 p-t-18">contact@example.com</p>
+                <p class="stext-115 cl1 size-213 p-t-18">duckstore@gmail.com</p>
               </div>
             </div>
           </div>

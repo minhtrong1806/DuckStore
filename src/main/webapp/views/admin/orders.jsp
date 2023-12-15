@@ -90,23 +90,23 @@
                   <table class="table my-0" id="dataTable">
                     <thead>
                       <tr>
-                        <th class="text-uppercase">order</th>
-                        <th class="text-uppercase">date</th>
-                        <th class="text-uppercase">customers</th>
-                        <th class="text-uppercase">payment</th>
-                        <th class="text-uppercase">status</th>
-                        <th class="text-uppercase">method</th>
-                        <th class="text-uppercase text-center d-xl-flex justify-content-xl-center">actions</th>
+                        <th class="text-uppercase">Order</th>
+                        <th class="text-uppercase">Date</th>
+                        <th class="text-uppercase">Customers</th>
+                        <th class="text-uppercase">Payment</th>
+                        <th class="text-uppercase">Status</th>
+                        <th class="text-uppercase">Method</th>
+                        <th class="text-uppercase text-center d-xl-flex justify-content-xl-center">Actions</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
                         <td>1</td>
                         <td>22/22/33</td>
-                        <td>do minh trong</td>
+                        <td>Do Minh Trong</td>
                         <td>pending</td>
                         <td>
-                          <span style="color: rgb(22, 177, 255); background-color: rgb(220, 243, 255)">delivered</span>
+                          <span style="color: rgb(22, 177, 255); background-color: rgb(220, 243, 255)">Delivered</span>
                         </td>
                         <td>momo</td>
                         <td>

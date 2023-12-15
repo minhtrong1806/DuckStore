@@ -1,7 +1,7 @@
 <%@page import="bean.ProductCategory"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -74,9 +74,9 @@
 				<div class="container-fluid px-container">
 					<ol class="breadcrumb m mx-5">
 						<li class="breadcrumb-item text-uppercase font-weight-bold">
-							<a href="${pageContext.request.contextPath}/admin-products"><span>product</span></a></li>
+							<a href="${pageContext.request.contextPath}/admin-products"><span>Product</span></a></li>
 						<li class="breadcrumb-item text-uppercase font-weight-bold">
-							<a href="${pageContext.request.contextPath}/admin-category"><span>category list</span></a></li>
+							<a href="${pageContext.request.contextPath}/admin-category"><span>Category list</span></a></li>
 						<li class="breadcrumb-item active text-uppercase font-weight-bold">
 							<span>edit</span></li>
 					</ol>
@@ -94,7 +94,7 @@
 									class="btn btn-danger text-uppercase font-weight-bold mr-3 my-2"
 									role="button"
 									style="border-style: solid; border-color: var(--gray);"
-									href="${pageContext.request.contextPath}/admin-category">discard</a>
+									href="${pageContext.request.contextPath}/admin-category">Discard</a>
 								<button
 									class="btn btn-success text-uppercase font-weight-bold my-2"
 									type="submit">Save</button>

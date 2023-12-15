@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 
 <!DOCTYPE html>
@@ -93,10 +93,10 @@
                     <thead>
                       <tr>
                       	<th class="text-uppercase"></th>
-                        <th class="text-uppercase">category</th>
-                        <th class="text-uppercase">total products</th>
-                        <th class="text-uppercase">total earning</th>
-                        <th class="text-uppercase text-center d-xl-flex justify-content-xl-center">actions</th>
+                        <th class="text-uppercase">Category</th>
+                        <th class="text-uppercase">Total products</th>
+                        <th class="text-uppercase">Total earning</th>
+                        <th class="text-uppercase text-center d-xl-flex justify-content-xl-center">Actions</th>
                       </tr>
                     </thead>
                     <tbody>

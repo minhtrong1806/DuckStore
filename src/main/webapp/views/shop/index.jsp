@@ -127,7 +127,7 @@
                   data-appear="fadeInDown"
                   data-delay="0"
                 >
-                  <span class="ltext-101 cl2 respon2"> Women Collection 2018 </span>
+                  <span class="ltext-101 cl2 respon2"> Women Collection 2023 </span>
                 </div>
                 <div
                   class="layer-slick1 animated visible-false"
@@ -191,7 +191,7 @@
                   data-appear="rotateInDownLeft"
                   data-delay="0"
                 >
-                  <span class="ltext-101 cl2 respon2"> Men Collection 2018 </span>
+                  <span class="ltext-101 cl2 respon2"> Men Collection 2023 </span>
                 </div>
                 <div
                   class="layer-slick1 animated visible-false"
@@ -232,7 +232,7 @@
               >
                 <div class="block1-txt-child1 flex-col-l">
                   <span class="block1-name ltext-102 trans-04 p-b-8"> Women </span>
-                  <span class="block1-info stext-102 trans-04"> Spring 2018 </span>
+                  <span class="block1-info stext-102 trans-04"> Spring 2023 </span>
                 </div>
                 <div class="block1-txt-child2 p-b-4 trans-05">
                   <div class="block1-link stext-101 cl0 trans-09">Shop Now</div>
@@ -250,7 +250,7 @@
               >
                 <div class="block1-txt-child1 flex-col-l">
                   <span class="block1-name ltext-102 trans-04 p-b-8"> Men </span>
-                  <span class="block1-info stext-102 trans-04"> Spring 2018 </span>
+                  <span class="block1-info stext-102 trans-04"> Spring 2023 </span>
                 </div>
                 <div class="block1-txt-child2 p-b-4 trans-05">
                   <div class="block1-link stext-101 cl0 trans-09">Shop Now</div>

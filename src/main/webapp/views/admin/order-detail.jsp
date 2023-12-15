@@ -72,10 +72,10 @@
           <div class="container-fluid">
             <ol class="breadcrumb m mx-5">
               <li class="breadcrumb-item text-uppercase font-weight-bold">
-                <a href="${pageContext.request.contextPath}/admin-orders"><span>orders</span></a>
+                <a href="${pageContext.request.contextPath}/admin-orders"><span>Orders</span></a>
               </li>
               <li class="breadcrumb-item active text-uppercase font-weight-bold">
-                <span>order detail</span>
+                <span>Order detail</span>
               </li>
             </ol>
             <div class="d-flex justify-content-between flex-wrap align-items-xl-center my-3 mx-5">
@@ -106,13 +106,13 @@
                           <tr>
                             <th class="text-uppercase">Products</th>
                             <th class="text-uppercase">Price</th>
-                            <th class="text-uppercase">QTY</th>
+                            <th class="text-uppercase">Quantity</th>
                             <th class="text-uppercase">Total</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
-                            <td>ao</td>
+                            <td>Ao</td>
                             <td>500</td>
                             <td>1</td>
                             <td>500</td>

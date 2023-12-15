@@ -250,7 +250,7 @@
 		                                    </div>
 		                                    <div class="form-check">
 		                                    		<input data-price="1.2" class="form-check-input" type="radio" id="formCheck-6" value="3" name="shippingMethod">
-		                                    		<label class="form-check-label" for="formCheck-6">Nomal</label>
+		                                    		<label class="form-check-label" for="formCheck-6">Normal</label>
 		                                    </div>
 		                                    <div class="form-check">
 		                                   			<input data-price="0.8" class="form-check-input" type="radio" id="formCheck-7" value="4" name="shippingMethod">
