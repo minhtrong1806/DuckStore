@@ -7,7 +7,6 @@
 <%@page import="bean.ShoppingCartItem"%>
 <%@page import="DAO.ShoppingCartDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div class="wrap-header-cart js-panel-cart">
 	<div class="s-full js-hide-cart"></div>
 	<div class="header-cart flex-col-l p-l-65 p-r-25">

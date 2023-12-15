@@ -1,3 +1,4 @@
+<%@page import="java.io.IOException"%>
 <%@page import="bean.VariationOption"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -180,8 +181,11 @@
               </tr>
             </thead>
             <tbody>
-              <% Set<ShoppingCartItem> items = (Set<ShoppingCartItem>) request.getAttribute("productItemList"); 
+              <% 
+              
+              Set<ShoppingCartItem> items = (Set<ShoppingCartItem>) request.getAttribute("productItemList"); 
 							float sum = 0;
+							try{
               for(ShoppingCartItem item: items){
             	  	String size = "";
             	  	String color = "";
@@ -218,7 +222,9 @@
                   <a href="delete-item-cart?itemId=<%= item.getShoppingCartItemID() %>" class="cl1 mb-0 pointer"  style="font-weight: 500;">Delete</a>
                 </td>
               </tr>
-              <%} %>
+              <%}} 
+							catch (Exception e){}
+							%>
             </tbody>
           </table>
         </div>

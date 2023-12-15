@@ -1,3 +1,4 @@
+<%@page import="bean.Address"%>
 <%@ page
 		language="java"
 		contentType="text/html; charset=UTF-8"
@@ -177,34 +178,35 @@
 		                        <span class="my-5 mtext-103 cl2">Shipping address</span>
 		                        <hr>
 		                            <div class="form-group mt-5">
-		                            		<input class="form-control size-121" type="text" name="name" placeholder="Name">
+		                            		<input value="${user.getName()}" class="form-control size-121" type="text" name="name" placeholder="Name">
 		                            </div>
 		                            <div class="form-group">
-		                            		<input class="form-control size-121" type="text" name="phone" placeholder="Phone">
+		                            		<input value="${user.getPhone_number()}" class="form-control size-121" type="text" name="phone" placeholder="Phone">
 		                            </div>
 		                            <div class="form-group">
-		                            		<input class="form-control size-121" type="text" name="address" placeholder="address">
+		                            		<input value="${firstAddress.toString()}" class="form-control size-121" type="text" name="address" placeholder="address">
 		                            </div>
 		                            <a data-toggle="collapse" href="#address" role="button" aria-expanded="false" aria-controls="address">Change address</a>
 		                            <div class="collapse mt-2" id="address">
 													
-													
-													<div class="card">
-																<div class="card-body d-flex flex-wrap">
-																			<div class="w-50 p-lr-5">
-																				<div class="card">	
-																						<div class="card-body">
-																							<p class="card-text">${address.getCity()}, ${address.getDistrict()}, ${address.getAddressLine()}, ${address.getUnitNumber()}</p>
-																							<div class="d-flex justify-content-end">
-																								<a href="edit-address?addressId=${address.getAddressID()}">
-																									<i class="zmdi zmdi-edit"></i>
-			                                          </a>
+															
+															<div class="card">
+																		<div class="card-body d-flex flex-wrap">
+																					<div class="w-50 p-lr-5">
+																						<div class="card">	
+																								<div class="card-body">
+																									<p class="card-text">${firstAddress.toString()}</p>
+																									<div class="d-flex justify-content-end">
+																										<a href="edit-address?addressId=${address.getAddressID()}">
+																											Choose
+					                                          </a>
+																									</div>
+																								</div>
 																							</div>
-																						</div>
 																					</div>
-																			</div>
+																		</div>
 																</div>
-														</div>
+																
 														
 														
 																</div>
