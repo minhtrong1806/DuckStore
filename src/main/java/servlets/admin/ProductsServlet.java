@@ -98,7 +98,7 @@ public class ProductsServlet extends HttpServlet{
 		List<ProductCategory> categorieList = productCategoryDAO.listProductCategories();
 		List<Product> listProducts = null;
 		List<Product> listProductInPage = null;
-		int pageSize = 2;
+		int pageSize = 16;
 		int pageN = 1;
 		try {
 			if (request.getParameter("pageNumber") != null) {
