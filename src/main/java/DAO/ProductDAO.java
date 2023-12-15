@@ -182,14 +182,28 @@ public class ProductDAO {
 		}
 	}
 
-	public List<Product> getProductsByPage(List<Product> Productlist, int pageNumber, int pageSize) {
-		int fromIndex = (pageNumber - 1) * pageSize;
-		int toIndex = fromIndex + pageSize;
-		if (Productlist == null || fromIndex < 0 || toIndex > Productlist.size() || fromIndex > toIndex) {
-			throw new IllegalArgumentException("Invalid input parameters");
-		}
-		return new ArrayList<>(Productlist.subList(fromIndex, toIndex));
+	public List<Product> getProductsByPage(List<Product> productList, int pageNumber, int pageSize) {
+	    if (productList == null || pageNumber <= 0 || pageSize <= 0) {
+	        throw new IllegalArgumentException("Invalid input parameters");
+	    }
+
+	    int totalProducts = productList.size();
+	    int totalPages = (int) Math.ceil((double) totalProducts / pageSize);
+
+	    if (pageNumber > totalPages) {
+	        throw new IllegalArgumentException("Page number exceeds total pages");
+	    }
+
+	    int fromIndex = (pageNumber - 1) * pageSize;
+	    int toIndex = Math.min(fromIndex + pageSize, totalProducts);
+
+	    if (fromIndex > toIndex) {
+	        throw new IllegalArgumentException("Invalid input parameters");
+	    }
+
+	    return new ArrayList<>(productList.subList(fromIndex, toIndex));
 	}
+
 
 	public int totalItem(int productID){
 		Product product = getProduct(productID);
