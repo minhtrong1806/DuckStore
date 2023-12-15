@@ -46,15 +46,11 @@ public class ShopOrder implements Serializable{
 	private Set<OrderLine> orderLines;
 
 	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "promotion_id")
-	private Promotion promotion;
-
-	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "payment_method")
 	private PaymentMethod paymentMethod;
 
 	public ShopOrder(LocalDate orderDate, int orderTotal, ShippingMethod shippingMethod, OrderStatus orderStatus,
-					 UserAccount userAccount, Address address, Set<OrderLine> orderLines, Promotion promotion) {
+					 UserAccount userAccount, Address address, Set<OrderLine> orderLines) {
 		super();
 		this.orderDate = orderDate;
 		this.orderTotal = orderTotal;
@@ -127,14 +123,6 @@ public class ShopOrder implements Serializable{
 
 	public void setOrderLines(Set<OrderLine> orderLines) {
 		this.orderLines = orderLines;
-	}
-
-	public Promotion getShopOrder() {
-		return promotion;
-	}
-
-	public void setShopOrder(Promotion promotion) {
-		this.promotion = promotion;
 	}
 
 	public static long getSerialversionuid() {
