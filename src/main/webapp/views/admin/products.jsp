@@ -87,9 +87,9 @@
             <div class="container-fluid">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item text-uppercase font-weight-bold">
-                        <a href="#"><span>product</span></a>
+                        <a href="#"><span>Product</span></a>
                     </li>
-                    <li class="breadcrumb-item active text-uppercase font-weight-bold"><span>product list</span></li>
+                    <li class="breadcrumb-item active text-uppercase font-weight-bold"><span>Product list</span></li>
                 </ol>
                 <div class="card shadow">
                     <div class="card-body" style="padding-top: 0px">
@@ -113,13 +113,13 @@
                             <table class="table my-0" id="dataTable">
                                 <thead>
                                 <tr>
-                                    <th class="text-uppercase">id</th>
-                                    <th class="text-uppercase">image</th>
+                                    <th class="text-uppercase">Id</th>
+                                    <th class="text-uppercase">Image</th>
                                     <th class="text-uppercase">Name</th>
-                                    <th class="text-uppercase">category</th>
-                                    <th class="text-uppercase">qty</th>
-                                    <th class="text-uppercase">price</th>
-                                    <th class="text-uppercase text-center d-xl-flex justify-content-xl-center">actions
+                                    <th class="text-uppercase">Category</th>
+                                    <th class="text-uppercase">Quantity</th>
+                                    <th class="text-uppercase">Price</th>
+                                    <th class="text-uppercase text-center d-xl-flex justify-content-xl-center">Actions
                                     </th>
                                 </tr>
                                 </thead>

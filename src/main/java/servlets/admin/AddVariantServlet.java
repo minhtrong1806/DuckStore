@@ -85,17 +85,11 @@ public class AddVariantServlet extends HttpServlet {
 		}
 		
 		try {
-			if (request.getPart("itemImage").getSize() == 0) {
-				errorString += "Please choose image!";
-				hasError = true;
-			}
-			else {
 				String folderStore = Constant.DIR + "\\products\\";
 				String fileName = "Item" + System.currentTimeMillis();
 				String productLink = UploadUtils.processUpload("itemImage", request, folderStore, fileName);
 				
 				item.setProduct_image(productLink);
-			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
