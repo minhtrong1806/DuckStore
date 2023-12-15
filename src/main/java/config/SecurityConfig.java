@@ -50,19 +50,18 @@ public class SecurityConfig {
 		mapConfig.put(ROLE_MANAGER, urlPatterns2);
 		
 		// Cấu hình cho vai trò "CUSTOMER".
-				List<String> urlPatterns3 = new ArrayList<String>();
+		List<String> urlPatterns3 = new ArrayList<String>();
 
-				urlPatterns3.add("/info");
-				urlPatterns3.add("/edit-info");
-				urlPatterns3.add("/address");
-				urlPatterns3.add("/add-address");
-				urlPatterns3.add("/edit-address");
-				urlPatterns3.add("/change-password");
-				urlPatterns3.add("/shopping-cart");
-				urlPatterns3.add("/payment");
-//				urlPatterns3.add("/forgot");
+		urlPatterns3.add("/info");
+		urlPatterns3.add("/edit-info");
+		urlPatterns3.add("/address");
+		urlPatterns3.add("/add-address");
+		urlPatterns3.add("/edit-address");
+		urlPatterns3.add("/change-password");
+		urlPatterns3.add("/shopping-cart");
+		urlPatterns3.add("/payment");
 
-				mapConfig.put(ROLE_CUSTOMER, urlPatterns3);
+		mapConfig.put(ROLE_CUSTOMER, urlPatterns3);
 	}
 
 	public static Set<String> getAllAppRoles() {

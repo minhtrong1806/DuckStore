@@ -94,6 +94,7 @@
                   <table class="table my-0" id="dataTable">
                     <thead>
                       <tr>
+
                         <th class="text-uppercase">order</th>
                         <th class="text-uppercase">date</th>
                         <th class="text-uppercase">customers</th>

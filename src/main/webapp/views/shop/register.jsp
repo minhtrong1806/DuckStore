@@ -71,7 +71,7 @@
 							</form>
 						</div>
 					</div>
-					<div class="footer">Copyright &copy; 2017 &mdash; Your Company</div>
+					<div class="footer">Copyright &copy; 2023 &mdash; DuckStore</div>
 				</div>
 			</div>
 		</div>

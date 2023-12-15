@@ -3,7 +3,9 @@
 
 src/main/java/utils/Constant.java
 src/main/java/utils/HibernateUtil.java
-src/main/webapp/views/images/products
+src/main/webapp/views/images/products/*
 
 .idea
-src/main/webapp/views/images
+pom.xml
+
+

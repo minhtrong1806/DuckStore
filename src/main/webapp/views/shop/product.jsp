@@ -3,7 +3,7 @@
 <%@page import="utils.CalUtils"%>
 <%@page import="bean.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <!-- SHOPP -->
 
@@ -205,25 +205,15 @@
         <div class="flex-c-m flex-w w-full p-t-45">
           <nav aria-label="Page navigation example">
 					  <ul class="pagination">
-					    <li class="page-item">
-					      <a class="page-link" href="#" aria-label="Previous">
-					        <span aria-hidden="true">&laquo;</span>
-					      </a>
-					    </li>
-					    <li class="page-item">
-					    	<a class="page-link" href="#">1</a>
-					    </li>
-					    <li class="page-item">
-					    	<a class="page-link" href="#">2</a>
-					    </li>
-					    <li class="page-item">
-					    	<a class="page-link" href="#">3</a>
-					    </li>
-					    <li class="page-item">
-					      <a class="page-link" href="#" aria-label="Next">
-					        <span aria-hidden="true">&raquo;</span>
-					      </a>
-					    </li>
+								<%
+								int numberOfPages = (int) request.getAttribute("numberOfPages");
+								for (int i = 1; i <= numberOfPages; i++)
+								{
+								%>
+								<li class="page-item">
+					    		<a class="page-link"><%= i %></a>
+					    	</li>
+					    	<%} %>
 					  </ul>
 					</nav>
         </div>
@@ -239,54 +229,73 @@
     </div>
     
     <!--===============================================================================================-->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    var categoryLinks = document.querySelectorAll('.filter-tope-group a');
-    var currentPage = window.location.pathname;
-    var urlParams = new URLSearchParams(window.location.search);
-    var categoryParam = urlParams.get('category');
-
-    // Kiểm tra nếu ở trang DuckStore/shop và có tham số category trong URL
-    if (currentPage === '/DuckStore/shop' && categoryParam) {
-        categoryLinks.forEach(function(link) {
-            var categoryText = link.innerText.trim();
-
-            if (categoryText === categoryParam) {
-                link.classList.add('how-active1');
-                sessionStorage.setItem('selectedCategory', categoryParam);
-            }
-        });
-    } else {
-        sessionStorage.removeItem('selectedCategory');
-    }
-
-    categoryLinks.forEach(function(link) {
-        link.addEventListener('click', function(event) {
-            event.preventDefault();
-            var selectedCategory = link.innerText.trim();
-            sessionStorage.setItem('selectedCategory', selectedCategory);
-
-            var currentURL = window.location.href;
-            var url = new URL(currentURL);
-            url.searchParams.set('category', selectedCategory);
-
-            // Xóa các tham số khác trước khi thêm tham số category mới
-            url.searchParams.forEach(function(value, key) {
-                if (key !== 'category') {
-                    url.searchParams.delete(key);
-                }
-            });
-
-            history.pushState(null, null, url);
-            location.reload();
-        });
-    });
-});
-
-</script>
-
-
-    
+		<script>
+		document.addEventListener('DOMContentLoaded', function() {
+		    var categoryLinks = document.querySelectorAll('.filter-tope-group a');
+		    var currentPage = window.location.pathname;
+		    var urlParams = new URLSearchParams(window.location.search);
+		    var categoryParam = urlParams.get('category');
+		
+		    // Kiểm tra nếu ở trang DuckStore/shop và có tham số category trong URL
+		    if (currentPage === '/DuckStore/shop' && categoryParam) {
+		        categoryLinks.forEach(function(link) {
+		            var categoryText = link.innerText.trim();
+		
+		            if (categoryText === categoryParam) {
+		                link.classList.add('how-active1');
+		                sessionStorage.setItem('selectedCategory', categoryParam);
+		            }
+		        });
+		    } else {
+		        sessionStorage.removeItem('selectedCategory');
+		    }
+		
+		    categoryLinks.forEach(function(link) {
+		        link.addEventListener('click', function(event) {
+		            event.preventDefault();
+		            var selectedCategory = link.innerText.trim();
+		            sessionStorage.setItem('selectedCategory', selectedCategory);
+		
+		            var currentURL = window.location.href;
+		            var url = new URL(currentURL);
+		            url.searchParams.set('category', selectedCategory);
+		
+		            // Xóa các tham số khác trước khi thêm tham số category mới
+		            url.searchParams.forEach(function(value, key) {
+		                if (key !== 'category') {
+		                    url.searchParams.delete(key);
+		                }
+		            });
+		
+		            history.pushState(null, null, url);
+		            location.reload();
+		        });
+		    });
+		});
+		
+		</script>
+   
+    <!--===============================================================================================-->
+		<script>
+		    const pageLinks = document.querySelectorAll('.pagination .page-link');
+		
+		    pageLinks.forEach(link => {
+		        link.addEventListener('click', function(event) {
+		            event.preventDefault();
+		
+		            const pageNumber = this.textContent;
+		
+		            const urlParams = new URLSearchParams(window.location.search);
+		            urlParams.set('pageNumber', pageNumber);
+		
+		            // Tạo URL mới với tham số pageNumber
+		            const newUrl = window.location.pathname + '?' + urlParams.toString();
+		
+		            // Thay đổi URL và load lại trang
+		            window.location.href = newUrl;
+		        });
+		    });
+		</script>  
     <!--===============================================================================================-->
     <script src="${pageContext.request.contextPath}/views/vendor/jquery/jquery-3.2.1.min.js"></script>
     <!--===============================================================================================-->

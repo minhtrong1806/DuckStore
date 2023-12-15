@@ -15,6 +15,9 @@ import utils.AppUtils;
 import java.io.IOException;
 import java.util.Set;
 
+import DAO.ShopOrderDAO;
+import bean.UserAccount;
+
 @WebServlet({"/history"})
 public class OderHistoryServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
@@ -24,7 +27,9 @@ public class OderHistoryServlet extends HttpServlet{
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		listOrder(request, response);
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
