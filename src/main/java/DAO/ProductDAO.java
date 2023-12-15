@@ -190,4 +190,13 @@ public class ProductDAO {
 		}
 		return new ArrayList<>(Productlist.subList(fromIndex, toIndex));
 	}
+
+	public int totalItem(int productID){
+		Product product = getProduct(productID);
+		int total = 0;
+		for(ProductItem productItem : product.getProductItems()){
+			total = total+productItem.getQty_in_stock();
+		}
+		return total;
+	}
 }
