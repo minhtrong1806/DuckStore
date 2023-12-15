@@ -1,3 +1,10 @@
+<%@page import="bean.Address"%>
+<%@page import="java.util.Set"%>
+<%@page import="bean.OrderLine"%>
+<%@page import="bean.ShopOrder"%>
+<%@page import="DAO.ShopOrderDAO"%>
+<%@page import="java.util.List"%>
+<%@page import="bean.OrderStatus"%>
 <%@page import="DAO.OrderStatusDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -103,26 +110,42 @@
                           </tr>
                         </thead>
                         <tbody>
+                        <%
+                        ShopOrder order = null;
+                        Address address = null;
+                        UserAccount user = null;
+                        float total = 0;
+                        try{
+                        	order = (ShopOrder) request.getAttribute("shopOrder");
+                        	address = order.getAddress();
+                        	user = order.getUserAccount();
+                        	Set<OrderLine> orderLines = order.getOrderLines();
+                        	for(OrderLine orderLine:orderLines){
+                        		total += orderLine.getPrice() * orderLine.getSerialversionuid();
+                        %>
                           <tr>
-                            <td>ao</td>
-                            <td>500</td>
-                            <td>1</td>
-                            <td>500</td>
+                            <td><%= orderLine.getProductItem().getProduct().getName() %></td>
+                            <td>$<%= orderLine.getPrice() %></td>
+                            <td><%= orderLine.getQty() %></td>
+                            <td>$<%= orderLine.getPrice() * orderLine.getSerialversionuid() %></td>
                           </tr>
+                         <%}
+                        	} catch(Exception e){} 
+                        	%>
                         </tbody>
                       </table>
                     </div>
                     <div class="row">
                       <div class="col d-flex flex-column align-items-end">
                         <div class="d-flex justify-content-between">
-                          <span class="mr-5">Total:</span><span>$1000</span>
+                          <span class="mr-5">Total:</span><span>$<%=total %></span>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="card mb-3">
-                <form action="admin-order-update" method="POST">
+                <form action="admin-order-update?orderId=<%=order.getShopOrderID() %>" method="POST">
                   <div class="card-body">
                   	<div class="d-flex justify-content-between mb-5">
                   		<h5 class="font-weight-bold text-dark mb-4">Order Status</h5>
@@ -132,14 +155,20 @@
                     <div class="form-group">
 											<div class="d-flex justify-content-between mb-3">
 													<input readonly class="form-control" type="text" placeholder="Status"  
-																value="1">
+																value="<%= order.getOrderStatus().getStatus() %>"> 
 													<button class="btn btn-secondary ml-3" type="button" data-target="#change-category" data-toggle="collapse" aria-expanded="false" aria-controls="change-category">Status</button>
 											</div>
 											<div id="change-category" class="collapse">
 													<select class="form-control" name="newStatus">
 														<optgroup label="Status">
 																<option value="" disabled selected hidden>Choose Status</option>
-																<option value="1">1</option>
+																<%
+																OrderStatusDAO orderStatusDAO = new OrderStatusDAO();
+																List<OrderStatus> listStatus = orderStatusDAO.getOrderStatusList();
+																for(OrderStatus status: listStatus){
+																%>
+																<option value="<%= status.getOrderStatusID() %>"><%= status.getStatus() %></option>
+																<%} %>
 														</optgroup>
 													</select>
 											</div>
@@ -152,9 +181,9 @@
                 <div class="card mb-3">
                   <div class="card-body">
                     <h5 class="font-weight-bold text-dark mb-4">Customer detail</h5>
-										<p>Name: minhtrong</p>
-                    <p>Email: sff@dsdff.com</p>
-                    <p>Mobile: 09320295</p>
+										<p>Name: <%= user.getName() %></p>
+                    <p>Email: <%= user.getEmailAddress() %></p>
+                    <p>Mobile: <%= user.getPhone_number() %></p>
                   </div>
                 </div>
                 <div class="card">
@@ -165,7 +194,7 @@
 	                  </h5>
 											<div class="card">
 												<div class="card-body">
-													<p class="card-text">address</p>
+													<p class="card-text"><%= address.toString() %></p>
 												</div>
 											</div>
 									</div>

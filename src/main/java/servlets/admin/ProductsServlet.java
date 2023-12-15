@@ -137,9 +137,6 @@ public class ProductsServlet extends HttpServlet{
 	}
 		
 	
-
-
-	
 	private HashMap<Integer, String> getPriceRange(List<Product> listProducts, ProductDAO productDAO) {
 		HashMap<Integer, String> priceRange = new HashMap<Integer, String>();
 		for (Product product:listProducts) {
