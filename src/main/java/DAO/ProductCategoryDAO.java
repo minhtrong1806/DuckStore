@@ -9,6 +9,7 @@ import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import bean.OrderLine;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -170,4 +171,20 @@ public class ProductCategoryDAO {
 			}
 		}
 	}
+	public int totalSold(int categoryID){
+		try(Session session = factory.openSession()){
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<OrderLine> query = builder.createQuery(OrderLine.class);
+			Root<OrderLine> root = query.from(OrderLine.class);
+
+			query.where(builder.equal(root.get("productItem").get("product").get("productCategory"), categoryID));
+			List<OrderLine> orderLines =  session.createQuery(query).getResultList();
+			int totalSale = 0;
+			for(OrderLine orderLine : orderLines){
+				totalSale = totalSale + orderLine.getQty();
+			}
+			return totalSale;
+		}
+	}
+
 }
