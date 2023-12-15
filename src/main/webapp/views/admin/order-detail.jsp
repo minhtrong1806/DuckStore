@@ -1,3 +1,4 @@
+<%@page import="DAO.OrderStatusDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -85,15 +86,6 @@
                   <span style="color: rgb(137, 134, 141); background-color: rgb(244, 245, 250)">22/12/2023</span><br />
                 </p>
               </div>
-              <div class="d-flex justify-content-end justify-content-xl-end w-50">
-                <button
-                  class="btn btn-danger text-uppercase font-weight-bold w-auto"
-                  type="button"
-                  style="border-style: solid; border-color: var(--gray)"
-                >
-                  DELETE ORDER
-                </button>
-              </div>
             </div>
             <div class="row d-flex justify-content-xl-center px-5">
               <div class="col">
@@ -123,69 +115,60 @@
                     <div class="row">
                       <div class="col d-flex flex-column align-items-end">
                         <div class="d-flex justify-content-between">
-                          <span class="mr-5">Subtotal:</span><span>$1000</span>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                          <span class="mr-5">Discount:</span><span>$1000</span>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                          <span class="mr-5">Tax:</span><span>$1000</span>
-                        </div>
-                        <div class="d-flex justify-content-between">
                           <span class="mr-5">Total:</span><span>$1000</span>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="card mb-3"></div>
                 <div class="card mb-3">
+                <form action="admin-order-update" method="POST">
                   <div class="card-body">
-                    <h5 class="font-weight-bold text-dark mb-4">Shipping activity</h5>
+                  	<div class="d-flex justify-content-between mb-5">
+                  		<h5 class="font-weight-bold text-dark mb-4">Order Status</h5>
+			                <button type="submit" class="btn btn-success">Update</button>
+			              </div>
+                    
+                    <div class="form-group">
+											<div class="d-flex justify-content-between mb-3">
+													<input readonly class="form-control" type="text" placeholder="Status" name="oldStatus"  
+																value="1">
+													<button class="btn btn-secondary ml-3" type="button" data-target="#change-category" data-toggle="collapse" aria-expanded="false" aria-controls="change-category">Status</button>
+											</div>
+											<div id="change-category" class="collapse">
+													<select class="form-control" name="newStatus">
+														<optgroup label="Status">
+																<option value="" disabled selected hidden>Choose Status</option>
+																<option value="1">1</option>
+														</optgroup>
+													</select>
+											</div>
+										</div>
                   </div>
+                </form>
                 </div>
               </div>
               <div class="col-xl-5">
                 <div class="card mb-3">
                   <div class="card-body">
                     <h5 class="font-weight-bold text-dark mb-4">Customer detail</h5>
-                    <div class="d-flex justify-content-start mb-2">
-                      <span>Name:</span><span class="ml-5">Minh Trong</span>
-                    </div>
-                    <h6 class="font-weight-bold text-dark mb-4">Contact info</h6>
+										<p>Name: minhtrong</p>
                     <p>Email: sff@dsdff.com</p>
                     <p>Mobile: 09320295</p>
                   </div>
                 </div>
                 <div class="card">
                   <div class="card-body">
-                    <h5 class="font-weight-bold text-dark mb-4">
-                      <span style="color: rgb(84, 79, 90)">Shipping and billing address</span>
+                    <h5 class="font-weight-bold text-dark mb-3">
+                      <span style="color: rgb(84, 79, 90)">Shipping address</span>
                       <br />
-                    </h5>
-                    <div class="card mb-3">
-                      <div class="card-header font-weight-bold text-dark">
-                        <h4>Address</h4>
-                      </div>
-                      <div class="card-body">
-                        <p class="card-text">
-                          Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis
-                          in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.
-                        </p>
-                      </div>
-                    </div>
-                    <div class="card">
-                      <div class="card-header">
-                        <h4>Billing</h4>
-                      </div>
-                      <div class="card-body">
-                        <p class="card-text">
-                          Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis
-                          in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+	                  </h5>
+											<div class="card">
+												<div class="card-body">
+													<p class="card-text">address</p>
+												</div>
+											</div>
+									</div>
                 </div>
               </div>
             </div>

@@ -95,7 +95,6 @@
                       	<th class="text-uppercase"></th>
                         <th class="text-uppercase">category</th>
                         <th class="text-uppercase">total products</th>
-                        <th class="text-uppercase">total earning</th>
                         <th class="text-uppercase text-center d-xl-flex justify-content-xl-center">actions</th>
                       </tr>
                     </thead>
@@ -107,7 +106,6 @@
                         <td>
                        	${qty.get(category.getProductCategoryID()) }												
 												</td>
-                        <td>10</td>
                         <td>
                           <div class="d-flex justify-content-center">                           
                               <a class="btn btn-success mx-2" href="${pageContext.request.contextPath}/admin-category/showEdit?CategoryName=${category.getCategoryName() }">Detail</a>

@@ -133,7 +133,7 @@ public class ProductsServlet extends HttpServlet{
 		for (Product product : listProducts) {
 			int sumQty = 0;
 			Set<ProductItem> items = productDAO.getProductItemsByProduct(product.getProductID());
-			if (items == null || items.size() == 0) {
+			if (items.size() == 0) {
 				sumQtys.put(product.getProductID(), 0);
 				continue;
 			}
