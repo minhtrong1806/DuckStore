@@ -6,4 +6,6 @@ src/main/java/utils/HibernateUtil.java
 src/main/webapp/views/images/products
 
 .idea
+pom.xml
 src/main/webapp/views/images
+

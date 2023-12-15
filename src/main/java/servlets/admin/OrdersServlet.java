@@ -50,7 +50,4 @@ public class OrdersServlet extends HttpServlet{
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/admin/orders.jsp");
 		dispatcher.forward(request, response);
 	}
-	
-	
-
 }

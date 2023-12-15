@@ -1,5 +1,8 @@
 package servlets.shop;
 
+import DAO.UserAccountDAO;
+import bean.ShopOrder;
+import bean.UserAccount;
 import jakarta.servlet.RequestDispatcher;
 
 import jakarta.servlet.ServletException;
@@ -10,6 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import utils.AppUtils;
 
 import java.io.IOException;
+import java.util.Set;
 
 import DAO.ShopOrderDAO;
 import bean.UserAccount;
@@ -23,17 +27,24 @@ public class OderHistoryServlet extends HttpServlet{
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		UserAccount user = AppUtils.getLoginedUser(request.getSession());
-		ShopOrderDAO shopOrderDAO = new ShopOrderDAO();
-		
-		
-		
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/shop/history.jsp");	
-		dispatcher.forward(request, response);
+
+		listOrder(request, response);
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
+	}
+
+	protected void listOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		UserAccount userCurrent = AppUtils.getLoginedUser(request.getSession());
+
+		UserAccountDAO userAccountDAO = new UserAccountDAO();
+		Set<ShopOrder> shopOrders = userAccountDAO.getListOrderByUserID(userCurrent.getUser_id());
+
+		request.setAttribute("shopOrders", shopOrders);
+
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/shop/history.jsp");
+		dispatcher.forward(request, response);
 	}
 }

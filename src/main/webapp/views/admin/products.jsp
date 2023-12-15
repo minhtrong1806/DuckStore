@@ -2,6 +2,7 @@
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+
 <!-- ADMIN -->
 
 <!DOCTYPE html>
@@ -118,6 +119,7 @@
                                     <th class="text-uppercase">category</th>
                                     <th class="text-uppercase">qty</th>
                                     <th class="text-uppercase">price</th>
+                                    <th class="text-uppercase">sold</th>
                                     <th class="text-uppercase text-center d-xl-flex justify-content-xl-center">actions
                                     </th>
                                 </tr>
@@ -143,6 +145,7 @@
                                         <td>${product.getProductCategory().getCategoryName()}</td>
                                         <td>${quantity.get(product.getProductID())}</td>
                                         <td>${priceRange.get(product.getProductID())}</td>
+                                        <td>${sold.get(product.getProductID())}</td>
                                         <td>
                                             <div class="d-flex justify-content-center">
                                                 <a class="btn btn-success mx-2" role="button "
