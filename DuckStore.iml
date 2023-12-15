@@ -6,7 +6,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
-          <factory-entry name="DuckStore" value="8937a112-48a3-413b-9778-20ddcdc2db58" />
+          <factory-entry name="DuckStore" value="c15e1b03-a3ad-46ba-a20c-99963ed41e9e" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>

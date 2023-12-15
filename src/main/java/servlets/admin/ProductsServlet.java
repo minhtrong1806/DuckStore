@@ -131,16 +131,7 @@ public class ProductsServlet extends HttpServlet{
 	private HashMap<Integer, Integer> getQty(List<Product> listProducts, ProductDAO productDAO) {
 		HashMap<Integer, Integer> sumQtys = new HashMap<Integer, Integer>();
 		for (Product product : listProducts) {
-			int sumQty = 0;
-			Set<ProductItem> items = productDAO.getProductItemsByProduct(product.getProductID());
-			if (items.size() == 0) {
-				sumQtys.put(product.getProductID(), 0);
-				continue;
-			}
-			for (ProductItem item : items) {
-				sumQty += item.getPrice();
-			}
-			sumQtys.put(product.getProductID(), sumQty);
+			sumQtys.put(product.getProductID(), productDAO.totalItem(product.getProductID()));
 		}
 		return sumQtys;
 	}

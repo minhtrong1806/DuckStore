@@ -114,8 +114,24 @@ public class ShopOrderDAO {
             CriteriaQuery<ShopOrder> query = builder.createQuery(ShopOrder.class);
             Root<ShopOrder> root = query.from(ShopOrder.class);
 
+            query.select(root);
+            root.fetch("orderLines", JoinType.LEFT).fetch("productItem", JoinType.LEFT);
+
             return session.createQuery(query).getResultList();
         }
     }
 
+    public ShopOrder getShopOrderByID(int shopOrderID){
+        try(Session session = factory.openSession()){
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<ShopOrder> query = builder.createQuery(ShopOrder.class);
+            Root<ShopOrder> root = query.from(ShopOrder.class);
+
+            query.select(root);
+            query.where(builder.equal(root.get("shopOrderID"), shopOrderID));
+            root.fetch("orderLines", JoinType.LEFT).fetch("productItem", JoinType.LEFT);
+
+            return session.createQuery(query).uniqueResult();
+        }
+    }
 }
