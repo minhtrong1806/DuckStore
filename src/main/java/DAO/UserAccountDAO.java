@@ -2,10 +2,7 @@ package DAO;
 
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -31,6 +28,7 @@ public class UserAccountDAO {
 
 			query.select(root);
 			query.where(builder.equal(root.get("userID"), userID));
+			root.fetch("addresses", JoinType.LEFT);
 
 			UserAccount userAccount = session.createQuery(query).uniqueResult();
 			return userAccount;
