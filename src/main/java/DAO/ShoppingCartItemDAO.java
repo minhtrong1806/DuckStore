@@ -30,13 +30,13 @@ public class ShoppingCartItemDAO {
 				boolean oldItem = false;
 				for(ShoppingCartItem shoppingCartItem : shoppingCartItems){
 					if(shoppingCartItem.getProductItem().getProductItemID() == productItemID){
-						oldItem =true;
+						oldItem = true;
 						int new_quantity = shoppingCartItem.getQty() + quantity;
 						shoppingCartItem.setQty(new_quantity);
 						session.saveOrUpdate(shoppingCartItem);
 					}
 				}
-				if(oldItem == false) {
+				if(!oldItem) {
 					ShoppingCartItem shoppingCartItem = new ShoppingCartItem(quantity, shoppingCart, productItem);
 					session.save(shoppingCartItem);
 				}
@@ -46,8 +46,11 @@ public class ShoppingCartItemDAO {
 				return true;
 
 			} catch (Exception e) {
-				session.getTransaction().rollback();
-				session.close();
+				if (session.getTransaction() != null) {
+					session.getTransaction().rollback();
+					System.out.println("Failed adding items to cart");
+				}
+				e.printStackTrace();
 			}
 		}
 		return false;
@@ -78,8 +81,11 @@ public class ShoppingCartItemDAO {
 				session.close();
 				return true;
 			}catch (Exception e){
-				session.getTransaction().rollback();
-				session.close();
+				if (session.getTransaction() != null) {
+					session.getTransaction().rollback();
+					System.out.println("Failed removing item from cart");
+				}
+				e.printStackTrace();
 			}
 		}
 		return false;
