@@ -97,7 +97,16 @@ public class ProductsServlet extends HttpServlet{
 		
 		List<ProductCategory> categorieList = productCategoryDAO.listProductCategories();
 		List<Product> listProducts = null;
-		
+		List<Product> listProductInPage = null;
+		int pageSize = 16;
+		int pageN = 1;
+		try {
+			if (request.getParameter("pageNumber") != null) {
+				pageN = Integer.parseInt(request.getParameter("pageNumber"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		String search = request.getParameter("search");
 
 		try {
@@ -112,16 +121,27 @@ public class ProductsServlet extends HttpServlet{
 		
 		HashMap<Integer, String> priceRange = new HashMap<Integer, String>();
 		HashMap<Integer, Integer> quantity = new HashMap<Integer, Integer>();
+		HashMap<Integer, Integer> sold = new HashMap<Integer, Integer>();
 		
 		priceRange = getPriceRange(listProducts, productDAO);
 		quantity = getQty(listProducts, productDAO);
+		sold = getSold(listProducts, productDAO);
 		
 		String folderStore = request.getContextPath()+ "\\views\\images\\products\\";
 		
+		int numberOfPages = listProducts.size() / pageSize;
+		if (listProducts.size() % pageSize != 0 ) {
+			numberOfPages++;
+		}
+		
+		listProductInPage = productDAO.getProductsByPage(listProducts, pageN, pageSize);
+		
+		request.setAttribute("numberOfPages", numberOfPages);
 		request.setAttribute("categoryList", categorieList);
-		request.setAttribute("listProducts", listProducts);
+		request.setAttribute("listProducts", listProductInPage);
 		request.setAttribute("priceRange", priceRange);
 		request.setAttribute("quantity", quantity);
+		request.setAttribute("sold", sold);
 		request.setAttribute("productFolder", folderStore);
 		
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/admin/products.jsp");
@@ -135,7 +155,14 @@ public class ProductsServlet extends HttpServlet{
 		}
 		return sumQtys;
 	}
-		
+
+	private HashMap<Integer, Integer> getSold(List<Product> listProducts, ProductDAO productDAO){
+		HashMap<Integer, Integer> sumSold = new HashMap<Integer, Integer>();
+		for(Product product : listProducts){
+			sumSold.put(product.getProductID(), productDAO.totalSold(product.getProductID()));
+		}
+		return sumSold;
+	}
 	
 	private HashMap<Integer, String> getPriceRange(List<Product> listProducts, ProductDAO productDAO) {
 		HashMap<Integer, String> priceRange = new HashMap<Integer, String>();

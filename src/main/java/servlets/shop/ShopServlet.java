@@ -52,10 +52,20 @@ public class ShopServlet extends HttpServlet{
 		ProductDAO productDAO = new ProductDAO();
 		
 		List<ProductCategory> categorieList = productCategoryDAO.listProductCategories();
-		
+		int pageSize = 16;
+		int pageN = 1;
+		try {
+			if (request.getParameter("pageNumber") != null) {
+				pageN = Integer.parseInt(request.getParameter("pageNumber"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		String category = request.getParameter("category");
 		String search = request.getParameter("search");
+		
 		List<Product> listProduct = null;
+		List<Product> listProductInPage = null;
 		
 		if (search != null) {
 			try {
@@ -82,9 +92,16 @@ public class ShopServlet extends HttpServlet{
 			}
 			
 		}
+		int numberOfPages = listProduct.size() / pageSize;
+		if (listProduct.size() % pageSize != 0 ) {
+			numberOfPages++;
+		}
 		
+		listProductInPage = productDAO.getProductsByPage(listProduct, pageN, pageSize);
+		
+		request.setAttribute("numberOfPages", numberOfPages);
 		request.setAttribute("categoryList", categorieList);
-		request.setAttribute("listProduct", listProduct);
+		request.setAttribute("listProduct", listProductInPage);
 		request.setAttribute("productFolder", folderStore);
 
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/shop/product.jsp");

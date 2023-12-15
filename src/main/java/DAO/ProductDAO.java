@@ -11,6 +11,7 @@ import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import bean.OrderLine;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -182,14 +183,28 @@ public class ProductDAO {
 		}
 	}
 
-	public List<Product> getProductsByPage(List<Product> Productlist, int pageNumber, int pageSize) {
-		int fromIndex = (pageNumber - 1) * pageSize;
-		int toIndex = fromIndex + pageSize;
-		if (Productlist == null || fromIndex < 0 || toIndex > Productlist.size() || fromIndex > toIndex) {
-			throw new IllegalArgumentException("Invalid input parameters");
-		}
-		return new ArrayList<>(Productlist.subList(fromIndex, toIndex));
+	public List<Product> getProductsByPage(List<Product> productList, int pageNumber, int pageSize) {
+	    if (productList == null || pageNumber <= 0 || pageSize <= 0) {
+	        throw new IllegalArgumentException("Invalid input parameters");
+	    }
+
+	    int totalProducts = productList.size();
+	    int totalPages = (int) Math.ceil((double) totalProducts / pageSize);
+
+	    if (pageNumber > totalPages) {
+	        throw new IllegalArgumentException("Page number exceeds total pages");
+	    }
+
+	    int fromIndex = (pageNumber - 1) * pageSize;
+	    int toIndex = Math.min(fromIndex + pageSize, totalProducts);
+
+	    if (fromIndex > toIndex) {
+	        throw new IllegalArgumentException("Invalid input parameters");
+	    }
+
+	    return new ArrayList<>(productList.subList(fromIndex, toIndex));
 	}
+
 
 	public int totalItem(int productID){
 		Product product = getProduct(productID);
@@ -199,4 +214,20 @@ public class ProductDAO {
 		}
 		return total;
 	}
+	public int totalSold(int productID){
+		try(Session session = factory.openSession()){
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<OrderLine> query = builder.createQuery(OrderLine.class);
+			Root<OrderLine> root = query.from(OrderLine.class);
+
+			query.where(builder.equal(root.get("productItem").get("product"), productID));
+			List<OrderLine> orderLines =  session.createQuery(query).getResultList();
+			int totalSale = 0;
+			for(OrderLine orderLine : orderLines){
+				totalSale = totalSale + orderLine.getQty();
+			}
+			return totalSale;
+		}
+	}
+
 }
