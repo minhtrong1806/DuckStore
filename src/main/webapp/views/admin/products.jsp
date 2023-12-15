@@ -161,7 +161,23 @@
                             </table>
                         </div>
                     </div>
+                    <div class="d-flex justify-content-center">
+						          <nav aria-label="Page navigation example">
+											  <ul class="pagination">
+														<%
+														int numberOfPages = (int) request.getAttribute("numberOfPages");
+														for (int i = 1; i <= numberOfPages; i++)
+														{
+														%>
+														<li class="page-item">
+											    		<a class="page-link"><%= i %></a>
+											    	</li>
+											    	<%} %>
+											  </ul>
+											</nav>
+						        </div>
                 </div>
+                
             </div>
         </div>
         <footer class="bg-white sticky-footer">
@@ -209,6 +225,26 @@
     }
 </script>
 
+<script>
+		    const pageLinks = document.querySelectorAll('.pagination .page-link');
+		
+		    pageLinks.forEach(link => {
+		        link.addEventListener('click', function(event) {
+		            event.preventDefault();
+		
+		            const pageNumber = this.textContent;
+		
+		            const urlParams = new URLSearchParams(window.location.search);
+		            urlParams.set('pageNumber', pageNumber);
+		
+		            // Tạo URL mới với tham số pageNumber
+		            const newUrl = window.location.pathname + '?' + urlParams.toString();
+		
+		            // Thay đổi URL và load lại trang
+		            window.location.href = newUrl;
+		        });
+		    });
+</script>  
 <script src="${pageContext.request.contextPath}/views/admin/assets/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/views/admin/assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/views/admin/assets/js/bs-init.js"></script>
