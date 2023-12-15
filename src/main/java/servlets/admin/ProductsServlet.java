@@ -96,7 +96,20 @@ public class ProductsServlet extends HttpServlet{
 		ProductDAO productDAO = new ProductDAO();
 		
 		List<ProductCategory> categorieList = productCategoryDAO.listProductCategories();
-		List<Product> listProducts = productDAO.getProductList();
+		List<Product> listProducts = null;
+		
+		String search = request.getParameter("search");
+
+		try {
+			listProducts = productDAO.searchProduct(search);
+		} catch (Exception e) {
+			listProducts = productDAO.getProductList();
+		}
+		
+		if (listProducts == null || listProducts.size() == 0) {
+			listProducts = productDAO.getProductList();
+		}
+		
 		HashMap<Integer, String> priceRange = new HashMap<Integer, String>();
 		HashMap<Integer, Integer> quantity = new HashMap<Integer, Integer>();
 		

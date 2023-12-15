@@ -61,6 +61,10 @@ public class Address implements Serializable {
 		
 	}
 	
+	public String toString() {
+		return unitNumber + ", " + addressLine + ", " + district + ", " + city; 
+	}
+	
 	public Address() {
 	}
 

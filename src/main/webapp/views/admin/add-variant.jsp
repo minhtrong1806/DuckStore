@@ -58,9 +58,6 @@
 							<i class="fa fa-user" style="font-size: 1.3rem"></i> <span
 							class="nav-item-content">Users</span>
 					</a></li>
-					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/admin-promotions"><i
-							class="fa fa-gift" style="font-size: 1.3rem"></i><span
-							class="nav-item-content">Promotions</span></a></li>
 				</ul>
 				<div class="text-center d-none d-md-inline">
 					<button class="btn rounded-circle border-0" id="sidebarToggle"

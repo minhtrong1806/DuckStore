@@ -114,9 +114,6 @@ public class AddVariantServlet extends HttpServlet {
 			Boolean addSuccess = itemDAO.addProductItem(item, productId, size, color);
 			
 			if(addSuccess) {
-				// Lưu thông báo vào session attribute
-				HttpSession session = request.getSession();
-				session.setAttribute("successMessage", "The variation has been added successfully!");
 				response.sendRedirect(request.getContextPath() + "/admin-product-detail?productId="+productId);
 			}
 			else {

@@ -48,22 +48,20 @@ public class ShoppingCartDAO {
 	}
 
 	public Set<ShoppingCartItem> listProductItemByUserID(int userID){
-		try(Session session = factory.openSession()){
-			CriteriaBuilder builder = session.getCriteriaBuilder();
-			CriteriaQuery<ShoppingCart> query = builder.createQuery(ShoppingCart.class);
-			Root<ShoppingCart> root = query.from(ShoppingCart.class);
-
+        try(Session session = factory.openSession()){
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<ShoppingCart> query = builder.createQuery(ShoppingCart.class);
+            Root<ShoppingCart> root = query.from(ShoppingCart.class);
 			query.select(root);
 			query.where(builder.equal(root.get("userAccount"), userID));
 			root.fetch("shoppingCartItems", JoinType.LEFT)
 					.fetch("productItem", JoinType.LEFT)
 					.fetch("variationOptions", JoinType.LEFT)
 					.fetch("variation", JoinType.LEFT);
-
-			ShoppingCart shoppingCart = session.createQuery(query).uniqueResult();
-			return shoppingCart.getShoppingCartItems();
-		}
-	}
+            ShoppingCart shoppingCart = session.createQuery(query).uniqueResult();
+            return shoppingCart.getShoppingCartItems();
+        }
+    }
 
 	public float cartCheckoutByUserID(int userID){
 		Set<ShoppingCartItem> shoppingCartItems = listProductItemByUserID(userID);

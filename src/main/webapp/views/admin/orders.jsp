@@ -57,9 +57,6 @@
                 <span class="nav-item-content">Users</span>
               </a>
             </li>
-            <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/admin-promotions"><i
-							class="fa fa-gift" style="font-size: 1.3rem"></i><span
-							class="nav-item-content">Promotions</span></a></li>
           </ul>
           <div class="text-center d-none d-md-inline">
             <button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>
@@ -112,18 +109,10 @@
                           <span style="color: rgb(22, 177, 255); background-color: rgb(220, 243, 255)">delivered</span>
                         </td>
                         <td>momo</td>
-                        <td class="d-xl-flex justify-content-xl-center">
-                          <div class="border rounded-0 border-white d-flex justify-content-around btn-group">
-                            <button class="btn" type="button" aria-expanded="false" data-toggle="dropdown">
-                              <i class="fa fa-ellipsis-v icon-size"></i>
-                            </button>
-                            <div
-                              class="dropdown-menu dropdown-menu-right"
-                              style="background: var(--white); position: static"
-                            >
-                              <a class="btn dropdown-item" role="button" href="${pageContext.request.contextPath}/admin-order-detail">Detail</a
-                              ><button class="btn dropdown-item" type="button">Delete</button>
-                            </div>
+                        <td>
+													<div class="d-flex justify-content-center">                           
+                              <a class="btn btn-info mx-2" role="button " href="${pageContext.request.contextPath}/admin-order-detail">Detail</a>
+                              <a class="btn btn-success mx-2" role="button " href="${pageContext.request.contextPath}/admin-order-detail">confirm</a>
                           </div>
                         </td>
                       </tr>

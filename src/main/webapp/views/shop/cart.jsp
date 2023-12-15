@@ -7,7 +7,6 @@
 <%@page import="bean.ShoppingCartItem"%>
 <%@page import="DAO.ShoppingCartDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div class="wrap-header-cart js-panel-cart">
 	<div class="s-full js-hide-cart"></div>
 	<div class="header-cart flex-col-l p-l-65 p-r-25">
@@ -48,7 +47,7 @@
 						out.println(item.getProductItem().getProduct().getName());
 						out.println("</a>");
 						out.println("<span class='header-cart-item-info'>");
-						out.println(item.getQty() + " x " + item.getProductItem().getPrice());
+						out.println(item.getQty() + " x $" + item.getProductItem().getPrice());
 						out.println("</span>");
 						out.println("</div>");
 						out.println("</li>");
@@ -72,7 +71,7 @@
 							for (ShoppingCartItem item : itemList) {
 								total += item.getProductItem().getPrice()*item.getQty();
 							}
-							out.println("Total: " + total);
+							out.println("Total: $" + total);
 						}
 						
 						
@@ -96,3 +95,5 @@
 		</div>
 	</div>
 </div>
+
+

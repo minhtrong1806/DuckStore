@@ -1,3 +1,7 @@
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="utils.CalUtils"%>
+<%@page import="servlets.admin.ProductDetailServlet"%>
+<%@page import="bean.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>		
 
@@ -229,7 +233,7 @@
 												<c:if test="${message != null }">
 													<p style="color: red;	">${message}</p>
 												</c:if>
-												<span class="mtext-106 cl2"> ${price} </span>
+												<span class="mtext-106 cl2">$${price} </span>
 												<!--  -->
 												<div class="p-t-33">
 														<div class="flex-w flex-r-m p-b-10">
@@ -271,7 +275,7 @@
 																				</div>
 																		</div>
 																		<input type="hidden" name="productId" value="${product.getProductID()}">
-																		<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" type="submit">
+																		<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04" type="submit">
 																				Add to cart
 																		</button>
 																</div>
@@ -279,7 +283,8 @@
 														<div class="flex-w flex-r-m">
 																<div class="size-203 flex-c-m respon6"></div>
 																<div class="size-204 respon6-next">
-																		${quantity} products available
+																		<p>${quantity} products available.</p>
+																		<span style="color: Red;"><c:if test="${quantity == 0}"> Please choose another size or color!</c:if></span>
 																</div>
 														</div>
 												</div>
@@ -311,43 +316,12 @@
 						</div>
 				</div>
 				<div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
-						<span class="stext-107 cl6 p-lr-25"> SKU: ${productItem.getSku()} </span> 
+						<span class="stext-107 cl6 p-lr-25"> SKU: ${sku} </span> 
 						<span class="stext-107 cl6 p-lr-25"> Categories: ${product.getProductCategory().getCategoryName()}</span>
 				</div>
 		</section>
-		<!-- Related Products -->
-		<section class="sec-relate-product bg0 p-t-45 p-b-105">
-				<div class="container">
-						<div class="p-b-45">
-								<h3 class="ltext-106 cl5 txt-center">Related Products</h3>
-						</div>
-						<!-- Slide2 -->
-						<div class="wrap-slick2">
-								<div class="slick2">
-										<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-												<!-- Block2 -->
-											<div class="block2">
-					              <div class="block2-pic hov-img0">
-													<img class="product-image" src="${folder}${product.getProduct_image()}" alt="IMG-PRODUCT" />
-					                <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-					                  Add to cart
-					                </a>
-					              </div>
-					              <div class="block2-txt flex-w flex-t p-t-14">
-					                <div class="block2-txt-child1 flex-col-l">
-					                  <a href="product-detail?productId=${product.getProductID()}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-					                    ${product.getName()}
-					                  </a>
-					                  <span class="stext-105 cl3"> $16.64 </span>
-					                </div>
-					              </div>
-					            </div>
-										</div>
-								</div>
-						</div>
-				</div>
-				</div>
-		</section>
+	
+		
 		<!-- Cart -->
     <%@ include file="cart.jsp" %>
 		<!-- Footer -->
@@ -362,7 +336,7 @@
 		</div>
 		
 		<!--===============================================================================================-->
-		<!--thẻ div ẩn để chứa thông báo -->
+		<!-- Thẻ div ẩn để chứa thông báo -->
 		<div id="message" style="display: none;">
 		    <% 
 		    // Lấy thông báo từ session attribute
@@ -378,15 +352,18 @@
 		
 		<!-- Đoạn mã JavaScript để hiển thị thông báo khi trang tải xong -->
 		<script type="text/javascript">
-		    // Đợi cho trang tải xong
+		    // Sử dụng window.onload để đảm bảo thông báo chỉ hiển thị khi trang đã load hoàn toàn
 		    window.onload = function() {
 		        var messageDiv = document.getElementById('message');
 		        var message = messageDiv.textContent.trim();
 		        if (message !== '') {
-		        	swal(message);
+		            alert(message); // Thay đổi từ 'alter' thành 'alert' để hiển thị thông báo
 		        }
-		    }
-		</script>    
+		    };
+		</script>
+
+
+
 		<!--===============================================================================================-->
 		<script src="${pageContext.request.contextPath}/views/vendor/jquery/jquery-3.2.1.min.js"></script>
 		<!--===============================================================================================-->
@@ -433,13 +410,6 @@
 		<script src="${pageContext.request.contextPath}/views/vendor/isotope/isotope.pkgd.min.js"></script>
 		<!--===============================================================================================-->
 		<script src="${pageContext.request.contextPath}/views/vendor/sweetalert/sweetalert.min.js"></script>
-		<script>
-		  $(".js-addcart-detail").on("click", function() {
-		    var parentBlock = $(this).closest('.block2');
-		    var productName = parentBlock.find('.js-name-b2').text().trim();
-		    swal(productName, "is added to cart !", "success");
-		  });
-		</script>
 		<!--===============================================================================================-->
 		<script src="${pageContext.request.contextPath}/views/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 		<script>

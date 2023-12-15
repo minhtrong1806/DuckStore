@@ -1,3 +1,7 @@
+<%@page import="java.math.BigDecimal"%>
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="utils.CalUtils"%>
+<%@page import="bean.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -64,7 +68,7 @@
             <div class="menu-desktop">
               <ul class="main-menu">
                 <li><a href="home">Home</a></li>
-                <li class="active-menu"><a href="shop">Shop</a></li>
+                <li class="active-menu"><a href="shop?category=All+Products">Shop</a></li>
                 <li><a href="about">About</a></li>
                 <li><a href="contact">Contact</a></li>
               </ul>
@@ -105,7 +109,7 @@
         </ul>
         <ul class="main-menu-m">
           <li><a href="home">Home</a></li>
-          <li><a href="shop">Shop</a></li>
+          <li><a href="shop?category=All+Products">Shop</a></li>
           <li><a href="about">About</a></li>
           <li><a href="contact">Contact</a></li>
         </ul>
@@ -148,7 +152,7 @@
                 <i class="zmdi zmdi-search"></i>
               </button>
               <form class="size-114" action="shop" method="POST">
-              		<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search" placeholder="Search"/>
+              		<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="search" name="search" placeholder="Search"/>
               </form>
               
             </div>
@@ -172,7 +176,24 @@
 	                  <a href="product-detail?productId=${product.getProductID()}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 	                    ${product.getName()}
 	                  </a>
-	                  <span class="stext-105 cl3"> $16.64 </span>
+	                  <span class="stext-105 cl3">
+	                  <%
+	                  
+	                  	Product product = (Product) pageContext.getAttribute("product");
+	                  	float price = 0;
+	                  	try{
+	                  		if(product != null) {
+	                  				price = CalUtils.getMinPrice(product.getProductID());
+	                  		}
+	                  	}
+	                  	catch (Exception e){}
+	                  	DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
+	                    String formattedPrice = decimalFormat.format(price);
+	                    
+	                  	out.println("$" + formattedPrice);
+	                  	
+	                  %>
+	                  </span>
 	                </div>
 	              </div>
 	            </div>

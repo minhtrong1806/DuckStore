@@ -1,3 +1,7 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
+<%@page import="DAO.AddressDAO"%>
+<%@page import="java.util.HashSet"%>
+<%@page import="bean.Address"%>
 <%@ page
 		language="java"
 		contentType="text/html; charset=UTF-8"
@@ -159,140 +163,141 @@
 								class="stext-109 cl8 hov-cl1 trans-04"> Home <i
 								class="fa fa-angle-right m-l-9 m-r-10"
 								aria-hidden="true"></i>
-						</a> <span class="stext-109 cl4"> Shoping Cart </span>
+						</a>
+						<a
+								href="shopping-cart"
+								class="stext-109 cl8 hov-cl1 trans-04"> Shoping Cart <i
+								class="fa fa-angle-right m-l-9 m-r-10"
+								aria-hidden="true"></i>
+						</a> <span class="stext-109 cl4"> Checkout </span>
 				</div>
 		</div>
-		<!-- Shoping Cart -->
-		<form class="bg0 p-t-75 p-b-85">
+		<!-- payment -->
+		<%
+		try {
+		UserAccount userC = AppUtils.getLoginedUser(request.getSession());
+		%>
+		<form class="bg0 p-t-75 p-b-85" action="process-payment" method="POST">
 				<div class="container">
 						<div class="row">
-								<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
-										<div class="m-l-25 m-r--38 m-lr-0-xl">
-												<div class="wrap-table-shopping-cart">
-														<table class="table-shopping-cart">
-																<tr class="table_head">
-																		<th class="column-1">Product</th>
-																		<th class="column-2"></th>
-																		<th class="column-3">Price</th>
-																		<th class="column-4">Quantity</th>
-																		<th class="column-5">Total</th>
-																		<th class="column-6"></th>
-																</tr>
-																<tr class="table_row">
-																		<td class="column-1">
-																				<div class="how-itemcart1">
-																						<img
-																								src="${pageContext.request.contextPath}/views/images/item-cart-04.jpg"
-																								alt="IMG">
-																				</div>
-																		</td>
-																		<td class="column-2">Fresh Strawberries</td>
-																		<td class="column-3">$ 36.00</td>
-																		<td class="column-4">
-																				<div class="wrap-num-product flex-w m-l-auto m-r-0">
-																						<div
-																								class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-																								<i class="fs-16 zmdi zmdi-minus"></i>
-																						</div>
-																						<input
-																								class="mtext-104 cl3 txt-center num-product"
-																								type="number"
-																								name="num-product1"
-																								value="1">
-																						<div
-																								class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-																								<i class="fs-16 zmdi zmdi-plus"></i>
-																						</div>
-																				</div>
-																		</td>
-																		<td class="column-5">$ 36.00</td>
-																		<td class="column-6">
-																				<button class="flex-c-m trans-04 hov-cl1">
-																						<i class="zmdi zmdi-close"></i>
-																				</button>
-																		</td>
-																</tr>
-														</table>
-												</div>
-												<div
-														class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
-														<div class="flex-w flex-m m-r-20 m-tb-5">
-																<input
-																		class="stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5"
-																		type="text"
-																		name="coupon"
-																		placeholder="Coupon Code">
-																<button
-																		class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">Apply
-																		coupon</button>
-														</div>
-														<button
-																class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15  pointer m-tb-10">Update
-																Cart</button>
-												</div>
-										</div>
-								</div>
-								<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
-										<div
-												class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
-												<h4 class="mtext-109 cl2 p-b-30">Cart Totals</h4>
-												<div class="flex-w flex-t bor12 p-b-13">
-														<div class="size-208">
-																<span class="stext-110 cl2"> Subtotal: </span>
-														</div>
-														<div class="size-209">
-																<span class="mtext-110 cl2"> $79.65 </span>
-														</div>
-												</div>
-												<div class="flex-w flex-t bor12 p-t-15 p-b-30">
-														<div class="size-208 w-full-ssm">
-																<span class="stext-110 cl2"> Shipping: </span>
-														</div>
-														<div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
-																<p class="stext-111 cl6 p-t-2">There are no shipping
-																		methods available. Please double check your address,
-																		or contact us if you need any help.</p>
-																<div class="p-t-15">
-																		<span class="stext-112 cl8"> Calculate Shipping
-																		</span>
-																		<div class="bor8 bg0 m-b-12">
-																				<input
-																						class="stext-111 cl8 plh3 size-111 p-lr-15"
-																						type="text"
-																						name="state"
-																						placeholder="State /  country">
-																		</div>
-																		<div class="bor8 bg0 m-b-22">
-																				<input
-																						class="stext-111 cl8 plh3 size-111 p-lr-15"
-																						type="text"
-																						name="postcode"
-																						placeholder="Postcode / Zip">
-																		</div>
-																		<div class="flex-w">
-																				<button
-																						class="flex-c-m stext-101 cl2 size-115 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer">
-																						Update Totals</button>
+								<div class="col-lg-10 col-xl-8">
+		                <div class="card">
+
+		                    <div class="card-body">
+		                        <span class="my-5 mtext-103 cl2">Shipping address</span>
+		                        <hr>
+		                            <div class="form-group mt-5">
+		                            		<input value="<%= userC.getName() %>" class="form-control size-121" type="text" name="name" placeholder="Name">
+		                            </div>
+		                            <div class="form-group">
+		                            		<input value="<%= userC.getPhone_number() %>" class="form-control size-121" type="text" name="phone" placeholder="Phone">
+		                            </div>
+		                            <div class="form-group">
+		                            		<input value="${selectedAddress.toString()}" class="form-control size-121" type="text" placeholder="address">
+		                            		<input value="${selectedAddress.getAddressID()}" type="hidden" name="addressId">
+		                            </div>
+		                            <a data-toggle="collapse" href="#address" role="button" aria-expanded="false" aria-controls="address">Change address</a>
+		                            <div class="collapse mt-2" id="address">
+															<div class="card">
+																		<div class="card-body d-flex flex-wrap">
+																				<%
+																					Address selectAddress = (Address) request.getAttribute("selectedAddress");
+																					AddressDAO addrDAO = new AddressDAO();
+																					Set<Address> addresses = addrDAO.listAddressByUser(userC.getUser_id());
+																					for(Address address:addresses){
+																						if(address.getAddressID() == selectAddress.getAddressID())
+																						{continue;}
+																				%>
+																					<div class="w-50 p-lr-5">
+																						<div class="card">	
+																								<div class="card-body d-flex justify-content-between align-items-center">
+																									<p class="card-text"><%=address.toString() %></p>
+																									<a href="payment?addressId=<%= address.getAddressID()%>"> Choose </a>
+																								</div>
+																							</div>
+																					</div>
+																					<%}%>
 																		</div>
 																</div>
-														</div>
-												</div>
-												<div class="flex-w flex-t p-t-27 p-b-33">
-														<div class="size-208">
-																<span class="mtext-101 cl2"> Total: </span>
-														</div>
-														<div class="size-209 p-t-1">
-																<span class="mtext-110 cl2"> $79.65 </span>
-														</div>
-												</div>
-												<button
-														class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
-														Proceed to Checkout</button>
-										</div>
-								</div>
+																</div>
+		                            <div class="form-group my-5 cl2">
+		                            		<label>Payment methods</label>
+		                                <div class="d-flex flex-row justify-content-between w-50 mt-3">
+		                                    <div class="form-check">
+		                                    		<input class="form-check-input" type="radio" id="formCheck-1" value="1" name="paymentMethod" checked>
+		                                    		<label class="form-check-label" for="formCheck-1">COD</label>
+		                                    </div>
+		                                    <div class="form-check">
+		                                    		<input class="form-check-input" type="radio" id="formCheck-2" value="2"  name="paymentMethod">
+		                                    		<label class="form-check-label" for="formCheck-2">PAYPAL</label>
+		                                    </div>
+		                                    <div class="form-check">
+		                                    		<input class="form-check-input" type="radio" id="formCheck-3" value="3" name="paymentMethod">
+		                                    		<label class="form-check-label" for="formCheck-3">VISA</label>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                            <div class="form-group mb-5 cl2">
+		                            <label>Shipping methods</label>
+		                                <div class="d-flex justify-content-between w-75 mt-3">
+		                                    <div class="form-check">
+		                                    		<input data-price="3" class="form-check-input" type="radio" id="formCheck-4" value="1" name="shippingMethod" checked>
+		                                    		<label class="form-check-label" for="formCheck-4">Express</label>
+		                                    </div>
+		                                    <div class="form-check">
+		                                    		<input data-price="2" class="form-check-input" type="radio" id="formCheck-5" value="2" name="shippingMethod">
+		                                    		<label class="form-check-label" for="formCheck-5">Fast</label>
+		                                    </div>
+		                                    <div class="form-check">
+		                                    		<input data-price="1.2" class="form-check-input" type="radio" id="formCheck-6" value="3" name="shippingMethod">
+		                                    		<label class="form-check-label" for="formCheck-6">Nomal</label>
+		                                    </div>
+		                                    <div class="form-check">
+		                                   			<input data-price="0.8" class="form-check-input" type="radio" id="formCheck-7" value="4" name="shippingMethod">
+		                                   			<label class="form-check-label" for="formCheck-7">Economical</label>
+		                                   	</div>
+		                                </div>
+		                            </div>
+		                            <div class="form-group"><button class="btn btn-info w-100" type="submit"><i class="zmdi zmdi-shopping-cart"></i>&nbsp; COMPLETE PURCHASE</button></div>
+		                    </div>
+		                </div>
+		            </div>
+		            <div class="col">
+		                <div class="card">
+		                    <div class="card-body">
+		                        <span class="my-5 mtext-103 cl2">YOUR ODER</span>
+		                        <hr>
+		                        	<%
+									            ShoppingCartDAO shoppingCartDao = new ShoppingCartDAO();
+									           	Set<ShoppingCartItem> listShoppingItem = null;
+									           	listShoppingItem = shoppingCartDao.listProductItemByUserID(userC.getUser_id());
+									           	float tong = 0;
+									           	for(ShoppingCartItem product:listShoppingItem){
+									           		tong += product.getProductItem().getPrice()*product.getQty();
+									            %>
+		                        	<div class="d-flex justify-content-between cl2">
+		                        	<span><%=product.getProductItem().getProduct().getName()%></span>
+		                        	<span><%=product.getQty() %> x $<%= product.getProductItem().getPrice() %></span>
+		                        	</div>
+		                        	<%} %>
+		                        <hr>
+		                        <div class="d-flex justify-content-between cl2 mb-3"><span>Total Purchases:</span>
+		                        <span id="totalPurchases">$<%= tong %></span></div>
+		                        <div class="d-flex justify-content-between cl2 mb-3">
+		                        	<span>Transport Fee:</span>
+		                        	<span id="transportFee"></span></div>
+		                        <hr>
+		                        <div class="d-flex justify-content-between">
+		                            <h4 class="d-inline-block mtext-103 cl2">Total:</h4>
+		                            <h4 id="totalAmount" class="d-inline-block mtext-103 cl2"></h4>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
 						</div>
 				</div>
 		</form>
+		<%} catch (Exception e) {} %>
 		<!-- Cart -->
     <%@ include file="cart.jsp" %>
 		<!-- Footer -->
@@ -305,6 +310,34 @@
 						class="zmdi zmdi-chevron-up"></i>
 				</span>
 		</div>
+		<!--===============================================================================================-->
+
+		<!--===============================================================================================-->
+		<script>
+		    document.addEventListener('DOMContentLoaded', function() {
+		        const transportFeeDisplay = document.getElementById('transportFee');
+		        const totalDisplay = document.getElementById('totalAmount');
+		        const totalPurchases = parseFloat(document.getElementById('totalPurchases').textContent.replace('$', ''));
+		
+		        const checkedRadioButton = document.querySelector('input[name="shippingMethod"]:checked');
+		        const initialPrice = parseFloat(checkedRadioButton.getAttribute('data-price'));
+		        transportFeeDisplay.textContent = '$' + initialPrice;
+		
+		        const initialTotal = totalPurchases + initialPrice;
+		        totalDisplay.textContent = '$' + initialTotal;
+		        const radioButtons = document.querySelectorAll('input[name="shippingMethod"]');
+		        radioButtons.forEach(radioButton => {
+		            radioButton.addEventListener('change', function() {
+		                const price = parseFloat(this.getAttribute('data-price'));
+		                transportFeeDisplay.textContent = '$' + price;
+		                
+		                const currentTotal = totalPurchases + price;
+		                totalDisplay.textContent = '$' + currentTotal;
+		            });
+		        });
+		    });
+		</script>
+
 		<!--===============================================================================================-->
 		<script
 				src="${pageContext.request.contextPath}/views/vendor/jquery/jquery-3.2.1.min.js"></script>
