@@ -276,32 +276,26 @@
 		</script>
    
     <!--===============================================================================================-->
-<script>
-    const pageLinks = document.querySelectorAll('.pagination .page-link');
-
-    pageLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
-            event.preventDefault();
-
-            const pageNumber = this.textContent;
-
-            const urlParams = new URLSearchParams(window.location.search);
-            urlParams.set('pageNumber', pageNumber);
-
-            // Tạo URL mới với tham số pageNumber
-            const newUrl = window.location.pathname + '?' + urlParams.toString();
-
-            // Thay đổi URL và load lại trang
-            window.location.href = newUrl;
-        });
-    });
-</script>
-
-
-
-
-
-    
+		<script>
+		    const pageLinks = document.querySelectorAll('.pagination .page-link');
+		
+		    pageLinks.forEach(link => {
+		        link.addEventListener('click', function(event) {
+		            event.preventDefault();
+		
+		            const pageNumber = this.textContent;
+		
+		            const urlParams = new URLSearchParams(window.location.search);
+		            urlParams.set('pageNumber', pageNumber);
+		
+		            // Tạo URL mới với tham số pageNumber
+		            const newUrl = window.location.pathname + '?' + urlParams.toString();
+		
+		            // Thay đổi URL và load lại trang
+		            window.location.href = newUrl;
+		        });
+		    });
+		</script>  
     <!--===============================================================================================-->
     <script src="${pageContext.request.contextPath}/views/vendor/jquery/jquery-3.2.1.min.js"></script>
     <!--===============================================================================================-->

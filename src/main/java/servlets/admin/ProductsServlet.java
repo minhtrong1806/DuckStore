@@ -97,7 +97,16 @@ public class ProductsServlet extends HttpServlet{
 		
 		List<ProductCategory> categorieList = productCategoryDAO.listProductCategories();
 		List<Product> listProducts = null;
-		
+		List<Product> listProductInPage = null;
+		int pageSize = 2;
+		int pageN = 1;
+		try {
+			if (request.getParameter("pageNumber") != null) {
+				pageN = Integer.parseInt(request.getParameter("pageNumber"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		String search = request.getParameter("search");
 
 		try {
@@ -120,8 +129,16 @@ public class ProductsServlet extends HttpServlet{
 		
 		String folderStore = request.getContextPath()+ "\\views\\images\\products\\";
 		
+		int numberOfPages = listProducts.size() / pageSize;
+		if (listProducts.size() % pageSize != 0 ) {
+			numberOfPages++;
+		}
+		
+		listProductInPage = productDAO.getProductsByPage(listProducts, pageN, pageSize);
+		
+		request.setAttribute("numberOfPages", numberOfPages);
 		request.setAttribute("categoryList", categorieList);
-		request.setAttribute("listProducts", listProducts);
+		request.setAttribute("listProducts", listProductInPage);
 		request.setAttribute("priceRange", priceRange);
 		request.setAttribute("quantity", quantity);
 		request.setAttribute("sold", sold);
