@@ -24,27 +24,28 @@ public class ChangePasswordServlet extends HttpServlet{
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		UserAccount userCurrent = AppUtils.getLoginedUser(request.getSession());
+		request.setAttribute("userCurrent", userCurrent);
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/shop/change-password.jsp");
 		dispatcher.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserAccountDAO userAccountDAO = new UserAccountDAO();
+		UserAccount userCurrent = AppUtils.getLoginedUser(request.getSession());
 		boolean hasError = false;
 		String errorString = "";
 		
 		String oldPassword = request.getParameter("oldPassword");
 		String newPassword = request.getParameter("newPassword");
 		String repeatPassword = request.getParameter("repeatPassword");
-		
-		UserAccount userCurrent = AppUtils.getLoginedUser(request.getSession());
 
 		if (!oldPassword.equals(userCurrent.getPassword())) {
 			errorString += "Incorrect password!";
 			
 			request.setAttribute("errorString", errorString);
-			
+
+
 			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/shop/change-password.jsp");
 			dispatcher.forward(request, response);
 		}

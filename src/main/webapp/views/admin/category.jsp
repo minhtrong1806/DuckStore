@@ -115,7 +115,7 @@
                                         <td>${i.index + 1 }</td>
                                         <td>${category.getCategoryName() }</td>
                                         <td>
-                                                ${qty.get(category.getProductCategoryID()) }
+                                                ${qty.get(category.getProductCategoryID())}
                                         </td>
                                         <td>${sold.get(category.getProductCategoryID())}</td>
                                         <td>

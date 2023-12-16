@@ -202,9 +202,9 @@ public class UserAccountDAO {
 			CriteriaQuery<UserAccount> query = builder.createQuery(UserAccount.class);
 			Root<UserAccount> root = query.from(UserAccount.class);
 
+			query.select(root);
 			query.where(builder.equal(root.get("userID"), userID));
 			root.fetch("shopOrders",JoinType.LEFT);
-			query.orderBy(builder.desc(root.get("shopOrders").get("orderDate")));
 
 			UserAccount userAccount = session.createQuery(query).uniqueResult();
 			return userAccount.getShopOrders();

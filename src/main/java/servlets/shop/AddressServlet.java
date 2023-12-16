@@ -69,6 +69,7 @@ public class AddressServlet extends HttpServlet{
 		Set<Address> addressList = addressDAO.listAddressByUser(userCurrent.getUser_id());
 		
 		request.setAttribute("addressList", addressList);
+		request.setAttribute("userCurrent", userCurrent);
 		
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/shop/address.jsp");
 		dispatcher.forward(request, response); 
