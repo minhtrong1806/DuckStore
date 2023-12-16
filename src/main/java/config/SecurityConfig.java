@@ -60,6 +60,8 @@ public class SecurityConfig {
 		urlPatterns3.add("/change-password");
 		urlPatterns3.add("/shopping-cart");
 		urlPatterns3.add("/payment");
+		urlPatterns3.add("/add-to-card");
+		urlPatterns3.add("/delete-item-cart");
 
 		mapConfig.put(ROLE_CUSTOMER, urlPatterns3);
 	}

@@ -52,7 +52,7 @@ public class ShopServlet extends HttpServlet{
 		ProductDAO productDAO = new ProductDAO();
 		
 		List<ProductCategory> categorieList = productCategoryDAO.listProductCategories();
-		int pageSize = 16;
+		int pageSize = 8;
 		int pageN = 1;
 		try {
 			if (request.getParameter("pageNumber") != null) {
@@ -93,12 +93,19 @@ public class ShopServlet extends HttpServlet{
 			
 		}
 		int numberOfPages = listProduct.size() / pageSize;
-		if (listProduct.size() % pageSize != 0 ) {
-			numberOfPages++;
+		try {
+			if (listProduct.size() % pageSize != 0) {
+				numberOfPages++;
+			}
+		}catch (Exception e){
+			System.out.println(e.getMessage());
 		}
-		
-		listProductInPage = productDAO.getProductsByPage(listProduct, pageN, pageSize);
-		
+		try {
+			listProductInPage = productDAO.getProductsByPage(listProduct, pageN, pageSize);
+		}
+		catch (Exception e){
+			System.out.println(e.getMessage());
+		}
 		request.setAttribute("numberOfPages", numberOfPages);
 		request.setAttribute("categoryList", categorieList);
 		request.setAttribute("listProduct", listProductInPage);

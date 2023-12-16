@@ -98,7 +98,7 @@ public class ProductsServlet extends HttpServlet{
 		List<ProductCategory> categorieList = productCategoryDAO.listProductCategories();
 		List<Product> listProducts = null;
 		List<Product> listProductInPage = null;
-		int pageSize = 16;
+		int pageSize = 8;
 		int pageN = 1;
 		try {
 			if (request.getParameter("pageNumber") != null) {
@@ -130,11 +130,16 @@ public class ProductsServlet extends HttpServlet{
 		String folderStore = request.getContextPath()+ "\\views\\images\\products\\";
 		
 		int numberOfPages = listProducts.size() / pageSize;
-		if (listProducts.size() % pageSize != 0 ) {
-			numberOfPages++;
+		try {
+			if (listProducts.size() % pageSize != 0) {
+				numberOfPages++;
+			}
+			listProductInPage = productDAO.getProductsByPage(listProducts, pageN, pageSize);
+		}catch (Exception e){
+			System.out.println(e.getMessage());
 		}
 		
-		listProductInPage = productDAO.getProductsByPage(listProducts, pageN, pageSize);
+
 		
 		request.setAttribute("numberOfPages", numberOfPages);
 		request.setAttribute("categoryList", categorieList);
@@ -185,10 +190,10 @@ public class ProductsServlet extends HttpServlet{
 				}
 			}
 			if (priceMin == priceMax) {
-				priceRange.put(product.getProductID(), (String)(priceMax + " $"));
+				priceRange.put(product.getProductID(), (String)("$" + priceMax));
 			}
 			else {
-				priceRange.put(product.getProductID(), (String)(priceMin + " - " + priceMax + " $"));
+				priceRange.put(product.getProductID(), (String)("$" + priceMin + " - " + priceMax));
 			}		
 		}
 		return priceRange;

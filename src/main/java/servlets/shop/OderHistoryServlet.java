@@ -28,7 +28,6 @@ public class OderHistoryServlet extends HttpServlet{
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		listOrder(request, response);
 
 	}
@@ -40,10 +39,12 @@ public class OderHistoryServlet extends HttpServlet{
 	protected void listOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserAccount userCurrent = AppUtils.getLoginedUser(request.getSession());
 
+
 		UserAccountDAO userAccountDAO = new UserAccountDAO();
 		Set<ShopOrder> shopOrders = userAccountDAO.getListOrderByUserID(userCurrent.getUser_id());
 
 		request.setAttribute("shopOrders", shopOrders);
+		request.setAttribute("userCurrent", userCurrent);
 
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/shop/history.jsp");
 		dispatcher.forward(request, response);

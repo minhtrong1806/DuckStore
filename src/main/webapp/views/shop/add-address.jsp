@@ -130,8 +130,7 @@
 								<div class="col-xl-4">
 										<div class="card">
 												<div class="card-body">
-														<h4 class="ltext-108 cl2 text-center m-tb-20">Minh
-																Trong</h4>
+														<h4 class="ltext-108 cl2 text-center m-tb-20">Add address</h4>
 														<div class="border-top">
 																<div class="list-group">
 																		<a class="font-weight-bold list-group-item list-group-item-action border-0 mt-5"

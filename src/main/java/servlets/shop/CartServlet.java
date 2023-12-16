@@ -86,32 +86,34 @@ public class CartServlet extends HttpServlet{
 		
 		
 		UserAccount userCurrent = AppUtils.getLoginedUser(request.getSession());
-		ShoppingCart cartOfUserCurrent = shoppingCartDAO.getShoppingCart(userCurrent.getUser_id());
-		if (cartOfUserCurrent == null) {
-			shoppingCartDAO.addShoppingCart(userCurrent.getUser_id());
-			cartOfUserCurrent = shoppingCartDAO.getShoppingCart(userCurrent.getUser_id());
+		if(userCurrent != null) {
+			ShoppingCart cartOfUserCurrent = shoppingCartDAO.getShoppingCart(userCurrent.getUser_id());
+			if (cartOfUserCurrent == null) {
+				shoppingCartDAO.addShoppingCart(userCurrent.getUser_id());
+				cartOfUserCurrent = shoppingCartDAO.getShoppingCart(userCurrent.getUser_id());
+			}
+
+			ProductItem itemSelected = null;
+			try {
+				itemSelected = itemDAO.getProductItemsByConditions(productId, size, color);
+			} catch (Exception e) {
+				hasError = true;
+			}
+
+			if (itemSelected == null || hasError) {
+				hasError = true;
+				HttpSession session = request.getSession();
+				session.setAttribute("message", "Please choose color and size !");
+				response.sendRedirect(request.getContextPath() + "/product-detail?productId=" + productId);
+				System.out.println("loi");
+			} else {
+				boolean success = shoppingCartItemDAO.addProductToShoppingCart(itemSelected.getProductItemID(), userCurrent.getUser_id(), numProduct);
+				response.sendRedirect(request.getContextPath() + "/product-detail?productId=" + productId);
+			}
 		}
-		
-		ProductItem itemSelected = null;
-		try {
-			itemSelected = itemDAO.getProductItemsByConditions(productId, size, color);
-		} catch (Exception e) {
-			hasError = true;
-		}		
-		
-		if (itemSelected == null || hasError) {
-			hasError = true;
-			HttpSession session = request.getSession();
-			session.setAttribute("message", "Please choose color and size !");
-			response.sendRedirect(request.getContextPath() + "/product-detail?productId=" + productId);
-			System.out.println("loi");
-		}
-		
 		else {
-			boolean success = shoppingCartItemDAO.addProductToShoppingCart(itemSelected.getProductItemID(), userCurrent.getUser_id(), numProduct);
-			response.sendRedirect(request.getContextPath() + "/product-detail?productId=" + productId);		
+			response.sendRedirect(request.getContextPath() + "/login");
 		}
-		
 	}
 
 
