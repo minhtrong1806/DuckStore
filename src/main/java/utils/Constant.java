@@ -2,5 +2,5 @@ package utils;
 
 
 public class Constant {
-	public static final String DIR = "C:\\Users\\luong\\Workspace\\UTE\\year_3\\web\\gui\\DuckStore\\src\\main\\webapp\\views\\images";
+	public static final String DIR = "D:\\SPKT\\Nam3\\HK1\\Web\\DoAn\\DuckStore\\src\\main\\webapp\\views\\images";
 }

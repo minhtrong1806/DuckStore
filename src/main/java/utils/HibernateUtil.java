@@ -21,11 +21,11 @@ public class HibernateUtil {
 		pros.put(Environment.DIALECT, "org.hibernate.dialect.SQLServerDialect");
 		pros.put(Environment.DRIVER, "com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		pros.put(Environment.URL,
-		"jdbc:sqlserver://localhost:2703;databaseName=testDuckstore;encrypt=true;trustServerCertificate=true;characterEncoding=UTF-8;useUnicode=true");
+		"jdbc:sqlserver://localhost:1433;databaseName=DuckStore;encrypt=true;trustServerCertificate=true;characterEncoding=UTF-8;useUnicode=true");
 		pros.put(Environment.USER, "sa");
 		pros.put(Environment.PASS, "123456");
 		
-		pros.put("hibernate.search.default.indexBase", "C:\\Users\\luong\\Workspace\\UTE\\year_3\\web\\gui\\DuckStore\\indexes");
+		pros.put("hibernate.search.default.indexBase", "D:\\SPKT\\Nam3\\HK1\\Web\\DoAn\\DuckStore\\indexes");
 
 		conf.setProperties(pros);
 		conf.addAnnotatedClass(Address.class);
