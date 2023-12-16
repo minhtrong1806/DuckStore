@@ -181,8 +181,7 @@
               </tr>
             </thead>
             <tbody>
-              <% 
-              
+              <%
               Set<ShoppingCartItem> items = (Set<ShoppingCartItem>) request.getAttribute("productItemList"); 
 							float sum = 0;
 							try{
